@@ -3,10 +3,12 @@
 .build-docker/
 node_modules/
 logs/
-docs/
+config/local-*.js
 
 npm-debug.log
 docker/tmp-package.json
 test/client/coverage/
 test/client/test-results.xml
 .babelrc
+
+/src
