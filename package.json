@@ -4,8 +4,8 @@
   "description": "FrontCore_Components",
   "scripts": {
     "start-build": "node ./.build/server.js",
-    "start-daemon": "pm2 start ./.build/server.js --name form-rascenka",
-    "stop-daemon": "pm2 stop form-rascenka",
+    "start-daemon": "pm2 start ./.build/server.js --name FrontCore_Components",
+    "stop-daemon": "pm2 stop FrontCore_Components",
     "start-production": "cross-env NODE_ENV=production npm run start-build",
     "start-production-deamon": "cross-env NODE_ENV=production npm run start-daemon",
     "update-prod": "npm run stop-daemon && npm i && npm run build && npm run start-production-daemon",
