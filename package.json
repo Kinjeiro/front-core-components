@@ -1,6 +1,6 @@
 {
   "name": "FrontCore_Components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "FrontCore_Components",
   "scripts": {
     "start-build": "node ./.build/server.js",
@@ -15,15 +15,12 @@
     "start-prelive": "cross-env NODE_ENV=prelive npm run start-build",
     "start-localhost": "cross-env NODE_ENV=localhost HOT_LOADER=1 APP_MOCKS=1 USE_MOCKS=1 node ./node_modules/@reagentum/front-core/build-scripts/start.js",
     "start-localhost-other-port": "cross-env SERVER_PORT=8082 PROXY_PORT=9092 npm run start-localhost",
-
     "start": "npm run start-localhost",
     "start-without-SSR": "cross-env CLIENT_SIDE_RENDERING=1 npm run start-localhost",
     "start-frontend-server": "node ./node_modules/@reagentum/front-core/build-scripts/start-frontend.js",
     "start-backend-server": "node ./node_modules/@reagentum/front-core/build-scripts/start-backend.js",
-
     "build": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && cross-env NODE_ENV=production node ./node_modules/@reagentum/front-core/build-scripts/build.js",
     "test-build": "npm run build && npm run start-production",
-
     "compile": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && rimraf lib/* -f && babel src --out-dir lib --copy-files",
     "prepublish": "npm run compile",
     "publish-patch": "npm run release-patch && npm publish",
@@ -36,7 +33,6 @@
     "postversion": "git push --follow-tags",
     "postversion-hg": "hg add package.json && hg commit package.json -m \"front-core new version\" && hg push",
     "postversion-git": "git push --follow-tags",
-
     "lint": "./node_modules/.bin/eslint --ext js,jsx .",
     "test-client": "cross-env NODE_ENV=test karma start ./node_modules/@reagentum/front-core/test/client/run-client-tests.js",
     "test-client:watch": "npm run test-client -- --watch",
