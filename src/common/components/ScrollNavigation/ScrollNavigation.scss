@@ -1,0 +1,163 @@
+@import "../../app-styles/vars";
+
+.ScrollNavigation {
+  &__stepsInfo {
+    position: fixed;
+    z-index: 100;
+    width: 250px;
+    right: 0;
+    margin-top: 10px;
+
+    // todo @ANKU @LOW @BUG_OUT @firefox - если fixed в скроллинге без явного топа то не работает от родителя CSS - “position: fixed” acting like “absolute” in Firefox
+    // https://stackoverflow.com/questions/21440604/css-position-fixed-acting-like-absolute-in-firefox
+    // https://stackoverflow.com/questions/17741264/fixed-positioning-not-working-in-firefox
+    //-o-backface-visibility: hidden;
+    //-moz-backface-visibility: hidden;
+    //-webkit-backface-visibility: hidden;
+    //backface-visibility: hidden;
+
+    /*
+      https://stackoverflow.com/questions/36855473/position-fixed-not-working-is-working-like-absolute
+      The issue here lies with your .content-container wrapper class, which has a CSS declaration of webkit-transform: translate3d(0,0,0). The transform declaration, as this answer illustrates, changes the positioning context from the viewport to the rotated element, which essentially means that your fixed element behaves as if it were absolutely positioned. Here's an example showing the difference between a fixed element inside a transformed div and a fixed element outside of that div.
+
+      Из-за этого после трансформа не правильно используется наш fixed
+
+      .pushable > .pusher {
+        position: relative;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        overflow: hidden;
+        min-height: 100%;
+        transition: transform 500ms ease;
+        z-index: 2;
+
+
+      .pushable:not(body) {
+        transform: translate3d(0, 0, 0);
+      }
+    */
+    // top: 100px;
+
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__expandButton {
+    display: none;
+  }
+
+  &__content {
+    padding-right: 250px;
+  }
+}
+
+.StepInfo {
+  list-style: none;
+
+  &--circle {
+    display: inline-block;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    line-height: 20px;
+    padding: 2px;
+    //background: #fff;
+    border: 2px solid $color-primary;
+    //color: #00b4b4;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  &__ready {
+    color: $color-primary;
+
+    .checkmark {
+      margin-right: 0;
+    }
+  }
+  &__number {
+    color: $color-primary;
+  }
+  &__label {
+    color: #333;
+  }
+}
+
+.ScrollLink {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--active {
+    .StepInfo__label {
+      color: $color-primary;
+      font-weight: bold;
+    }
+  }
+}
+
+@include respond-to('xs', 'only-sm') {
+  .ScrollNavigation {
+    padding-right: 0;
+    padding-top: 36px;
+
+    &__stepsInfo {
+      top: $header-size-sm;
+      left: 0;
+      width: 100%;
+      //height: 26px;
+      padding: 10px;
+      margin: 0;
+      background: $color_white;
+      border-bottom: 1px solid $color-grey;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+
+      min-height: 46px;
+    }
+
+    &__expandButton {
+      display: block;
+      position: absolute;
+      right: 14px; /* под баланс*/
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: $color-primary;
+    }
+
+    &__content {
+      padding-right: inherit;
+    }
+  }
+
+
+  .ScrollLink {
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+
+  .StepInfo {
+    width: 100%;
+  }
+
+  .StepsInfo {
+    &--toggled {
+      .ScrollLink {
+        display: block;
+      }
+
+      .ScrollNavigation__expandButton {
+        bottom: 0;
+        top: auto;
+      }
+    }
+  }
+}
+

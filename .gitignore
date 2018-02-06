@@ -1,0 +1,13 @@
+.idea/
+.build/
+.build-docker/
+node_modules/
+logs/
+
+npm-debug.log
+docker/tmp-package.json
+test/client/coverage/
+test/client/test-results.xml
+.babelrc
+
+lib/

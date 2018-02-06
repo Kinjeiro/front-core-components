@@ -1,0 +1,16 @@
+@import "../../../app-styles/vars";
+
+.AuthLayout {
+  background: $color-white;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  &__body {
+    display: flex;
+    align-items: center;
+    background: $color-white;
+    color: $color-primary;
+
+  }
+}

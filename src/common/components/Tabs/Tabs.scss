@@ -1,0 +1,21 @@
+@import "../../app-styles/vars";
+
+.Tabs {
+  &__tab {
+
+  }
+}
+
+.Tab {
+  &.ui.button {
+    background: $color_white_dark;
+  }
+
+  &--active {
+    &.ui.button,
+    &.ui.button:hover {
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
+}
