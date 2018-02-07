@@ -1,6 +1,6 @@
 import i18n from '@reagentum/front-core/lib/common/utils/i18n-utils';
 
-const NAMESPACE = 'project';
+const NAMESPACE = 'frontCore-components';
 
 function i18nProjectWrapper(key, ...other) {
   const namespace = key.indexOf(':') < 0

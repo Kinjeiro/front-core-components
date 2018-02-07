@@ -4,7 +4,7 @@ const PARENT_WEBPACK_CONTEXT = require('@reagentum/front-core/build-scripts/webp
 
 const CURRENT_FILE_PATH = __dirname;
 
-function inProject(...args) {
+function inFrontCoreComponentsProject(...args) {
   return path.resolve(CURRENT_FILE_PATH, '..', ...args);
 }
 
@@ -16,7 +16,7 @@ module.exports = Object.assign(
     staticPaths: [
       ...PARENT_WEBPACK_CONTEXT.staticPaths,
       // абсолютные, чтобы другие проекты могли добавлять свои
-      inProject('static')
+      inFrontCoreComponentsProject('static')
     ]
   }
 );

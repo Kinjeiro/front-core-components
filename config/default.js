@@ -19,14 +19,6 @@ const {
   REQUEST_TIMEOUT = 120000,
 } = process.env;
 
-
-const middlewareApiService = createEndpointServiceConfig({
-  host: HOST || SERVICES_HOST || '188.227.72.187',
-  port: SERVICES_PORT || 8088,
-  timeout: REQUEST_TIMEOUT,
-  endpoint: 'api',
-});
-
 module.exports = extendDeep(
   // parent config
   loadFileConfigs(inNodeModules('@reagentum/front-core/config')),
@@ -39,7 +31,7 @@ module.exports = extendDeep(
         i18n: {
           i18nextOptions: {
             //see \static\i18n\en\project.js
-            ns: ['core', 'project'],
+            ns: ['core', 'frontCore-components'],
             language: 'ru',
             fallbackLng: 'ru'
           }
@@ -72,18 +64,6 @@ module.exports = extendDeep(
           // authMock: false
         },
       },
-
-      endpointServices: {
-        // authApiService: null,
-        //
-        // middlewareApiService: createEndpointServiceConfig({
-        //   // protocol: SERVICES_PROTOCOL,
-        //   host: HOST || SERVICES_HOST || '127.0.0.1',
-        //   port: SERVICES_PORT || 37878,
-        //   timeout: REQUEST_TIMEOUT
-        //   // endpoint,
-        // })
-      }
     }
   }
 );
