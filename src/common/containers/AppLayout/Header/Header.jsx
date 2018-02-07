@@ -18,7 +18,6 @@ import {
 // ======================================================
 // UTILS
 // ======================================================
-import i18n from '../../../utils/i18n';
 import { PATH_INDEX } from '../../../routes.pathes';
 
 // ======================================================
@@ -43,6 +42,8 @@ export default class Header extends Component {
   static propTypes = {
     onToggleSidebar: PropTypes.func,
     userMenu: PropTypes.array,
+    textHeaderTitle: PropTypes.string,
+    textHeaderDescription: PropTypes.string,
 
     // ======================================================
     // CONNECT
@@ -59,7 +60,11 @@ export default class Header extends Component {
   // RENDERS
   // ======================================================
   renderLeftPart() {
-    const { onToggleSidebar } = this.props;
+    const {
+      onToggleSidebar,
+      textHeaderTitle,
+      textHeaderDescription,
+    } = this.props;
 
     return (
       <div className="header-inner Header__leftPart">
@@ -77,10 +82,10 @@ export default class Header extends Component {
         }
         <div className="Header__titleWrapper">
           <Link to={ PATH_INDEX }>
-            <h2 className="Header__title">{ i18n('pages.AppLayout.Header.title') }</h2>
+            <h2 className="Header__title">{ textHeaderTitle }</h2>
           </Link>
           <MediaQuery mobile={ false }>
-            <span className="Header__description">{ i18n('pages.AppLayout.Header.titleDescription') }</span>
+            <span className="Header__description">{ textHeaderDescription }</span>
           </MediaQuery>
         </div>
       </div>
@@ -131,7 +136,7 @@ export default class Header extends Component {
                           key={ name }
                           onClick={ onClick || (() => goTo(path)) }
                         >
-                          { i18n(`pages.AppLayout.menu.${name}`) }
+                          { name }
                         </Dropdown.Item>
                       )))
                   }

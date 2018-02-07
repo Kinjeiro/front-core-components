@@ -9,7 +9,7 @@ module.exports = {
 
       Header: {
         title: 'Компоненты FrontCore',
-        titleDescription: '',
+        description: '',
       },
     },
   },

@@ -53,7 +53,15 @@ export default function createRoutes(store) {
       // ======================================================
       <Route
         key="appLayout"
-        component={ AppLayout }
+        component={ (props) => (
+          <AppLayout
+            { ...props }
+            /* textTitle="testTitle"
+            textHeaderTitle="textHeaderTitle"
+            textHeaderDescription="textHeaderDescription"
+            textMenuLogout="textMenuLogout"*/
+          />
+        ) }
       >
         <IndexRoute
           component={ TestPage }

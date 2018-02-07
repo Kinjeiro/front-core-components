@@ -49,7 +49,7 @@ import './AppLayout.scss';
 
 // const actionsUser = reduxUser.getBindActions(apiUser);
 
-@titled('AppLayout', i18n('pages.AppLayout.title'))
+@titled('AppLayout', ({ textTitle }) => textTitle || i18n('pages.AppLayout.title'))
 @connect(
   (globalState) => ({
     currentPath: getCurrentPath(globalState),
@@ -64,12 +64,20 @@ export default class AppLayout extends Component {
     children: PropTypes.node.isRequired,
     onLogout: PropTypes.func,
 
-    menu: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      icon: PropTypes.string,
-      path: PropTypes.any,
-      onClick: PropTypes.func,
-    })),
+    menu: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.node,
+        icon: PropTypes.string,
+        path: PropTypes.any,
+        onClick: PropTypes.func,
+      })),
+    ]),
+
+    textTitle: PropTypes.string,
+    textHeaderTitle: PropTypes.string,
+    textHeaderDescription: PropTypes.string,
+    textMenuLogout: PropTypes.string,
 
     // ======================================================
     // CONNECT
@@ -77,6 +85,13 @@ export default class AppLayout extends Component {
     currentPath: PropTypes.string,
     goTo: PropTypes.func,
     actionUserLogout: PropTypes.func,
+  };
+
+  static defaultProps = {
+    textTitle: i18n('pages.AppLayout.title'),
+    textHeaderTitle: i18n('pages.AppLayout.Header.title'),
+    textHeaderDescription: i18n('pages.AppLayout.Header.description'),
+    textMenuLogout: i18n('pages.AppLayout.menu.logout'),
   };
 
   state = {
@@ -98,11 +113,17 @@ export default class AppLayout extends Component {
   getUserMenu() {
     const {
       menu = [],
+      textMenuLogout,
     } = this.props;
+
+    if (typeof menu === 'function') {
+      return menu();
+    }
+
     return [
       ...menu,
       {
-        name: 'logout',
+        name: textMenuLogout,
         icon: 'sign out',
         onClick: this.handleLogout,
       },
@@ -148,6 +169,10 @@ export default class AppLayout extends Component {
   }
 
   renderContent() {
+    const {
+      textHeaderTitle,
+      textHeaderDescription,
+    } = this.props;
     const { sidebarOpened } = this.state;
 
     return (
@@ -155,6 +180,8 @@ export default class AppLayout extends Component {
         <Header
           userMenu={ this.getUserMenu() }
           onToggleSidebar={ this.handleToggleSidebar }
+          textHeaderTitle={ textHeaderTitle }
+          textHeaderDescription={ textHeaderDescription }
         />
 
         <div className="fartuna">
@@ -217,7 +244,7 @@ export default class AppLayout extends Component {
                 active={ currentPath.indexOf(path) >= 0 }
               >
                 <Icon name={ icon } />
-                { i18n(`pages.AppLayout.menu.${name}`) }
+                { name }
               </Menu.Item>
             ))
         }
