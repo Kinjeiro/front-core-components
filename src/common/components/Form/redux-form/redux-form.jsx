@@ -26,8 +26,6 @@ import reduxFormSemanticWrapper from '../semantic-field-wrapper';
 // export Select from './select';
 export RadioGroup from './RadioGroup';
 
-// todo @ANKU @LOW @toCore - в компнентную базу коры
-
 export const LabelField = reduxFormSemanticWrapper(Labeled, {
   supportOutLabel: true,
 });

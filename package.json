@@ -44,7 +44,7 @@
     "update-core": "npm install --save @reagentum/front-core@latest"
   },
   "dependencies": {
-    "@reagentum/front-core": "^1.0.57",
+    "@reagentum/front-core": "^1.0.59",
     "config": "github:kinjeiro/node-config",
     "echarts": "^3.7.2",
     "echarts-for-react": "^2.0.0",

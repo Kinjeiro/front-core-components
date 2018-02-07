@@ -9,6 +9,7 @@ import {
   Dropdown,
 } from 'semantic-ui-react';
 
+import { PATH_INDEX } from '@reagentum/front-core/lib/common/constants/routes.pathes';
 import { getUserInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';
 import {
   MediaQuery,
@@ -18,7 +19,6 @@ import {
 // ======================================================
 // UTILS
 // ======================================================
-import { PATH_INDEX } from '../../../routes.pathes';
 
 // ======================================================
 // REDUX

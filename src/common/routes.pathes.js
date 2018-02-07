@@ -7,12 +7,6 @@ export const ROUTES_NAMES = {
 };
 
 // ======================================================
-// MARKET
-// ======================================================
-// todo @ANKU @LOW @toCore
-export const PATH_INDEX = appUrl('/');
-
-// ======================================================
 // AUTH
 // ======================================================
 export const PATH_AUTH_INDEX = appUrl(ROUTES_NAMES.auth);
