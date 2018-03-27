@@ -11,4 +11,5 @@ test/client/coverage/
 test/client/test-results.xml
 .babelrc
 
-/src
+src/
+docs/api/assets/fonts/
