@@ -7,7 +7,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import {
   DATE_FORMAT,
   parseDate,
-  formatDateToTimestamp,
+  parseToSystem,
 } from '@reagentum/front-core/lib/common/utils/date-utils';
 
 // import i18n from '../../../utils/i18n';
@@ -21,6 +21,9 @@ export default class DatePicker2 extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     readOnly: PropTypes.bool,
+
+    // onBlur: PropTypes.func,
+    onBlurWithChange: PropTypes.func,
     // ...omit(SingleDatePicker.propTypes, ['onDateChange', 'date', 'onFocusChange', 'focused', 'id']),
   };
 
@@ -29,15 +32,25 @@ export default class DatePicker2 extends Component {
 
   state = {
     focused: undefined,
+    // tempValue: this.props.value,
   };
+
+  // eslint-disable-next-line react/sort-comp
+  tempValue = null;
 
   // ======================================================
   // LIFECYCLE
   // ======================================================
   // componentDidMount() {
   // }
-  // componentWillReceiveProps(newProps) {
-  // }
+  componentWillReceiveProps(newProps) {
+    if (newProps.value !== this.props.value) {
+      this.tempValue = newProps.value;
+      // this.setState({
+      //   tempValue: newProps.value,
+      // });
+    }
+  }
 
 
   // ======================================================
@@ -48,10 +61,41 @@ export default class DatePicker2 extends Component {
     const {
       readOnly,
       onChange,
+      value,
     } = this.props;
 
+    if (!readOnly && onChange) {
+      const oldValue = parseToSystem(value);
+      const newValue = parseToSystem(momentDate);
+      if (newValue !== oldValue) {
+        onChange(newValue);
+      }
+      // this.setState({
+      //   tempValue: newValue,
+      // });
+      this.tempValue = newValue;
+    }
+  }
+  @bind()
+  handleBlur() {
+    const {
+      readOnly,
+      // onBlur,
+      onBlurWithChange,
+      value,
+    } = this.props;
+    // const { tempValue } = this.state;
+    const { tempValue } = this;
+
     if (!readOnly) {
-      onChange(formatDateToTimestamp(momentDate));
+      const newValue = parseToSystem(tempValue);
+      const oldValue = parseToSystem(value);
+      // if (onBlur) {
+      //   onBlur(null, newValue, oldValue);
+      // }
+      if (onBlurWithChange && newValue !== oldValue) {
+        onBlurWithChange(null, newValue, oldValue);
+      }
     }
   }
 
@@ -71,12 +115,15 @@ export default class DatePicker2 extends Component {
       readOnly,
       // eslint-disable-next-line no-unused-vars
       onChange,
+      // onBlur,
       ...SingleDatePickerProps
     } = this.props;
 
     // name, onChange, value
 
-    const { focused: stateFocused } = this.state;
+    const {
+      focused: stateFocused,
+    } = this.state;
 
     /*
       @NOTE: работает только на moment
@@ -86,9 +133,7 @@ export default class DatePicker2 extends Component {
         <SingleDatePicker
           id={ name }
           date={ parseDate(value) }
-          onDateChange={ this.handleChange }
           focused={ stateFocused }
-          onFocusChange={ ({ focused }) => this.setState({ focused }) }
           numberOfMonths={ 1 }
           isOutsideRange={ () => false }
           displayFormat={ DATE_FORMAT }
@@ -97,6 +142,14 @@ export default class DatePicker2 extends Component {
           {
             ...SingleDatePickerProps
           }
+          onFocusChange={ ({ focused }) => {
+            this.setState({ focused });
+            if (!focused) {
+              // нужно чтобы setState в onChange успел сработать
+              this.handleBlur();
+            }
+          } }
+          onDateChange={ this.handleChange }
         />
       </div>
     );

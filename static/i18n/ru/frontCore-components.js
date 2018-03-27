@@ -25,7 +25,7 @@ module.exports = {
     Sidebar: {
       logout: 'Выйти',
     },
-    FileInput: {
+    Attachment: {
       dropThere: 'Перетащите сюда файлы',
       addButton: 'Добавить файл',
     },
@@ -46,6 +46,15 @@ module.exports = {
     ToggledAddData: {
       showDataAction: 'Добавить',
       onProceedAction: 'Отправить',
+    },
+    Tabs: {
+      textOr: 'или',
+    },
+    UniTable: {
+      textNoData: 'Нет доступных элементов',
+      textYouSelectedPage: 'Выбраны все элементы на странице',
+      textActionSelectAll: 'Выбрать на всех страницах',
+      textYouSelectedAll: 'Выбраны все элементы',
     },
   },
 };

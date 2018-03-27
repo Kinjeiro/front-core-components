@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import bind from 'lodash-decorators/bind';
@@ -7,16 +8,23 @@ import {
 
 import wrapper from '../semantic-field-wrapper';
 
-// import './Input.scss';
+// import './InputWithState.scss';
 
 export class InputWithState extends Component {
-  static propTypes = SemanticInput.propTypes;
+  static propTypes = {
+    ...SemanticInput.propTypes,
+    withState: PropTypes.bool,
+
+    onChangedBlur: PropTypes.func,
+  };
 
   static defaultProps = {
+    withState: true,
   };
 
   state = {
-    tempValue: this.props.value,
+    tempValue: this.props.withState ? this.props.value : undefined,
+    lastChangedBlurValue: undefined,
   };
 
   // ======================================================
@@ -26,24 +34,43 @@ export class InputWithState extends Component {
   // }
   // componentWillReceiveProps(newProps) {
   // }
+
+  /**
+   *
+   * @param withBlur
+   * @param withChange
+   * @param event
+   * @param comp
+   */
   update(withBlur, withChange, event, comp) {
     const {
       type,
       onChange,
       onBlur,
+      onChangedBlur,
+      readOnly,
     } = this.props;
 
-    const tempValue = event.target.value;
+    const { lastChangedBlurValue } = this.state;
+
+    const newValue = event.target.value;
     const value = type === 'number'
-      ? +tempValue
-      : tempValue;
+      ? +newValue
+      : newValue;
+
+    const hasChanges = newValue !== lastChangedBlurValue;
 
     if (withChange && onChange) {
       onChange(event, { ...comp, value });
     }
     if (withBlur && onBlur) {
-      debugger;
       onBlur(event, { ...comp, value });
+    }
+    if (withBlur && onChangedBlur && hasChanges && !readOnly) {
+      onChangedBlur(event, { ...comp, value });
+      this.setState({
+        lastChangedBlurValue: value,
+      });
     }
   }
 
@@ -52,9 +79,14 @@ export class InputWithState extends Component {
   // ======================================================
   @bind()
   handleChange(event, ...other) {
-    this.setState({
-      tempValue: event.target.value,
-    });
+    const { withState } = this.props;
+
+    if (withState) {
+      this.setState({
+        tempValue: event.target.value,
+      });
+    }
+
     this.update(false, true, event, ...other);
   }
 
@@ -74,27 +106,23 @@ export class InputWithState extends Component {
     }
   }
 
-
-  // ======================================================
-  // RENDERS
-  // ======================================================
-
-
   // ======================================================
   // MAIN RENDER
   // ======================================================
   render() {
     const {
       value,
-      ...otherProps
+      withState,
+      onChangedBlur,
+      ...inputProps
     } = this.props;
 
     const { tempValue } = this.state;
 
     return (
       <SemanticInput
-        value={ tempValue || value }
-        { ...otherProps }
+        value={ withState ? (tempValue || value) : value }
+        { ...inputProps }
         onChange={ this.handleChange }
         onKeyPress={ this.handleKeyPress }
         onBlur={ this.handleBlur }

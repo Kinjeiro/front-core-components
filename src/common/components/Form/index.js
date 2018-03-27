@@ -1,6 +1,6 @@
 import 'react-dates/initialize';
 
-export FileInput from './FileInput/FileInput';
+export Attachment from './Attachment/Attachment';
 export Labeled from './Labeled/Labeled';
 export SelectFix from './SelectFix/SelectFix';
 export ErrorLabel from './ErrorLabel/ErrorLabel';

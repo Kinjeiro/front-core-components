@@ -1,11 +1,11 @@
 @import "../../../app-styles/vars";
 
-.FileInput {
+.Attachment {
   &__dropzone {
     position: relative;
     width: 100%;
 
-    .FileInput__dropzoneBackground {
+    .Attachment__dropzoneBackground {
       display: none;
 
       position: absolute;
@@ -29,7 +29,7 @@
     }
 
     &--active {
-      .FileInput__dropzoneBackground {
+      .Attachment__dropzoneBackground {
         display: block;
       }
     }
@@ -44,7 +44,7 @@
   }
 
   &--withDescription {
-    .FileInput__AttachInfo {
+    .Attachment__AttachInfo {
       display: flex;
       align-items: center;
 
@@ -61,6 +61,7 @@
   margin-right: 3%;
 
   &__fileName {
+    cursor: pointer;
     color: $color-primary;
     font-weight: bold;
     text-align: right;

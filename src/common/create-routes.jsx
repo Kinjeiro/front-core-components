@@ -14,6 +14,8 @@ import { PATH_LOGIN_PAGE } from '@reagentum/front-core/lib/common/constants/rout
 // ======================================================
 import NAMES, * as paths from './routes.pathes';
 
+import { Notice } from './components';
+
 import AuthLayout from './containers/Auth/AuthLayout/AuthLayout';
 import Signin from './containers/Auth/Signin/Signin';
 
@@ -30,51 +32,62 @@ export default function createRoutes(store) {
   /* <IndexRedirect to="catalog" />,*/
   /* component={ permissionWrapper(PERMISSION_CREATE_REQUEST)(TestDatasPage) } */
 
+  const authLayout = (
+    // ======================================================
+    // AUTH
+    // ======================================================
+    <Route
+      key="authLayout"
+      path={ NAMES.auth }
+      component={ AuthLayout }
+    >
+      <IndexRedirect to={ NAMES.signin } />
+      <Route
+        path={ NAMES.signin }
+        component={ Signin }
+      />
+    </Route>
+  );
+
+  const projectLayout = (
+    // ======================================================
+    // APP
+    // ======================================================
+    <Route
+      key="appLayout"
+      component={ (props) => (
+        <AppLayout
+          { ...props }
+          /* textTitle="testTitle"
+           textHeaderTitle="textHeaderTitle"
+           textHeaderDescription="textHeaderDescription"
+           textMenuLogout="textMenuLogout"*/
+        />
+      ) }
+    >
+      <IndexRoute
+        component={ TestPage }
+      />
+    </Route>
+  );
+
   return createParentRoutes(
     store,
-    [
-      // ======================================================
-      // AUTH
-      // ======================================================
-      <Route
-        key="authLayout"
-        path={ NAMES.auth }
-        component={ AuthLayout }
-      >
-        <IndexRedirect to={ NAMES.signin } />
-        <Route
-          path={ NAMES.signin }
-          component={ Signin }
-        />
-      </Route>,
+    projectLayout,
+    {
+      beforeRoutes: [
+        <Redirect
+          key={ `redirect_${PATH_LOGIN_PAGE}` }
+          from={ PATH_LOGIN_PAGE }
+          to={ paths.PATH_AUTH_INDEX }
+        />,
+      ],
+      authLayout,
 
-      // ======================================================
-      // APP
-      // ======================================================
-      <Route
-        key="appLayout"
-        component={ (props) => (
-          <AppLayout
-            { ...props }
-            /* textTitle="testTitle"
-            textHeaderTitle="textHeaderTitle"
-            textHeaderDescription="textHeaderDescription"
-            textMenuLogout="textMenuLogout"*/
-          />
-        ) }
-      >
-        <IndexRoute
-          component={ TestPage }
-        />
-      </Route>,
-    ],
-    [
-      <Redirect
-        key={ `redirect_${PATH_LOGIN_PAGE}` }
-        from={ PATH_LOGIN_PAGE }
-        to={ paths.PATH_AUTH_INDEX }
-      />,
-    ],
+      NoticeComponentClass: Notice,
+      LoginPageComponentClass: Signin,
+      ModalLoginPageComponentClass: Signin,
+    },
   );
 }
 

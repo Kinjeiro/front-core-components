@@ -4,7 +4,7 @@ import React from 'react';
 import {
   Form,
   // Label,
-  Input as InputComponent,
+  // Input as InputComponent,
   Radio as RadioComponent,
   Checkbox as CheckboxComponent,
   // Select as SelectComponent,
@@ -12,13 +12,13 @@ import {
   // Dropdown as DropdownComponent,
 } from 'semantic-ui-react';
 
+import InputComponent from '../InputWithState/InputWithState';
 import SelectFix from '../SelectFix/SelectFix';
 import Labeled from '../Labeled/Labeled';
-import ErrorLabel from '../ErrorLabel/ErrorLabel';
 import DatePicker from '../DatePicker/DatePicker';
 
 // import './Form.scss';
-import FileInput from '../FileInput/FileInput';
+import Attachment from '../Attachment/Attachment';
 
 import reduxFormSemanticWrapper from '../semantic-field-wrapper';
 
@@ -32,6 +32,7 @@ export const LabelField = reduxFormSemanticWrapper(Labeled, {
 
 export const InputField = reduxFormSemanticWrapper(InputComponent, {
   supportOutLabel: true,
+  withState: false,
   componentPropsFn: ({ input }) => ({
     onChange: (param, data) => input.onChange(data.value),
   }),
@@ -171,12 +172,12 @@ export const CheckboxField = reduxFormSemanticWrapper(CheckboxComponent, {
 //   </Form.Field>
 // );
 
-export const FileInputField = ({ input, label, required, options, meta: { touched, error }, ...custom }) => (
+export const AttachmentField = ({ input, label, required, options, meta: { touched, error }, ...custom }) => (
   <Form.Field
     error={ !!(touched && error) }
     required={ required }
   >
-    <FileInput
+    <Attachment
       { ...{
         value: input.value,
         inputProps: input,
@@ -198,6 +199,6 @@ export const FileInputField = ({ input, label, required, options, meta: { touche
 export const DatePickerField = reduxFormSemanticWrapper(DatePicker, {
   supportOutLabel: true,
   clearPropsFn: (resultProps) => omit(resultProps, [
-    'error', 'label', 'onBlur', 'onDragStart', 'onDrop', 'onFocus',
+    'error', 'label', 'onDragStart', 'onBlur', 'onDrop', 'onFocus',
   ]),
 });

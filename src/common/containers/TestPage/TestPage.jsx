@@ -7,6 +7,10 @@ import i18n from '../../utils/i18n';
 
 // import './TestPage.scss';
 
+import {
+  UniTable,
+} from '../../components';
+
 @connect(
   (globalState) => ({
   }),
@@ -48,6 +52,15 @@ export default class TestPage extends Component {
     return (
       <div className="TestPage">
         TestPage
+
+        <UniTable
+          records={ [
+            { testFieldA: 'testFieldA1', testFieldB: 'testFieldB1' },
+            { testFieldA: 'testFieldA2', testFieldB: 'testFieldB2' },
+            { testFieldA: 'testFieldA3', testFieldB: 'testFieldB3' },
+            { testFieldA: 'testFieldA4', testFieldB: 'testFieldB4' },
+          ] }
+        />
       </div>
     );
   }

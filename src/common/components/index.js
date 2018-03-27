@@ -12,3 +12,5 @@ export Segment from './Segment/Segment';
 export KeyValueList from './KeyValueList/KeyValueList';
 export Select from './Select/Select';
 export ToggledAddData from './ToggledAddData/ToggledAddData';
+export UniTable from './UniTable/UniTable';
+export Notice from './Notice/Notice';

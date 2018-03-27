@@ -10,7 +10,7 @@ import { isEmpty } from '@reagentum/front-core/lib/common/utils/common';
 
 import i18n from '../../utils/i18n';
 
-import { FileInput } from '../Form';
+import { Attachment } from '../Form';
 import './ToggledAddData.scss';
 
 export default class ToggledAddData extends React.Component {
@@ -58,7 +58,7 @@ export default class ToggledAddData extends React.Component {
 
 
   // ======================================================
-  // HADNLERS
+  // HANDLERS
   // ======================================================
   @bind()
   handleShowDataComponent() {
@@ -167,7 +167,7 @@ export default class ToggledAddData extends React.Component {
           </div>
           {
              withAttach && (
-               <FileInput
+               <Attachment
                  className="ToggledAddData__attaches"
                  value={ attaches }
                  onChange={ this.handleAttachChange }

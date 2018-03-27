@@ -35,7 +35,10 @@ function toTranslitFromRu(text) {
 export default class KeyValueList extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
       value: PropTypes.string,
       name: PropTypes.string,
       // or

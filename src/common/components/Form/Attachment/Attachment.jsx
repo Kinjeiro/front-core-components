@@ -15,9 +15,9 @@ import i18n from '../../../utils/i18n';
 
 import ErrorLabel from '../ErrorLabel/ErrorLabel';
 
-import './FileInput.scss';
+import './Attachment.scss';
 
-export default class FileInput extends React.Component {
+export default class Attachment extends React.Component {
   static propTypes = {
     label: PropTypes.node,
     usePreview: PropTypes.bool,
@@ -30,10 +30,16 @@ export default class FileInput extends React.Component {
     multiple: PropTypes.bool,
 
     value: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
       fileName: PropTypes.string.isRequired,
       preview: PropTypes.string,
       description: PropTypes.string,
+      uploadedOn: PropTypes.any,
+      size: PropTypes.number,
+      type: PropTypes.string,
     })),
 
     parseValue: PropTypes.func,
@@ -82,6 +88,11 @@ export default class FileInput extends React.Component {
       error: PropTypes.string,
     }),
 
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func,
+    onDescriptionChange: PropTypes.func,
+    onAttachClick: PropTypes.func,
+
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
   };
@@ -90,12 +101,12 @@ export default class FileInput extends React.Component {
     readOnly: false,
     editable: true,
     multiple: true,
-    dropzoneText: i18n('components.FileInput.dropThere'),
+    dropzoneText: i18n('components.Attachment.dropThere'),
     usePreview: true,
     previews: {},
 
     showAddButton: true,
-    addButtonText: i18n('components.FileInput.addButton'),
+    addButtonText: i18n('components.Attachment.addButton'),
   };
 
   state = {
@@ -113,7 +124,11 @@ export default class FileInput extends React.Component {
       value,
     } = this.props;
 
-    return (value && Array.isArray(value) ? value : [value]) || [];
+    return Array.isArray(value)
+      ? value
+      : value
+        ? [value]
+        : [];
   }
 
   // addPreview(fileName, previewData) {
@@ -139,10 +154,19 @@ export default class FileInput extends React.Component {
      */
 
     return {
-      id: generateId(),
+      // service info
+      uuid: generateId(),
+      file,
+      isNew: true,
+
+      // common info
+      id: null,
       fileName: file.name,
       preview: null,
-      label: '',
+      description: null,
+      uploadedOn: null,
+      size: file.size,
+      type: file.type,
     };
   }
 
@@ -175,25 +199,26 @@ export default class FileInput extends React.Component {
     const {
       usePreview,
       parseValue,
+      onAdd,
     } = this.props;
 
-    let files;
+    let addedFiles;
     if (event.type === 'drop') {
       if (acceptedFiles.length) {
         // convert FileList or [File] to array
-        files = [...((event.dataTransfer && event.dataTransfer.files) || acceptedFiles)];
+        addedFiles = [...((event.dataTransfer && event.dataTransfer.files) || acceptedFiles)];
       } else {
-        files = [];
+        addedFiles = [];
       }
     } else if (event.type === 'change') {
-      files = [...event.target.files];
+      addedFiles = [...event.target.files];
     } else {
-      files = event;
+      addedFiles = event;
     }
 
     if (usePreview) {
       const previews = {};
-      files.forEach((file) => {
+      addedFiles.forEach((file) => {
         if (file.preview) {
           previews[file.name] = file.preview;
         } else {
@@ -209,31 +234,51 @@ export default class FileInput extends React.Component {
       });
     }
 
-    const newValues = files.map((file) => (parseValue
+    const newAttachments = addedFiles.map((file) => (parseValue
       ? parseValue(file)
       : this.parseValueFromFile(file)
     ));
 
-    const resultValues = [
+    const resultAttachments = [
       ...this.getValues(),
-      ...newValues,
+      ...newAttachments,
     ];
 
-    this.update(resultValues, newValues);
+    if (onAdd) {
+      onAdd(addedFiles, resultAttachments, newAttachments);
+    }
+    this.update(resultAttachments, newAttachments, addedFiles);
+  }
+
+  @bind()
+  handleAttachClick(attach) {
+    const {
+      onAttachClick,
+    } = this.props;
+    if (onAttachClick) {
+      onAttachClick(attach);
+    }
   }
 
   @bind()
   handleAttachRemove(attach, event) {
-    event.preventDefault();
-    event.stopPropagation();
-
+    const {
+      onRemove,
+    } = this.props;
     const {
       previews,
       descriptions,
     } = this.state;
 
+    event.preventDefault();
+    event.stopPropagation();
+
     const values = this.getValues();
     const resultValues = values.filter((attachItem) => attachItem.fileName !== attach.fileName);
+
+    if (onRemove) {
+      onRemove(attach, resultValues);
+    }
 
     this.update(resultValues, attach);
 
@@ -247,25 +292,36 @@ export default class FileInput extends React.Component {
   }
 
   @bind()
-  handleDescriptionBlur(fileName) {
-    const values = this.getValues();
+  handleDescriptionBlur(attach) {
+    const {
+      onDescriptionChange,
+    } = this.props;
     const { descriptions } = this.state;
+    const {
+      fileName,
+      id,
+      description,
+    } = attach;
 
-    let updatedAttach = null;
 
-    const finalResult = values.map((value) => {
-      if (value.fileName === fileName && typeof descriptions[fileName] !== 'undefined') {
-        updatedAttach = {
-          ...value,
-          description: descriptions[fileName],
-        };
-        return updatedAttach;
+    // let curAttach = values.find((value) => value.fileName === fileName);
+    const newDescription = descriptions[fileName];
+
+    if (description !== newDescription) {
+      const values = this.getValues();
+      const updatedAttach = {
+        ...attach,
+        description: newDescription,
+      };
+
+      const finalResult = values.map((value) => (value.fileName === fileName ? updatedAttach : value));
+
+      if (onDescriptionChange) {
+        onDescriptionChange(id || fileName, newDescription, finalResult, updatedAttach);
       }
-      return value;
-    });
-
-    if (updatedAttach) {
-      this.update(finalResult, updatedAttach);
+      if (updatedAttach) {
+        this.update(finalResult, updatedAttach);
+      }
     }
   }
 
@@ -300,7 +356,7 @@ export default class FileInput extends React.Component {
     return (
       <div
         key={ id || fileName }
-        className="FileInput__AttachInfo AttachInfo"
+        className="Attachment__AttachInfo AttachInfo"
       >
         {
           withDescriptions && (
@@ -314,12 +370,15 @@ export default class FileInput extends React.Component {
                   [fileName]: event.target.value,
                 },
               }) }
-              onBlur={ () => this.handleDescriptionBlur(fileName) }
+              onBlur={ () => this.handleDescriptionBlur(attach) }
               readOnly={ readOnly }
             />
           )
         }
-        <span className="AttachInfo__fileName">
+        <span
+          className="AttachInfo__fileName"
+          onClick={ this.handleAttachClick.bind(this, attach) }
+        >
           { fileName }
         </span>
         <span
@@ -373,13 +432,13 @@ export default class FileInput extends React.Component {
 
     // todo @ANKU @LOW - style for dropzone
     return (
-      <div className={ `FileInput ${readOnly ? 'FileInput--readOnly' : ''} ${className} ${withDescriptions ? 'FileInput--withDescription' : ''}` }  >
+      <div className={ `Attachment ${readOnly ? 'Attachment--readOnly' : ''} ${className} ${withDescriptions ? 'Attachment--withDescription' : ''}` }  >
         {
           readOnly
           ? [
             <div
               key="label"
-              className="FileInput__label"
+              className="Attachment__label"
             >
               {label}
             </div>,
@@ -387,7 +446,7 @@ export default class FileInput extends React.Component {
             selectedFiles && (
               <div
                 key="attaches"
-                className="FileInput__attaches"
+                className="Attachment__attaches"
               >
                 { selectedFiles.map((fileInfo) => this.renderAttach(fileInfo)) }
               </div>
@@ -397,35 +456,35 @@ export default class FileInput extends React.Component {
             <div>
               <Dropzone
                 ref={ (node) => { this.dropzoneRef = node; } }
-                className="FileInput__dropzone"
-                activeClassName="FileInput__dropzone--active"
+                className="Attachment__dropzone"
+                activeClassName="Attachment__dropzone--active"
                 onDrop={ this.handleDropOrClick }
                 disabled={ readOnly || !editable }
                 multiple={ multiple }
                 disableClick={ true }
                 { ...dropZoneProps }
               >
-                <div className="FileInput__dropzoneBackground">
+                <div className="Attachment__dropzoneBackground">
                   <p className="dropzoneBackground__text">
                     { dropzoneText }
                   </p>
                 </div>
 
-                <div className="FileInput__label">
+                <div className="Attachment__label">
                   {label}
                 </div>
 
                 {selectedFiles && (
-                  <div className="FileInput__attaches">
+                  <div className="Attachment__attaches">
                     { selectedFiles.map((fileInfo) => this.renderAttach(fileInfo)) }
                   </div>
                 )}
               </Dropzone>
 
               { editable && showAddButton && (
-                <div className="FileInput__actions">
+                <div className="Attachment__actions">
                   <Button
-                    className="FileInput__addButton"
+                    className="Attachment__addButton"
                     onClick={ () => { this.dropzoneRef.open(); } }
                     disabled={ readOnly }
                   >
