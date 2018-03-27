@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Commits:
 
 
-## [1.2.14] - 2018-03-27
+## [1.2.15] - 2018-03-27
 ### !!! Breaking changes:
 1. Переименовал `FileInput` -> `Attachment`
 

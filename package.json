@@ -1,6 +1,6 @@
 {
   "name": "@reagentum/frontCore_Components",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "FrontCore_Components",
   "scripts": {
     "start-build": "node ./.build/server.js",
@@ -37,7 +37,6 @@
     "postversion": "git push --follow-tags",
     "postversion-hg": "hg add package.json && hg commit package.json -m \"front-core new version\" && hg push",
     "postversion-git": "git push --follow-tags",
-
     "test-client": "cross-env NODE_ENV=test karma start ./node_modules/@reagentum/front-core/test/client/run-client-tests.js",
     "test-client:watch": "npm run test-client -- --watch",
     "test-server": "cross-env NODE_ENV=test mocha ./node_modules/@reagentum/front-core/test/server/run-server-tests.js --timeout 10000",
@@ -45,7 +44,6 @@
     "test-scripts": "cross-env NODE_ENV=test mocha ./node_modules/@reagentum/front-core/test/scripts/run-scripts-tests.js",
     "test": "npm run test-scripts && npm run test-server && npm run test-client",
     "sync-work-branch": "sh ./node_modules/@reagentum/front-core/build-scripts/sync-work-branch.sh",
-
     "update-core": "npm install --save @reagentum/front-core@latest"
   },
   "dependencies": {
