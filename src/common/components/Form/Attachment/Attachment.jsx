@@ -381,12 +381,16 @@ export default class Attachment extends React.Component {
         >
           { fileName }
         </span>
-        <span
-          className="AttachInfo__remove"
-          onClick={ readOnly || !editable ? undefined : this.handleAttachRemove.bind(this, attach) }
-        >
-          <Icon name="remove" />
-        </span>
+        {
+          !readOnly && editable === true && (
+            <span
+              className="AttachInfo__remove"
+              onClick={ this.handleAttachRemove.bind(this, attach) }
+            >
+              <Icon name="remove" />
+            </span>
+          )
+        }
         {
           usePreview && finalPreview && (
             <img

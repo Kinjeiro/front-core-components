@@ -10,16 +10,25 @@ import Scroll from 'react-scroll';
 
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
 import { MediaQuery } from '@reagentum/front-core/lib/common/components';
+import { getScrollParent } from '@reagentum/front-core/lib/common/utils/dom-utils';
 
 import './ScrollNavigation.scss';
 
 export default class ScrollNavigation extends Component {
   static propTypes = {
+    scrollContainerId: PropTypes.string,
     segments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       label: PropTypes.node,
+      className: PropTypes.string,
+      /**
+       * можно подать функцию (id) => {}
+       */
       content: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
       isValidStep: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+      /**
+       * можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
+       */
       isShow: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     })),
     children: PropTypes.node,
@@ -32,11 +41,19 @@ export default class ScrollNavigation extends Component {
     toggleScrollMenu: false,
   };
 
+  elementEl = null;
+  scrollContainerEl = null;
+
   // ======================================================
   // LIFECYCLE
   // ======================================================
-  // componentDidMount() {
-  // }
+  componentDidMount() {
+    setTimeout(() => {
+      if (this.elementEl) {
+        this.scrollContainerEl = getScrollParent(this.elementEl);
+      }
+    }, 100);
+  }
   // componentWillReceiveProps(newProps) {
   // }
 
@@ -56,6 +73,12 @@ export default class ScrollNavigation extends Component {
   // ======================================================
   renderStepInfo(step) {
     const {
+      scrollContainerEl,
+    } = this;
+    const {
+      scrollContainerId,
+    } = this.props;
+    const {
       id,
       isShow,
       label,
@@ -73,6 +96,8 @@ export default class ScrollNavigation extends Component {
             <Scroll.Link
               className="ScrollLink"
               activeClass="ScrollLink--active"
+              containerId={ scrollContainerId }
+              container={ scrollContainerEl }
               to={ id }
               spy={ true }
               hashSpy={ true }
@@ -107,6 +132,7 @@ export default class ScrollNavigation extends Component {
     const {
       id,
       label,
+      className,
       content,
       isShow,
     } = step;
@@ -117,12 +143,12 @@ export default class ScrollNavigation extends Component {
 
     const segmentContent = (
       <Segment
-        className={ `ScrollNavigation__Step${id} ${id || ''}` }
+        className={ `ScrollNavigation__Step${id} ${id || ''} ${className || ''}` }
         vertical={ true }
         basic={ true }
       >
         {
-          (label || id) && (
+          (label !== '' && label !== null) && (label || id) && (
             <Header
               as="h3"
               content={ label || id }
@@ -130,7 +156,7 @@ export default class ScrollNavigation extends Component {
           )
         }
         <div className="ui segment">
-          { executeVariable(content) }
+          { executeVariable(content, '', id) }
         </div>
       </Segment>
     );
@@ -164,8 +190,14 @@ export default class ScrollNavigation extends Component {
     } = this.props;
     const { toggleScrollMenu } = this.state;
 
+    // todo @ANKU @LOW - реализовать fixed через absolute по правому краю - https://stackoverflow.com/a/38730739/344172
+    // только нужно протестить в мобильном размере
+
     return (
-      <div className="ScrollNavigation">
+      <div
+        className="ScrollNavigation"
+        ref={ (elementNode) => this.elementEl = elementNode }
+      >
         <div className={ `ScrollNavigation__stepsInfo StepsInfo StepsInfo${toggleScrollMenu ? '--toggled' : ''}` }>
           <ul>
             { segments.map((segment) => this.renderStepInfo(segment)) }

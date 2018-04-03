@@ -6,6 +6,9 @@ import {
 
 import './TwoColumnMobileRow.scss';
 
+/**
+ * Обазятельно обернуть в Grid (semantic-ui-react)
+ */
 export default class TwoColumnMobileRow extends Component {
   static propTypes = {
     className: PropTypes.string,

@@ -46,11 +46,18 @@
     "sync-work-branch": "sh ./node_modules/@reagentum/front-core/build-scripts/sync-work-branch.sh",
     "update-core": "npm install --save @reagentum/front-core@latest"
   },
+  "copyOfLibDepencies": {
+    "react-scroll": "^1.6.1",
+    "semantic-ui-css": "^2.2.10",
+    "semantic-ui-react": "^0.75.1"
+  },
+  "deletedDependencies": {
+    "echarts": "^3.7.2",
+    "echarts-for-react": "^2.0.0"
+  },
   "dependencies": {
     "@reagentum/front-core": "^1.2.14",
     "config": "github:kinjeiro/node-config",
-    "echarts": "^3.7.2",
-    "echarts-for-react": "^2.0.0",
     "email-validator": "^1.0.7",
     "fast-json-patch": "^2.0.6",
     "format-number": "^3.0.0",
