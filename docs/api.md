@@ -4,6 +4,9 @@
 
 -   [Navigation][1]
 -   [update][2]
+-   [content][3]
+-   [isShow][4]
+-   [TwoColumnMobileRow][5]
 
 ## Navigation
 
@@ -19,6 +22,26 @@
 -   `event`  
 -   `comp`  
 
+## content
+
+можно подать функцию (id) => {}
+
+## isShow
+
+можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
+
+## TwoColumnMobileRow
+
+**Extends Component**
+
+Обазятельно обернуть в Grid (semantic-ui-react)
+
 [1]: #navigation
 
 [2]: #update
+
+[3]: #content
+
+[4]: #isshow
+
+[5]: #twocolumnmobilerow
