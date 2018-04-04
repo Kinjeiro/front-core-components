@@ -39,6 +39,7 @@ export default class ScrollNavigation extends Component {
 
   state = {
     toggleScrollMenu: false,
+    scrollContainerReady: false,
   };
 
   elementEl = null;
@@ -51,8 +52,12 @@ export default class ScrollNavigation extends Component {
     setTimeout(() => {
       if (this.elementEl) {
         this.scrollContainerEl = getScrollParent(this.elementEl);
+        this.setState({
+          scrollContainerReady: true,
+        });
       }
-    }, 100);
+      // нужно подождать пока все стили подцепятся и правильно определить родителя
+    }, 1000);
   }
   // componentWillReceiveProps(newProps) {
   // }
@@ -187,8 +192,12 @@ export default class ScrollNavigation extends Component {
     const {
       children,
       segments,
+      scrollContainerId,
     } = this.props;
-    const { toggleScrollMenu } = this.state;
+    const {
+      toggleScrollMenu,
+      scrollContainerReady,
+    } = this.state;
 
     // todo @ANKU @LOW - реализовать fixed через absolute по правому краю - https://stackoverflow.com/a/38730739/344172
     // только нужно протестить в мобильном размере
@@ -199,9 +208,13 @@ export default class ScrollNavigation extends Component {
         ref={ (elementNode) => this.elementEl = elementNode }
       >
         <div className={ `ScrollNavigation__stepsInfo StepsInfo StepsInfo${toggleScrollMenu ? '--toggled' : ''}` }>
-          <ul>
-            { segments.map((segment) => this.renderStepInfo(segment)) }
-          </ul>
+          {
+            (scrollContainerId || scrollContainerReady) && (
+              <ul>
+                { segments.map((segment) => this.renderStepInfo(segment)) }
+              </ul>
+            )
+          }
           <div className="ScrollNavigation__expandButton">
             <Icon
               name={ toggleScrollMenu ? 'chevron up' : 'chevron down' }

@@ -39,7 +39,8 @@ export default class UpBottomButtons extends Component {
         this.scrollContainerEl = getScrollParent(this.elementEl);
         this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
       }
-    }, 100);
+      // нужно подождать пока все стили подцепятся и правильно определить родителя
+    }, 1000);
   }
   // componentWillReceiveProps(newProps) {
   // }
