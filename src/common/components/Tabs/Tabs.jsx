@@ -12,7 +12,7 @@ export default class Tabs extends Component {
   static propTypes = {
     className: PropTypes.string,
     tabs: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
+      name: PropTypes.node,
       to: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -61,9 +61,10 @@ export default class Tabs extends Component {
     }
 
     const tabsComponent = tabs.reduce((result, tab, index) => {
+      const key = typeof tab.name !== 'object' ? tab.name : index;
       result.push((
         <Link
-          key={ tab.name }
+          key={ key }
           to={ tab.to }
           className={ linkClassName }
           activeClassName="Tab--active"
@@ -74,7 +75,7 @@ export default class Tabs extends Component {
       if (withOrButtons && index !== tabs.length - 1) {
         result.push((
           <Button.Or
-            key={ `or_${tab.name}` }
+            key={ `or_${key}` }
             text={ textOr }
           />
         ));
