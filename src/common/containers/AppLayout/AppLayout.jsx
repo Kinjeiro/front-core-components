@@ -39,9 +39,7 @@ import i18n from '../../utils/i18n';
 // ======================================================
 import './semantic-ui-updates.scss';
 
-import {
-  UpBottomButtons,
-} from '../../components';
+import UpBottomButtons from '../../components/UpBottomButtons/UpBottomButtons';
 
 import Header from './Header/Header';
 
@@ -78,6 +76,8 @@ export default class AppLayout extends Component {
     textHeaderTitle: PropTypes.string,
     textHeaderDescription: PropTypes.string,
     textMenuLogout: PropTypes.string,
+    // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
+    upBottomButtonsProps: PropTypes.object,
 
     // ======================================================
     // CONNECT
@@ -172,9 +172,11 @@ export default class AppLayout extends Component {
     const {
       textHeaderTitle,
       textHeaderDescription,
+      upBottomButtonsProps,
     } = this.props;
     const { sidebarOpened } = this.state;
 
+    // todo @ANKU @LOW - убрать fartuna fartuna-main и сделать нормально на grid
     return (
       <div className="AppLayout__content">
         <Header
@@ -186,8 +188,15 @@ export default class AppLayout extends Component {
 
         <div className="fartuna">
           <div className="fartuna-main">
-            <UpBottomButtons />
-            <main className="main-show-flex">
+            {
+              (upBottomButtonsProps !== false && upBottomButtonsProps !== null) && (
+                <UpBottomButtons
+                  { ...(upBottomButtonsProps || {}) }
+                />
+              )
+            }
+
+            <div className="main-show-flex">
               {
                 sidebarOpened && (
                   <MediaQuery mobile={ true }>
@@ -205,7 +214,7 @@ export default class AppLayout extends Component {
                   { this.renderChildren() }
                 </Container>
               </div>
-            </main>
+            </div>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
 
 import './TwoColumnMobileRow.scss';
 
+// todo @ANKU @LOW - переделать на адаптивные гриды + колонки https://medium.com/@patrickbrosset/css-grid-css-multi-columns-7664f59bb60c
 /**
  * Обазятельно обернуть в Grid (semantic-ui-react)
  */

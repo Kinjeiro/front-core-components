@@ -14,7 +14,7 @@ import { PATH_LOGIN_PAGE } from '@reagentum/front-core/lib/common/constants/rout
 // ======================================================
 import NAMES, * as paths from './routes.pathes';
 
-import { Notice } from './components';
+import Notice from './components/Notice/Notice';
 
 import AuthLayout from './containers/Auth/AuthLayout/AuthLayout';
 import Signin from './containers/Auth/Signin/Signin';

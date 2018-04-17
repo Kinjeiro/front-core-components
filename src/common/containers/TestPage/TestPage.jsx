@@ -7,9 +7,7 @@ import i18n from '../../utils/i18n';
 
 // import './TestPage.scss';
 
-import {
-  UniTable,
-} from '../../components';
+import UniTable from '../../components/UniTable/UniTable';
 
 @connect(
   (globalState) => ({
