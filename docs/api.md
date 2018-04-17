@@ -4,13 +4,23 @@
 
 -   [Navigation][1]
 -   [update][2]
--   [content][3]
--   [isShow][4]
--   [TwoColumnMobileRow][5]
+-   [SidebarComponent][3]
+-   [scrollingOwn][4]
+-   [useUpBottomButtons][5]
+-   [content][6]
+-   [isShow][7]
+-   [TwoColumnMobileRow][8]
 
 ## Navigation
 
 остальное
+
+
+## 
+
+**Meta**
+
+-   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
 ## update
@@ -21,6 +31,24 @@
 -   `withChange`  
 -   `event`  
 -   `comp`  
+
+## SidebarComponent
+
+**Meta**
+
+-   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
+
+
+## scrollingOwn
+
+если выставлен в true - то будет использоваться скроллинг внутри эти контрола
+тогда не работает scrollContainerId
+boolean - использовать внутренний скроллинг
+string - тогда это будет id элемента, у которого будет скроллинг
+
+## useUpBottomButtons
+
+можно сделать кнопки вверх-вниз для этого скроллинга
 
 ## content
 
@@ -40,8 +68,14 @@
 
 [2]: #update
 
-[3]: #content
+[3]: #sidebarcomponent
 
-[4]: #isshow
+[4]: #scrollingown
 
-[5]: #twocolumnmobilerow
+[5]: #useupbottombuttons
+
+[6]: #content
+
+[7]: #isshow
+
+[8]: #twocolumnmobilerow
