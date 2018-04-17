@@ -1,3 +1,7 @@
+/**
+ * @deprecated - так как подцепляются лишнее css стили для неиспользуемых компонентов
+ */
+
 import 'react-dates/initialize';
 
 export Attachment from './Attachment/Attachment';
