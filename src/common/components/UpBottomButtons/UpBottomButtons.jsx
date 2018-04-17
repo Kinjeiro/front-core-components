@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // todo @ANKU @LOW @BUG_OUT @core-decorators - @debounce deprated - use lodash-decorators
 // todo @ANKU @LOW - выпилить core-decorators на lodash-decorators
 // import { autobind } from 'core-decorators';
@@ -17,6 +17,8 @@ import './UpBottomButtons.scss';
 
 export default class UpBottomButtons extends Component {
   static propTypes = {
+    scrollContainerId: PropTypes.string,
+    scrollContainer: PropTypes.any,
   };
 
   static defaultProps = {
@@ -34,16 +36,24 @@ export default class UpBottomButtons extends Component {
   // LIFECYCLE
   // ======================================================
   componentDidMount() {
+    const {
+      scrollContainerId,
+      scrollContainer,
+    } = this.props;
+
     setTimeout(() => {
-      if (this.elementEl) {
+      if (scrollContainer) {
+        this.scrollContainerEl = scrollContainer;
+      } else if (scrollContainerId) {
+        this.scrollContainerEl = document.getElementById(scrollContainerId);
+      } else if (this.elementEl) {
         this.scrollContainerEl = getScrollParent(this.elementEl);
-        this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
       }
+
+      this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
       // нужно подождать пока все стили подцепятся и правильно определить родителя
     }, 1000);
   }
-  // componentWillReceiveProps(newProps) {
-  // }
   componentWillUnmount() {
     if (this.scrollContainerEl) {
       this.scrollContainerEl.removeEventListener('scroll', this.handleScroll);

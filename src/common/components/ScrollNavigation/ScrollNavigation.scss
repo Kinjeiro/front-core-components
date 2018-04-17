@@ -1,6 +1,9 @@
 @import "../../app-styles/vars";
 
 .ScrollNavigation {
+  height: 100%;
+  padding-right: 250px;
+
   &__stepsInfo {
     position: fixed;
     z-index: 100;
@@ -50,7 +53,34 @@
   }
 
   &__content {
-    padding-right: 250px;
+
+  }
+
+  &--scrorllingOwn {
+    position: relative;
+    display: grid;
+    -ms-grid-columns: 5fr 1fr;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 10px;
+    grid-template-rows: 100%;
+    padding-right: 0;
+
+    .ScrollNavigation__stepsInfo {
+      position: static;
+      min-width: 180px;
+      width: auto;
+      //-ms-grid-column: 2;
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .ScrollNavigation__content {
+      overflow: auto;
+      height: 100%;
+      max-height: 100%;
+      grid-column: 1;
+      grid-row: 1;
+    }
   }
 }
 
@@ -133,6 +163,15 @@
     &__content {
       padding-right: inherit;
     }
+
+    &--scrorllingOwn {
+      display: block;
+
+      .ScrollNavigation__stepsInfo {
+        position: absolute;
+        top: 0;
+      }
+    }
   }
 
 
@@ -160,4 +199,3 @@
     }
   }
 }
-

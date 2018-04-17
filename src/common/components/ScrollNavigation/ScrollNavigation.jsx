@@ -12,10 +12,28 @@ import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
 import { MediaQuery } from '@reagentum/front-core/lib/common/components';
 import { getScrollParent } from '@reagentum/front-core/lib/common/utils/dom-utils';
 
+import UpBottomButtons from '../UpBottomButtons/UpBottomButtons';
+
 import './ScrollNavigation.scss';
 
 export default class ScrollNavigation extends Component {
   static propTypes = {
+    /**
+     * если выставлен в true - то будет использоваться скроллинг внутри эти контрола
+     * тогда не работает scrollContainerId
+     * boolean - использовать внутренний скроллинг
+     * string - тогда это будет id элемента, у которого будет скроллинг
+     */
+    scrollingOwn: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string,
+    ]),
+    /**
+     * можно сделать кнопки вверх-вниз для этого скроллинга
+     */
+    useUpBottomButtons: PropTypes.bool,
+
+    scrollContainer: PropTypes.any,
     scrollContainerId: PropTypes.string,
     segments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
@@ -31,11 +49,13 @@ export default class ScrollNavigation extends Component {
        */
       isShow: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     })),
+    className: PropTypes.string,
     children: PropTypes.node,
   };
 
-  // static defaultProps = {
-  // };
+  static defaultProps = {
+    scrollingOwn: false,
+  };
 
   state = {
     toggleScrollMenu: false,
@@ -43,19 +63,32 @@ export default class ScrollNavigation extends Component {
   };
 
   elementEl = null;
+  contentEl = null;
   scrollContainerEl = null;
 
   // ======================================================
   // LIFECYCLE
   // ======================================================
   componentDidMount() {
+    const {
+      scrollingOwn,
+      scrollContainer,
+      scrollContainerId,
+    } = this.props;
+
     setTimeout(() => {
-      if (this.elementEl) {
+      if (scrollingOwn) {
+        this.scrollContainerEl = this.contentEl;
+      } else if (scrollContainer) {
+        this.scrollContainerEl = scrollContainer;
+      } else if (scrollContainerId) {
+        this.scrollContainerEl = document.getElementById(scrollContainerId);
+      } else if (this.elementEl) {
         this.scrollContainerEl = getScrollParent(this.elementEl);
-        this.setState({
-          scrollContainerReady: true,
-        });
       }
+      this.setState({
+        scrollContainerReady: true,
+      });
       // нужно подождать пока все стили подцепятся и правильно определить родителя
     }, 1000);
   }
@@ -80,9 +113,9 @@ export default class ScrollNavigation extends Component {
     const {
       scrollContainerEl,
     } = this;
-    const {
-      scrollContainerId,
-    } = this.props;
+    // const {
+    // scrollContainerId,
+    // } = this.props;
     const {
       id,
       isShow,
@@ -92,45 +125,44 @@ export default class ScrollNavigation extends Component {
 
     // todo @ANKU @CRIT @MAIN - бага в том, что если меняется внутри контент (к примеру лоадингом) то прекращает работать
     return id && executeVariable(isShow, true, id, 'info') && (
-      <MediaQuery
-        key={ `${id}_${Math.random()}` }
-        mobile={ true }
-      >
-        {(matches) => (
-          <li className="StepInfo">
-            <Scroll.Link
-              className="ScrollLink"
-              activeClass="ScrollLink--active"
-              containerId={ scrollContainerId }
-              container={ scrollContainerEl }
-              to={ id }
-              spy={ true }
-              hashSpy={ true }
-              smooth={ true }
-              isDynamic={ true }
-              onClick={ matches ? this.handleToggleScrollMenu : undefined }
-            >
-              {
-                executeVariable(isStepValid, true, id)
-                  ? (
-                    <span className="StepInfo--circle StepInfo__ready">
-                      <Icon name="checkmark" />
-                    </span>
-                  )
-                  : (
-                    <span className="StepInfo--circle StepInfo__number">
-                      &nbsp;
-                    </span>
-                  )
-              }
-              <span className="StepInfo__label">
-                { label || id }
-              </span>
-            </Scroll.Link>
-          </li>
-        )}
-      </MediaQuery>
-    );
+    <MediaQuery
+      key={ `${id}_${Math.random()}` }
+      mobile={ true }
+    >
+      {(matches) => (
+        <li className="StepInfo">
+          <Scroll.Link
+            className="ScrollLink"
+            activeClass="ScrollLink--active"
+            container={ scrollContainerEl }
+            to={ id }
+            spy={ true }
+            hashSpy={ true }
+            smooth={ true }
+            isDynamic={ true }
+            onClick={ matches ? this.handleToggleScrollMenu : undefined }
+          >
+            {
+              executeVariable(isStepValid, true, id)
+                ? (
+                  <span className="StepInfo--circle StepInfo__ready">
+                    <Icon name="checkmark" />
+                  </span>
+              )
+                : (
+                  <span className="StepInfo--circle StepInfo__number">
+                  &nbsp;
+                  </span>
+              )
+            }
+            <span className="StepInfo__label">
+              { label || id }
+            </span>
+          </Scroll.Link>
+        </li>
+          )}
+    </MediaQuery>
+      );
   }
 
   renderStep(step, index) {
@@ -167,22 +199,22 @@ export default class ScrollNavigation extends Component {
     );
 
     return id
-    ? (
-      <Scroll.Element
-        key={ id }
-        name={ id }
-      >
-        { segmentContent }
-      </Scroll.Element>
-    )
-    : (
-      <div
-        key={ index }
-        className="ScrollNavigation__noId"
-      >
-        { segmentContent }
-      </div>
-    );
+      ? (
+        <Scroll.Element
+          key={ id }
+          name={ id }
+        >
+          { segmentContent }
+        </Scroll.Element>
+      )
+      : (
+        <div
+          key={ index }
+          className="ScrollNavigation__noId"
+        >
+          { segmentContent }
+        </div>
+      );
   }
 
   // ======================================================
@@ -193,6 +225,9 @@ export default class ScrollNavigation extends Component {
       children,
       segments,
       scrollContainerId,
+      scrollingOwn,
+      useUpBottomButtons,
+      className,
     } = this.props;
     const {
       toggleScrollMenu,
@@ -204,7 +239,7 @@ export default class ScrollNavigation extends Component {
 
     return (
       <div
-        className="ScrollNavigation"
+        className={ `ScrollNavigation ${scrollingOwn ? 'ScrollNavigation--scrorllingOwn' : ''} ${className || ''}` }
         ref={ (elementNode) => this.elementEl = elementNode }
       >
         <div className={ `ScrollNavigation__stepsInfo StepsInfo StepsInfo${toggleScrollMenu ? '--toggled' : ''}` }>
@@ -223,7 +258,11 @@ export default class ScrollNavigation extends Component {
           </div>
         </div>
 
-        <div className="ScrollNavigation__content">
+        <div
+          id={ typeof scrollingOwn === 'string' ? scrollingOwn : undefined }
+          className="ScrollNavigation__content"
+          ref={ (elementNode) => this.contentEl = elementNode }
+        >
           { segments.map((segment, index) => this.renderStep(segment, index)) }
           {
             children && (
@@ -233,6 +272,14 @@ export default class ScrollNavigation extends Component {
             )
           }
         </div>
+
+        {
+          (useUpBottomButtons && this.scrollContainerEl) && (
+            <UpBottomButtons
+              scrollContainer={ this.scrollContainerEl }
+            />
+          )
+        }
       </div>
     );
   }
