@@ -4,12 +4,13 @@
 
 -   [Navigation][1]
 -   [update][2]
--   [SidebarComponent][3]
--   [scrollingOwn][4]
--   [useUpBottomButtons][5]
--   [content][6]
--   [isShow][7]
--   [TwoColumnMobileRow][8]
+-   [update][3]
+-   [SidebarComponent][4]
+-   [scrollingOwn][5]
+-   [useUpBottomButtons][6]
+-   [content][7]
+-   [isShow][8]
+-   [TwoColumnMobileRow][9]
 
 ## Navigation
 
@@ -22,6 +23,15 @@
 
 -   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
+
+## update
+
+**Parameters**
+
+-   `withBlur`  
+-   `withChange`  
+-   `event`  
+-   `comp`  
 
 ## update
 
@@ -68,14 +78,16 @@ string - тогда это будет id элемента, у которого �
 
 [2]: #update
 
-[3]: #sidebarcomponent
+[3]: #update-1
 
-[4]: #scrollingown
+[4]: #sidebarcomponent
 
-[5]: #useupbottombuttons
+[5]: #scrollingown
 
-[6]: #content
+[6]: #useupbottombuttons
 
-[7]: #isshow
+[7]: #content
 
-[8]: #twocolumnmobilerow
+[8]: #isshow
+
+[9]: #twocolumnmobilerow
