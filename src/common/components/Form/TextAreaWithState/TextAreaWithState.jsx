@@ -110,15 +110,17 @@ export class TextAreaWithState extends Component {
     } = this.props;
 
     const { tempValue } = this.state;
-
+    // @todo @Panin почему-то textarea в semantic-ui стилизован только через обертку .ui.form
     return (
-      <SemanticTextArea
-        value={ withState ? (tempValue || value) : value }
-        { ...inputProps }
-        onChange={ this.handleChange }
-        onKeyPress={ this.handleKeyPress }
-        onBlur={ this.handleBlur }
-      />
+      <div className="ui form">
+        <SemanticTextArea
+          value={ withState ? (tempValue || value) : value }
+          { ...inputProps }
+          onChange={ this.handleChange }
+          onKeyPress={ this.handleKeyPress }
+          onBlur={ this.handleBlur }
+        />
+      </div>
     );
   }
 }
