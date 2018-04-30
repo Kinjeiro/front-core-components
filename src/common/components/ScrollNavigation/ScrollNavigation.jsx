@@ -124,6 +124,8 @@ export default class ScrollNavigation extends Component {
     } = step;
 
     // todo @ANKU @CRIT @MAIN - бага в том, что если меняется внутри контент (к примеру лоадингом) то прекращает работать
+
+    // todo @ANKU @LOW @react-scroll - параметр to может быть только стрингой на цифры падает ошибка (проверка hash = hash ? hash.indexOf('#') === 0 ? hash : '#' + hash : '';)
     return id && executeVariable(isShow, true, id, 'info') && (
     <MediaQuery
       key={ `${id}_${Math.random()}` }
@@ -135,7 +137,7 @@ export default class ScrollNavigation extends Component {
             className="ScrollLink"
             activeClass="ScrollLink--active"
             container={ scrollContainerEl }
-            to={ id }
+            to={ `${id}` }
             spy={ true }
             hashSpy={ true }
             smooth={ true }

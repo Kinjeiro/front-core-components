@@ -77,7 +77,10 @@ export default class AppLayout extends Component {
     textHeaderDescription: PropTypes.string,
     textMenuLogout: PropTypes.string,
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
-    upBottomButtonsProps: PropTypes.object,
+    upBottomButtonsProps: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.bool,
+    ]),
 
     // ======================================================
     // CONNECT

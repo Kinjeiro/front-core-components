@@ -24,7 +24,7 @@
     "build-docs-md": "documentation build src/** --config docs/api-documentation.yml --format md --output docs/api.md",
     "build-docs-html": "documentation build src/** --config docs/api-documentation.yml --format html --output docs/api",
     "compile": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && rimraf lib/* -f && babel src --out-dir lib --copy-files",
-    "publish-patch": "npm run release-patch && npm publish",
+    "publish-patch": "npm run update-core && npm run release-patch && npm publish",
     "publish-patch-r": "git push --follow-tags && npm publish",
     "release-patch": "npm version patch -m \"chore(*) patch version: %s\"",
     "release-minor": "npm version minor -m \"chore(*) minor version: %s\"",
