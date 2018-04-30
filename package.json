@@ -137,7 +137,7 @@
     "ejs": "~2.4.1",
     "ejs-compiled-loader": "~2.1.1",
     "enzyme": "~3.2.0",
-    "enzyme-adapter-react-16": "~1.1.0",
+    "enzyme-adapter-react-16": "~1.1.1",
     "eslint": "~3.19.0",
     "eslint-config-airbnb": "~13.0.0",
     "eslint-config-standard": "~10.2.1",
