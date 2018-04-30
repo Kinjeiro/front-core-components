@@ -24,14 +24,14 @@
     "build-docs-md": "documentation build src/** --config docs/api-documentation.yml --format md --output docs/api.md",
     "build-docs-html": "documentation build src/** --config docs/api-documentation.yml --format html --output docs/api",
     "compile": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && rimraf lib/* -f && babel src --out-dir lib --copy-files",
-    "publish-patch": "npm run update-core && npm run release-patch && npm publish",
+    "publish-patch": "npm run release-patch && npm publish",
     "publish-patch-r": "git push --follow-tags && npm publish",
     "release-patch": "npm version patch -m \"chore(*) patch version: %s\"",
     "release-minor": "npm version minor -m \"chore(*) minor version: %s\"",
     "release-major": "npm version major -m \"chore(*) major version: %s\"",
     "release-prepatch": "npm version preptch -m \"chore(*) preptch version: %s\"",
     "release-prerelease": "npm version prerelease -m \"chore(*) prerelease version: %s\"",
-    "preversion": "npm run test",
+    "preversion": "npm run update-core-patch && npm run test",
     "version": "npm run build-docs-html && npm run build-docs-md && npm run compile && git add -A",
     "//comment//": "prepublishOnly - only run before publish",
     "postversion": "git push --follow-tags",
@@ -44,6 +44,7 @@
     "test-scripts": "cross-env NODE_ENV=test mocha ./node_modules/@reagentum/front-core/test/scripts/run-scripts-tests.js",
     "test": "npm run test-scripts && npm run test-server && npm run test-client",
     "sync-work-branch": "sh ./node_modules/@reagentum/front-core/build-scripts/sync-work-branch.sh",
+    "update-core-patch": "npm update --save @reagentum/front-core@latest",
     "update-core": "npm install --save @reagentum/front-core@latest"
   },
   "copyOfLibDepencies": {
@@ -56,7 +57,7 @@
     "echarts-for-react": "~2.0.0"
   },
   "dependencies": {
-    "@reagentum/front-core": "~1.2.14",
+    "@reagentum/front-core": "~1.2.22",
     "config": "github:kinjeiro/node-config",
     "email-validator": "~1.0.7",
     "fast-json-patch": "~2.0.6",
