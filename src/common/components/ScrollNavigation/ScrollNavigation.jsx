@@ -37,7 +37,9 @@ export default class ScrollNavigation extends Component {
     scrollContainerId: PropTypes.string,
     segments: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
+      labelBefore: PropTypes.node,
       label: PropTypes.node,
+      labelAfter: PropTypes.node,
       className: PropTypes.string,
       /**
        * можно подать функцию (id) => {}
@@ -170,7 +172,9 @@ export default class ScrollNavigation extends Component {
   renderStep(step, index) {
     const {
       id,
+      labelBefore,
       label,
+      labelAfter,
       className,
       content,
       isShow,
@@ -186,6 +190,7 @@ export default class ScrollNavigation extends Component {
         vertical={ true }
         basic={ true }
       >
+        { labelBefore }
         {
           (label !== '' && label !== null) && (label || id) && (
             <Header
@@ -194,6 +199,7 @@ export default class ScrollNavigation extends Component {
             />
           )
         }
+        { labelAfter }
         <div className="ui segment">
           { executeVariable(content, '', id) }
         </div>
