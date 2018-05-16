@@ -1,9 +1,13 @@
-import '@reagentum/front-core/lib/client/init';
+import initAll from '@reagentum/front-core/lib/client/init';
 
-import ClientRunner from './ClientRunner';
+async function start() {
+  await initAll();
+  const ClientRunner = require('./ClientRunner').default;
+  await (new ClientRunner()).run();
+}
 
 try {
-  (new ClientRunner()).run();
+  start();
 } catch (error) {
   console.error(error);
 }
