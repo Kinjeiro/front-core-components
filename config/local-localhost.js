@@ -1,12 +1,4 @@
-const { createEndpointServiceConfig } = require('@reagentum/front-core/config/utils/create-config');
-
-const {
-  /** Марафон при запуска автоматически добавляет адресс хоста в эту переменную */
-  HOST,
-  SERVICES_HOST,
-  SERVICES_PORT,
-  REQUEST_TIMEOUT
-} = process.env;
+// const { createEndpointServiceConfig } = require('@reagentum/front-core/config/utils/create-config');
 
 module.exports = {
   // ======================================================
