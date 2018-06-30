@@ -58,10 +58,46 @@ export default function createRoutes(store) {
       component={ (props) => (
         <AppLayout
           { ...props }
-          /* textTitle="testTitle"
+          /*
+           ifMobileMoveUserMenuToSidebar={ true }
+           userMenu={ [
+           {
+           name: 'user mobile',
+           path: 'user',
+           mobile: true,
+           },
+           {
+           name: 'user not mobile',
+           path: 'user',
+           mobile: false,
+           },
+           {
+           name: 'user null',
+           path: 'user',
+           },
+           ] }
+           sidebarMenu={ [
+           {
+           name: 'sidebar mobile',
+           path: 'sidebar',
+           mobile: true,
+           },
+           {
+           name: 'sidebar not mobile',
+           path: 'sidebar',
+           mobile: false,
+           },
+           {
+           name: 'sidebar null',
+           path: 'sidebar',
+           },
+           ] }
+
+            textTitle="testTitle"
            textHeaderTitle="textHeaderTitle"
            textHeaderDescription="textHeaderDescription"
-           textMenuLogout="textMenuLogout"*/
+           textMenuLogout="textMenuLogout"
+         */
         />
       ) }
     >

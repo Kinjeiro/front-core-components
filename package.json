@@ -21,8 +21,9 @@
     "start-without-SSR": "cross-env CLIENT_SIDE_RENDERING=1 npm run start-localhost",
     "start-frontend-server": "node ./node_modules/@reagentum/front-core/build-scripts/start-frontend.js",
     "start-backend-server": "node ./node_modules/@reagentum/front-core/build-scripts/start-backend.js",
-    "build": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && cross-env NODE_ENV=production node ./node_modules/@reagentum/front-core/build-scripts/build.js",
-    "build-development": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && cross-env NODE_ENV=development node ./node_modules/@reagentum/front-core/build-scripts/build.js",
+    "build-inner": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && node ./node_modules/@reagentum/front-core/build-scripts/build.js",
+    "build": "cross-env NODE_ENV=production npm run build-inner",
+    "build-development": "cross-env NODE_ENV=development CONTEXT_PATH=mkk npm run build-inner",
     "test-build": "npm run build && npm run start-production",
     "lint": "./node_modules/.bin/eslint --ext js,jsx .",
     "build-docs-md": "documentation build src/** --config docs/api-documentation.yml --format md --output docs/api.md",
@@ -60,7 +61,7 @@
     "echarts-for-react": "~2.0.0"
   },
   "dependencies": {
-    "@reagentum/front-core": "~1.3.13",
+    "@reagentum/front-core": "~1.3.21",
     "config": "github:kinjeiro/node-config",
     "email-validator": "~1.0.7",
     "fast-json-patch": "~2.0.6",

@@ -303,7 +303,8 @@
         transform: translate3d(0, 0, 0);
       }
     */
-    &.pushable {
+
+    /*&.pushable {
       &:not(body) {
         //transform: translate3d(0, 0, 0);
         transform: none;
@@ -317,7 +318,7 @@
         backface-visibility: visible;
         transition: none;
       }
-    }
+    }*/
   }
 
   &__content {

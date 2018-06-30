@@ -96,34 +96,6 @@ header {
   }
 }
 
-.balance {
-  &__openAccount {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-}
-
-.BalanceValue {
-  &--not-portfolio-page:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-}
-
-.ui.statistic > .value.BalanceValue {
-  color: #1B1C1D;
-}
-
-.ui.statistic > .value.BalanceValue.BalanceValue--wait-account-approve {
-  color: #c5c5c5;
-}
-
-
-.balance-grid {
-  &.ui.grid .row > .column {
-
-  }
-}
 
 .Header {
   .ui.grid .row {
@@ -177,14 +149,6 @@ header {
     margin-left: 10px;
     display: inline-block;
     line-height: 15px;
-  }
-}
-
-.BalanceAmount {
-  .Loading {
-    min-height: 0;
-    height: 10px;
-    margin-right: 34px;
   }
 }
 

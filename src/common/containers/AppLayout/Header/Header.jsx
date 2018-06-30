@@ -9,7 +9,8 @@ import {
   Dropdown,
 } from 'semantic-ui-react';
 
-import { PATH_INDEX } from '@reagentum/front-core/lib/common/constants/routes.pathes';
+import { objectValues } from '@reagentum/front-core/lib/common/utils/common';
+import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
 import { getUserInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';
 import {
   MediaQuery,
@@ -30,6 +31,57 @@ import {
 
 import './Header.scss';
 
+
+export const MENU_ITEM_TYPE = {
+  NORMAL: 'normal',
+  DELIMITER: 'delimiter',
+  HEADER: 'header',
+};
+
+export const MENU_PROP_TYPES = PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.arrayOf(PropTypes.shape({
+    // остальные проперти - https://react.semantic-ui.com/modules/dropdown#content-label
+    // или тут примеры - https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/examples/modules/Dropdown/common.js
+    // as
+    // value
+    // description
+    // label={{ color: 'red', empty: true, circular: true }}
+    // image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
+
+    /**
+      MENU_ITEM_TYPE = {
+        NORMAL: 'normal',
+        DELIMITER: 'delimiter',
+        HEADER: 'header',
+      }
+     */
+    type: PropTypes.oneOf(objectValues(MENU_ITEM_TYPE)),
+    name: PropTypes.node,
+    icon: PropTypes.string,
+    /**
+     * url аватарки
+     * либо будет использована icon
+     */
+    image: PropTypes.string,
+    path: PropTypes.any,
+    /**
+     * либо name будет рисоваться
+     */
+    content: PropTypes.node,
+    /**
+     * true - показывать только для мобильных
+     * false - показывать только для не мобильных
+     * undefined \ null - показывать везде
+     */
+    mobile: PropTypes.bool,
+    /**
+     * либо path будет использован для перехода
+     */
+    onClick: PropTypes.func,
+  })),
+]);
+
 @connect(
   (globalState) => ({
     userInfo: getUserInfo(globalState),
@@ -41,9 +93,14 @@ import './Header.scss';
 export default class Header extends Component {
   static propTypes = {
     onToggleSidebar: PropTypes.func,
-    userMenu: PropTypes.array,
+    /**
+     * see https://react.semantic-ui.com/modules/dropdown
+     */
+    userMenu: MENU_PROP_TYPES,
     textHeaderTitle: PropTypes.string,
     textHeaderDescription: PropTypes.string,
+    leftPart: PropTypes.node,
+    rightPart: PropTypes.node,
 
     // ======================================================
     // CONNECT
@@ -70,14 +127,12 @@ export default class Header extends Component {
       <div className="header-inner Header__leftPart">
         {
           onToggleSidebar && (
-            <MediaQuery mobile={ true }>
-              <span
-                className="navicon Header__menu"
-                onClick={ onToggleSidebar }
-              >
-                <Icon name="content" />
-              </span>
-            </MediaQuery>
+            <span
+              className="navicon Header__menu"
+              onClick={ onToggleSidebar }
+            >
+              <Icon name="content" />
+            </span>
           )
         }
         <div className="Header__titleWrapper">
@@ -92,6 +147,65 @@ export default class Header extends Component {
     );
   }
 
+  renderUserMenuItem(menuItem, index) {
+    const {
+      goTo,
+    } = this.props;
+    const {
+      name,
+      type,
+      path,
+      className,
+      icon,
+      avatar,
+      content,
+      onClick,
+      ...otherDropdownItemProps
+    } = menuItem;
+
+    /**
+     * @deprecated - name === 'delimiter'
+     * */
+    if (name === 'delimiter') {
+      return (
+        <Dropdown.Divider
+          key={ `divider_${index}` }
+          className={ className }
+        />
+      );
+    }
+
+    switch (type) {
+      case MENU_ITEM_TYPE.DELIMITER:
+        return (
+          <Dropdown.Divider
+            key={ `divider_${index}` }
+            className={ className }
+          />
+        );
+      case MENU_ITEM_TYPE.HEADER:
+        return (
+          <Dropdown.Header
+            icon={ icon }
+            className={ className }
+            content={ content || name }
+          />
+        );
+      default:
+        return (
+          <Dropdown.Item
+            key={ name }
+            icon={ icon }
+            image={ avatar ? { avatar: true, src: avatar } : undefined }
+            text={ name }
+            className={ className }
+            content={ content }
+            onClick={ onClick || path ? (() => goTo(path)) : undefined }
+            { ...otherDropdownItemProps }
+          />
+        );
+    }
+  }
 
   renderRightPart() {
     const {
@@ -99,7 +213,7 @@ export default class Header extends Component {
         displayName,
       },
       userMenu,
-      goTo,
+      rightPart,
     } = this.props;
 
     // todo @ANKU @LOW - убрать bind на goTo
@@ -116,34 +230,36 @@ export default class Header extends Component {
             <Grid.Column>
               { displayName }
             </Grid.Column>
-            <Grid.Column>
-              <Dropdown
-                className="UserMenu"
-                trigger={
-                  <Icon
-                    className="user-icon"
-                    name="user outline"
-                  />
-                }
-                simple={ true }
-              >
-                <Dropdown.Menu>
-                  {
-                    userMenu.map(({ name, path, onClick }, index) => (name === 'delimiter'
-                      ? <Dropdown.Divider key={ `divider_${index}` } />
-                      : (
-                        <Dropdown.Item
-                          key={ name }
-                          onClick={ onClick || (() => goTo(path)) }
-                        >
-                          { name }
-                        </Dropdown.Item>
-                      )))
-                  }
-                </Dropdown.Menu>
-              </Dropdown>
-            </Grid.Column>
           </MediaQuery>
+          <Grid.Column>
+            {
+              userMenu.length > 0 && (
+                <Dropdown
+                  className="UserMenu"
+                  trigger={
+                    <Icon
+                      className="user-icon"
+                      name="user outline"
+                    />
+                  }
+                  simple={ true }
+                >
+                  <Dropdown.Menu>
+                    {
+                      userMenu.map((menuItem, index) => this.renderUserMenuItem(menuItem, index))
+                    }
+                  </Dropdown.Menu>
+                </Dropdown>
+              )
+            }
+            {
+              rightPart && (
+                <div className="Header__rightPart">
+                  { rightPart }
+                </div>
+              )
+            }
+          </Grid.Column>
 
           {/* <Grid.Column>*/}
           {/* <NotificationCenter />*/}
@@ -157,12 +273,22 @@ export default class Header extends Component {
   // MAIN RENDER
   // ======================================================
   render() {
+    const {
+      leftPart,
+    } = this.props;
     return (
       <header className="Header">
         <Grid columns="equal">
           <Grid.Row>
             <Grid.Column floated="left">
               { this.renderLeftPart() }
+              {
+                leftPart && (
+                  <div className="Header__leftPart">
+                    { leftPart }
+                  </div>
+                )
+              }
             </Grid.Column>
 
             <Grid.Column

@@ -5,16 +5,23 @@ import bind from 'lodash-decorators/bind';
 
 import i18n from '../../utils/i18n';
 
-// import './TestPage.scss';
-
 import UniTable from '../../components/UniTable/UniTable';
+import headerContext from '../AppLayout/header-context-decorator';
 
+import './TestPage.scss';
+
+@headerContext()
 @connect(
   (globalState) => ({
   }),
 )
 export default class TestPage extends Component {
   static propTypes = {
+    setTitle: PropTypes.func,
+    setHeaderTitle: PropTypes.func,
+    setHeaderDescription: PropTypes.func,
+    setHeaderLeftPart: PropTypes.func,
+    setHeaderRightPart: PropTypes.func,
   };
 
   static defaultProps = {
@@ -49,7 +56,15 @@ export default class TestPage extends Component {
 
     return (
       <div className="TestPage">
-        TestPage
+        <h2>TestPage</h2>
+        <button onClick={ () => this.props.setTitle('setTitle') }>setTitle</button>
+        <button onClick={ () => this.props.setHeaderTitle('setHeaderTitle') }>setHeaderTitle</button>
+        <button onClick={ () => this.props.setHeaderDescription('setHeaderDescription') }>setHeaderDescription</button>
+        <button onClick={ () => this.props.setHeaderLeftPart('setHeaderLeftPart') }>setHeaderLeftPart</button>
+        <button onClick={ () => this.props.setHeaderRightPart('setHeaderRightPart') }>setHeaderRightPart</button>
+
+        <div className="testImageMin" />
+        <div className="testImage" />
 
         <UniTable
           records={ [
