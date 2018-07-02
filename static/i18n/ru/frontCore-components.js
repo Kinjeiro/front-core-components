@@ -57,5 +57,9 @@ module.exports = {
       textActionSelectAll: 'Выбрать на всех страницах',
       textYouSelectedAll: 'Выбраны все элементы',
     },
+    ErrorBoundary: {
+      errorOccurred: 'Произошла ошибка',
+      refreshButton: 'Обновить',
+    },
   },
 };
