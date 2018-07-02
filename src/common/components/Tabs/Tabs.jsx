@@ -8,6 +8,8 @@ import i18n from '../../utils/i18n';
 
 import './Tabs.scss';
 
+export { default as TAB_PROP_TYPES } from './entity-tab';
+
 export default class Tabs extends Component {
   static propTypes = {
     className: PropTypes.string,
@@ -27,7 +29,14 @@ export default class Tabs extends Component {
         }),
       ]),
     })),
-    buttonLinkProps: PropTypes.object,
+    /**
+     * чтобы индекс без типа считался активной первой табой
+     */
+    indexPath: PropTypes.string,
+    buttonLinkProps: PropTypes.shape({
+      compact: PropTypes.bool,
+      simple: PropTypes.bool,
+    }),
     withOrButtons: PropTypes.bool,
     textOr: PropTypes.node,
     fullWidth: PropTypes.bool,
@@ -42,6 +51,7 @@ export default class Tabs extends Component {
     const {
       className,
       tabs,
+      indexPath,
       buttonLinkProps: {
         compact,
         simple,
@@ -65,7 +75,17 @@ export default class Tabs extends Component {
       result.push((
         <Link
           key={ key }
-          to={ tab.to }
+          to={
+            // для первой табы
+            index === 0 && indexPath
+              ? ({ pathname }) => {
+                if (pathname.indexOf(indexPath) >= 0) {
+                  return pathname;
+                }
+                return indexPath;
+              }
+              : tab.to
+          }
           className={ linkClassName }
           activeClassName="Tab--active"
         >
