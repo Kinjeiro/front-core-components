@@ -9,8 +9,17 @@
 -   [scrollingOwn][5]
 -   [useUpBottomButtons][6]
 -   [content][7]
--   [isShow][8]
--   [TwoColumnMobileRow][9]
+-   [content][8]
+-   [isShow][9]
+-   [TwoColumnMobileRow][10]
+-   [menu][11]
+-   [headerContextDecorator][12]
+-   [type][13]
+-   [image][14]
+-   [mobile][15]
+-   [onClick][16]
+-   [userMenu][17]
+-   [className][18]
 
 ## Navigation
 
@@ -64,6 +73,10 @@ string - тогда это будет id элемента, у которого �
 
 можно подать функцию (id) => {}
 
+## content
+
+либо name будет рисоваться
+
 ## isShow
 
 можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
@@ -73,6 +86,63 @@ string - тогда это будет id элемента, у которого �
 **Extends Component**
 
 Обазятельно обернуть в Grid (semantic-ui-react)
+
+## menu
+
+**Meta**
+
+-   **deprecated**: user userMenu instead
+
+
+## headerContextDecorator
+
+Декорирует компонент и добавляет в него значения и методы по изменению header
+
+-   title,
+-   headerTitle,
+-   headerDescription,
+-   headerLeftPart,
+-   headerRightPart,
+
+-   setTitle
+-   setHeaderTitle
+-   setHeaderDescription
+-   setHeaderLeftPart
+-   setHeaderRightPart
+
+## type
+
+MENU_ITEM_TYPE = {
+NORMAL: 'normal',
+DELIMITER: 'delimiter',
+HEADER: 'header',
+}
+
+## image
+
+url аватарки
+либо будет использована icon
+
+## mobile
+
+true - показывать только для мобильных
+false - показывать только для не мобильных
+undefined \\ null - показывать везде
+
+## onClick
+
+либо path будет использован для перехода
+
+## userMenu
+
+see [https://react.semantic-ui.com/modules/dropdown][19]
+
+## className
+
+**Meta**
+
+-   **deprecated**: name === 'delimiter'
+
 
 [1]: #navigation
 
@@ -88,6 +158,26 @@ string - тогда это будет id элемента, у которого �
 
 [7]: #content
 
-[8]: #isshow
+[8]: #content-1
 
-[9]: #twocolumnmobilerow
+[9]: #isshow
+
+[10]: #twocolumnmobilerow
+
+[11]: #menu
+
+[12]: #headercontextdecorator
+
+[13]: #type
+
+[14]: #image
+
+[15]: #mobile
+
+[16]: #onclick
+
+[17]: #usermenu
+
+[18]: #classname
+
+[19]: https://react.semantic-ui.com/modules/dropdown
