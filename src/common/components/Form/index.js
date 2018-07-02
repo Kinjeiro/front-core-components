@@ -1,7 +1,6 @@
 /**
  * @deprecated - так как подцепляются лишнее css стили для неиспользуемых компонентов
  */
-
 export Attachment from './Attachment/Attachment';
 export Labeled from './Labeled/Labeled';
 export SelectFix from './SelectFix/SelectFix';

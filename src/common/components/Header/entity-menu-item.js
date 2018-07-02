@@ -9,7 +9,7 @@ export const MENU_ITEM_TYPE = {
   HEADER: 'header',
 };
 
-export const MENU_PROP_TYPES = PropTypes.oneOfType([
+export const MENU_PROP_TYPE = PropTypes.oneOfType([
   PropTypes.func,
   PropTypes.arrayOf(PropTypes.shape({
     // остальные проперти - https://react.semantic-ui.com/modules/dropdown#content-label
@@ -52,3 +52,5 @@ export const MENU_PROP_TYPES = PropTypes.oneOfType([
     onClick: PropTypes.func,
   })),
 ]);
+
+export default MENU_PROP_TYPE;

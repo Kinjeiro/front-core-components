@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [last version][1.4.0-1.4.1]
+## [last version][1.4.0-1.4.?]
 ### !!! Breaking changes:
 1. изменил верстку header, AppLayout и высоты, проверяйте свой дизайн, особенно с табами и константами ($header-size, $header-size-sm, $height-tabs-menu, $height-tabs-menu-sm) 
 
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
         \\ front-core@1.3.22 
         \\ обновил header: first, sidebar, title, left, user, right части 
         \\ можно теперь подать кастомный HeaderClass и headerProps 
-        \\ описение menu-item.js \\ если незареган то кнопка "Войти" 
+        \\ описение entity-menu-item.js \\ если незареган то кнопка "Войти" 
         \\ немного отрефакторил AppLayout css
     
 ## [1.3.2] (2018.07.02)

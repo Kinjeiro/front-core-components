@@ -4,28 +4,22 @@ import PropTypes from 'prop-types';
 import {
   Icon,
   Image,
-  Grid,
   Dropdown,
   // Button,
 } from 'semantic-ui-react';
 
-import {
-  objectValues,
-  executeVariable,
-} from '@reagentum/front-core/lib/common/utils/common';
 import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
 import {
   MediaQuery,
   Link,
 } from '@reagentum/front-core/lib/common/components';
 
-import i18n from '../../../utils/i18n';
-import Button from '../../../components/Button/Button';
+import i18n from '../../utils/i18n';
 
 import {
-  MENU_PROP_TYPES,
+  MENU_PROP_TYPE,
   MENU_ITEM_TYPE,
-} from './menu-item';
+} from './entity-menu-item';
 
 import './Header.scss';
 
@@ -61,7 +55,7 @@ export default class Header extends PureComponent {
     /**
      * see https://react.semantic-ui.com/modules/dropdown
      */
-    userMenu: MENU_PROP_TYPES,
+    userMenu: MENU_PROP_TYPE,
 
     rightPart: PropTypes.node,
 

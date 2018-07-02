@@ -48,8 +48,8 @@ import './semantic-ui-updates.scss';
 
 import UpBottomButtons from '../../components/UpBottomButtons/UpBottomButtons';
 
-import { MENU_PROP_TYPES } from './Header/menu-item';
-import Header from './Header/Header';
+import { MENU_PROP_TYPE } from '../../components/Header/entity-menu-item';
+import Header from '../../components/Header/Header';
 
 import './AppLayout.scss';
 
@@ -94,9 +94,9 @@ export default class AppLayout extends Component {
     /**
      * @deprecated - user userMenu instead
     */
-    menu: MENU_PROP_TYPES,
-    userMenu: MENU_PROP_TYPES,
-    sidebarMenu: MENU_PROP_TYPES,
+    menu: MENU_PROP_TYPE,
+    userMenu: MENU_PROP_TYPE,
+    sidebarMenu: MENU_PROP_TYPE,
     ifMobileMoveUserMenuToSidebar: PropTypes.bool,
     textMenuLogout: PropTypes.string,
 
