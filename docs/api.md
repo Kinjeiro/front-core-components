@@ -3,32 +3,33 @@
 ### Table of Contents
 
 -   [Navigation][1]
--   [update][2]
+-   [Attachment][2]
 -   [update][3]
--   [SidebarComponent][4]
--   [scrollingOwn][5]
--   [useUpBottomButtons][6]
--   [content][7]
+-   [update][4]
+-   [SidebarComponent][5]
+-   [scrollingOwn][6]
+-   [useUpBottomButtons][7]
 -   [content][8]
--   [isShow][9]
--   [TwoColumnMobileRow][10]
--   [menu][11]
--   [headerContextDecorator][12]
--   [onToggleSidebar][13]
--   [logo][14]
--   [userMenu][15]
--   [className][16]
--   [type][17]
--   [image][18]
--   [mobile][19]
--   [onClick][20]
+-   [content][9]
+-   [isShow][10]
+-   [TwoColumnMobileRow][11]
+-   [menu][12]
+-   [headerContextDecorator][13]
+-   [onToggleSidebar][14]
+-   [logo][15]
+-   [userMenu][16]
+-   [className][17]
+-   [type][18]
+-   [image][19]
+-   [mobile][20]
+-   [onClick][21]
 
 ## Navigation
 
 остальное
 
 
-## 
+## Attachment
 
 **Meta**
 
@@ -123,7 +124,7 @@ string - тогда это будет id элемента, у которого �
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][21]
+see [https://react.semantic-ui.com/modules/dropdown][22]
 
 ## className
 
@@ -157,42 +158,44 @@ undefined \\ null - показывать везде
 
 [1]: #navigation
 
-[2]: #update
+[2]: #attachment
 
-[3]: #update-1
+[3]: #update
 
-[4]: #sidebarcomponent
+[4]: #update-1
 
-[5]: #scrollingown
+[5]: #sidebarcomponent
 
-[6]: #useupbottombuttons
+[6]: #scrollingown
 
-[7]: #content
+[7]: #useupbottombuttons
 
-[8]: #content-1
+[8]: #content
 
-[9]: #isshow
+[9]: #content-1
 
-[10]: #twocolumnmobilerow
+[10]: #isshow
 
-[11]: #menu
+[11]: #twocolumnmobilerow
 
-[12]: #headercontextdecorator
+[12]: #menu
 
-[13]: #ontogglesidebar
+[13]: #headercontextdecorator
 
-[14]: #logo
+[14]: #ontogglesidebar
 
-[15]: #usermenu
+[15]: #logo
 
-[16]: #classname
+[16]: #usermenu
 
-[17]: #type
+[17]: #classname
 
-[18]: #image
+[18]: #type
 
-[19]: #mobile
+[19]: #image
 
-[20]: #onclick
+[20]: #mobile
 
-[21]: https://react.semantic-ui.com/modules/dropdown
+[21]: #onclick
+
+[22]: https://react.semantic-ui.com/modules/dropdown
