@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import bind from 'lodash-decorators/bind';
 import { SingleDatePicker } from 'react-dates';
+import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
 import {
