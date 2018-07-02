@@ -1,155 +1,154 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import {
   Icon,
+  Image,
   Grid,
   Dropdown,
+  // Button,
 } from 'semantic-ui-react';
 
-import { objectValues } from '@reagentum/front-core/lib/common/utils/common';
+import {
+  objectValues,
+  executeVariable,
+} from '@reagentum/front-core/lib/common/utils/common';
 import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
-import { getUserInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';
 import {
   MediaQuery,
   Link,
 } from '@reagentum/front-core/lib/common/components';
 
-// ======================================================
-// UTILS
-// ======================================================
+import i18n from '../../../utils/i18n';
+import Button from '../../../components/Button/Button';
 
-// ======================================================
-// REDUX
-// ======================================================
-
-// ======================================================
-// COMPONENTS
-// ======================================================
+import {
+  MENU_PROP_TYPES,
+  MENU_ITEM_TYPE,
+} from './menu-item';
 
 import './Header.scss';
 
-
-export const MENU_ITEM_TYPE = {
-  NORMAL: 'normal',
-  DELIMITER: 'delimiter',
-  HEADER: 'header',
-};
-
-export const MENU_PROP_TYPES = PropTypes.oneOfType([
-  PropTypes.func,
-  PropTypes.arrayOf(PropTypes.shape({
-    // остальные проперти - https://react.semantic-ui.com/modules/dropdown#content-label
-    // или тут примеры - https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/examples/modules/Dropdown/common.js
-    // as
-    // value
-    // description
-    // label={{ color: 'red', empty: true, circular: true }}
-    // image: { avatar: true, src: '/images/avatar/small/elliot.jpg' },
-
-    /**
-      MENU_ITEM_TYPE = {
-        NORMAL: 'normal',
-        DELIMITER: 'delimiter',
-        HEADER: 'header',
-      }
-     */
-    type: PropTypes.oneOf(objectValues(MENU_ITEM_TYPE)),
-    name: PropTypes.node,
-    icon: PropTypes.string,
-    /**
-     * url аватарки
-     * либо будет использована icon
-     */
-    image: PropTypes.string,
-    path: PropTypes.any,
-    /**
-     * либо name будет рисоваться
-     */
-    content: PropTypes.node,
-    /**
-     * true - показывать только для мобильных
-     * false - показывать только для не мобильных
-     * undefined \ null - показывать везде
-     */
-    mobile: PropTypes.bool,
-    /**
-     * либо path будет использован для перехода
-     */
-    onClick: PropTypes.func,
-  })),
-]);
-
-@connect(
-  (globalState) => ({
-    userInfo: getUserInfo(globalState),
-  }),
-  {
-    goTo: push,
-  },
-)
-export default class Header extends Component {
+export default class Header extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node,
+
+    firstPart: PropTypes.node,
+
+    /**
+     * если есть, то рисутеся sibebarIcon в начале
+     */
     onToggleSidebar: PropTypes.func,
+
+    /**
+     * если стринг - урл лого
+     * если нода - контрол
+     */
+    logo: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.node,
+    ]),
+
+    customTitlePart: PropTypes.node,
+    textHeaderTitle: PropTypes.string,
+    textHeaderDescription: PropTypes.string,
+
+    leftPart: PropTypes.node,
+
+    customUserPart: PropTypes.node,
+    userInfo: PropTypes.object,
     /**
      * see https://react.semantic-ui.com/modules/dropdown
      */
     userMenu: MENU_PROP_TYPES,
-    textHeaderTitle: PropTypes.string,
-    textHeaderDescription: PropTypes.string,
-    leftPart: PropTypes.node,
+
     rightPart: PropTypes.node,
 
-    // ======================================================
-    // CONNECT
-    // ======================================================
-    userInfo: PropTypes.object,
-    goTo: PropTypes.func,
+    textMenuLogin: PropTypes.node,
+
+    onGoTo: PropTypes.func.isRequired,
+    onLogin: PropTypes.func,
   };
 
-  // ======================================================
-  // HANDLERS
-  // ======================================================
+  static defaultProps = {
+    textMenuLogin: i18n('pages.AppLayout.menu.login'),
+  };
 
   // ======================================================
   // RENDERS
   // ======================================================
-  renderLeftPart() {
+  renderFirstPart() {
+    const {
+      firstPart,
+    } = this.props;
+    return firstPart;
+  }
+
+  renderSidebarIconPart() {
     const {
       onToggleSidebar,
-      textHeaderTitle,
-      textHeaderDescription,
+    } = this.props;
+    return onToggleSidebar && (
+      <span
+        className="SidebarIconPart navicon"
+        onClick={ onToggleSidebar }
+      >
+        <Icon name="content" />
+      </span>
+    );
+  }
+
+  renderLogoPart() {
+    const {
+      logo,
     } = this.props;
 
-    return (
-      <div className="header-inner Header__leftPart">
+    return logo && (
+      <div className="LogoPart">
         {
-          onToggleSidebar && (
-            <span
-              className="navicon Header__menu"
-              onClick={ onToggleSidebar }
-            >
-              <Icon name="content" />
-            </span>
+          typeof logo === 'string'
+          ? (
+            <Image
+              className="LogoPart__image"
+              src={ logo }
+            />
           )
+          : logo
         }
-        <div className="Header__titleWrapper">
-          <Link to={ PATH_INDEX }>
-            <h2 className="Header__title">{ textHeaderTitle }</h2>
-          </Link>
-          <MediaQuery mobile={ false }>
-            <span className="Header__description">{ textHeaderDescription }</span>
-          </MediaQuery>
-        </div>
       </div>
     );
   }
 
+  renderTitlePart() {
+    const {
+      textHeaderTitle,
+      textHeaderDescription,
+    } = this.props;
+    return (
+      <div className="TitlePart">
+        <Link to={ PATH_INDEX }>
+          <h2 className="TitlePart__title">
+            { textHeaderTitle }
+          </h2>
+        </Link>
+        <span className="TitlePart__description">
+          { textHeaderDescription }
+        </span>
+      </div>
+    );
+  }
+
+  renderLeftPart() {
+    const {
+      leftPart,
+    } = this.props;
+    return leftPart;
+  }
+
   renderUserMenuItem(menuItem, index) {
     const {
-      goTo,
+      onGoTo,
     } = this.props;
     const {
       name,
@@ -200,73 +199,101 @@ export default class Header extends Component {
             text={ name }
             className={ className }
             content={ content }
-            onClick={ onClick || path ? (() => goTo(path)) : undefined }
+            onClick={ onClick || (path ? (() => onGoTo(path)) : undefined) }
             { ...otherDropdownItemProps }
           />
         );
     }
   }
 
-  renderRightPart() {
+  renderUserPart() {
     const {
-      userInfo: {
-        displayName,
-      },
+      userInfo,
       userMenu,
-      rightPart,
+      textMenuLogin,
+      onLogin,
     } = this.props;
 
-    // todo @ANKU @LOW - убрать bind на goTo
-    return (
-      <Grid
-        columns="2"
-        divided={ true }
-        stretched={ true }
-        className="balance-grid"
-        verticalAlign="middle"
-      >
-        <Grid.Row>
-          <MediaQuery mobile={ false }>
-            <Grid.Column>
-              { displayName }
-            </Grid.Column>
-          </MediaQuery>
-          <Grid.Column>
-            {
-              userMenu.length > 0 && (
-                <Dropdown
-                  className="UserMenu"
-                  trigger={
-                    <Icon
-                      className="user-icon"
-                      name="user outline"
-                    />
-                  }
-                  simple={ true }
-                >
-                  <Dropdown.Menu>
-                    {
-                      userMenu.map((menuItem, index) => this.renderUserMenuItem(menuItem, index))
-                    }
-                  </Dropdown.Menu>
-                </Dropdown>
-              )
-            }
-            {
-              rightPart && (
-                <div className="Header__rightPart">
-                  { rightPart }
-                </div>
-              )
-            }
-          </Grid.Column>
+    let userCmp;
+    if (!userInfo) {
+      if (onLogin && textMenuLogin) {
+        userCmp = (
+          <div className="UserPart__name UserName--notAuth">
+            <Link
+              onClick={ onLogin }
+            >
+              { textMenuLogin }
+            </Link>
+          </div>
+        );
+      }
+    } else {
+      const {
+        displayName,
+        username,
+        profileImageURI,
+      } = userInfo;
 
-          {/* <Grid.Column>*/}
-          {/* <NotificationCenter />*/}
-          {/* </Grid.Column>*/}
-        </Grid.Row>
-      </Grid>
+      const displayNameFinal = displayName || username;
+
+      userCmp = (
+        <div className="UserPart__name UserName">
+          {
+            profileImageURI
+              ? (
+                <Image
+                  className="UserName__avatar"
+                  src={ profileImageURI }
+                  avatar={ true }
+                />
+              )
+              : (
+                <Icon
+                  className="UserName__icon user-icon"
+                  name="user outline"
+                />
+              )
+          }
+          {
+            displayNameFinal && (
+              <span className="UserName__displayName">
+                { displayNameFinal }
+              </span>
+            )
+          }
+        </div>
+      );
+
+      if (userMenu.length > 0) {
+        userCmp = (
+          <Dropdown
+            className="UserPart__menu"
+            trigger={ userCmp }
+            simple={ true }
+          >
+            <Dropdown.Menu>
+              {
+                userMenu.map((menuItem, index) =>
+                  this.renderUserMenuItem(menuItem, index))
+              }
+            </Dropdown.Menu>
+          </Dropdown>
+        );
+      }
+    }
+
+    return userCmp && (
+      <div className="UserPart">
+        { userCmp }
+      </div>
     );
+  }
+
+  renderRightPart() {
+    const {
+      rightPart,
+    } = this.props;
+    return rightPart;
   }
 
   // ======================================================
@@ -274,32 +301,22 @@ export default class Header extends Component {
   // ======================================================
   render() {
     const {
-      leftPart,
+      className,
+      children,
+      customTitlePart,
+      customUserPart,
     } = this.props;
     return (
-      <header className="Header">
-        <Grid columns="equal">
-          <Grid.Row>
-            <Grid.Column floated="left">
-              { this.renderLeftPart() }
-              {
-                leftPart && (
-                  <div className="Header__leftPart">
-                    { leftPart }
-                  </div>
-                )
-              }
-            </Grid.Column>
-
-            <Grid.Column
-              floated="right"
-              className="balance"
-            >
-              { this.renderRightPart() }
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </header>
+      <div className={ `Header ${className || ''}` }>
+        <div className="Header__firstPart">{ this.renderFirstPart() }</div>
+        <div className="Header__sidebarIconPart">{ this.renderSidebarIconPart() }</div>
+        <div className="Header__logoPart">{ this.renderLogoPart() }</div>
+        <div className="Header__titlePart">{ customTitlePart || this.renderTitlePart() }</div>
+        <div className="Header__leftPart">{ this.renderLeftPart() }</div>
+        <div className="Header__userPart">{ customUserPart || this.renderUserPart() }</div>
+        <div className="Header__rightPart">{ this.renderRightPart() }</div>
+        { children }
+      </div>
     );
   }
 }

@@ -1,0 +1,11 @@
+.Button {
+  &--simple {
+    border: none;
+    background: none;
+
+    &:hover {
+      border: none;
+      background: none;
+    }
+  }
+}

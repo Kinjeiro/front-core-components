@@ -1,166 +1,116 @@
 @import "../../../app-styles/vars";
 
-header {
-  background: $color-white;
-  border-bottom: 1px solid $color-grey;
-  color: #2e3d49;
-  display: flex !important;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  position: fixed;
-  z-index: 444;
+.Header {
+  display: grid;
+  grid-template-columns:
+    [first-part] auto
+    [sidebar-icon-part] auto
+    [logo-part] auto
+    [title-part] 1fr
+    [left-part] auto
+    [user-part] auto
+    [right-part] auto
+    [end];
+  -ms-grid-columns: auto auto auto 1fr auto auto auto;
+  //grid-template-rows: [content-start] auto [content-end];
+  //-ms-grid-rows: 1fr;
 
-  @media (min-width: 768px) {
-    padding-left: $content-offset;
-    padding-right: $content-offset;
+  // todo @ANKU @LOW - @BUG_OUT @IE - обязательно нужно указывать расположение
+  // https://stackoverflow.com/a/45787093/344172
+  &__firstPart {
+    -ms-grid-column: 1;
+  }
+  &__sidebarIconPart {
+    -ms-grid-column: 2;
+  }
+  &__logoPart {
+    -ms-grid-column: 3;
+  }
+  &__titlePart {
+    -ms-grid-column: 4;
+  }
+  &__leftPart {
+    -ms-grid-column: 5;
+  }
+  &__userPart {
+    -ms-grid-column: 6;
+  }
+  &__rightPart {
+    -ms-grid-column: 7;
   }
 
-  .Header__description {
-    display: none;
+  align-items: center;
+  // todo @ANKU @LOW @BUG_OUT @IE - не понимает align-items на контейнере
+  & > * {
+    display: flex;
+    align-items: center;
+  }
 
-    @media (min-width: 992px) {
-      display: inherit;
+  // ======================================================
+  // FirstPart
+  // ======================================================
+
+
+  // ======================================================
+  // SidebarIconPart
+  // ======================================================
+  .SidebarIconPart {
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  // ======================================================
+  // LogoPart
+  // ======================================================
+  .LogoPart {
+    &__image {
+
+    }
+    // @deprecated - для поддержания обратной совместимости (вдруг кто-то лого ждал)
+    & > * {
+      max-width: 120px;
+      min-width: 120px;
     }
   }
 
-  .Header__title {
-    font-size: 1.25rem;
+  // ======================================================
+  // TitlePart
+  // ======================================================
+  .TitlePart {
+    &__title {
+      font-size: 1.25rem;
 
-    @media (min-width: 768px) {
-      font-size: 1.75rem;
-      line-height: 1.5rem;
+      @media (min-width: 768px) {
+        font-size: 1.75rem;
+        line-height: 1.5rem;
+      }
+    }
+    //&__description {
+    //}
+  }
+
+  // ======================================================
+  // LeftPart
+  // ======================================================
+
+  // ======================================================
+  // UserInfo
+  // ======================================================
+  &__userPart {
+    .ui.dropdown > .dropdown.icon {
+      margin-left: 5px;
     }
   }
 
-  .balance {
-    font-size: 1rem;
-    margin-top: 16px;
-    padding-top: 0.3rem;
-    right: 20px;
-
-    .balance-grid {
-      float: right;
-    }
-
-    .ui.grid[class*="two column"] > .row > .column {
-      width: auto;
-    }
-
-    .ui.mini.statistic > .value {
-      font-size: 1.175rem !important;
-    }
-    .ui.stackable.grid > .row > .column {
-      padding-top: 0.1rem !important;
-      padding-bottom: 0.03rem !important;
+  .UserPart {
+    &__name {
+      display: inline-block;
       white-space: nowrap;
     }
   }
 
-  //.header__link {
-  //  height: 34px;
-  //  overflow: hidden;
-  //  margin: 2px -8px 0;
-  //}
-
-  .header__logo {
-    height: 80px;
-    margin-top: 8px;
-  }
-
-  .header-inner {
-    display: flex;
-    padding: 0 15px;
-
-    @include respond-to('sm', 'xs') {
-      padding: 0 5px;
-    }
-
-    @include respond-to('lg') {
-      padding: 0 15px;
-    }
-
-    span.title {
-
-    }
-    span.title {
-      line-height: 1;
-      font-size: 18px;
-      align-items: center;
-      display: flex;
-      @include respond-to('lg', 'md') {
-        font-size: 24px;
-      }
-    }
-
-  }
+  // ======================================================
+  // RightPart
+  // ======================================================
 }
 
-
-.Header {
-  .ui.grid .row {
-    margin: 0;
-  }
-
-  height: #{$header-size-sm};
-  & > .ui.grid > .row {
-    margin-top: 7px;
-  }
-
-  @include respond-to('md') {
-    height: #{$header-size};
-
-    & > .ui.grid > .row {
-      margin-top: 0px;
-    }
-
-    .Logo {
-      width: 170px;
-      max-width: 170px;
-      min-width: 170px;
-    }
-  }
-
-
-
-
-  &__leftPart {
-    height: 100%;
-  }
-
-  &__menu {
-    //width: 48px;
-    //height: 48px;
-    //padding: 12px;
-    //line-height: 1;
-    font-size: 22px;
-
-    //@include respond-to('lg') {
-    //  display: none;
-    //}
-  }
-  &__logo {
-    max-width: 120px;
-    min-width: 120px;
-  }
-  &__logoText {
-    width: 120px;
-    margin-top: -2px;
-    margin-left: 10px;
-    display: inline-block;
-    line-height: 15px;
-  }
-}
-
-.UserMenu {
-  .menu.transition {
-    right: 0;
-    left: auto;
-  }
-
-  &.ui.dropdown .menu > .item,
-  &.ui.dropdown .menu > .item:hover {
-    color: $color-primary;
-    font-weight: bold;
-  }
-}

@@ -18,7 +18,10 @@ import 'semantic-ui-css/semantic.css';
 import 'react-redux-toastr/src/styles/index.scss';
 
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
-import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
+import {
+  PATH_INDEX,
+  PATH_LOGIN_PAGE,
+} from '@reagentum/front-core/lib/common/routes.pathes';
 import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
 import {
   getCurrentPath,
@@ -45,7 +48,8 @@ import './semantic-ui-updates.scss';
 
 import UpBottomButtons from '../../components/UpBottomButtons/UpBottomButtons';
 
-import Header, { MENU_PROP_TYPES } from './Header/Header';
+import { MENU_PROP_TYPES } from './Header/menu-item';
+import Header from './Header/Header';
 
 import './AppLayout.scss';
 
@@ -86,6 +90,7 @@ export default class AppLayout extends Component {
     children: PropTypes.node.isRequired,
     onLogout: PropTypes.func,
 
+    textTitle: PropTypes.node,
     /**
      * @deprecated - user userMenu instead
     */
@@ -93,14 +98,11 @@ export default class AppLayout extends Component {
     userMenu: MENU_PROP_TYPES,
     sidebarMenu: MENU_PROP_TYPES,
     ifMobileMoveUserMenuToSidebar: PropTypes.bool,
-
-    textTitle: PropTypes.node,
-    textHeaderTitle: PropTypes.node,
-    textHeaderDescription: PropTypes.node,
-    headerLeftPart: PropTypes.node,
-    headerRightPart: PropTypes.node,
-
     textMenuLogout: PropTypes.string,
+
+    HeaderClass: PropTypes.instanceOf(Component),
+    headerProps: Header.propTypes,
+
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
     upBottomButtonsProps: PropTypes.oneOfType([
       PropTypes.object,
@@ -120,18 +122,22 @@ export default class AppLayout extends Component {
   static defaultProps = {
     ifMobileMoveUserMenuToSidebar: true,
     textTitle: i18n('pages.AppLayout.title'),
-    textHeaderTitle: i18n('pages.AppLayout.Header.title'),
-    textHeaderDescription: i18n('pages.AppLayout.Header.description'),
+    HeaderClass: Header,
+    headerProps: {},
     textMenuLogout: i18n('pages.AppLayout.menu.logout'),
   };
 
   state = {
     sidebarOpened: false,
 
-    headerTitle: this.props.textHeaderTitle,
-    headerDescription: this.props.textHeaderDescription,
-    headerLeftPart: this.props.headerLeftPart,
-    headerRightPart: this.props.headerRightPart,
+    headerTitle: typeof this.props.headerProps.textHeaderTitle !== 'undefined'
+      ? this.props.headerProps.textHeaderTitle
+      : i18n('pages.AppLayout.Header.title'),
+    headerDescription: typeof this.props.headerProps.textHeaderDescription !== 'undefined'
+      ? this.props.headerProps.textHeaderDescription
+      : i18n('pages.AppLayout.Header.description'),
+    headerLeftPart: this.props.headerProps.headerLeftPart,
+    headerRightPart: this.props.headerProps.headerRightPart,
   };
 
   // ======================================================
@@ -149,10 +155,10 @@ export default class AppLayout extends Component {
   getUserMenu(isMobile = null) {
     const {
       user,
-      userMenu,
       menu,
-      textMenuLogout,
+      userMenu,
       ifMobileMoveUserMenuToSidebar,
+      textMenuLogout,
     } = this.props;
 
     if (isMobile && ifMobileMoveUserMenuToSidebar) {
@@ -165,7 +171,7 @@ export default class AppLayout extends Component {
     if (user) {
       menuFinal.push({
         name: textMenuLogout,
-        className: 'menuItemLogout',
+        className: 'MenuItem MenuItem--logout',
         icon: 'sign out',
         onClick: this.handleLogout,
       });
@@ -176,8 +182,8 @@ export default class AppLayout extends Component {
 
   getSidebarMenu(isMobile = null) {
     const {
-      sidebarMenu,
       user,
+      sidebarMenu,
       ifMobileMoveUserMenuToSidebar,
     } = this.props;
 
@@ -186,7 +192,7 @@ export default class AppLayout extends Component {
       menu.push(...this.getUserMenu(false)
         .map((menuItem) => ({
           ...menuItem,
-          className: `userMenuItem ${menuItem || ''}`,
+          className: `MenuItem--userMenu ${menuItem.className || ''}`,
         })));
     }
     menu.push(...executeVariable(sidebarMenu, [], user)
@@ -244,46 +250,62 @@ export default class AppLayout extends Component {
     return this.props.children;
   }
 
-  renderContent() {
+  renderHeader() {
     const {
-      // textHeaderTitle,
-      // textHeaderDescription,
-      upBottomButtonsProps,
       user,
+      goTo,
+      HeaderClass,
+      headerProps,
     } = this.props;
+
     const {
-      sidebarOpened,
       headerTitle,
       headerDescription,
       headerLeftPart,
       headerRightPart,
     } = this.state;
 
+    return (
+      <MediaQuery mobile={ true }>
+        {
+          (matches) => {
+            const isMobile = matches;
+            const showSidebarMenu = this.getSidebarMenu(isMobile).length > 0;
+
+            return (
+              <HeaderClass
+                userInfo={ user }
+                userMenu={ this.getUserMenu(isMobile) }
+                onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
+                onGoTo={ goTo }
+                onLogin={ () => goTo(PATH_LOGIN_PAGE) }
+
+                { ...headerProps }
+
+                className={ `AppLayout__header ${headerProps.className || ''}` }
+
+                textHeaderTitle={ headerTitle }
+                textHeaderDescription={ headerDescription }
+                leftPart={ headerLeftPart }
+                rightPart={ headerRightPart }
+              />
+            );
+          }
+        }
+      </MediaQuery>
+    );
+  }
+  renderContent() {
+    const {
+      upBottomButtonsProps,
+    } = this.props;
+    const {
+      sidebarOpened,
+    } = this.state;
+
     // todo @ANKU @LOW - убрать fartuna fartuna-main и сделать нормально на grid
     return (
       <div className="AppLayout__content">
-        <MediaQuery mobile={ true }>
-          {
-            (matches) => {
-              const isMobile = matches;
-              const showSidebarMenu = this.getSidebarMenu(isMobile).length > 0;
-
-              return (
-                <Header
-                  userMenu={ this.getUserMenu(isMobile) }
-                  textHeaderTitle={ headerTitle }
-                  textHeaderDescription={ headerDescription }
-                  leftPart={ headerLeftPart }
-                  rightPart={ headerRightPart }
-
-                  onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
-                />
-              );
-            }
-          }
-        </MediaQuery>
-
-
         <div className="fartuna">
           <div className="fartuna-main">
             {
@@ -306,9 +328,7 @@ export default class AppLayout extends Component {
                 )
               }
               <div className="main-content">
-                <Container className="main-show">
-                  { this.renderChildren() }
-                </Container>
+                { this.renderChildren() }
               </div>
             </div>
           </div>
@@ -402,31 +422,31 @@ export default class AppLayout extends Component {
         }}
       >
         <div className="AppLayout">
-          <div className="page-layout ready">
-            <MediaQuery mobile={ true }>
-              {
-                (matches) => {
-                  const isMobile = matches;
-                  const menu = this.getSidebarMenu(isMobile);
+          <MediaQuery mobile={ true }>
+            {
+              (matches) => {
+                const isMobile = matches;
+                const menu = this.getSidebarMenu(isMobile);
 
-                  return (
-                    <Sidebar.Pushable
-                      as={ Segment }
-                      className={ isMobile ? '' : 'AppLayout__notMobile' }
-                    >
-                      { menu.length > 0 && this.renderMobileSidebarMenu(menu) }
+                // todo @ANKU @LOW - можно наверное меню сделать в виде портала чтобы работы с меню вынести в header
+                return (
+                  <Sidebar.Pushable
+                    as={ Segment }
+                    className={ isMobile ? '' : 'AppLayout__notMobile' }
+                  >
+                    { menu.length > 0 && this.renderMobileSidebarMenu(menu) }
 
-                      <Sidebar.Pusher>
-
+                    <Sidebar.Pusher>
+                      <div className="AppLayout__inner">
+                        { this.renderHeader() }
                         { this.renderContent() }
-
-                      </Sidebar.Pusher>
-                    </Sidebar.Pushable>
-                  );
-                }
+                      </div>
+                    </Sidebar.Pusher>
+                  </Sidebar.Pushable>
+                );
               }
-            </MediaQuery>
-          </div>
+            }
+          </MediaQuery>
         </div>
       </HeaderContext.Provider>
     );

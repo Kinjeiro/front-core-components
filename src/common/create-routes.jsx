@@ -92,6 +92,10 @@ export default function createRoutes(store) {
            path: 'sidebar',
            },
            ] }
+           headerProps={{
+           headerLeftPart: 'LEFT',
+           headerRightPart: 'RIGHT',
+           }}
 
             textTitle="testTitle"
            textHeaderTitle="textHeaderTitle"

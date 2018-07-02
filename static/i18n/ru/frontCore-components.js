@@ -4,6 +4,7 @@ module.exports = {
     AppLayout: {
       title: 'Компоненты FrontCore',
       menu: {
+        login: 'Войти',
         logout: 'Выйти',
       },
 
