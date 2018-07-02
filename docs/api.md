@@ -6,23 +6,23 @@
 -   [Attachment][2]
 -   [update][3]
 -   [update][4]
--   [SidebarComponent][5]
--   [scrollingOwn][6]
--   [useUpBottomButtons][7]
+-   [type][5]
+-   [image][6]
+-   [content][7]
 -   [content][8]
--   [content][9]
--   [isShow][10]
--   [TwoColumnMobileRow][11]
--   [menu][12]
--   [headerContextDecorator][13]
--   [onToggleSidebar][14]
--   [logo][15]
--   [userMenu][16]
--   [className][17]
--   [type][18]
--   [image][19]
--   [mobile][20]
--   [onClick][21]
+-   [mobile][9]
+-   [onClick][10]
+-   [onToggleSidebar][11]
+-   [logo][12]
+-   [userMenu][13]
+-   [className][14]
+-   [SidebarComponent][15]
+-   [scrollingOwn][16]
+-   [useUpBottomButtons][17]
+-   [isShow][18]
+-   [TwoColumnMobileRow][19]
+-   [menu][20]
+-   [headerContextDecorator][21]
 
 ## Navigation
 
@@ -54,6 +54,57 @@
 -   `event`  
 -   `comp`  
 
+## type
+
+MENU_ITEM_TYPE = {
+NORMAL: 'normal',
+DELIMITER: 'delimiter',
+HEADER: 'header',
+}
+
+## image
+
+url аватарки
+либо будет использована icon
+
+## content
+
+либо name будет рисоваться
+
+## content
+
+можно подать функцию (id) => {}
+
+## mobile
+
+true - показывать только для мобильных
+false - показывать только для не мобильных
+undefined \\ null - показывать везде
+
+## onClick
+
+либо path будет использован для перехода
+
+## onToggleSidebar
+
+если есть, то рисутеся sibebarIcon в начале
+
+## logo
+
+если стринг - урл лого
+если нода - контрол
+
+## userMenu
+
+see [https://react.semantic-ui.com/modules/dropdown][22]
+
+## className
+
+**Meta**
+
+-   **deprecated**: name === 'delimiter'
+
+
 ## SidebarComponent
 
 **Meta**
@@ -71,14 +122,6 @@ string - тогда это будет id элемента, у которого �
 ## useUpBottomButtons
 
 можно сделать кнопки вверх-вниз для этого скроллинга
-
-## content
-
-можно подать функцию (id) => {}
-
-## content
-
-либо name будет рисоваться
 
 ## isShow
 
@@ -113,49 +156,6 @@ string - тогда это будет id элемента, у которого �
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
-## onToggleSidebar
-
-если есть, то рисутеся sibebarIcon в начале
-
-## logo
-
-если стринг - урл лого
-если нода - контрол
-
-## userMenu
-
-see [https://react.semantic-ui.com/modules/dropdown][22]
-
-## className
-
-**Meta**
-
--   **deprecated**: name === 'delimiter'
-
-
-## type
-
-MENU_ITEM_TYPE = {
-NORMAL: 'normal',
-DELIMITER: 'delimiter',
-HEADER: 'header',
-}
-
-## image
-
-url аватарки
-либо будет использована icon
-
-## mobile
-
-true - показывать только для мобильных
-false - показывать только для не мобильных
-undefined \\ null - показывать везде
-
-## onClick
-
-либо path будет использован для перехода
-
 [1]: #navigation
 
 [2]: #attachment
@@ -164,38 +164,38 @@ undefined \\ null - показывать везде
 
 [4]: #update-1
 
-[5]: #sidebarcomponent
+[5]: #type
 
-[6]: #scrollingown
+[6]: #image
 
-[7]: #useupbottombuttons
+[7]: #content
 
-[8]: #content
+[8]: #content-1
 
-[9]: #content-1
+[9]: #mobile
 
-[10]: #isshow
+[10]: #onclick
 
-[11]: #twocolumnmobilerow
+[11]: #ontogglesidebar
 
-[12]: #menu
+[12]: #logo
 
-[13]: #headercontextdecorator
+[13]: #usermenu
 
-[14]: #ontogglesidebar
+[14]: #classname
 
-[15]: #logo
+[15]: #sidebarcomponent
 
-[16]: #usermenu
+[16]: #scrollingown
 
-[17]: #classname
+[17]: #useupbottombuttons
 
-[18]: #type
+[18]: #isshow
 
-[19]: #image
+[19]: #twocolumnmobilerow
 
-[20]: #mobile
+[20]: #menu
 
-[21]: #onclick
+[21]: #headercontextdecorator
 
 [22]: https://react.semantic-ui.com/modules/dropdown
