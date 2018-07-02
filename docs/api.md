@@ -14,12 +14,14 @@
 -   [TwoColumnMobileRow][10]
 -   [menu][11]
 -   [headerContextDecorator][12]
--   [type][13]
--   [image][14]
--   [mobile][15]
--   [onClick][16]
--   [userMenu][17]
--   [className][18]
+-   [onToggleSidebar][13]
+-   [logo][14]
+-   [userMenu][15]
+-   [className][16]
+-   [type][17]
+-   [image][18]
+-   [mobile][19]
+-   [onClick][20]
 
 ## Navigation
 
@@ -110,6 +112,26 @@ string - тогда это будет id элемента, у которого �
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
+## onToggleSidebar
+
+если есть, то рисутеся sibebarIcon в начале
+
+## logo
+
+если стринг - урл лого
+если нода - контрол
+
+## userMenu
+
+see [https://react.semantic-ui.com/modules/dropdown][21]
+
+## className
+
+**Meta**
+
+-   **deprecated**: name === 'delimiter'
+
+
 ## type
 
 MENU_ITEM_TYPE = {
@@ -132,17 +154,6 @@ undefined \\ null - показывать везде
 ## onClick
 
 либо path будет использован для перехода
-
-## userMenu
-
-see [https://react.semantic-ui.com/modules/dropdown][19]
-
-## className
-
-**Meta**
-
--   **deprecated**: name === 'delimiter'
-
 
 [1]: #navigation
 
@@ -168,16 +179,20 @@ see [https://react.semantic-ui.com/modules/dropdown][19]
 
 [12]: #headercontextdecorator
 
-[13]: #type
+[13]: #ontogglesidebar
 
-[14]: #image
+[14]: #logo
 
-[15]: #mobile
+[15]: #usermenu
 
-[16]: #onclick
+[16]: #classname
 
-[17]: #usermenu
+[17]: #type
 
-[18]: #classname
+[18]: #image
 
-[19]: https://react.semantic-ui.com/modules/dropdown
+[19]: #mobile
+
+[20]: #onclick
+
+[21]: https://react.semantic-ui.com/modules/dropdown
