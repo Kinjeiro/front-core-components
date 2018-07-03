@@ -19,7 +19,7 @@ import i18n from '../../utils/i18n';
 import {
   MENU_PROP_TYPE,
   MENU_ITEM_TYPE,
-} from './entity-menu-item';
+} from '../../models/model-menu';
 
 import './Header.scss';
 
@@ -45,8 +45,8 @@ export default class Header extends PureComponent {
     ]),
 
     customTitlePart: PropTypes.node,
-    textHeaderTitle: PropTypes.string,
-    textHeaderDescription: PropTypes.string,
+    headerTitle: PropTypes.node,
+    headerDescription: PropTypes.node,
 
     leftPart: PropTypes.node,
 
@@ -116,18 +116,18 @@ export default class Header extends PureComponent {
 
   renderTitlePart() {
     const {
-      textHeaderTitle,
-      textHeaderDescription,
+      headerTitle,
+      headerDescription,
     } = this.props;
     return (
       <div className="TitlePart">
         <Link to={ PATH_INDEX }>
           <h2 className="TitlePart__title">
-            { textHeaderTitle }
+            { headerTitle }
           </h2>
         </Link>
         <span className="TitlePart__description">
-          { textHeaderDescription }
+          { headerDescription }
         </span>
       </div>
     );

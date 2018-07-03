@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
         \\ front-core@1.3.22 
         \\ обновил header: first, sidebar, title, left, user, right части 
         \\ можно теперь подать кастомный HeaderClass и headerProps 
-        \\ описение entity-menu-item.js \\ если незареган то кнопка "Войти" 
+        \\ описение model-menu.js \\ если незареган то кнопка "Войти" 
         \\ немного отрефакторил AppLayout css
     
 ## [1.3.2] (2018.07.02)

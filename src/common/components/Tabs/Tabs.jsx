@@ -8,7 +8,7 @@ import i18n from '../../utils/i18n';
 
 import './Tabs.scss';
 
-export { default as TAB_PROP_TYPES } from './entity-tab';
+export { default as TAB_PROP_TYPES } from '../../models/model-tab';
 
 export default class Tabs extends Component {
   static propTypes = {

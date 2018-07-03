@@ -48,26 +48,12 @@ import './semantic-ui-updates.scss';
 
 import UpBottomButtons from '../../components/UpBottomButtons/UpBottomButtons';
 
-import { MENU_PROP_TYPE } from '../../components/Header/entity-menu-item';
+import { MENU_PROP_TYPE } from '../../models/model-menu';
 import Header from '../../components/Header/Header';
 
+import ContextHeaderProvider from '../../contexts/ContextHeader/ContextHeaderProvider';
+
 import './AppLayout.scss';
-
-const HeaderContext = React.createContext({
-  title: null,
-  headerTitle: null,
-  headerDescription: null,
-  headerLeftPart: null,
-  headerRightPart: null,
-
-  setTitle: null,
-  setHeaderTitle: null,
-  setHeaderDescription: null,
-  setHeaderLeftPart: null,
-  setHeaderRightPart: null,
-});
-
-export const HeaderContextConsumer = HeaderContext.Consumer;
 
 // const actionsUser = reduxUser.getBindActions(apiUser);
 
@@ -90,7 +76,6 @@ export default class AppLayout extends Component {
     children: PropTypes.node.isRequired,
     onLogout: PropTypes.func,
 
-    textTitle: PropTypes.node,
     /**
      * @deprecated - user userMenu instead
     */
@@ -100,8 +85,11 @@ export default class AppLayout extends Component {
     ifMobileMoveUserMenuToSidebar: PropTypes.bool,
     textMenuLogout: PropTypes.string,
 
-    HeaderClass: PropTypes.instanceOf(Component),
-    headerProps: Header.propTypes,
+    HeaderClass: PropTypes.oneOfType([
+      PropTypes.instanceOf(Component),
+      PropTypes.func,
+    ]),
+    headerProps: PropTypes.shape(Header.propTypes),
 
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
     upBottomButtonsProps: PropTypes.oneOfType([
@@ -121,7 +109,6 @@ export default class AppLayout extends Component {
 
   static defaultProps = {
     ifMobileMoveUserMenuToSidebar: true,
-    textTitle: i18n('pages.AppLayout.title'),
     HeaderClass: Header,
     headerProps: {},
     textMenuLogout: i18n('pages.AppLayout.menu.logout'),
@@ -129,15 +116,6 @@ export default class AppLayout extends Component {
 
   state = {
     sidebarOpened: false,
-
-    headerTitle: typeof this.props.headerProps.textHeaderTitle !== 'undefined'
-      ? this.props.headerProps.textHeaderTitle
-      : i18n('pages.AppLayout.Header.title'),
-    headerDescription: typeof this.props.headerProps.textHeaderDescription !== 'undefined'
-      ? this.props.headerProps.textHeaderDescription
-      : i18n('pages.AppLayout.Header.description'),
-    headerLeftPart: this.props.headerProps.headerLeftPart,
-    headerRightPart: this.props.headerProps.headerRightPart,
   };
 
   // ======================================================
@@ -205,21 +183,6 @@ export default class AppLayout extends Component {
   // HANDLERS
   // ======================================================
   @bind()
-  setTitle(value) {
-    this.props.actionCurrentPageChanged({
-      title: value,
-    });
-  }
-  @bind()
-  setHeaderTitle(value) { return this.setState({ headerTitle: value }); }
-  @bind()
-  setHeaderDescription(value) { return this.setState({ headerDescription: value }); }
-  @bind()
-  setHeaderLeftPart(value) { return this.setState({ headerLeftPart: value }); }
-  @bind()
-  setHeaderRightPart(value) { return this.setState({ headerRightPart: value }); }
-
-  @bind()
   handleToggleSidebar() {
     this.setState({
       sidebarOpened: !this.state.sidebarOpened,
@@ -258,13 +221,6 @@ export default class AppLayout extends Component {
       headerProps,
     } = this.props;
 
-    const {
-      headerTitle,
-      headerDescription,
-      headerLeftPart,
-      headerRightPart,
-    } = this.state;
-
     return (
       <MediaQuery mobile={ true }>
         {
@@ -273,22 +229,25 @@ export default class AppLayout extends Component {
             const showSidebarMenu = this.getSidebarMenu(isMobile).length > 0;
 
             return (
-              <HeaderClass
-                userInfo={ user }
-                userMenu={ this.getUserMenu(isMobile) }
-                onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
-                onGoTo={ goTo }
-                onLogin={ () => goTo(PATH_LOGIN_PAGE) }
+              <ContextHeaderProvider.Consumer>
+                {
+                  (contextProps) => (
+                    <HeaderClass
+                      userInfo={ user }
+                      userMenu={ this.getUserMenu(isMobile) }
+                      onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
+                      onGoTo={ goTo }
+                      onLogin={ () => goTo(PATH_LOGIN_PAGE) }
 
-                { ...headerProps }
+                      { ...headerProps }
 
-                className={ `AppLayout__header ${headerProps.className || ''}` }
+                      className={ `AppLayout__header ${headerProps.className || ''}` }
 
-                textHeaderTitle={ headerTitle }
-                textHeaderDescription={ headerDescription }
-                leftPart={ headerLeftPart }
-                rightPart={ headerRightPart }
-              />
+                      { ...contextProps }
+                    />
+                  )
+                }
+              </ContextHeaderProvider.Consumer>
             );
           }
         }
@@ -328,7 +287,9 @@ export default class AppLayout extends Component {
                 )
               }
               <div className="main-content">
-                { this.renderChildren() }
+                <Container className="main-show">
+                  { this.renderChildren() }
+                </Container>
               </div>
             </div>
           </div>
@@ -396,31 +357,11 @@ export default class AppLayout extends Component {
   // ======================================================
   render() {
     const {
-      textTitle: title,
+      headerProps,
     } = this.props;
-    const {
-      headerTitle,
-      headerDescription,
-      headerLeftPart,
-      headerRightPart,
-    } = this.state;
 
     return (
-      <HeaderContext.Provider
-        value={{
-          title,
-          headerTitle,
-          headerDescription,
-          headerLeftPart,
-          headerRightPart,
-
-          setTitle: this.setTitle,
-          setHeaderTitle: this.setHeaderTitle,
-          setHeaderDescription: this.setHeaderDescription,
-          setHeaderLeftPart: this.setHeaderLeftPart,
-          setHeaderRightPart: this.setHeaderRightPart,
-        }}
-      >
+      <ContextHeaderProvider headerProps={ headerProps }>
         <div className="AppLayout">
           <MediaQuery mobile={ true }>
             {
@@ -448,7 +389,7 @@ export default class AppLayout extends Component {
             }
           </MediaQuery>
         </div>
-      </HeaderContext.Provider>
+      </ContextHeaderProvider>
     );
   }
 }

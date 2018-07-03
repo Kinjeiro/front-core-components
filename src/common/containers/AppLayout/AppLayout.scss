@@ -57,67 +57,33 @@
       height: calc(100% - 50px);
     }
 
-    .page-layout {
-      .not-loading {
-        visibility: hidden;
-      }
-      .ui.dimmer .ui.loader {
-        color: #00dddd;
-      }
-      .ui.segment.dimmable {
-        padding: 0;
-        border: 0;
-      }
+    .ui.dimmer .ui.loader {
+      color: #00dddd;
+    }
+    .ui.segment.dimmable {
+      padding: 0;
+      border: 0;
+    }
+
+    // patch Semantic-UI .pusher
+    .pusher {
       height: 100%;
-      // patch Semantic-UI .pusher
-      .pusher {
 
-      }
-      .pusher,
-      .dimmable {
-        height: 100%;
-        /*    overflow: scroll;*/
-      }
-      .dimmable {
-        cursor: pointer;
-      }
-
-      .pusher > .segment {
+      & > .segment {
         padding: 0;
       }
+    }
+    .dimmable {
+      height: 100%;
+      /*    overflow: scroll;*/
+      cursor: pointer;
+    }
 
-      .main-show-flex {
-        padding-bottom: 84px;
-        //flex-direction: column;
-        min-height: 100%;
-        height: 100%;
-
-        .main-hide {
-          display: none;
-        }
-        .main-show {
-          -webkit-animation: fadein 197ms;
-          -moz-animation: fadein 197ms;
-          animation: fadein 197ms;
-          display: block;
-        }
-
-        .main-content-dimmer {
-          background-color: #fbfbfb;
-        }
-      }
-
-      // limit max-width of the .pusher class -> main is limited too
-      .ui.visible.thin.left.sidebar ~ .pusher {
-        @include respond-to('lg') {
-          max-width: calc(100% - #{$sidebar-size});
-          -webkit-transform: translate3d(#{$sidebar-size}, 0, 0);
-          transform: translate3d(#{$sidebar-size}px, 0, 0);
-        }
-        @include respond-to('only-sm', 'only-md', 'xs') {
-          overflow: hidden;
-        }
-      }
+    .main-show-flex {
+      padding-bottom: 84px;
+      //flex-direction: column;
+      min-height: 100%;
+      height: 100%;
 
       .main-content {
         display: flex;
@@ -125,41 +91,57 @@
         min-height: 100%;
         height: 100%;
 
-        //.ui.container {
-        //
-        //  @include respond-to('xs') {
-        //    // margin - just to fill exmpty space
-        //    margin: 0 auto !important;
-        //  }
-        //
-        //  @include respond-to('sm', 'xs') {
-        //    width: 100% !important;
-        //  }
-        //  .ui.button, .ui.icon {
-        //    @include respond-to('xs') {
-        //      font-size: 0.857rem;
-        //    }
-        //  }
-        //  h3.ui.header {
-        //    .ui.image {
-        //      font-size: 1rem;
-        //      @include respond-to('sm') {
-        //        font-size: 1.1rem;
-        //      }
-        //      @include respond-to('lg') {
-        //        font-size: 1.2rem;
-        //      }
-        //    }
-        //  }
-        //  .grid {
-        //    //position: relative;
-        //    //min-width: 100%;
-        //    //min-height: 100%;
-        //  }
-        //}
+        .main-show {
+          -webkit-animation: fadein 197ms;
+          -moz-animation: fadein 197ms;
+          animation: fadein 197ms;
+          display: block;
+        }
+        .ui.container {
+          height: 100%;
+
+          @include respond-to('xs') {
+            // margin - just to fill exmpty space
+            margin: 0 auto !important;
+          }
+          @include respond-to('sm', 'xs') {
+            width: 100% !important;
+          }
+          .ui.button, .ui.icon {
+            @include respond-to('xs') {
+              font-size: 0.857rem;
+            }
+          }
+          h3.ui.header {
+            .ui.image {
+              font-size: 1rem;
+              @include respond-to('sm') {
+                font-size: 1.1rem;
+              }
+              @include respond-to('lg') {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+      }
+
+      .main-content-dimmer {
+        background-color: #fbfbfb;
       }
     }
 
+    // limit max-width of the .pusher class -> main is limited too
+    .ui.visible.thin.left.sidebar ~ .pusher {
+      @include respond-to('lg') {
+        max-width: calc(100% - #{$sidebar-size});
+        -webkit-transform: translate3d(#{$sidebar-size}, 0, 0);
+        transform: translate3d(#{$sidebar-size}px, 0, 0);
+      }
+      @include respond-to('only-sm', 'only-md', 'xs') {
+        overflow: hidden;
+      }
+    }
 
     .fartuna-navigation {
       position: fixed;
@@ -222,7 +204,7 @@
       }
     */
 
-    /*&.pushable {
+    &.pushable {
       &:not(body) {
         //transform: translate3d(0, 0, 0);
         transform: none;
@@ -236,7 +218,7 @@
         backface-visibility: visible;
         transition: none;
       }
-    }*/
+    }
   }
 }
 

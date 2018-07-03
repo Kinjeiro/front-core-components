@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const TAB_PROP_TYPE = PropTypes.shape({
+export const TAB_PROP_TYPE_MAP = {
   name: PropTypes.node,
   to: PropTypes.oneOfType([
     PropTypes.string,
@@ -15,6 +15,8 @@ export const TAB_PROP_TYPE = PropTypes.shape({
       hash: PropTypes.string,
     }),
   ]),
-});
+};
+
+export const TAB_PROP_TYPE = PropTypes.shape(TAB_PROP_TYPE_MAP);
 
 export default TAB_PROP_TYPE;

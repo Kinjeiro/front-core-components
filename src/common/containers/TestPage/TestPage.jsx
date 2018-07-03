@@ -6,7 +6,7 @@ import bind from 'lodash-decorators/bind';
 import i18n from '../../utils/i18n';
 
 import UniTable from '../../components/UniTable/UniTable';
-import headerContext from '../AppLayout/header-context-decorator';
+import headerContext from '../../contexts/ContextHeader/decorator-context-header';
 
 import './TestPage.scss';
 
