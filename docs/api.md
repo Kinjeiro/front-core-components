@@ -6,23 +6,24 @@
 -   [Attachment][2]
 -   [update][3]
 -   [update][4]
--   [type][5]
--   [image][6]
--   [content][7]
--   [content][8]
--   [mobile][9]
--   [onClick][10]
--   [onToggleSidebar][11]
--   [logo][12]
--   [userMenu][13]
--   [className][14]
--   [SidebarComponent][15]
--   [scrollingOwn][16]
--   [useUpBottomButtons][17]
--   [isShow][18]
--   [TwoColumnMobileRow][19]
--   [menu][20]
--   [headerContextDecorator][21]
+-   [onToggleSidebar][5]
+-   [logo][6]
+-   [userMenu][7]
+-   [className][8]
+-   [SidebarComponent][9]
+-   [scrollingOwn][10]
+-   [useUpBottomButtons][11]
+-   [content][12]
+-   [isShow][13]
+-   [indexPath][14]
+-   [TwoColumnMobileRow][15]
+-   [menu][16]
+-   [decoratorContextHeader][17]
+-   [type][18]
+-   [image][19]
+-   [content][20]
+-   [mobile][21]
+-   [onClick][22]
 
 ## Navigation
 
@@ -54,37 +55,6 @@
 -   `event`  
 -   `comp`  
 
-## type
-
-MENU_ITEM_TYPE = {
-NORMAL: 'normal',
-DELIMITER: 'delimiter',
-HEADER: 'header',
-}
-
-## image
-
-url аватарки
-либо будет использована icon
-
-## content
-
-либо name будет рисоваться
-
-## content
-
-можно подать функцию (id) => {}
-
-## mobile
-
-true - показывать только для мобильных
-false - показывать только для не мобильных
-undefined \\ null - показывать везде
-
-## onClick
-
-либо path будет использован для перехода
-
 ## onToggleSidebar
 
 если есть, то рисутеся sibebarIcon в начале
@@ -96,7 +66,7 @@ undefined \\ null - показывать везде
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][22]
+see [https://react.semantic-ui.com/modules/dropdown][23]
 
 ## className
 
@@ -123,9 +93,17 @@ string - тогда это будет id элемента, у которого �
 
 можно сделать кнопки вверх-вниз для этого скроллинга
 
+## content
+
+можно подать функцию (id) => {}
+
 ## isShow
 
 можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
+
+## indexPath
+
+чтобы индекс без типа считался активной первой табой
 
 ## TwoColumnMobileRow
 
@@ -140,7 +118,7 @@ string - тогда это будет id элемента, у которого �
 -   **deprecated**: user userMenu instead
 
 
-## headerContextDecorator
+## decoratorContextHeader
 
 Декорирует компонент и добавляет в него значения и методы по изменению header
 
@@ -156,6 +134,33 @@ string - тогда это будет id элемента, у которого �
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
+## type
+
+MENU_ITEM_TYPE = {
+NORMAL: 'normal',
+DELIMITER: 'delimiter',
+HEADER: 'header',
+}
+
+## image
+
+url аватарки
+либо будет использована icon
+
+## content
+
+либо name будет рисоваться
+
+## mobile
+
+true - показывать только для мобильных
+false - показывать только для не мобильных
+undefined \\ null - показывать везде
+
+## onClick
+
+либо path будет использован для перехода
+
 [1]: #navigation
 
 [2]: #attachment
@@ -164,38 +169,40 @@ string - тогда это будет id элемента, у которого �
 
 [4]: #update-1
 
-[5]: #type
+[5]: #ontogglesidebar
 
-[6]: #image
+[6]: #logo
 
-[7]: #content
+[7]: #usermenu
 
-[8]: #content-1
+[8]: #classname
 
-[9]: #mobile
+[9]: #sidebarcomponent
 
-[10]: #onclick
+[10]: #scrollingown
 
-[11]: #ontogglesidebar
+[11]: #useupbottombuttons
 
-[12]: #logo
+[12]: #content
 
-[13]: #usermenu
+[13]: #isshow
 
-[14]: #classname
+[14]: #indexpath
 
-[15]: #sidebarcomponent
+[15]: #twocolumnmobilerow
 
-[16]: #scrollingown
+[16]: #menu
 
-[17]: #useupbottombuttons
+[17]: #decoratorcontextheader
 
-[18]: #isshow
+[18]: #type
 
-[19]: #twocolumnmobilerow
+[19]: #image
 
-[20]: #menu
+[20]: #content-1
 
-[21]: #headercontextdecorator
+[21]: #mobile
 
-[22]: https://react.semantic-ui.com/modules/dropdown
+[22]: #onclick
+
+[23]: https://react.semantic-ui.com/modules/dropdown
