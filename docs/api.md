@@ -23,11 +23,12 @@
 -   [onSelectAll][19]
 -   [menu][20]
 -   [decoratorContextHeader][21]
--   [type][22]
--   [image][23]
--   [content][24]
--   [mobile][25]
--   [onClick][26]
+-   [linkTo][22]
+-   [type][23]
+-   [image][24]
+-   [content][25]
+-   [mobile][26]
+-   [onClick][27]
 
 ## Navigation
 
@@ -70,7 +71,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][27]
+see [https://react.semantic-ui.com/modules/dropdown][28]
 
 ## className
 
@@ -223,6 +224,11 @@ loadPositionsTables: {
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
+## linkTo
+
+Оборачивает значение колонки в линку
+если функция - (record, column, rowIndex) => {}
+
 ## type
 
 MENU_ITEM_TYPE = {
@@ -292,14 +298,16 @@ undefined \\ null - показывать везде
 
 [21]: #decoratorcontextheader
 
-[22]: #type
+[22]: #linkto
 
-[23]: #image
+[23]: #type
 
-[24]: #content-1
+[24]: #image
 
-[25]: #mobile
+[25]: #content-1
 
-[26]: #onclick
+[26]: #mobile
 
-[27]: https://react.semantic-ui.com/modules/dropdown
+[27]: #onclick
+
+[28]: https://react.semantic-ui.com/modules/dropdown
