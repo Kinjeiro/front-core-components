@@ -6,13 +6,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [last version][1.4.0-1.4.?]
 ### !!! Breaking changes:
-1. изменил верстку header, AppLayout и высоты, проверяйте свой дизайн, особенно с табами и константами ($header-size, $header-size-sm, $height-tabs-menu, $height-tabs-menu-sm) 
+1. изменил верстку header, AppLayout и высоты, проверяйте свой дизайн, особенно с табами и константами ($header-size, $header-size-sm, $height-tabs-menu, $height-tabs-menu-sm)
+2. Обновил front-core@1.3.33 - почищены депенденси, нужно проверить работоспособность сборки
+    - удалил "redux-devtools"
+    - удалил "redux-devtools-extension"
+    - удалил "format-number"
+    - удалил "email-validator"
+    - удалил "fast-json-patch"
+    - удалил "store2"
+    - удалил "react-localization"
+    - удалил "object-hash"
+    - удалил "jsonwebtoken"
+    - удалил "google-libphonenumber"
+    - удалил "hawk"
+3. UniTable: изменил сигнатуру методов onSelect \ onSelectPage \ onSelectAll - сначала идут id чтобы добавить единообразия с redux-tables 
 
 ### Features:
 
 ### Dependencies:
 
 ### Commits:
+    - chore(*) patch version: 1.4.5
+    - !!! chore(depen): - front-core@1.3.33 - поменялись зависимости 
+    - !!! feat(UniTable): - изменил сигнатуру методов onSelect \ onSelectPage \ onSelectAll - сначала идут id чтобы добавить единообразия с redux-tables
+        \\ добавил пример интеграции с redux-tables из коры
+    - chore(*) patch version: 1.4.4 
+    - feat(context, Header): - front-core@1.3.24
+        \\ вынес в отдельный ContextHeaderProvider 
+    - feat(components, Tabs): - добавил indexPath чтобы индекс воспринимать как первую активную табу 
+    - chore(*) patch version: 1.4.3 
+    - feat(components): - переместил Header 
+        \\ пофиксил DatePicker 
+        \\ добавил entity-tab.js propType 
+    - chore(*) patch version: 1.4.2 
+    - feat(components): - components/index.js не использовать (чтобы лишние компоненты не подгружались) 
+        \\ добавил парочку оберток для semantic fields
+    - feat(i18n): - английская локализация 
+    - feat(component): - ErrorBoundary для перезагрузки ошибочных компонентов, когда исправили 
+    - chore(*) patch version: 1.4.1 
     - feat(Header): - !!! изменил верстку header, AppLayout и высоты, проверяйте свой дизайн, особенно с табами и константами ($header-size, $header-size-sm, $height-tabs-menu, $height-tabs-menu-sm)
         \\ front-core@1.3.22 
         \\ обновил header: first, sidebar, title, left, user, right части 
