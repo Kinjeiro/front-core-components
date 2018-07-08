@@ -12,7 +12,7 @@ import {
 } from 'semantic-ui-react';
 
 import {
-  objectValues,
+  // objectValues,
   isEmpty,
   executeVariable,
 } from '@reagentum/front-core/lib/common/utils/common';
@@ -26,20 +26,11 @@ import i18n from '../../utils/i18n';
 
 import Loading from '../Loading/Loading';
 
+import COLUMN_PROP_TYPE, { COLUMN_TYPES } from '../../models/model-column';
+
 import './UniTable.scss';
 
 // todo @ANKU @LOW - добавить дефолтные форматеры (дата, дататайм и т.д.)
-export const COLUMN_TYPES = {
-  CHECKBOX: 'checkbox',
-  EXPAND: 'expand',
-
-  TEXT: 'text',
-  DATE: 'date',
-  DATETIME: 'datetime',
-  NUMBER: 'number',
-  DECIMAL: 'decimal',
-  CODE: 'code',
-};
 
 /**
  * Пример c редуксом:
@@ -107,6 +98,7 @@ export const COLUMN_TYPES = {
  */
 export default class UniTable extends Component {
   static COLUMN_TYPES = COLUMN_TYPES;
+  static COLUMN_PROP_TYPE = COLUMN_PROP_TYPE;
   static propTypes = {
     className: PropTypes.string,
 
@@ -118,19 +110,7 @@ export default class UniTable extends Component {
       sortDesc: PropTypes.bool,
     }),
     records: PropTypes.arrayOf(PropTypes.object),
-    columns: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.shape({
-        dataIndex: PropTypes.string,
-        type: PropTypes.oneOf(objectValues(COLUMN_TYPES)),
-        key: PropTypes.string,
-        title: PropTypes.node,
-        render: PropTypes.func,
-        className: PropTypes.string,
-        headerCellProps: PropTypes.object,
-        cellProps: PropTypes.object,
-      }),
-    ])),
+    columns: PropTypes.arrayOf(COLUMN_PROP_TYPE),
     columnId: PropTypes.string,
     i18nPrefix: PropTypes.string,
     loadingData: PropTypes.bool,
