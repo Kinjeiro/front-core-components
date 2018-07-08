@@ -10,7 +10,7 @@ import {
 
 import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
 import {
-  MediaQuery,
+  // MediaQuery,
   Link,
 } from '@reagentum/front-core/lib/common/components';
 
@@ -61,7 +61,7 @@ export default class Header extends PureComponent {
 
     textMenuLogin: PropTypes.node,
 
-    onGoTo: PropTypes.func.isRequired,
+    onGoTo: PropTypes.func,
     onLogin: PropTypes.func,
   };
 

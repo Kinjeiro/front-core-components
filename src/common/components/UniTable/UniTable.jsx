@@ -41,6 +41,70 @@ export const COLUMN_TYPES = {
   CODE: 'code',
 };
 
+/**
+ * Пример c редуксом:
+ import { getTableInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';
+
+ {
+     records: [],
+     meta: {
+       search: null,
+       startPage: 0,
+       itemsPerPage: 10,
+       sortBy: null,
+       sortDesc: true,
+       total: null,
+     },
+     filters: {
+       // field: value
+     },
+     selected: [],
+     isSelectedAll: false,
+
+     actionLoadRecordsStatus: undefined,
+     actionBulkChangeStatusStatus: undefined,
+     actionEditRecordStatusMap: {}
+ }
+
+ <UniTable
+   key={ valuationsType }
+   cacheColumnsKey={ valuationsType }
+   records={ records }
+   columns={ columns }
+   meta={ meta }
+   i18nPrefix={ `${NAMESPACE}:pages.Valuations.table.columns` }
+
+   selectable={ valuationsType === VALUATIONS_TYPES.NOT_SORTED }
+   selected={ selected }
+   isSelectedAll={ isSelectedAll }
+   onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
+   onSelectPage={ (selectedRecordIds, selected, selectedRecords) => this.props.actionChangeRecordsSelected(tableUuid, selectedRecordIds, selected) }
+   onSelectAll={ (isSelectedAll) => this.props.actionChangeRecordsSelectedAll(tableUuid, isSelectedAll) }
+
+   onPaginationChange={ (startPage, itemsPerPage) =>
+            this.props.actionLoadRecords(tableUuid, { startPage, itemsPerPage }) }
+
+   textNoData={ i18n('pages.Valuations.table.noData') }
+
+   tableProps={{
+      compact: true,
+      celled: true,
+    }}
+
+   isExpandableRows={ true }
+   expandableData={ loadPositionsTables }
+   renderExpandableData={ this.renderPositionsTable }
+   onRowExpand={ (record) => {
+      const valuationId = record.id;
+      this.setState({
+        loadPositionsTables: {
+          ...this.state.loadPositionsTables,
+          [valuationId]: true,
+        },
+      });
+    } }
+ />
+ */
 export default class UniTable extends Component {
   static COLUMN_TYPES = COLUMN_TYPES;
   static propTypes = {
@@ -91,8 +155,17 @@ export default class UniTable extends Component {
       PropTypes.number,
     ])),
     isSelectedAll: PropTypes.bool,
+    /**
+     * (recordId, selected, record) => {}
+     */
     onSelect: PropTypes.func,
+    /**
+     * (selectedRecordIds, selected, selectedRecords) => {}
+     */
     onSelectPage: PropTypes.func,
+    /**
+     * (isSelectedAll) => {}
+     */
     onSelectAll: PropTypes.func,
 
     textYouSelectedPage: PropTypes.node,
@@ -225,10 +298,11 @@ export default class UniTable extends Component {
   @bind()
   handleSelect(event, { checked }, record, rowIndex) {
     const {
+      columnId,
       onSelect,
     } = this.props;
 
-    return onSelect(record, checked, rowIndex);
+    return onSelect(record[columnId], checked, rowIndex, record);
   }
   @bind()
   handleSelectPage(event, { checked }) {
@@ -252,7 +326,7 @@ export default class UniTable extends Component {
       isSelectedPage: checked,
     });
     const ids = records.map((record) => record[columnId]);
-    return onSelectPage(records, checked, ids);
+    return onSelectPage(ids, checked, records);
   }
   @bind()
   handleSelectAll(checked = true) {
