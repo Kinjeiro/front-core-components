@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>@reagentum/frontCore_Components 1.4.4 | Documentation</title>
+  <title>@reagentum/frontCore_Components 1.4.5 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>@reagentum/frontCore_Components</h3>
-          <div class='mb1'><code>1.4.4</code></div>
+          <div class='mb1'><code>1.4.5</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -168,6 +168,46 @@
                   href='#twocolumnmobilerow'
                   class="">
                   TwoColumnMobileRow
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#unitable'
+                  class="">
+                  UniTable
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onselect'
+                  class="">
+                  onSelect
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onselectpage'
+                  class="">
+                  onSelectPage
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#onselectall'
+                  class="">
+                  onSelectAll
                   
                 </a>
                 
@@ -980,6 +1020,266 @@ string - тогда это будет id элемента, у которого �
         Component
       
     </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='unitable'>
+      UniTable
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Пример c редуксом:
+import { getTableInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';</p>
+<p>{
+records: [],
+meta: {
+search: null,
+startPage: 0,
+itemsPerPage: 10,
+sortBy: null,
+sortDesc: true,
+total: null,
+},
+filters: {
+// field: value
+},
+selected: [],
+isSelectedAll: false,</p>
+<p>actionLoadRecordsStatus: undefined,
+actionBulkChangeStatusStatus: undefined,
+actionEditRecordStatusMap: {}
+}</p>
+<p>&#x3C;UniTable
+key={ valuationsType }
+cacheColumnsKey={ valuationsType }
+records={ records }
+columns={ columns }
+meta={ meta }
+i18nPrefix={ <code>${NAMESPACE}:pages.Valuations.table.columns</code> }</p>
+<p>selectable={ valuationsType === VALUATIONS_TYPES.NOT_SORTED }
+selected={ selected }
+isSelectedAll={ isSelectedAll }
+onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
+onSelectPage={ (selectedRecordIds, selected, selectedRecords) => this.props.actionChangeRecordsSelected(tableUuid, selectedRecordIds, selected) }
+onSelectAll={ (isSelectedAll) => this.props.actionChangeRecordsSelectedAll(tableUuid, isSelectedAll) }</p>
+<p>onPaginationChange={ (startPage, itemsPerPage) =>
+this.props.actionLoadRecords(tableUuid, { startPage, itemsPerPage }) }</p>
+<p>textNoData={ i18n('pages.Valuations.table.noData') }</p>
+<p>tableProps={{
+compact: true,
+celled: true,
+}}</p>
+<p>isExpandableRows={ true }
+expandableData={ loadPositionsTables }
+renderExpandableData={ this.renderPositionsTable }
+onRowExpand={ (record) => {
+const valuationId = record.id;
+this.setState({
+loadPositionsTables: {
+...this.state.loadPositionsTables,</p>
+<p>},
+});
+} }
+/></p>
+
+
+  <div class='pre p1 fill-light mt0'>new UniTable(props: any)</div>
+  
+  
+    <p>
+      Extends
+      
+        Component
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>props</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onselect'>
+      onSelect
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>(recordId, selected, record) => {}</p>
+
+
+  <div class='pre p1 fill-light mt0'>onSelect</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onselectpage'>
+      onSelectPage
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>(selectedRecordIds, selected, selectedRecords) => {}</p>
+
+
+  <div class='pre p1 fill-light mt0'>onSelectPage</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='onselectall'>
+      onSelectAll
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>(isSelectedAll) => {}</p>
+
+
+  <div class='pre p1 fill-light mt0'>onSelectAll</div>
+  
   
 
   

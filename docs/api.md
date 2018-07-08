@@ -17,13 +17,17 @@
 -   [isShow][13]
 -   [indexPath][14]
 -   [TwoColumnMobileRow][15]
--   [menu][16]
--   [decoratorContextHeader][17]
--   [type][18]
--   [image][19]
--   [content][20]
--   [mobile][21]
--   [onClick][22]
+-   [UniTable][16]
+-   [onSelect][17]
+-   [onSelectPage][18]
+-   [onSelectAll][19]
+-   [menu][20]
+-   [decoratorContextHeader][21]
+-   [type][22]
+-   [image][23]
+-   [content][24]
+-   [mobile][25]
+-   [onClick][26]
 
 ## Navigation
 
@@ -66,7 +70,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][23]
+see [https://react.semantic-ui.com/modules/dropdown][27]
 
 ## className
 
@@ -110,6 +114,91 @@ string - тогда это будет id элемента, у которого �
 **Extends Component**
 
 Обазятельно обернуть в Grid (semantic-ui-react)
+
+## UniTable
+
+**Extends Component**
+
+Пример c редуксом:
+import { getTableInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';
+
+{
+records: \[],
+meta: {
+search: null,
+startPage: 0,
+itemsPerPage: 10,
+sortBy: null,
+sortDesc: true,
+total: null,
+},
+filters: {
+// field: value
+},
+selected: \[],
+isSelectedAll: false,
+
+actionLoadRecordsStatus: undefined,
+actionBulkChangeStatusStatus: undefined,
+actionEditRecordStatusMap: {}
+}
+
+&lt;UniTable
+key={ valuationsType }
+cacheColumnsKey={ valuationsType }
+records={ records }
+columns={ columns }
+meta={ meta }
+i18nPrefix={ `${NAMESPACE}:pages.Valuations.table.columns` }
+
+selectable={ valuationsType === VALUATIONS_TYPES.NOT_SORTED }
+selected={ selected }
+isSelectedAll={ isSelectedAll }
+onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
+onSelectPage={ (selectedRecordIds, selected, selectedRecords) => this.props.actionChangeRecordsSelected(tableUuid, selectedRecordIds, selected) }
+onSelectAll={ (isSelectedAll) => this.props.actionChangeRecordsSelectedAll(tableUuid, isSelectedAll) }
+
+onPaginationChange={ (startPage, itemsPerPage) =>
+this.props.actionLoadRecords(tableUuid, { startPage, itemsPerPage }) }
+
+textNoData={ i18n('pages.Valuations.table.noData') }
+
+tableProps={{
+compact: true,
+celled: true,
+}}
+
+isExpandableRows={ true }
+expandableData={ loadPositionsTables }
+renderExpandableData={ this.renderPositionsTable }
+onRowExpand={ (record) => {
+const valuationId = record.id;
+this.setState({
+loadPositionsTables: {
+...this.state.loadPositionsTables,
+
+[valuationid]: true,
+
+},
+});
+} }
+/>
+
+**Parameters**
+
+-   `props`  
+
+## onSelect
+
+(recordId, selected, record) => {}
+
+## onSelectPage
+
+(selectedRecordIds, selected, selectedRecords) => {}
+
+## onSelectAll
+
+(isSelectedAll) => {}
 
 ## menu
 
@@ -191,18 +280,26 @@ undefined \\ null - показывать везде
 
 [15]: #twocolumnmobilerow
 
-[16]: #menu
+[16]: #unitable
 
-[17]: #decoratorcontextheader
+[17]: #onselect
 
-[18]: #type
+[18]: #onselectpage
 
-[19]: #image
+[19]: #onselectall
 
-[20]: #content-1
+[20]: #menu
 
-[21]: #mobile
+[21]: #decoratorcontextheader
 
-[22]: #onclick
+[22]: #type
 
-[23]: https://react.semantic-ui.com/modules/dropdown
+[23]: #image
+
+[24]: #content-1
+
+[25]: #mobile
+
+[26]: #onclick
+
+[27]: https://react.semantic-ui.com/modules/dropdown
