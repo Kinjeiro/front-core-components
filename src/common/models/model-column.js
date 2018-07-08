@@ -25,6 +25,15 @@ export const COLUMN_PROP_TYPE = PropTypes.oneOfType([
     className: PropTypes.string,
     headerCellProps: PropTypes.object,
     cellProps: PropTypes.object,
+    /**
+     * Оборачивает значение колонки в линку
+     * если функция - (record, column, rowIndex) => {}
+     */
+    linkTo: PropTypes.oneOf([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   }),
 ]);
 

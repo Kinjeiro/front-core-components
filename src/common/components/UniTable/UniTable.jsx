@@ -21,6 +21,7 @@ import {
   formatDate,
   formatDateTime,
 } from '@reagentum/front-core/lib/common/utils/date-utils';
+import Link from '@reagentum/front-core/lib/common/components/Link/Link';
 
 import i18n from '../../utils/i18n';
 
@@ -556,6 +557,7 @@ export default class UniTable extends Component {
       render,
       className,
       cellProps,
+      linkTo,
     } = column;
 
     const cellValue = record[dataIndex];
@@ -577,6 +579,18 @@ export default class UniTable extends Component {
         default:
           cellComponent = value;
       }
+    }
+
+    const linkToFinal = executeVariable(linkTo, null, record, column, rowIndex);
+    if (linkToFinal) {
+      cellComponent = (
+        <Link
+          className="UniTable__link"
+          to={ linkToFinal }
+        >
+          { cellComponent }
+        </Link>
+      );
     }
 
     return (
