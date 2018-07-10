@@ -8,11 +8,9 @@ import {
   // Button,
 } from 'semantic-ui-react';
 
+import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
 import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
-import {
-  // MediaQuery,
-  Link,
-} from '@reagentum/front-core/lib/common/components';
+import Link from '@reagentum/front-core/lib/common/containers/Link/Link';
 
 import i18n from '../../utils/i18n';
 
@@ -60,12 +58,21 @@ export default class Header extends PureComponent {
     rightPart: PropTypes.node,
 
     textMenuLogin: PropTypes.node,
+    /**
+     * (user) => {}
+     */
+    profileUrl: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+    useModalLogin: PropTypes.bool,
 
     onGoTo: PropTypes.func,
     onLogin: PropTypes.func,
   };
 
   static defaultProps = {
+    useModalLogin: true,
     textMenuLogin: i18n('pages.AppLayout.menu.login'),
   };
 
@@ -206,6 +213,8 @@ export default class Header extends PureComponent {
       userMenu,
       textMenuLogin,
       onLogin,
+      profileUrl,
+      useModalLogin,
     } = this.props;
 
     let userCmp;
@@ -215,6 +224,7 @@ export default class Header extends PureComponent {
           <div className="UserPart__name UserName--notAuth">
             <Link
               onClick={ onLogin }
+              checkAuth={ useModalLogin }
             >
               { textMenuLogin }
             </Link>
@@ -231,22 +241,22 @@ export default class Header extends PureComponent {
       const displayNameFinal = displayName || username;
 
       userCmp = (
-        <div className="UserPart__name UserName">
+        <React.Fragment>
           {
             profileImageURI
-              ? (
-                <Image
-                  className="UserName__avatar"
-                  src={ profileImageURI }
-                  avatar={ true }
-                />
-              )
-              : (
-                <Icon
-                  className="UserName__icon user-icon"
-                  name="user outline"
-                />
-              )
+            ? (
+              <Image
+                className="UserName__avatar"
+                src={ profileImageURI }
+                avatar={ true }
+              />
+            )
+            : (
+              <Icon
+                className="UserName__icon user-icon"
+                name="user outline"
+              />
+            )
           }
           {
             displayNameFinal && (
@@ -255,6 +265,18 @@ export default class Header extends PureComponent {
               </span>
             )
           }
+        </React.Fragment>
+      );
+      if (profileUrl) {
+        userCmp = (
+          <Link to={ executeVariable(profileUrl, null, userInfo) }>
+            { userCmp }
+          </Link>
+        );
+      }
+      userCmp = (
+        <div className="UserPart__name UserName">
+          { userCmp }
         </div>
       );
 
