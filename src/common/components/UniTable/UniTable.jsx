@@ -218,9 +218,8 @@ export default class UniTable extends Component {
       );
     }
   }
-  componentDidMount() {
-
-  }
+  // componentDidMount() {
+  // }
   // componentWillReceiveProps(newProps) {
   // }
 

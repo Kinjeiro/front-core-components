@@ -21,6 +21,9 @@ export const COLUMN_PROP_TYPE = PropTypes.oneOfType([
     type: PropTypes.oneOf(objectValues(COLUMN_TYPES)),
     key: PropTypes.string,
     title: PropTypes.node,
+    /**
+     * (cellValue, column, record, rowIndex) => {}
+     */
     render: PropTypes.func,
     className: PropTypes.string,
     headerCellProps: PropTypes.object,
