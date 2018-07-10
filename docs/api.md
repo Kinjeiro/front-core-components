@@ -9,26 +9,28 @@
 -   [onToggleSidebar][5]
 -   [logo][6]
 -   [userMenu][7]
--   [className][8]
--   [SidebarComponent][9]
--   [scrollingOwn][10]
--   [useUpBottomButtons][11]
--   [content][12]
--   [isShow][13]
--   [indexPath][14]
--   [TwoColumnMobileRow][15]
--   [UniTable][16]
--   [onSelect][17]
--   [onSelectPage][18]
--   [onSelectAll][19]
--   [menu][20]
--   [decoratorContextHeader][21]
--   [linkTo][22]
--   [type][23]
--   [image][24]
--   [content][25]
--   [mobile][26]
--   [onClick][27]
+-   [profileUrl][8]
+-   [className][9]
+-   [SidebarComponent][10]
+-   [scrollingOwn][11]
+-   [useUpBottomButtons][12]
+-   [content][13]
+-   [isShow][14]
+-   [indexPath][15]
+-   [TwoColumnMobileRow][16]
+-   [UniTable][17]
+-   [onSelect][18]
+-   [onSelectPage][19]
+-   [onSelectAll][20]
+-   [menu][21]
+-   [decoratorContextHeader][22]
+-   [render][23]
+-   [linkTo][24]
+-   [type][25]
+-   [image][26]
+-   [content][27]
+-   [mobile][28]
+-   [onClick][29]
 
 ## Navigation
 
@@ -71,7 +73,11 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][28]
+see [https://react.semantic-ui.com/modules/dropdown][30]
+
+## profileUrl
+
+(user) => {}
 
 ## className
 
@@ -224,6 +230,10 @@ loadPositionsTables: {
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
+## render
+
+(cellValue, column, record, rowIndex) => {}
+
 ## linkTo
 
 Оборачивает значение колонки в линку
@@ -270,44 +280,48 @@ undefined \\ null - показывать везде
 
 [7]: #usermenu
 
-[8]: #classname
+[8]: #profileurl
 
-[9]: #sidebarcomponent
+[9]: #classname
 
-[10]: #scrollingown
+[10]: #sidebarcomponent
 
-[11]: #useupbottombuttons
+[11]: #scrollingown
 
-[12]: #content
+[12]: #useupbottombuttons
 
-[13]: #isshow
+[13]: #content
 
-[14]: #indexpath
+[14]: #isshow
 
-[15]: #twocolumnmobilerow
+[15]: #indexpath
 
-[16]: #unitable
+[16]: #twocolumnmobilerow
 
-[17]: #onselect
+[17]: #unitable
 
-[18]: #onselectpage
+[18]: #onselect
 
-[19]: #onselectall
+[19]: #onselectpage
 
-[20]: #menu
+[20]: #onselectall
 
-[21]: #decoratorcontextheader
+[21]: #menu
 
-[22]: #linkto
+[22]: #decoratorcontextheader
 
-[23]: #type
+[23]: #render
 
-[24]: #image
+[24]: #linkto
 
-[25]: #content-1
+[25]: #type
 
-[26]: #mobile
+[26]: #image
 
-[27]: #onclick
+[27]: #content-1
 
-[28]: https://react.semantic-ui.com/modules/dropdown
+[28]: #mobile
+
+[29]: #onclick
+
+[30]: https://react.semantic-ui.com/modules/dropdown
