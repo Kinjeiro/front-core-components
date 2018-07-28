@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import bind from 'lodash-decorators/bind';
 import {
   Modal as SemanticModal,
   Button,
@@ -32,15 +34,86 @@ export default class Modal extends Component {
 
     actions: PropTypes.node,
 
+    /**
+      closeOnEscape={closeOnEscape}  (default: true)
+      closeOnDimmerClick={closeOnDimmerClick} (default: true)
+      closeOnDocumentClick={closeOnDimmerClick} (default: false)
+     */
     modalProps: PropTypes.shape(SemanticModal.propTypes),
+
   };
 
   static defaultProps = {
     show: true,
+    // isCancelOnEsc: true,
     textOk: i18n('components.Modal.textOk'),
     textCancel: i18n('components.Modal.textCancel'),
     modalProps: {},
   };
+
+  // // ======================================================
+  // // UTILS
+  // // ======================================================
+  // canCancel() {
+  //   const {
+  //     onCancel,
+  //     textCancel,
+  //   } = this.props;
+  //
+  //   return onCancel && textCancel;
+  // }
+  //
+  // // ======================================================
+  // // LIFECYCLE
+  // // ======================================================
+  // componentDidMount() {
+  //   const {
+  //     isCancelOnEsc,
+  //   } = this.props;
+  //   if (this.canCancel()) {
+  //     document.addEventListener('mousedown', this.handleClickOutside);
+  //     if (isCancelOnEsc) {
+  //       document.addEventListener('keydown', this.handleKeyDown, false);
+  //     }
+  //   }
+  // }
+  //
+  // componentWillUnmount() {
+  //   const {
+  //     isCancelOnEsc,
+  //   } = this.props;
+  //   if (this.canCancel()) {
+  //     document.removeEventListener('mousedown', this.handleClickOutside);
+  //     if (isCancelOnEsc) {
+  //       document.removeEventListener('keydown', this.handleKeyDown, false);
+  //     }
+  //   }
+  // }
+  //
+  // // ======================================================
+  // // HANDLERS
+  // // ======================================================
+  // @bind()
+  // handleClickOutside(event) {
+  //   const {
+  //     onCancel,
+  //   } = this.props;
+  //
+  //   if (this.canCancel() && this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+  //     onCancel();
+  //   }
+  // }
+  // @bind()
+  // handleKeyDown(event) {
+  //   const {
+  //     onCancel,
+  //     isCancelOnEsc,
+  //   } = this.props;
+  //
+  //   if (isCancelOnEsc && event.keyCode === ESC_KEY_CODE && this.canCancel()) {
+  //     onCancel();
+  //   }
+  // }
 
   // ======================================================
   // RENDERS
@@ -121,17 +194,17 @@ export default class Modal extends Component {
 
     return show && (
       <SemanticModal
-        className={ `Modal ${className || ''}` }
         dimmer="inverted"
-        open={ true }
+        open={ show }
         onClose={ onCancel }
         size="small"
         { ...modalProps }
+        className={ `Modal ${className || ''}` }
       >
         { this.renderHeader() }
         { this.renderContent() }
-        { this.renderActions() }
         { children }
+        { this.renderActions() }
       </SemanticModal>
     );
   }
