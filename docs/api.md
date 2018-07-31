@@ -12,25 +12,27 @@
 -   [profileUrl][8]
 -   [className][9]
 -   [SidebarComponent][10]
--   [scrollingOwn][11]
--   [useUpBottomButtons][12]
--   [content][13]
--   [isShow][14]
--   [indexPath][15]
--   [TwoColumnMobileRow][16]
--   [UniTable][17]
--   [onSelect][18]
--   [onSelectPage][19]
--   [onSelectAll][20]
--   [menu][21]
--   [decoratorContextHeader][22]
--   [render][23]
--   [linkTo][24]
--   [type][25]
--   [image][26]
--   [content][27]
--   [mobile][28]
--   [onClick][29]
+-   [modalProps][11]
+-   [scrollingOwn][12]
+-   [useUpBottomButtons][13]
+-   [content][14]
+-   [isShow][15]
+-   [indexPath][16]
+-   [TwoColumnMobileRow][17]
+-   [UniTable][18]
+-   [onSelect][19]
+-   [onSelectPage][20]
+-   [onSelectAll][21]
+-   [menu][22]
+-   [decoratorContextHeader][23]
+-   [render][24]
+-   [linkTo][25]
+-   [type][26]
+-   [image][27]
+-   [content][28]
+-   [mobile][29]
+-   [onClick][30]
+-   [decoratorModal][31]
 
 ## Navigation
 
@@ -73,7 +75,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][30]
+see [https://react.semantic-ui.com/modules/dropdown][32]
 
 ## profileUrl
 
@@ -92,6 +94,12 @@ see [https://react.semantic-ui.com/modules/dropdown][30]
 
 -   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
+
+## modalProps
+
+closeOnEscape={closeOnEscape}  (default: true)
+closeOnDimmerClick={closeOnDimmerClick} (default: true)
+closeOnDocumentClick={closeOnDimmerClick} (default: false)
 
 ## scrollingOwn
 
@@ -266,6 +274,16 @@ undefined \\ null - показывать везде
 
 либо path будет использован для перехода
 
+## decoratorModal
+
+Более удобный способ хранить состояние модальных окон
+Добавляет внутрь спец проперть handlerName (по умолчанию, 'onModalDataChange')
+
+**Parameters**
+
+-   `modalPropsFn`  : (modalData) => modalProps
+-   `handlerName`  имя проперти
+
 [1]: #navigation
 
 [2]: #attachment
@@ -286,42 +304,46 @@ undefined \\ null - показывать везде
 
 [10]: #sidebarcomponent
 
-[11]: #scrollingown
+[11]: #modalprops
 
-[12]: #useupbottombuttons
+[12]: #scrollingown
 
-[13]: #content
+[13]: #useupbottombuttons
 
-[14]: #isshow
+[14]: #content
 
-[15]: #indexpath
+[15]: #isshow
 
-[16]: #twocolumnmobilerow
+[16]: #indexpath
 
-[17]: #unitable
+[17]: #twocolumnmobilerow
 
-[18]: #onselect
+[18]: #unitable
 
-[19]: #onselectpage
+[19]: #onselect
 
-[20]: #onselectall
+[20]: #onselectpage
 
-[21]: #menu
+[21]: #onselectall
 
-[22]: #decoratorcontextheader
+[22]: #menu
 
-[23]: #render
+[23]: #decoratorcontextheader
 
-[24]: #linkto
+[24]: #render
 
-[25]: #type
+[25]: #linkto
 
-[26]: #image
+[26]: #type
 
-[27]: #content-1
+[27]: #image
 
-[28]: #mobile
+[28]: #content-1
 
-[29]: #onclick
+[29]: #mobile
 
-[30]: https://react.semantic-ui.com/modules/dropdown
+[30]: #onclick
+
+[31]: #decoratormodal
+
+[32]: https://react.semantic-ui.com/modules/dropdown
