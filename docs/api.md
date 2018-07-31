@@ -12,27 +12,40 @@
 -   [profileUrl][8]
 -   [className][9]
 -   [SidebarComponent][10]
--   [modalProps][11]
--   [scrollingOwn][12]
--   [useUpBottomButtons][13]
--   [content][14]
--   [isShow][15]
--   [indexPath][16]
+-   [SidebarComponent][11]
+-   [Loading][12]
+-   [Modal][13]
+-   [UpBottomButtons][14]
+-   [ScrollNavigation][15]
+-   [TwoColumnMobileRow][16]
 -   [TwoColumnMobileRow][17]
--   [UniTable][18]
--   [onSelect][19]
--   [onSelectPage][20]
--   [onSelectAll][21]
--   [menu][22]
--   [decoratorContextHeader][23]
--   [render][24]
--   [linkTo][25]
--   [type][26]
--   [image][27]
--   [content][28]
--   [mobile][29]
--   [onClick][30]
--   [decoratorModal][31]
+-   [Tabs][18]
+-   [Segment][19]
+-   [KeyValueList][20]
+-   [Select][21]
+-   [ToggledAddData][22]
+-   [UniTable][23]
+-   [UniTable][24]
+-   [Notice][25]
+-   [modalProps][26]
+-   [scrollingOwn][27]
+-   [useUpBottomButtons][28]
+-   [content][29]
+-   [isShow][30]
+-   [indexPath][31]
+-   [onSelect][32]
+-   [onSelectPage][33]
+-   [onSelectAll][34]
+-   [menu][35]
+-   [decoratorContextHeader][36]
+-   [render][37]
+-   [linkTo][38]
+-   [type][39]
+-   [image][40]
+-   [content][41]
+-   [mobile][42]
+-   [onClick][43]
+-   [decoratorModal][44]
 
 ## Navigation
 
@@ -75,7 +88,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][32]
+see [https://react.semantic-ui.com/modules/dropdown][45]
 
 ## profileUrl
 
@@ -95,40 +108,95 @@ see [https://react.semantic-ui.com/modules/dropdown][32]
 -   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
-## modalProps
+## SidebarComponent
 
-closeOnEscape={closeOnEscape}  (default: true)
-closeOnDimmerClick={closeOnDimmerClick} (default: true)
-closeOnDocumentClick={closeOnDimmerClick} (default: false)
+**Meta**
 
-## scrollingOwn
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
-если выставлен в true - то будет использоваться скроллинг внутри эти контрола
-тогда не работает scrollContainerId
-boolean - использовать внутренний скроллинг
-string - тогда это будет id элемента, у которого будет скроллинг
 
-## useUpBottomButtons
+## Loading
 
-можно сделать кнопки вверх-вниз для этого скроллинга
+**Meta**
 
-## content
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
-можно подать функцию (id) => {}
 
-## isShow
+## Modal
 
-можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
+**Meta**
 
-## indexPath
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
-чтобы индекс без типа считался активной первой табой
+
+## UpBottomButtons
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## ScrollNavigation
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## TwoColumnMobileRow
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
 
 ## TwoColumnMobileRow
 
 **Extends Component**
 
 Обазятельно обернуть в Grid (semantic-ui-react)
+
+## Tabs
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## Segment
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## KeyValueList
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## Select
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## ToggledAddData
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## UniTable
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
 
 ## UniTable
 
@@ -202,6 +270,42 @@ loadPositionsTables: {
 **Parameters**
 
 -   `props`  
+
+## Notice
+
+**Meta**
+
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+
+
+## modalProps
+
+closeOnEscape={closeOnEscape}  (default: true)
+closeOnDimmerClick={closeOnDimmerClick} (default: true)
+closeOnDocumentClick={closeOnDimmerClick} (default: false)
+
+## scrollingOwn
+
+если выставлен в true - то будет использоваться скроллинг внутри эти контрола
+тогда не работает scrollContainerId
+boolean - использовать внутренний скроллинг
+string - тогда это будет id элемента, у которого будет скроллинг
+
+## useUpBottomButtons
+
+можно сделать кнопки вверх-вниз для этого скроллинга
+
+## content
+
+можно подать функцию (id) => {}
+
+## isShow
+
+можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
+
+## indexPath
+
+чтобы индекс без типа считался активной первой табой
 
 ## onSelect
 
@@ -304,46 +408,72 @@ undefined \\ null - показывать везде
 
 [10]: #sidebarcomponent
 
-[11]: #modalprops
+[11]: #sidebarcomponent-1
 
-[12]: #scrollingown
+[12]: #loading
 
-[13]: #useupbottombuttons
+[13]: #modal
 
-[14]: #content
+[14]: #upbottombuttons
 
-[15]: #isshow
+[15]: #scrollnavigation
 
-[16]: #indexpath
+[16]: #twocolumnmobilerow
 
-[17]: #twocolumnmobilerow
+[17]: #twocolumnmobilerow-1
 
-[18]: #unitable
+[18]: #tabs
 
-[19]: #onselect
+[19]: #segment
 
-[20]: #onselectpage
+[20]: #keyvaluelist
 
-[21]: #onselectall
+[21]: #select
 
-[22]: #menu
+[22]: #toggledadddata
 
-[23]: #decoratorcontextheader
+[23]: #unitable
 
-[24]: #render
+[24]: #unitable-1
 
-[25]: #linkto
+[25]: #notice
 
-[26]: #type
+[26]: #modalprops
 
-[27]: #image
+[27]: #scrollingown
 
-[28]: #content-1
+[28]: #useupbottombuttons
 
-[29]: #mobile
+[29]: #content
 
-[30]: #onclick
+[30]: #isshow
 
-[31]: #decoratormodal
+[31]: #indexpath
 
-[32]: https://react.semantic-ui.com/modules/dropdown
+[32]: #onselect
+
+[33]: #onselectpage
+
+[34]: #onselectall
+
+[35]: #menu
+
+[36]: #decoratorcontextheader
+
+[37]: #render
+
+[38]: #linkto
+
+[39]: #type
+
+[40]: #image
+
+[41]: #content-1
+
+[42]: #mobile
+
+[43]: #onclick
+
+[44]: #decoratormodal
+
+[45]: https://react.semantic-ui.com/modules/dropdown
