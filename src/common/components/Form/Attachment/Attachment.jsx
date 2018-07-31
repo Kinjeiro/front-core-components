@@ -109,6 +109,17 @@ export default class Attachment extends React.Component {
     addButtonText: i18n('components.Attachment.addButton'),
   };
 
+  static parseValueToString(value) {
+    const {
+      id,
+      fileName,
+      // preview,
+      // description,
+    } = value;
+
+    return fileName || id;
+  }
+
   state = {
     previews: {},
     descriptions: {},

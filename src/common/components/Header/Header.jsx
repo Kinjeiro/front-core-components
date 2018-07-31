@@ -128,7 +128,10 @@ export default class Header extends PureComponent {
     } = this.props;
     return (
       <div className="TitlePart">
-        <Link to={ PATH_INDEX }>
+        <Link
+          className="TitlePart__link"
+          to={ PATH_INDEX }
+        >
           <h2 className="TitlePart__title">
             { headerTitle }
           </h2>

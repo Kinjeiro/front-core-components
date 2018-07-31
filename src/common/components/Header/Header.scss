@@ -77,6 +77,9 @@
   // TitlePart
   // ======================================================
   .TitlePart {
+    &__link {
+      text-decoration: none;
+    }
     &__title {
       font-size: 1.25rem;
 

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import bind from 'lodash-decorators/bind';
 
-import './AuthLayout.scss';
+import { Select as SemanticSelect } from 'semantic-ui-react';
 
-// @connect(
-//   (globalState) => ({
-//   }),
-// )
-export default class AuthLayout extends Component {
+import i18n from '../../../utils/i18n';
+
+// import './Select.scss';
+export default class Select extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    className: PropTypes.string,
+    // https://react.semantic-ui.com/modules/dropdown
+    ...SemanticSelect.propTypes,
   };
 
   static defaultProps = {
@@ -40,15 +41,15 @@ export default class AuthLayout extends Component {
   // ======================================================
   render() {
     const {
-      children,
+      className,
+      ...otherProps
     } = this.props;
 
     return (
-      <div className="AuthLayout">
-        <div className="AuthLayout__body">
-          { children }
-        </div>
-      </div>
+      <SemanticSelect
+        className={ `Select ${className || ''}` }
+        { ...otherProps }
+      />
     );
   }
 }

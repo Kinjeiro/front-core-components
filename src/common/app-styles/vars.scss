@@ -17,6 +17,7 @@ $color_white: #fff;
 $color_white_alpha: rgba(#ffffff, 0.73);
 $color_white_dark: #BABBBC;
 $color_black: #000;
+$color_black_light: #333;
 $color-grey: #dbe2e8;
 $color_green: #21ba45;
 //$color_blue: #197bbf;
@@ -29,7 +30,7 @@ $color_red: #fb1f3f;
 // ======================================================
 // COLORS
 // ======================================================
-$color-primary: $color_blue;
+$color-primary: $color_blue; // берется из vars.js
 $color-primary-text: $color_white;
 
 $color-secondary: $color_red;
@@ -50,6 +51,15 @@ $color-form-label: #549bcd;
 //$color-form-input-background: #f0f0f0;
 $color-form-input-background: transparent;
 $color-form-select-button: #e1e1e1;
+
+$color-main-background: $color_white;
+
+// ======================================================
+// AUTH
+// ======================================================
+$color-background-auth: $color-primary;
+$color-text-auth: $color-main-background;
+$color-primary-auth: $color_black_light;
 
 
 // from semantic-ui consts

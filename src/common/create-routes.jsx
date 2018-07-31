@@ -8,19 +8,14 @@ import {
 
 // import permissionWrapper from '@reagentum/front-core/lib/common/containers/permissionWrapper';
 import createParentRoutes from '@reagentum/front-core/lib/common/create-routes';
-import { PATH_LOGIN_PAGE } from '@reagentum/front-core/lib/common/constants/routes.pathes';
+import CB from '@reagentum/front-core/lib/common/components/ComponentsBase';
+
 // ======================================================
 // PROJECT
 // ======================================================
-import NAMES, * as paths from './routes.pathes';
+import initComponents from './components/init-components';
 
-import Notice from './components/Notice/Notice';
-
-import AuthLayout from './containers/Auth/AuthLayout/AuthLayout';
-import Signin from './containers/Auth/Signin/Signin';
-
-import AppLayout from './containers/AppLayout/AppLayout';
-import TestPage from './containers/TestPage/TestPage';
+initComponents(CB);
 
 export default function createRoutes(store) {
   /*
@@ -31,23 +26,8 @@ export default function createRoutes(store) {
   */
   /* <IndexRedirect to="catalog" />,*/
   /* component={ permissionWrapper(PERMISSION_CREATE_REQUEST)(TestDatasPage) } */
-
-  const authLayout = (
-    // ======================================================
-    // AUTH
-    // ======================================================
-    <Route
-      key="authLayout"
-      path={ NAMES.auth }
-      component={ AuthLayout }
-    >
-      <IndexRedirect to={ NAMES.signin } />
-      <Route
-        path={ NAMES.signin }
-        component={ Signin }
-      />
-    </Route>
-  );
+  const AppLayout = require('./containers/AppLayout/AppLayout').default;
+  const TestPage = require('./containers/TestPage/TestPage').default;
 
   const projectLayout = (
     // ======================================================
@@ -114,20 +94,6 @@ export default function createRoutes(store) {
   return createParentRoutes(
     store,
     projectLayout,
-    {
-      beforeRoutes: [
-        <Redirect
-          key={ `redirect_${PATH_LOGIN_PAGE}` }
-          from={ PATH_LOGIN_PAGE }
-          to={ paths.PATH_AUTH_INDEX }
-        />,
-      ],
-      authLayout,
-
-      NoticeComponentClass: Notice,
-      LoginPageComponentClass: Signin,
-      ModalLoginPageComponentClass: Signin,
-    },
   );
 }
 

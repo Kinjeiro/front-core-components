@@ -17,7 +17,7 @@ import {
 
 import './DatePicker.scss';
 
-export default class DatePicker2 extends Component {
+export default class DatePicker extends Component {
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.any,
