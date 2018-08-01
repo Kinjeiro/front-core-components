@@ -8,14 +8,6 @@ import {
 
 // import permissionWrapper from '@reagentum/front-core/lib/common/containers/permissionWrapper';
 import createParentRoutes from '@reagentum/front-core/lib/common/create-routes';
-import CB from '@reagentum/front-core/lib/common/components/ComponentsBase';
-
-// ======================================================
-// PROJECT
-// ======================================================
-import initComponents from './components/init-components';
-
-initComponents(CB);
 
 export default function createRoutes(store) {
   /*
