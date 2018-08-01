@@ -4,7 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [last version][1.4.0-1.4.?]
+## [last version][1.5.0-1.5.?]
+### !!! Breaking changes:
+1. переход на front-core@1.4.0
+
+### Features:
+
+### Dependencies:
+    - front-core@1.4.х
+
+### Commits:
+
+
+## [1.4.0-1.4.7]
 ### !!! Breaking changes:
 1. изменил верстку header, AppLayout и высоты, проверяйте свой дизайн, особенно с табами и константами ($header-size, $header-size-sm, $height-tabs-menu, $height-tabs-menu-sm)
 2. Обновил front-core@1.3.33 - почищены депенденси, нужно проверить работоспособность сборки
@@ -26,6 +38,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Dependencies:
 
 ### Commits:
+    - chore(*) patch version: 1.4.7 
+    - chore(dep): - front-core@1.3.37 
+    - feat(Header): - profileUrl - добавил возможность задать урл для профайл имени
+        \\ useModalLogin - если допускаются роуты вне авторизации, чтобы появлялось окно авторизации, а не редирект (по умолчанию включено) 
+    - bug(contextPath): - баг с перебросом на логин страницу при contextPath
+    - chore(*) patch version: 1.4.6 
+    - feat(UniTable): - добавил linkTo
     - chore(*) patch version: 1.4.5
     - !!! chore(depen): - front-core@1.3.33 - поменялись зависимости 
     - !!! feat(UniTable): - изменил сигнатуру методов onSelect \ onSelectPage \ onSelectAll - сначала идут id чтобы добавить единообразия с redux-tables
