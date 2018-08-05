@@ -19,7 +19,6 @@ export default class ClientRunner extends ParentClientRunner {
 
   hotReloadListeners() {
     super.hotReloadListeners();
-
     module.hot.accept('../common/create-routes', this.reloadUi);
   }
 }

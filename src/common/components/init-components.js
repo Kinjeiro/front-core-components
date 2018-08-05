@@ -27,7 +27,11 @@ export default function initComponents(COMPONENTS_BASE) {
   // MODULE AUTH
   // ======================================================
   // COMPONENTS_BASE.addClassName('AuthLayout', 'TestClass');
-  COMPONENTS_BASE.wrap('AuthFormLayout', () => require('../modules/module-auth/AuthFormLayoutExt').default);
+  // COMPONENTS_BASE.wrap('AuthFormLayout', () => require('../modules/module-auth/AuthFormLayoutExt').default);
+  COMPONENTS_BASE.addClassName('AuthFormLayout', () => {
+    require('../modules/module-auth/AuthFormLayoutExt.scss');
+    return 'AuthFormLayoutExt';
+  });
 
   return COMPONENTS_BASE;
 }
