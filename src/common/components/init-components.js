@@ -2,8 +2,8 @@ export default function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('Button', () => require('./Button/Button').default);
   COMPONENTS_BASE.replace('Header', () => require('./Header/Header').default);
   COMPONENTS_BASE.replace('Loading', () => require('./Loading/Loading').default);
-  COMPONENTS_BASE.replace('Modal', () => require('./Modal/Modal').default);
-  // replace
+  // todo @ANKU @LOW - подправить стили модалки, коравская более красивая на flex
+  // COMPONENTS_BASE.replace('Modal', () => require('./Modal/Modal').default);
   COMPONENTS_BASE.replace('Notice', () => require('./Notice/Notice').default);
   COMPONENTS_BASE.replace('Segment', () => require('./Segment/Segment').default);
   COMPONENTS_BASE.replace('Tabs', () => require('./Tabs/Tabs').default);
