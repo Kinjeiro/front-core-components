@@ -189,6 +189,7 @@ export default class Header extends PureComponent {
       case MENU_ITEM_TYPE.HEADER:
         return (
           <Dropdown.Header
+            key={ `header_${name}` }
             icon={ icon }
             className={ className }
             content={ content || name }

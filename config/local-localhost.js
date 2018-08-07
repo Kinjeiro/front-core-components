@@ -5,6 +5,17 @@ module.exports = {
   // ОБЩИЕ КОНФИГИ для КЛИЕНТА И СЕРВЕРА
   // ======================================================
   common: {
+    app: {
+      // contextRoot: ''
+    },
+
+    features: {
+      auth: {
+        allowSignup: true,
+        allowResetPasswordByEmail: true,
+        emailAsLogin: true
+      }
+    }
   },
 
   // ======================================================

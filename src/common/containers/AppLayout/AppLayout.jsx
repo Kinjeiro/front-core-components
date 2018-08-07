@@ -18,6 +18,7 @@ import 'semantic-ui-css/semantic.css';
 import 'react-redux-toastr/src/styles/index.scss';
 
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
+import appUrl from '@reagentum/front-core/lib/common/helpers/app-urls';
 import {
   PATH_INDEX,
   PATH_LOGIN_PAGE,
@@ -203,7 +204,7 @@ export default class AppLayout extends Component {
     } = this.props;
 
     actionUserLogout()
-      .then(() => window.location = PATH_INDEX);
+      .then(() => window.location = appUrl(PATH_INDEX));
   }
 
   // ======================================================

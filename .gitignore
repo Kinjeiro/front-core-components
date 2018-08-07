@@ -3,6 +3,7 @@
 .build-docker/
 node_modules/
 logs/
+config/local-*.js
 
 npm-debug.log
 docker/tmp-package.json
