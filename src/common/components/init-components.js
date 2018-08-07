@@ -13,8 +13,9 @@ export default function initComponents(COMPONENTS_BASE) {
   // ======================================================
   // FORM
   // ======================================================
-  COMPONENTS_BASE.replace('BaseInput', () => require('semantic-ui-react').Input);
-  COMPONENTS_BASE.replace('BaseNumberInput', () => require('semantic-ui-react').Input);
+  // todo @ANKU @LOW - их ний input своим ui.input input все стили для fieldLaout перебивает + error не срабатывает
+  // COMPONENTS_BASE.replace('BaseInput', () => require('semantic-ui-react').Input);
+  // COMPONENTS_BASE.replace('BaseNumberInput', () => require('semantic-ui-react').Input);
   COMPONENTS_BASE.replace('BaseTextArea', () => require('./Form/semantic-ui/BaseTextArea/BaseTextArea').default);
   COMPONENTS_BASE.replace('BaseSelect', () => require('./Form/semantic-ui/BaseSelect/BaseSelect').default);
   COMPONENTS_BASE.replace('DatePicker', () => require('./Form/DatePicker/DatePicker').default);
