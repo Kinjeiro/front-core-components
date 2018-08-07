@@ -105,14 +105,14 @@ see [https://react.semantic-ui.com/modules/dropdown][45]
 
 **Meta**
 
--   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
 
 ## SidebarComponent
 
 **Meta**
 
--   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+-   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
 ## Loading
