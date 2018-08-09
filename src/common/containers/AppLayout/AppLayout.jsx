@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 import bind from 'lodash-decorators/bind';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import {
-  Dimmer,
-  Sidebar,
-  Container,
-  Icon,
-  Segment,
-  Menu,
-} from 'semantic-ui-react';
 
 // Styles
 import 'semantic-ui-css/semantic.css';
@@ -47,10 +39,9 @@ import i18n from '../../utils/i18n';
 // ======================================================
 import './semantic-ui-updates.scss';
 
-import UpBottomButtons from '../../components/UpBottomButtons/UpBottomButtons';
+import getCb from '../../components/get-components';
 
 import { MENU_PROP_TYPE } from '../../models/model-menu';
-import Header from '../../components/Header/Header';
 
 import ContextHeaderProvider from '../../contexts/ContextHeader/ContextHeaderProvider';
 
@@ -58,7 +49,16 @@ import './AppLayout.scss';
 
 // const actionsUser = reduxUser.getBindActions(apiUser);
 
-
+const {
+  Container,
+  Dimmer,
+  Menu,
+  Icon,
+  Segment,
+  Sidebar,
+  UpBottomButtons,
+  AppHeader,
+} = getCb();
 
 @titled('AppLayout', ({ textTitle }) => textTitle || i18n('pages.AppLayout.title'))
 @connect(
@@ -76,6 +76,7 @@ export default class AppLayout extends Component {
     user: PropTypes.object,
     children: PropTypes.node.isRequired,
     onLogout: PropTypes.func,
+    className: PropTypes.string,
 
     /**
      * @deprecated - user userMenu instead
@@ -86,11 +87,7 @@ export default class AppLayout extends Component {
     ifMobileMoveUserMenuToSidebar: PropTypes.bool,
     textMenuLogout: PropTypes.string,
 
-    HeaderClass: PropTypes.oneOfType([
-      PropTypes.instanceOf(Component),
-      PropTypes.func,
-    ]),
-    headerProps: PropTypes.shape(Header.propTypes),
+    headerProps: PropTypes.shape(AppHeader.propTypes),
 
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
     upBottomButtonsProps: PropTypes.oneOfType([
@@ -110,7 +107,6 @@ export default class AppLayout extends Component {
 
   static defaultProps = {
     ifMobileMoveUserMenuToSidebar: true,
-    HeaderClass: Header,
     headerProps: {},
     textMenuLogout: i18n('pages.AppLayout.menu.logout'),
   };
@@ -218,7 +214,6 @@ export default class AppLayout extends Component {
     const {
       user,
       goTo,
-      HeaderClass,
       headerProps,
     } = this.props;
 
@@ -233,7 +228,7 @@ export default class AppLayout extends Component {
               <ContextHeaderProvider.Consumer>
                 {
                   (contextProps) => (
-                    <HeaderClass
+                    <AppHeader
                       userInfo={ user }
                       userMenu={ this.getUserMenu(isMobile) }
                       onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
@@ -318,7 +313,10 @@ export default class AppLayout extends Component {
         key={ name }
         name={ name }
         path={ path }
-        onClick={ onClick || (path ? () => goTo(path) : undefined) }
+        onClick={ (event) => {
+          this.handleCloseSidebar();
+          return (onClick && onClick(event)) || (path && goTo(path));
+        } }
         link={ !!path }
         active={ currentPath.indexOf(path) >= 0 }
       >
@@ -345,6 +343,7 @@ export default class AppLayout extends Component {
         icon="labeled"
         vertical={ true }
         inverted={ true }
+        onHide={ this.handleCloseSidebar }
       >
         {
           menu.map((menuItem) => this.renderSidebarMenuItem(menuItem))
@@ -358,12 +357,13 @@ export default class AppLayout extends Component {
   // ======================================================
   render() {
     const {
+      className,
       headerProps,
     } = this.props;
 
     return (
       <ContextHeaderProvider headerProps={ headerProps }>
-        <div className="AppLayout">
+        <div className={ `AppLayout ${className || ''}` }>
           <MediaQuery mobile={ true }>
             {
               (matches) => {

@@ -1,6 +1,6 @@
 @import "../../app-styles/vars";
 
-.Header {
+.AppHeader {
   display: grid;
   grid-template-columns:
     [first-part] auto
@@ -110,8 +110,16 @@
       display: inline-block;
       white-space: nowrap;
     }
-  }
 
+    // todo @ANKU @LOW - pointing="top right" - при наведении показывается, но при этом из-за расстояния из-за поинтинга вниз ведешь и тут же скрывается, держится только по клику
+    .ui.top.right.pointing.dropdown > .menu {
+      margin-top: 0.1em;
+      right: -1em;
+    }
+    //.ui.top.left.pointing.dropdown > .menu:after {
+    //
+    //}
+  }
   // ======================================================
   // RightPart
   // ======================================================

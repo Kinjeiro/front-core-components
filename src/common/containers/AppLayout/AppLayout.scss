@@ -220,10 +220,14 @@
       }
     }
   }
+
+  & > .Segment.ui {
+    height: 100%;
+
+    & > .ui.segment {
+      min-height: 100%;
+      padding: 0;
+      border: none;
+    }
+  }
 }
-
-.ui.segment {
-  height: 100%;
-}
-
-

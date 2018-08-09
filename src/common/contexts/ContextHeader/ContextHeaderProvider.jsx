@@ -7,7 +7,7 @@ import { getCurrentPage } from '@reagentum/front-core/lib/common/app-redux/selec
 import * as reduxCurrentPage from '@reagentum/front-core/lib/common/app-redux/reducers/app/current-page';
 
 import i18n from '../../utils/i18n';
-import Header from '../../components/Header/Header';
+import AppHeader from '../../components/AppHeader/AppHeader';
 
 // import './ContextHeaderProvider.scss';
 
@@ -49,7 +49,7 @@ export default class ContextHeaderProvider extends Component {
     // PROPS
     // ======================================================
     children: PropTypes.node,
-    headerProps: PropTypes.shape(Header.propTypes),
+    headerProps: PropTypes.shape(AppHeader.propTypes),
 
     // ======================================================
     // @connect

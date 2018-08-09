@@ -19,9 +19,9 @@ import {
   MENU_ITEM_TYPE,
 } from '../../models/model-menu';
 
-import './Header.scss';
+import './AppHeader.scss';
 
-export default class Header extends PureComponent {
+export default class AppHeader extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
@@ -65,6 +65,7 @@ export default class Header extends PureComponent {
       PropTypes.string,
       PropTypes.func,
     ]),
+    profileTempImage: PropTypes.string,
     useModalLogin: PropTypes.bool,
 
     onGoTo: PropTypes.func,
@@ -219,6 +220,7 @@ export default class Header extends PureComponent {
       onLogin,
       profileUrl,
       useModalLogin,
+      profileTempImage,
     } = this.props;
 
     let userCmp;
@@ -247,15 +249,15 @@ export default class Header extends PureComponent {
       userCmp = (
         <React.Fragment>
           {
-            profileImageURI
+            (profileImageURI || typeof profileTempImage === 'string')
             ? (
               <Image
                 className="UserName__avatar"
-                src={ profileImageURI }
+                src={ profileImageURI || profileTempImage }
                 avatar={ true }
               />
             )
-            : (
+            : profileTempImage || (
               <Icon
                 className="UserName__icon user-icon"
                 name="user outline"
@@ -290,8 +292,10 @@ export default class Header extends PureComponent {
             className="UserPart__menu"
             trigger={ userCmp }
             simple={ true }
+            direction="right"
+            pointing="top right"
           >
-            <Dropdown.Menu>
+            <Dropdown.Menu direction="right">
               {
                 userMenu.map((menuItem, index) =>
                   this.renderUserMenuItem(menuItem, index))
@@ -327,14 +331,14 @@ export default class Header extends PureComponent {
       customUserPart,
     } = this.props;
     return (
-      <div className={ `Header ${className || ''}` }>
-        <div className="Header__firstPart">{ this.renderFirstPart() }</div>
-        <div className="Header__sidebarIconPart">{ this.renderSidebarIconPart() }</div>
-        <div className="Header__logoPart">{ this.renderLogoPart() }</div>
-        <div className="Header__titlePart">{ customTitlePart || this.renderTitlePart() }</div>
-        <div className="Header__leftPart">{ this.renderLeftPart() }</div>
-        <div className="Header__userPart">{ customUserPart || this.renderUserPart() }</div>
-        <div className="Header__rightPart">{ this.renderRightPart() }</div>
+      <div className={ `AppHeader ${className || ''}` }>
+        <div className="AppHeader__firstPart">{ this.renderFirstPart() }</div>
+        <div className="AppHeader__sidebarIconPart">{ this.renderSidebarIconPart() }</div>
+        <div className="AppHeader__logoPart">{ this.renderLogoPart() }</div>
+        <div className="AppHeader__titlePart">{ customTitlePart || this.renderTitlePart() }</div>
+        <div className="AppHeader__leftPart">{ this.renderLeftPart() }</div>
+        <div className="AppHeader__userPart">{ customUserPart || this.renderUserPart() }</div>
+        <div className="AppHeader__rightPart">{ this.renderRightPart() }</div>
         { children }
       </div>
     );

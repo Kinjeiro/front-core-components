@@ -1,6 +1,8 @@
-export default function initComponents(COMPONENTS_BASE) {
+let CB = null;
+
+export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('Button', () => require('./Button/Button').default);
-  COMPONENTS_BASE.replace('Header', () => require('./Header/Header').default);
+  COMPONENTS_BASE.replace('AppHeader', () => require('./AppHeader/AppHeader').default);
   COMPONENTS_BASE.replace('Loading', () => require('./Loading/Loading').default);
   // todo @ANKU @LOW - подправить стили модалки, коравская более красивая на flex
   // COMPONENTS_BASE.replace('Modal', () => require('./Modal/Modal').default);
@@ -9,6 +11,14 @@ export default function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('Tabs', () => require('./Tabs/Tabs').default);
   COMPONENTS_BASE.replace('UniTable', () => require('./UniTable/UniTable').default);
   COMPONENTS_BASE.replace('UpBottomButtons', () => require('./UpBottomButtons/UpBottomButtons').default);
+  COMPONENTS_BASE.replace('Container', () => require('semantic-ui-react').Container);
+  COMPONENTS_BASE.replace('Dimmer', () => require('semantic-ui-react').Dimmer);
+  COMPONENTS_BASE.replace('Menu', () => require('semantic-ui-react').Menu);
+  COMPONENTS_BASE.replace('Icon', () => require('semantic-ui-react').Icon);
+  COMPONENTS_BASE.replace('Sidebar', () => require('semantic-ui-react').Sidebar);
+  COMPONENTS_BASE.replace('Label', () => require('semantic-ui-react').Label);
+  COMPONENTS_BASE.replace('Image', () => require('semantic-ui-react').Image);
+  COMPONENTS_BASE.replace('Search', () => require('semantic-ui-react').Search);
 
   // ======================================================
   // FORM
@@ -34,5 +44,10 @@ export default function initComponents(COMPONENTS_BASE) {
     return 'AuthFormLayoutExt';
   });
 
+  CB = COMPONENTS_BASE;
   return COMPONENTS_BASE;
+}
+
+export default function getComponentsBase() {
+  return CB;
 }
