@@ -3,14 +3,14 @@
 ### Table of Contents
 
 -   [Navigation][1]
--   [Attachment][2]
--   [update][3]
--   [update][4]
--   [onToggleSidebar][5]
--   [logo][6]
--   [userMenu][7]
--   [profileUrl][8]
--   [className][9]
+-   [onToggleSidebar][2]
+-   [logo][3]
+-   [userMenu][4]
+-   [profileUrl][5]
+-   [className][6]
+-   [Attachment][7]
+-   [update][8]
+-   [update][9]
 -   [SidebarComponent][10]
 -   [SidebarComponent][11]
 -   [Loading][12]
@@ -52,6 +52,30 @@
 остальное
 
 
+## onToggleSidebar
+
+если есть, то рисутеся sibebarIcon в начале
+
+## logo
+
+если стринг - урл лого
+если нода - контрол
+
+## userMenu
+
+see [https://react.semantic-ui.com/modules/dropdown][45]
+
+## profileUrl
+
+(user) => {}
+
+## className
+
+**Meta**
+
+-   **deprecated**: name === 'delimiter'
+
+
 ## Attachment
 
 **Meta**
@@ -76,30 +100,6 @@
 -   `withChange`  
 -   `event`  
 -   `comp`  
-
-## onToggleSidebar
-
-если есть, то рисутеся sibebarIcon в начале
-
-## logo
-
-если стринг - урл лого
-если нода - контрол
-
-## userMenu
-
-see [https://react.semantic-ui.com/modules/dropdown][45]
-
-## profileUrl
-
-(user) => {}
-
-## className
-
-**Meta**
-
--   **deprecated**: name === 'delimiter'
-
 
 ## SidebarComponent
 
@@ -390,21 +390,21 @@ undefined \\ null - показывать везде
 
 [1]: #navigation
 
-[2]: #attachment
+[2]: #ontogglesidebar
 
-[3]: #update
+[3]: #logo
 
-[4]: #update-1
+[4]: #usermenu
 
-[5]: #ontogglesidebar
+[5]: #profileurl
 
-[6]: #logo
+[6]: #classname
 
-[7]: #usermenu
+[7]: #attachment
 
-[8]: #profileurl
+[8]: #update
 
-[9]: #classname
+[9]: #update-1
 
 [10]: #sidebarcomponent
 
