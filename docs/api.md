@@ -11,41 +11,40 @@
 -   [Attachment][7]
 -   [update][8]
 -   [update][9]
--   [SidebarComponent][10]
--   [SidebarComponent][11]
--   [Loading][12]
--   [Modal][13]
--   [UpBottomButtons][14]
--   [ScrollNavigation][15]
+-   [Loading][10]
+-   [Loading][11]
+-   [Modal][12]
+-   [UpBottomButtons][13]
+-   [ScrollNavigation][14]
+-   [TwoColumnMobileRow][15]
 -   [TwoColumnMobileRow][16]
--   [TwoColumnMobileRow][17]
--   [Tabs][18]
--   [Segment][19]
--   [KeyValueList][20]
--   [Select][21]
--   [ToggledAddData][22]
+-   [Tabs][17]
+-   [Segment][18]
+-   [KeyValueList][19]
+-   [Select][20]
+-   [ToggledAddData][21]
+-   [UniTable][22]
 -   [UniTable][23]
--   [UniTable][24]
--   [Notice][25]
--   [modalProps][26]
--   [scrollingOwn][27]
--   [useUpBottomButtons][28]
--   [content][29]
--   [isShow][30]
--   [indexPath][31]
--   [onSelect][32]
--   [onSelectPage][33]
--   [onSelectAll][34]
--   [menu][35]
--   [decoratorContextHeader][36]
--   [render][37]
--   [linkTo][38]
--   [type][39]
--   [image][40]
--   [content][41]
--   [mobile][42]
--   [onClick][43]
--   [decoratorModal][44]
+-   [Notice][24]
+-   [modalProps][25]
+-   [scrollingOwn][26]
+-   [useUpBottomButtons][27]
+-   [content][28]
+-   [isShow][29]
+-   [indexPath][30]
+-   [onSelect][31]
+-   [onSelectPage][32]
+-   [onSelectAll][33]
+-   [menu][34]
+-   [decoratorContextHeader][35]
+-   [render][36]
+-   [linkTo][37]
+-   [type][38]
+-   [image][39]
+-   [content][40]
+-   [mobile][41]
+-   [onClick][42]
+-   [decoratorModal][43]
 
 ## Navigation
 
@@ -63,7 +62,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][45]
+see [https://react.semantic-ui.com/modules/dropdown][44]
 
 ## profileUrl
 
@@ -101,25 +100,18 @@ see [https://react.semantic-ui.com/modules/dropdown][45]
 -   `event`  
 -   `comp`  
 
-## SidebarComponent
+## Loading
 
 **Meta**
 
 -   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
-
-
-## SidebarComponent
-
-**Meta**
-
--   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
 ## Loading
 
 **Meta**
 
--   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+-   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
 ## Modal
@@ -406,74 +398,72 @@ undefined \\ null - показывать везде
 
 [9]: #update-1
 
-[10]: #sidebarcomponent
+[10]: #loading
 
-[11]: #sidebarcomponent-1
+[11]: #loading-1
 
-[12]: #loading
+[12]: #modal
 
-[13]: #modal
+[13]: #upbottombuttons
 
-[14]: #upbottombuttons
+[14]: #scrollnavigation
 
-[15]: #scrollnavigation
+[15]: #twocolumnmobilerow
 
-[16]: #twocolumnmobilerow
+[16]: #twocolumnmobilerow-1
 
-[17]: #twocolumnmobilerow-1
+[17]: #tabs
 
-[18]: #tabs
+[18]: #segment
 
-[19]: #segment
+[19]: #keyvaluelist
 
-[20]: #keyvaluelist
+[20]: #select
 
-[21]: #select
+[21]: #toggledadddata
 
-[22]: #toggledadddata
+[22]: #unitable
 
-[23]: #unitable
+[23]: #unitable-1
 
-[24]: #unitable-1
+[24]: #notice
 
-[25]: #notice
+[25]: #modalprops
 
-[26]: #modalprops
+[26]: #scrollingown
 
-[27]: #scrollingown
+[27]: #useupbottombuttons
 
-[28]: #useupbottombuttons
+[28]: #content
 
-[29]: #content
+[29]: #isshow
 
-[30]: #isshow
+[30]: #indexpath
 
-[31]: #indexpath
+[31]: #onselect
 
-[32]: #onselect
+[32]: #onselectpage
 
-[33]: #onselectpage
+[33]: #onselectall
 
-[34]: #onselectall
+[34]: #menu
 
-[35]: #menu
+[35]: #decoratorcontextheader
 
-[36]: #decoratorcontextheader
+[36]: #render
 
-[37]: #render
+[37]: #linkto
 
-[38]: #linkto
+[38]: #type
 
-[39]: #type
+[39]: #image
 
-[40]: #image
+[40]: #content-1
 
-[41]: #content-1
+[41]: #mobile
 
-[42]: #mobile
+[42]: #onclick
 
-[43]: #onclick
+[43]: #decoratormodal
 
-[44]: #decoratormodal
-
-[45]: https://react.semantic-ui.com/modules/dropdown
+[44]: https://react.semantic-ui.com/modules/dropdown
