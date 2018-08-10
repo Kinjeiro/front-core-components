@@ -1,16 +1,18 @@
 let CB = null;
 
 export function initComponents(COMPONENTS_BASE) {
-  COMPONENTS_BASE.replace('Button', () => require('./Button/Button').default);
-  COMPONENTS_BASE.replace('AppHeader', () => require('./AppHeader/AppHeader').default);
-  COMPONENTS_BASE.replace('Loading', () => require('./Loading/Loading').default);
+  require('./app-styles/init.scss');
+
+  COMPONENTS_BASE.replace('Button', () => require('./components/Button/Button').default);
+  COMPONENTS_BASE.replace('AppHeader', () => require('./components/AppHeader/AppHeader').default);
+  COMPONENTS_BASE.replace('Loading', () => require('./components/Loading/Loading').default);
   // todo @ANKU @LOW - подправить стили модалки, коравская более красивая на flex
   // COMPONENTS_BASE.replace('Modal', () => require('./Modal/Modal').default);
-  COMPONENTS_BASE.replace('Notice', () => require('./Notice/Notice').default);
-  COMPONENTS_BASE.replace('Segment', () => require('./Segment/Segment').default);
-  COMPONENTS_BASE.replace('Tabs', () => require('./Tabs/Tabs').default);
-  COMPONENTS_BASE.replace('UniTable', () => require('./UniTable/UniTable').default);
-  COMPONENTS_BASE.replace('UpBottomButtons', () => require('./UpBottomButtons/UpBottomButtons').default);
+  COMPONENTS_BASE.replace('Notice', () => require('./components/Notice/Notice').default);
+  COMPONENTS_BASE.replace('Segment', () => require('./components/Segment/Segment').default);
+  COMPONENTS_BASE.replace('Tabs', () => require('./components/Tabs/Tabs').default);
+  COMPONENTS_BASE.replace('UniTable', () => require('./components/UniTable/UniTable').default);
+  COMPONENTS_BASE.replace('UpBottomButtons', () => require('./components/UpBottomButtons/UpBottomButtons').default);
   COMPONENTS_BASE.replace('Container', () => require('semantic-ui-react').Container);
   COMPONENTS_BASE.replace('Dimmer', () => require('semantic-ui-react').Dimmer);
   COMPONENTS_BASE.replace('Menu', () => require('semantic-ui-react').Menu);
@@ -26,23 +28,28 @@ export function initComponents(COMPONENTS_BASE) {
   // todo @ANKU @LOW - их ний input своим ui.input input все стили для fieldLaout перебивает + error не срабатывает
   // COMPONENTS_BASE.replace('BaseInput', () => require('semantic-ui-react').Input);
   // COMPONENTS_BASE.replace('BaseNumberInput', () => require('semantic-ui-react').Input);
-  COMPONENTS_BASE.replace('BaseTextArea', () => require('./Form/semantic-ui/BaseTextArea/BaseTextArea').default);
-  COMPONENTS_BASE.replace('BaseSelect', () => require('./Form/semantic-ui/BaseSelect/BaseSelect').default);
-  COMPONENTS_BASE.replace('DatePicker', () => require('./Form/DatePicker/DatePicker').default);
-  COMPONENTS_BASE.replace('Attachment', () => require('./Form/Attachment/Attachment').default);
+  COMPONENTS_BASE.replace('BaseTextArea', () => require('./components/Form/semantic-ui/BaseTextArea/BaseTextArea').default);
+  COMPONENTS_BASE.replace('BaseSelect', () => require('./components/Form/semantic-ui/BaseSelect/BaseSelect').default);
+  COMPONENTS_BASE.replace('DatePicker', () => require('./components/Form/DatePicker/DatePicker').default);
+  COMPONENTS_BASE.replace('Attachment', () => require('./components/Form/Attachment/Attachment').default);
   COMPONENTS_BASE.replace('Checkbox', () => require('semantic-ui-react').Checkbox);
   COMPONENTS_BASE.replace('Radio', () => require('semantic-ui-react').Radio);
-  COMPONENTS_BASE.replace('ErrorLabel', () => require('./Form/ErrorLabel/ErrorLabel').default);
+  COMPONENTS_BASE.replace('ErrorLabel', () => require('./components/Form/ErrorLabel/ErrorLabel').default);
+
+  // ======================================================
+  // CONTAINERS
+  // ======================================================
+  COMPONENTS_BASE.replace('AppLayout', () => require('./containers/AppLayout/AppLayout').default);
 
   // ======================================================
   // MODULE AUTH
   // ======================================================
   // COMPONENTS_BASE.addClassName('AuthLayout', 'TestClass');
   // COMPONENTS_BASE.wrap('AuthFormLayout', () => require('../modules/module-auth/AuthFormLayoutExt').default);
-  COMPONENTS_BASE.addClassName('AuthFormLayout', () => {
-    require('../modules/module-auth/AuthFormLayoutExt.scss');
-    return 'AuthFormLayoutExt';
-  });
+  // COMPONENTS_BASE.addClassName('AuthFormLayout', () => {
+  //   require('../modules/module-auth/AuthFormLayoutExt.scss');
+  //   return 'AuthFormLayoutExt';
+  // });
 
   CB = COMPONENTS_BASE;
   return COMPONENTS_BASE;

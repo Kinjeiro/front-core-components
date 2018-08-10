@@ -9,6 +9,8 @@ import {
 // import permissionWrapper from '@reagentum/front-core/lib/common/containers/permissionWrapper';
 import createParentRoutes from '@reagentum/front-core/lib/common/create-routes';
 
+import getComponents from './get-components';
+
 export default function createRoutes(store) {
   /*
    <IndexRoute
@@ -18,8 +20,9 @@ export default function createRoutes(store) {
   */
   /* <IndexRedirect to="catalog" />,*/
   /* component={ permissionWrapper(PERMISSION_CREATE_REQUEST)(TestDatasPage) } */
-  const AppLayout = require('./containers/AppLayout/AppLayout').default;
   const TestPage = require('./containers/TestPage/TestPage').default;
+
+  const { AppLayout } = getComponents();
 
   const projectLayout = (
     // ======================================================

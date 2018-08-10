@@ -4,7 +4,7 @@ import ParentClientRunner from '@reagentum/front-core/lib/client/CoreClientRunne
 // ======================================================
 // PROJECT
 // ======================================================
-import { initComponents } from '../common/components/get-components';
+import { initComponents } from '../common/get-components';
 
 export default class ClientRunner extends ParentClientRunner {
   initComponents(COMPONENTS_BASE) {

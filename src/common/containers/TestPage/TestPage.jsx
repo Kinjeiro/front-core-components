@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import bind from 'lodash-decorators/bind';
 
-import CB from '@reagentum/front-core/lib/common/components/ComponentsBase';
 import simpleForm from '@reagentum/front-core/lib/common/utils/decorators/react-class/redux-simple-form';
 
 import i18n from '../../utils/i18n';
 
 import headerContext from '../../contexts/ContextHeader/decorator-context-header';
+import getComponents from '../../get-components';
 
 import './TestPage.scss';
 
@@ -17,7 +17,7 @@ const {
   Button,
   Segment,
   Form,
-} = CB;
+} = getComponents();
 
 const PAGE_ID = 'TestPage';
 

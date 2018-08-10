@@ -7,9 +7,11 @@ import { getCurrentPage } from '@reagentum/front-core/lib/common/app-redux/selec
 import * as reduxCurrentPage from '@reagentum/front-core/lib/common/app-redux/reducers/app/current-page';
 
 import i18n from '../../utils/i18n';
-import AppHeader from '../../components/AppHeader/AppHeader';
+import getComponents from '../../get-components';
 
 // import './ContextHeaderProvider.scss';
+
+const { AppHeader } = getComponents();
 
 const ContextHeader = React.createContext({
   title: null,

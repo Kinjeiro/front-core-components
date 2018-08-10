@@ -4,11 +4,6 @@ import bind from 'lodash-decorators/bind';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-// Styles
-import 'semantic-ui-css/semantic.css';
-
-import 'react-redux-toastr/src/styles/index.scss';
-
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
 import appUrl from '@reagentum/front-core/lib/common/helpers/app-urls';
 import {
@@ -21,8 +16,6 @@ import {
   getUser,
 } from '@reagentum/front-core/lib/common/app-redux/selectors';
 import { actions as actionsUser } from '@reagentum/front-core/lib/common/app-redux/reducers/app/user-info';
-
-import { MediaQuery } from '@reagentum/front-core/lib/common/components';
 
 // ======================================================
 // UTILS
@@ -39,7 +32,7 @@ import i18n from '../../utils/i18n';
 // ======================================================
 import './semantic-ui-updates.scss';
 
-import getCb from '../../components/get-components';
+import getCb from '../../get-components';
 
 import { MENU_PROP_TYPE } from '../../models/model-menu';
 
@@ -50,6 +43,7 @@ import './AppLayout.scss';
 // const actionsUser = reduxUser.getBindActions(apiUser);
 
 const {
+  MediaQuery,
   Container,
   Dimmer,
   Menu,
@@ -343,7 +337,6 @@ export default class AppLayout extends Component {
         icon="labeled"
         vertical={ true }
         inverted={ true }
-        onHide={ this.handleCloseSidebar }
       >
         {
           menu.map((menuItem) => this.renderSidebarMenuItem(menuItem))

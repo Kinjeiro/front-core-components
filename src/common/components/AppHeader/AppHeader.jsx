@@ -10,9 +10,9 @@ import {
 
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
 import { PATH_INDEX } from '@reagentum/front-core/lib/common/routes.pathes';
-import Link from '@reagentum/front-core/lib/common/containers/Link/Link';
 
 import i18n from '../../utils/i18n';
+import getComponents from '../../get-components';
 
 import {
   MENU_PROP_TYPE,
@@ -20,6 +20,8 @@ import {
 } from '../../models/model-menu';
 
 import './AppHeader.scss';
+
+const { Link } = getComponents();
 
 export default class AppHeader extends PureComponent {
   static propTypes = {
