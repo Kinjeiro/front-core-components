@@ -9,10 +9,6 @@
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export SidebarComponent from './Sidebar/Sidebar';
-/**
- * @deprecated - use direct path or frontCore/src/components/ComponentsBase
- */
 export Loading from './Loading/Loading';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase

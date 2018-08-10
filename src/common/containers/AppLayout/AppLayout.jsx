@@ -82,6 +82,7 @@ export default class AppLayout extends Component {
     textMenuLogout: PropTypes.string,
 
     headerProps: PropTypes.shape(AppHeader.propTypes),
+    sidebarProps: PropTypes.shape(Sidebar.propTypes),
 
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
     upBottomButtonsProps: PropTypes.oneOfType([
@@ -324,6 +325,9 @@ export default class AppLayout extends Component {
 
   renderMobileSidebarMenu(menu) {
     const {
+      sidebarProps,
+    } = this.props;
+    const {
       sidebarOpened,
     } = this.state;
 
@@ -337,6 +341,7 @@ export default class AppLayout extends Component {
         icon="labeled"
         vertical={ true }
         inverted={ true }
+        { ...sidebarProps }
       >
         {
           menu.map((menuItem) => this.renderSidebarMenuItem(menuItem))

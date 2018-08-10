@@ -106,6 +106,10 @@
   }
 
   .UserPart {
+    &__menu {
+      white-space: nowrap;
+    }
+
     &__name {
       display: inline-block;
       white-space: nowrap;
