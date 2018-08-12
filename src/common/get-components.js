@@ -21,6 +21,8 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('Label', () => require('semantic-ui-react').Label);
   COMPONENTS_BASE.replace('Image', () => require('semantic-ui-react').Image);
   COMPONENTS_BASE.replace('Search', () => require('semantic-ui-react').Search);
+  COMPONENTS_BASE.replace('Card', () => require('semantic-ui-react').Card);
+  COMPONENTS_BASE.replace('Pagination', () => require('semantic-ui-react').Pagination);
 
   // ======================================================
   // FORM
