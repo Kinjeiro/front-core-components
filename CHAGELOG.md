@@ -6,7 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [last version][1.5.0-1.5.?]
 ### !!! Breaking changes:
-1. переход на front-core@1.4.0
+1. Переход на front-core@1.4.x
+2. Attachment - file больше не кладется в attachment-value, мапа файлов передается в первом параметре onAdd(newFilesMap, newAttachments, resultAttachments) 
+   Первый параметр теперь не массив файлов, а мапа uuid: File 
+3. Attachment - дефолтные значения constraints maxBytes=10mb, multipleMaxSize=10 
 
 ### Features:
 
@@ -14,7 +17,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - front-core@1.4.х
 
 ### Commits:
-
+    - chore(*) patch version: 1.5.9
+    - !!! feat(Attachment) - file больше не кладется в attachment-value, мапа файлов передается в первом параметре onAdd(newFilesMap, newAttachments, resultAttachments)
+        \\ newFilesMap теперь не массив файлов, а мапа uuid: File
+        \\ добавил прогресс AttachInfo--loaded${progress} класс, показывающий загрузку файлов
+        \\ проверка constraints - автоматическое обрезание выбранных файлов и warnings об этом
+        \\ дефолтные значения maxBytes=10mb, multipleMaxSize=10
+        \\ теперь пробрасывается accept - для указания ограничения на файлы
+        \\ front-core@1.4.23
+    - chore(*) patch version: 1.5.8
+    - feat(cb, semantic) - добавил Pagination, Card 
+        \\ semantic-ui-react@0.80.2 (но более высокую версию не нужно)
+    - chore(*) patch version: 1.5.7
+    - feat(cb) - убрал старый Sidebar 
+        \\ добавил sidebarProps для AuthLayout
+    - feat(cb) - вынес init.scss во время initComponents (чтобы не зависеть от AppLayout) 
+        \\ добавил компоненты
+    - chore(*) patch version: 1.5.6
+    - bug(cb) - обновление стилей для AppHeader 
+        \\ фиксы расположения 
+        \\ теперь AppHeader подгрузажается через CB а не через AppLayout 
+        \\ пофиксил скрытие димера при клике в сайдбар меню 
+        \\ front-core@1.4.13
+    - chore(*) patch version: 1.5.5
+    - bug(cb, Input) - семантиковский инпут пока не работает с CoreInput html5 errors (какой-то хендлер не отрабатыват) + css классы очень массивны, поэтому убрал его пока
+    - bug(auth) - front-core@1.4.12 
+        \\ при логауте не учитывался contextPath
+    - chore(*) patch version: 1.5.4
+    - feat(Modal) - front-core@1.4.11 
+        \\ отключил подалку, пока используем коровскую, а эту нужно допиливать
+    - chore(*) patch version: 1.5.3
+    - feat(css) - front-core@1.4.10 
+        \\ подправил стили
+    - chore(*) patch version: 1.5.2
+    - feat(css) - добавил подключение проектных глобальных css переменных из var.js
+    - feat(componentsBase) - компоннеты инициализируются в ClientRunner:initComponents
+    - chore(*) patch version: 1.5.1
+    - feat(frontCore, componentsBase) - переезд на front-core@1.4.4 
+        \\ добавил в компоненты CB 
+        \\ пофиксил авторизацию
+    - chore(*) minor version: 1.5.0
+    - feat(modal) - для модели можно задать modalProps.closeOnEscape(true) \ closeOnDimmerClick(true) \ closeOnDocumentClick(false)
 
 ## [1.4.0-1.4.7]
 ### !!! Breaking changes:

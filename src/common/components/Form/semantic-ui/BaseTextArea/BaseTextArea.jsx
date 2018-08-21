@@ -7,13 +7,16 @@ import {
 
 export default class BaseTextArea extends PureComponent {
   render() {
-    // @todo @Panin почему-то textarea в semantic-ui стилизован только через обертку .ui.form
+    const {
+      touched,
+      ...otherProps
+    } = this.props;
+
+    // убирем лишнюю стилизацию от семантика
     return (
-      <div className="ui form">
-        <SemanticTextArea
-          { ...this.props }
-        />
-      </div>
+      <SemanticTextArea
+        { ...otherProps }
+      />
     );
   }
 }

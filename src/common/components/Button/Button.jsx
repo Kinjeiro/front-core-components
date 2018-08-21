@@ -8,10 +8,12 @@ import './Button.scss';
 
 export default class Button extends PureComponent {
   static propTypes = {
+    ...ButtonSemantic.propTypes,
     simple: PropTypes.bool,
   };
 
   static defaultProps = {
+    type: 'button',
   };
 
   // ======================================================

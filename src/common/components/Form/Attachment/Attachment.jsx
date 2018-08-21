@@ -3,19 +3,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import bind from 'lodash-decorators/bind';
-import {
-  Icon,
-  Input,
-  Button,
-} from 'semantic-ui-react';
 
-import { generateId } from '@reagentum/front-core/lib/common/utils/common';
+import {
+  generateId,
+  wrapToArray,
+  valueFromRange,
+} from '@reagentum/front-core/lib/common/utils/common';
+import CONSTRAINTS_PROP_TYPE from '@reagentum/front-core/lib/common/models/model-constraints';
 
 import i18n from '../../../utils/i18n';
 
-import ErrorLabel from '../ErrorLabel/ErrorLabel';
+import getComponents from '../../../get-components';
 
-import './Attachment.scss';
+const {
+  Icon,
+  BaseInput: Input,
+  Button,
+  ErrorLabel,
+} = getComponents();
+
+require('./Attachment.scss');
+
+export const DEFAULT_MULTIPLE_MAX_SIZE = 10;
+export const DEFAULT_MAX_BYTES = 10485760; // 10Mb
 
 export default class Attachment extends React.Component {
   static propTypes = {
@@ -28,6 +38,15 @@ export default class Attachment extends React.Component {
     readOnly: PropTypes.bool,
     editable: PropTypes.bool,
     multiple: PropTypes.bool,
+    constraints: CONSTRAINTS_PROP_TYPE,
+    /**
+     https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+     accept="image/png" or accept=".png" — Accepts PNG files.
+     accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
+     accept="image/*" — Accept any file with an image/* MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
+     accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    */
+    accept: PropTypes.string,
 
     value: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.oneOfType([
@@ -40,6 +59,7 @@ export default class Attachment extends React.Component {
       uploadedOn: PropTypes.any,
       size: PropTypes.number,
       type: PropTypes.string,
+      loaded: PropTypes.number,
     })),
 
     parseValue: PropTypes.func,
@@ -78,6 +98,10 @@ export default class Attachment extends React.Component {
     // onDragLeave: PropTypes.func,
     // onFileDialogCancel: PropTypes.func,
     // ...Dropzone.propTypes,
+    /**
+     * https://react-dropzone.netlify.com/#proptypes
+      maxSize
+     */
     dropZoneProps: PropTypes.shape(Dropzone.propTypes),
 
     showAddButton: PropTypes.bool,
@@ -95,6 +119,9 @@ export default class Attachment extends React.Component {
 
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
+
+    onErrors: PropTypes.func,
+    onWarnings: PropTypes.func,
   };
 
   static defaultProps = {
@@ -135,11 +162,7 @@ export default class Attachment extends React.Component {
       value,
     } = this.props;
 
-    return Array.isArray(value)
-      ? value
-      : value
-        ? [value]
-        : [];
+    return wrapToArray(value);
   }
 
   // addPreview(fileName, previewData) {
@@ -152,6 +175,9 @@ export default class Attachment extends React.Component {
   // }
 
   parseValueFromFile(file) {
+    const {
+      parseValue,
+    } = this.props;
     /*
      FILE: {
        lastModified: 1463127849264,
@@ -164,20 +190,33 @@ export default class Attachment extends React.Component {
      }
      */
 
+    const {
+      name,
+      size,
+      type,
+      preview,
+    } = file;
+
     return {
       // service info
       uuid: generateId(),
-      file,
+      // // File нельзя хранить в редуксе - лучше мапу возращать uuid: File
+      // file,
       isNew: true,
+      loaded: 0,
+      total: 0,
+      isLoaded: false,
 
       // common info
       id: null,
-      fileName: file.name,
-      preview: null,
+      fileName: name,
+      preview,
       description: null,
       uploadedOn: null,
-      size: file.size,
-      type: file.type,
+      size,
+      type,
+
+      ...(parseValue ? parseValue(file) : {}),
     };
   }
 
@@ -209,9 +248,16 @@ export default class Attachment extends React.Component {
   handleDropOrClick(acceptedFiles, rejectedFiles, event) {
     const {
       usePreview,
-      parseValue,
       onAdd,
+      constraints: {
+        multipleMaxSize = DEFAULT_MULTIPLE_MAX_SIZE,
+        maxBytes = DEFAULT_MAX_BYTES,
+        minBytes,
+      } = {},
+      onWarnings,
     } = this.props;
+
+    const values = this.getValues();
 
     let addedFiles;
     if (event.type === 'drop') {
@@ -225,6 +271,38 @@ export default class Attachment extends React.Component {
       addedFiles = [...event.target.files];
     } else {
       addedFiles = event;
+    }
+
+    const newAmount = values.length + acceptedFiles.length;
+
+    const warnings = [];
+    if (typeof multipleMaxSize !== 'undefined' && newAmount > multipleMaxSize) {
+      // eslint-disable-next-line no-param-reassign
+      addedFiles = addedFiles.slice(0, multipleMaxSize - values.length);
+      // todo @ANKU @LOW - @i18n @@
+      warnings.push(`Несколько файлов не были добавлены, так как превыше лимит файлов ${multipleMaxSize}.`);
+    }
+    if (typeof maxBytes !== 'undefined') {
+      const filteredFiles = addedFiles.filter(({ size }) => size <= maxBytes);
+      // eslint-disable-next-line no-param-reassign
+      if (addedFiles.length !== filteredFiles.length) {
+        // todo @ANKU @LOW - @i18n @@
+        warnings.push(`Несколько файлов не были добавлены, так как превыше лимит размера файлов ${parseInt(maxBytes / 1000, 10)} кБ.`);
+        addedFiles = filteredFiles;
+      }
+    }
+    if (typeof minBytes !== 'undefined') {
+      const filteredFiles = addedFiles.filter(({ size }) => size >= minBytes);
+      // eslint-disable-next-line no-param-reassign
+      if (addedFiles.length !== filteredFiles.length) {
+        // todo @ANKU @LOW - @i18n @@
+        warnings.push(`Несколько файлов не были добавлены, так как размер файлов меньше минимального ${parseInt(minBytes / 1000, 10)} кБ.`);
+        addedFiles = filteredFiles;
+      }
+    }
+    if (warnings.length) {
+      // чтобы сработало после onChange, ибо по нему очищается
+      window.setTimeout(() => onWarnings(warnings, true), 10);
     }
 
     if (usePreview) {
@@ -245,10 +323,14 @@ export default class Attachment extends React.Component {
       });
     }
 
-    const newAttachments = addedFiles.map((file) => (parseValue
-      ? parseValue(file)
-      : this.parseValueFromFile(file)
-    ));
+    // todo @ANKU @LOW - мапа не очень подходит ибо важна последовательность выбора в FileChooser
+    const newFilesMap = {};
+    const newAttachments = addedFiles.map((file) => {
+      const newAttach = this.parseValueFromFile(file);
+
+      newFilesMap[newAttach.uuid] = file;
+      return newAttach;
+    });
 
     const resultAttachments = [
       ...this.getValues(),
@@ -256,9 +338,9 @@ export default class Attachment extends React.Component {
     ];
 
     if (onAdd) {
-      onAdd(addedFiles, resultAttachments, newAttachments);
+      onAdd(newFilesMap, newAttachments, resultAttachments);
     }
-    this.update(resultAttachments, newAttachments, addedFiles);
+    this.update(resultAttachments, newAttachments, newFilesMap);
   }
 
   @bind()
@@ -355,11 +437,16 @@ export default class Attachment extends React.Component {
     } = this.state;
 
     const {
+      isNew,
+      loaded,
+
       id,
       fileName,
       preview,
       description,
     } = attach;
+
+    const progress = isNew ? valueFromRange(loaded, [0, 25, 50, 75, 100]) : null;
 
     const finalPreview = tempPreviews[fileName] || propsPreviews[fileName] || preview;
 
@@ -367,7 +454,7 @@ export default class Attachment extends React.Component {
     return (
       <div
         key={ id || fileName }
-        className="Attachment__AttachInfo AttachInfo"
+        className={ `Attachment__AttachInfo AttachInfo ${progress !== null ? `AttachInfo--loaded${progress}` : ''}` }
       >
         {
           withDescriptions && (
@@ -420,15 +507,8 @@ export default class Attachment extends React.Component {
   render() {
     const {
       label,
-      actions,
-
-      onBlur,
-      onChange,
       meta,
-      usePreview,
-      previews,
       dropzoneText,
-      options,
       className = '',
       readOnly,
       editable,
@@ -437,6 +517,12 @@ export default class Attachment extends React.Component {
 
       dropZoneProps = {},
 
+      constraints: {
+        maxBytes = DEFAULT_MAX_BYTES,
+        minBytes,
+        multipleMaxSize = DEFAULT_MULTIPLE_MAX_SIZE,
+      } = {},
+      accept,
       showAddButton,
       addButtonText,
     } = this.props;
@@ -468,15 +554,19 @@ export default class Attachment extends React.Component {
             ),
           ]
           : (
-            <div>
+            <React.Fragment>
               <Dropzone
                 ref={ (node) => { this.dropzoneRef = node; } }
                 className="Attachment__dropzone"
                 activeClassName="Attachment__dropzone--active"
-                onDrop={ this.handleDropOrClick }
                 disabled={ readOnly || !editable }
                 multiple={ multiple }
                 disableClick={ true }
+                maxSize={ maxBytes }
+                minSize={ minBytes }
+                accept={ accept }
+
+                onDrop={ this.handleDropOrClick }
                 { ...dropZoneProps }
               >
                 <div className="Attachment__dropzoneBackground">
@@ -494,22 +584,22 @@ export default class Attachment extends React.Component {
                     { selectedFiles.map((fileInfo) => this.renderAttach(fileInfo)) }
                   </div>
                 )}
+
+                { editable && showAddButton && (!multipleMaxSize || selectedFiles.length < multipleMaxSize) && (
+                  <div className="Attachment__actions">
+                    <Button
+                      className="Attachment__addButton"
+                      onClick={ () => { this.dropzoneRef.open(); } }
+                      disabled={ readOnly }
+                    >
+                      { addButtonText }
+                    </Button>
+                  </div>
+                )}
               </Dropzone>
 
-              { editable && showAddButton && (
-                <div className="Attachment__actions">
-                  <Button
-                    className="Attachment__addButton"
-                    onClick={ () => { this.dropzoneRef.open(); } }
-                    disabled={ readOnly }
-                  >
-                    { addButtonText }
-                  </Button>
-                </div>
-              )}
-
               <ErrorLabel { ...meta } />
-            </div>
+            </React.Fragment>
           )
         }
       </div>
