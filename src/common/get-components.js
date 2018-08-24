@@ -3,7 +3,7 @@ let CB = null;
 export function initComponents(COMPONENTS_BASE) {
   require('./app-styles/init.scss');
 
-  COMPONENTS_BASE.replace('Button', () => require('./components/Button/Button').default);
+  COMPONENTS_BASE.replace('BaseButton', () => require('./components/Button/Button').default);
   COMPONENTS_BASE.replace('AppHeader', () => require('./components/AppHeader/AppHeader').default);
   COMPONENTS_BASE.replace('Loading', () => require('./components/Loading/Loading').default);
   // todo @ANKU @LOW - подправить стили модалки, коравская более красивая на flex
