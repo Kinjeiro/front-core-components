@@ -17,7 +17,16 @@
     & > * {
       padding-left: 1rem;
       padding-right: 1rem;
+
+      @include respond-to('sm') {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
       @include respond-to('md') {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+      @include respond-to('lg') {
         padding-left: $content-offset;
         padding-right: $content-offset;
       }
