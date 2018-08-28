@@ -21,7 +21,10 @@ import {
 
 import './AppHeader.scss';
 
-const { Link } = getComponents();
+const {
+  Link,
+  UserAvatar,
+} = getComponents();
 
 export default class AppHeader extends PureComponent {
   static propTypes = {
@@ -243,29 +246,13 @@ export default class AppHeader extends PureComponent {
       const {
         displayName,
         username,
-        profileImageURI,
       } = userInfo;
 
       const displayNameFinal = displayName || username;
 
       userCmp = (
         <React.Fragment>
-          {
-            (profileImageURI || typeof profileTempImage === 'string')
-            ? (
-              <Image
-                className="UserName__avatar"
-                src={ profileImageURI || profileTempImage }
-                avatar={ true }
-              />
-            )
-            : profileTempImage || (
-              <Icon
-                className="UserName__icon user-icon"
-                name="user outline"
-              />
-            )
-          }
+          <UserAvatar username={ username } />
           {
             displayNameFinal && (
               <span className="UserName__displayName">
