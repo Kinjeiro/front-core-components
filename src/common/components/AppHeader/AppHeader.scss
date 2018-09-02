@@ -103,6 +103,12 @@
     .ui.dropdown > .dropdown.icon {
       margin-left: 5px;
     }
+
+    .Link {
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .UserPart {
@@ -116,6 +122,8 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
+      height: 2em;
+      width: 2em;
     }
 
     // todo @ANKU @LOW - pointing="top right" - при наведении показывается, но при этом из-за расстояния из-за поинтинга вниз ведешь и тут же скрывается, держится только по клику

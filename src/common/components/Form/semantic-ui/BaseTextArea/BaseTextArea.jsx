@@ -8,6 +8,7 @@ import {
 export default class BaseTextArea extends PureComponent {
   render() {
     const {
+      className,
       touched,
       ...otherProps
     } = this.props;
@@ -16,6 +17,7 @@ export default class BaseTextArea extends PureComponent {
     return (
       <SemanticTextArea
         { ...otherProps }
+        className={ `BaseTextArea ${className || ''}` }
       />
     );
   }
