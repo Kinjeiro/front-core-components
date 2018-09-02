@@ -7,7 +7,7 @@ const PROCESS_PATH = process.cwd();
 const CURRENT_FILE_PATH = __dirname;
 
 // const useFromFrontCore = CURRENT_FILE_PATH.indexOf('node_modules') < 0;
-const useFromFrontCoreComponents = CURRENT_FILE_PATH.indexOf(pathJoin(PROCESS_PATH, 'src')) >= 0;
+const useFromFrontCoreComponents = CURRENT_FILE_PATH.indexOf(pathJoin(PROCESS_PATH, 'build-scripts')) >= 0;
 
 
 function inFrontCoreComponentsProject(...args) {
