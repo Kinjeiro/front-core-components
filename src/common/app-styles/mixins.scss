@@ -63,3 +63,9 @@ $xl: 1200px; // Extra large screen / wide desktop
     };
   }
 }
+
+@mixin disableLink() {
+  pointer-events: none; /* ie11+ support */
+  cursor: default;
+  opacity: 0.5;
+}
