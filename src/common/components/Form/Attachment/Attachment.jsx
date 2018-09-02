@@ -8,6 +8,7 @@ import {
   generateId,
   wrapToArray,
   valueFromRange,
+  executeVariable,
 } from '@reagentum/front-core/lib/common/utils/common';
 import CONSTRAINTS_PROP_TYPE from '@reagentum/front-core/lib/common/models/model-constraints';
 
@@ -30,6 +31,13 @@ export const DEFAULT_MAX_BYTES = 10485760; // 10Mb
 export default class Attachment extends React.Component {
   static propTypes = {
     label: PropTypes.node,
+    /**
+     * Если функция - (onOpenDialog, props, state) => Node
+     */
+    children: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.func,
+    ]),
     usePreview: PropTypes.bool,
     previews: PropTypes.object,
     actions: PropTypes.node,
@@ -245,6 +253,11 @@ export default class Attachment extends React.Component {
   // HANDLERS
   // ======================================================
   @bind()
+  handleOpenLoadDialog() {
+    this.dropzoneRef.open();
+  }
+
+  @bind()
   handleDropOrClick(acceptedFiles, rejectedFiles, event) {
     const {
       usePreview,
@@ -255,6 +268,7 @@ export default class Attachment extends React.Component {
         minBytes,
       } = {},
       onWarnings,
+      multiple,
     } = this.props;
 
     const values = this.getValues();
@@ -338,7 +352,7 @@ export default class Attachment extends React.Component {
     ];
 
     if (onAdd) {
-      onAdd(newFilesMap, newAttachments, resultAttachments);
+      onAdd(multiple ? newFilesMap : addedFiles[0], newAttachments, resultAttachments);
     }
     this.update(resultAttachments, newAttachments, newFilesMap);
   }
@@ -525,6 +539,7 @@ export default class Attachment extends React.Component {
       accept,
       showAddButton,
       addButtonText,
+      children,
     } = this.props;
 
     // FileList
@@ -569,15 +584,23 @@ export default class Attachment extends React.Component {
                 onDrop={ this.handleDropOrClick }
                 { ...dropZoneProps }
               >
-                <div className="Attachment__dropzoneBackground">
-                  <p className="dropzoneBackground__text">
-                    { dropzoneText }
-                  </p>
-                </div>
+                {
+                  dropzoneText && (
+                    <div className="Attachment__dropzoneBackground">
+                      <p className="dropzoneBackground__text">
+                        { dropzoneText }
+                      </p>
+                    </div>
+                  )
+                }
 
-                <div className="Attachment__label">
-                  {label}
-                </div>
+                {
+                  label && (
+                    <div className="Attachment__label">
+                      {label}
+                    </div>
+                  )
+                }
 
                 {selectedFiles && (
                   <div className="Attachment__attaches">
@@ -589,13 +612,23 @@ export default class Attachment extends React.Component {
                   <div className="Attachment__actions">
                     <Button
                       className="Attachment__addButton"
-                      onClick={ () => { this.dropzoneRef.open(); } }
+                      onClick={ this.handleOpenLoadDialog }
                       disabled={ readOnly }
                     >
                       { addButtonText }
                     </Button>
                   </div>
                 )}
+
+                {
+                  executeVariable(
+                    children,
+                    null,
+                    this.handleOpenLoadDialog,
+                    this.props,
+                    this.state,
+                  )
+                }
               </Dropzone>
 
               <ErrorLabel { ...meta } />
