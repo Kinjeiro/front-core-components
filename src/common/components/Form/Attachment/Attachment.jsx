@@ -13,6 +13,10 @@ import {
 import CONSTRAINTS_PROP_TYPE from '@reagentum/front-core/lib/common/models/model-constraints';
 
 import i18n from '../../../utils/i18n';
+import {
+  normalizeAttachment,
+  ATTACHMENT_PROP_TYPE,
+} from '../../../models/model-attachment';
 
 import getComponents from '../../../get-components';
 
@@ -56,19 +60,12 @@ export default class Attachment extends React.Component {
     */
     accept: PropTypes.string,
 
-    value: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-      fileName: PropTypes.string.isRequired,
-      preview: PropTypes.string,
-      description: PropTypes.string,
-      uploadedOn: PropTypes.any,
-      size: PropTypes.number,
-      type: PropTypes.string,
-      loaded: PropTypes.number,
-    })),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+      ATTACHMENT_PROP_TYPE,
+      PropTypes.arrayOf(ATTACHMENT_PROP_TYPE),
+    ]),
 
     parseValue: PropTypes.func,
 
@@ -144,13 +141,17 @@ export default class Attachment extends React.Component {
     addButtonText: i18n('components.Attachment.addButton'),
   };
 
+  static normalizeValue(value) {
+    return normalizeAttachment(value);
+  }
+
   static parseValueToString(value) {
     const {
       id,
       fileName,
       // preview,
       // description,
-    } = value;
+    } = Attachment.normalizeValue(value);
 
     return fileName || id;
   }
@@ -170,7 +171,7 @@ export default class Attachment extends React.Component {
       value,
     } = this.props;
 
-    return wrapToArray(value);
+    return wrapToArray(Attachment.normalizeValue(value));
   }
 
   // addPreview(fileName, previewData) {
