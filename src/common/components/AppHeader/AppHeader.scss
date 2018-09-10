@@ -122,18 +122,32 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
-      height: 2em;
-      width: 2em;
+      //height: 2em;
+      //width: 2em;
     }
 
     // todo @ANKU @LOW - pointing="top right" - при наведении показывается, но при этом из-за расстояния из-за поинтинга вниз ведешь и тут же скрывается, держится только по клику
     .ui.top.right.pointing.dropdown > .menu {
       margin-top: 0.1em;
-      right: -1em;
+      //right: -1em;
+      //left: 0;
+      right: -0.5rem;
+      width: calc(100% + 0.5em);
+    }
+    .ui.top.pointing.dropdown > .left.menu:after,
+    .ui.top.right.pointing.dropdown > .menu:after {
+      // todo @ANKU @LOW - @BUG_OUT @semantic - используют important
+      right: 0.5rem !important;
     }
     //.ui.top.left.pointing.dropdown > .menu:after {
     //
     //}
+  }
+
+  .UserName {
+    &__displayName {
+      margin-left: 0.5em;
+    }
   }
   // ======================================================
   // RightPart

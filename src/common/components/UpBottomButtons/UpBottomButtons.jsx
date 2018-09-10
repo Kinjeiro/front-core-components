@@ -67,12 +67,15 @@ export default class UpBottomButtons extends Component {
   @bind()
   handleScroll(event) {
     const {
-      target: {
-        scrollHeight,
-        scrollTop,
-      },
+      target,
     } = event;
-    const { clientHeight } = this.scrollContainerEl;
+    const targetFinal = target === document ? document.documentElement : target;
+    const {
+      scrollHeight,
+      scrollTop,
+    } = targetFinal;
+
+    const { clientHeight } = this.scrollContainerEl === document ? document.documentElement : this.scrollContainerEl || targetFinal;
 
     const updatedState = {};
     if (scrollTop > scrollHeight / 3) {

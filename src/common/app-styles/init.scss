@@ -1,3 +1,11 @@
 @import '~semantic-ui-css/semantic.css';
 
 @import '~react-redux-toastr/src/styles/index.scss';
+
+html {
+  font-family: "Roboto Regular", Roboto, serif;
+}
+
+body {
+  overflow: visible;
+}

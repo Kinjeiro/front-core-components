@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 1. Переход на front-core@1.4.x
 2. Attachment - file больше не кладется в attachment-value, мапа файлов передается в первом параметре onAdd(newFilesMap, newAttachments, resultAttachments) 
    Первый параметр теперь не массив файлов, а мапа uuid: File 
-3. Attachment - дефолтные значения constraints maxBytes=10mb, multipleMaxSize=10 
+3. Attachment - дефолтные значения constraints maxBytes=10mb, multipleMaxSize=10
+4. Почистил AppLayout - убрал эти доисторический fartuna-main. Вывел скроллинг на body (чтобы в мобилах он смог исчезать). Поэтому проверьте еще раз стили
 
 ### Features:
 

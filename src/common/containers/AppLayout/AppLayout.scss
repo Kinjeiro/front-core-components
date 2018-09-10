@@ -4,15 +4,37 @@
 // Application's layout
 
 .AppLayout {
-  color: #333;
-  background-color: #f7f7f7;
-  // todo @ANKU @LOW - шрифты подправить
-  font-family: "Roboto Regular", Roboto;
+  display: flex;
+  position: relative;
+
   width: 100%;
-  height: 100%;
+  // если меньши ширины экрана - чтобы растягивалось и давала возможность указать футер
+  min-height: 100%;
+  height: auto;
+  overflow: visible;
+
+  color: $color-default-text;
+  background-color: $color-default-background;
+
+  &.pushable {
+    transform: none;
+
+    & > .pusher {
+      overflow: visible;
+    }
+
+    //& > .fixed,
+    //& > .pusher:after
+    & > .ui.sidebar {
+      position: fixed;
+    }
+  }
 
   &__inner {
-    height: 100%;
+    flex: auto;
+    //height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
 
     & > * {
       padding-left: 1rem;
@@ -35,6 +57,7 @@
 
   &__header {
     width: 100%;
+    background-color: $color-default-background;
 
     max-height: $header-size-sm;
     @include respond-to('md') {
@@ -42,8 +65,8 @@
     }
 
     padding-top: 1rem;
+    padding-bottom: 1rem;
     position: fixed;
-    z-index: 444;
   }
 
   &__content {
@@ -52,143 +75,6 @@
     padding-top: #{$header-size-sm + $height-tabs-menu-sm};
     @include respond-to('md') {
       padding-top: #{$header-size + $height-tabs-menu};
-    }
-
-    .fartuna {
-      height: 100%;
-      margin-top: 1rem;
-    }
-
-    .fartuna-main {
-      overflow: auto;
-      height: 100%;
-    }
-    .fartuna-main.with-nav {
-      height: calc(100% - 50px);
-    }
-
-    .ui.dimmer .ui.loader {
-      color: #00dddd;
-    }
-    .ui.segment.dimmable {
-      padding: 0;
-      border: 0;
-    }
-
-    // patch Semantic-UI .pusher
-    .pusher {
-      height: 100%;
-
-      & > .segment {
-        padding: 0;
-      }
-    }
-    .dimmable {
-      height: 100%;
-      /*    overflow: scroll;*/
-      cursor: pointer;
-    }
-
-    .main-show-flex {
-      padding-bottom: 84px;
-      //flex-direction: column;
-      min-height: 100%;
-      height: 100%;
-
-      .main-content {
-        display: flex;
-        flex-grow: 1;
-        min-height: 100%;
-        height: 100%;
-
-        .main-show {
-          -webkit-animation: fadein 197ms;
-          -moz-animation: fadein 197ms;
-          animation: fadein 197ms;
-          display: block;
-        }
-        .ui.container {
-          height: 100%;
-
-          @include respond-to('xs') {
-            // margin - just to fill exmpty space
-            margin: 0 auto !important;
-          }
-          @include respond-to('sm', 'xs') {
-            width: 100% !important;
-          }
-          .ui.button, .ui.icon {
-            @include respond-to('xs') {
-              font-size: 0.857rem;
-            }
-          }
-          h3.ui.header {
-            .ui.image {
-              font-size: 1rem;
-              @include respond-to('sm') {
-                font-size: 1.1rem;
-              }
-              @include respond-to('lg') {
-                font-size: 1.2rem;
-              }
-            }
-          }
-        }
-      }
-
-      .main-content-dimmer {
-        background-color: #fbfbfb;
-      }
-    }
-
-    // limit max-width of the .pusher class -> main is limited too
-    .ui.visible.thin.left.sidebar ~ .pusher {
-      @include respond-to('lg') {
-        max-width: calc(100% - #{$sidebar-size});
-        -webkit-transform: translate3d(#{$sidebar-size}, 0, 0);
-        transform: translate3d(#{$sidebar-size}px, 0, 0);
-      }
-      @include respond-to('only-sm', 'only-md', 'xs') {
-        overflow: hidden;
-      }
-    }
-
-    .fartuna-navigation {
-      position: fixed;
-      width: 100%;
-      z-index: 100;
-
-      height: $height-tabs-menu;
-
-      background: #fff;
-      border-bottom: 1px solid #dbe2e8;
-      box-shadow: inset 0 0 0 0 #dbe2e8, 0 2px 1px 0 rgba(47, 61, 73, 0.05);
-
-      .ui.buttons {
-        width: 100%;
-      }
-      .ui.button {
-        padding: 0;
-      }
-
-      button {
-        color: #000;
-        background: $color_grey;
-        border-radius: 0;
-        opacity: 0.6;
-      }
-      .active {
-        color: #fff;
-        //box-shadow: inset 0 0 0 0 $color_blue, 0 1px 0px 0 $color_blue;
-        background: $color_primary;
-        opacity: 1;
-      }
-      /*    button:not(:nth-child(1)){
-            border-left: 1px solid lightgray !important;
-          }*/
-      .ui.buttons {
-        height: 100%;
-      }
     }
   }
 
@@ -215,10 +101,10 @@
     */
 
     &.pushable {
-      &:not(body) {
-        //transform: translate3d(0, 0, 0);
-        transform: none;
-      }
+      //&:not(body) {
+      //  //transform: translate3d(0, 0, 0);
+      //  transform: none;
+      //}
 
       & > .pusher {
         //-webkit-backface-visibility: hidden;
@@ -231,14 +117,23 @@
     }
   }
 
-  & > .Segment.ui {
-    height: 100%;
 
-    & > .ui.segment {
-      min-height: 100%;
-      padding: 0;
-      border: none;
-      border-radius: 0;
-    }
+  // ======================================================
+  // z-index
+  // ======================================================
+  &.pushable > .pusher {
+    z-index: auto;
+  }
+  .ui.overlay.sidebar {
+    z-index: $z-sidebar;
+  }
+  .ui.dimmer {
+    z-index: $z-dimer;
+  }
+  .UpBottomButtons {
+    z-index: $z-UpBottomButtons;
+  }
+  .AppLayout__header {
+    z-index: $z-AppHeader;
   }
 }

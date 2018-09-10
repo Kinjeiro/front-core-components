@@ -90,6 +90,8 @@ export default class AppLayout extends Component {
       PropTypes.bool,
     ]),
 
+    footer: PropTypes.node,
+
     // ======================================================
     // CONNECT
     // ======================================================
@@ -195,7 +197,9 @@ export default class AppLayout extends Component {
     } = this.props;
 
     actionUserLogout()
-      .then(() => window.location = appUrl(PATH_INDEX));
+      .then(() => {
+        window.location = appUrl(PATH_INDEX);
+      });
   }
 
   // ======================================================
@@ -224,6 +228,7 @@ export default class AppLayout extends Component {
                 {
                   (contextProps) => (
                     <AppHeader
+                      className={ `AppLayout__header ${headerProps.className || ''}` }
                       userInfo={ user }
                       userMenu={ this.getUserMenu(isMobile) }
                       onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
@@ -231,9 +236,6 @@ export default class AppLayout extends Component {
                       onLogin={ () => goTo(PATH_LOGIN_PAGE) }
 
                       { ...headerProps }
-
-                      className={ `AppLayout__header ${headerProps.className || ''}` }
-
                       { ...contextProps }
                     />
                   )
@@ -246,45 +248,19 @@ export default class AppLayout extends Component {
     );
   }
   renderContent() {
-    const {
-      upBottomButtonsProps,
-    } = this.props;
-    const {
-      sidebarOpened,
-    } = this.state;
-
-    // todo @ANKU @LOW - убрать fartuna fartuna-main и сделать нормально на grid
     return (
       <div className="AppLayout__content">
-        <div className="fartuna">
-          <div className="fartuna-main">
-            {
-              (upBottomButtonsProps !== false && upBottomButtonsProps !== null) && (
-                <UpBottomButtons
-                  { ...(upBottomButtonsProps || {}) }
-                />
-              )
-            }
-
-            <div className="main-show-flex">
-              {
-                /* Semantic ui currently(16.04.16) doesn't have closeDimmerOnClick or smth else
-                 So, instead of it, we can use simple <Dimmer> component */
-                sidebarOpened && (
-                  <Dimmer
-                    active={ true }
-                    onClick={ this.handleCloseSidebar }
-                  />
-                )
-              }
-              <div className="main-content">
-                <Container className="main-show">
-                  { this.renderChildren() }
-                </Container>
-              </div>
-            </div>
-          </div>
-        </div>
+        { this.renderChildren() }
+      </div>
+    );
+  }
+  renderFooter() {
+    const {
+      footer,
+    } = this.props;
+    return footer && (
+      <div className="AppLayout__footer">
+        { footer }
       </div>
     );
   }
@@ -357,37 +333,52 @@ export default class AppLayout extends Component {
     const {
       className,
       headerProps,
+      upBottomButtonsProps,
     } = this.props;
+    const {
+      sidebarOpened,
+    } = this.state;
 
     return (
       <ContextHeaderProvider headerProps={ headerProps }>
-        <div className={ `AppLayout ${className || ''}` }>
-          <MediaQuery mobile={ true }>
-            {
-              (matches) => {
-                const isMobile = matches;
-                const menu = this.getSidebarMenu(isMobile);
+        <MediaQuery mobile={ true }>
+          {
+            (matches) => {
+              const isMobile = matches;
+              const menu = this.getSidebarMenu(isMobile);
 
-                // todo @ANKU @LOW - можно наверное меню сделать в виде портала чтобы работы с меню вынести в header
-                return (
-                  <Sidebar.Pushable
-                    as={ Segment }
-                    className={ isMobile ? '' : 'AppLayout__notMobile' }
-                  >
-                    { menu.length > 0 && this.renderMobileSidebarMenu(menu) }
+              // todo @ANKU @LOW - можно наверное меню сделать в виде портала чтобы работы с меню вынести в header
+              return (
+                <Sidebar.Pushable className={ `AppLayout ${className || ''} ${isMobile ? '' : 'AppLayout__notMobile'}` }>
+                  { menu.length > 0 && this.renderMobileSidebarMenu(menu) }
 
-                    <Sidebar.Pusher>
-                      <div className="AppLayout__inner">
-                        { this.renderHeader() }
-                        { this.renderContent() }
-                      </div>
-                    </Sidebar.Pusher>
-                  </Sidebar.Pushable>
-                );
-              }
+                  {
+                    (upBottomButtonsProps !== false && upBottomButtonsProps !== null) && (
+                      <UpBottomButtons
+                        { ...(upBottomButtonsProps || {}) }
+                      />
+                    )
+                  }
+                  <Sidebar.Pusher className="AppLayout__inner">
+                    {
+                      /* Semantic ui currently(16.04.16) doesn't have closeDimmerOnClick or smth else
+                       So, instead of it, we can use simple <Dimmer> component */
+                      sidebarOpened && (
+                        <Dimmer
+                          active={ true }
+                          onClick={ this.handleCloseSidebar }
+                        />
+                      )
+                    }
+                    { this.renderHeader() }
+                    { this.renderContent() }
+                    { this.renderFooter() }
+                  </Sidebar.Pusher>
+                </Sidebar.Pushable>
+              );
             }
-          </MediaQuery>
-        </div>
+          }
+        </MediaQuery>
       </ContextHeaderProvider>
     );
   }

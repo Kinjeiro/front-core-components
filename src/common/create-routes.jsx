@@ -77,6 +77,14 @@ export default function createRoutes(store) {
            textHeaderDescription="textHeaderDescription"
            textMenuLogout="textMenuLogout"
          */
+          upBottomButtonsProps={ true }
+          footer={ (
+            <React.Fragment>
+              <div>Test footer 1</div>
+              <div>Test footer 2</div>
+              <div>Test footer 3</div>
+            </React.Fragment>
+          ) }
         />
       ) }
     >

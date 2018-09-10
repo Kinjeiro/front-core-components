@@ -27,6 +27,19 @@ $color_red: #fb1f3f;
 // ======================================================
 // COLORS
 // ======================================================
+//$color-default-text: #000;
+$color-default-text: #333;
+//$color-default-background: #fff;
+$color-default-background: #f7f7f7;
+$color-text-description: lighten($color-default-text, 70%);
+$color-placeholder: lighten($color-default-text, 80%);
+$color-background-hover: lighten($color-default-text, 90%);
+
+$color-border: #98989A;
+$color-border-hover: #000;
+$color-border-menu: #98989A;
+
+
 $color-primary: $color_blue; // берется из vars.js
 $color-primary-text: $color_white;
 
@@ -39,9 +52,15 @@ $color_error_second: #DB2828;
 $color_warning_primary: #794B02;
 $color_warning_second: #F2C037;
 
-$color-border: #98989A;
-$color-border-hover: #000;
-$color-border-menu: #98989A;
+
+
+$color-error-text: #EF3E36;
+$color-error-background: transparent;
+$color-error-border: $color-error-text;
+
+$color-warn-text: #EAC435;
+$color-warn-background: transparent;
+$color-warn-border: $color-error-text;
 
 $color-hint: $color-gray-dark;
 
@@ -94,3 +113,13 @@ $content-offset: 10%;
     opacity: 1;
   }
 }
+
+// ======================================================
+// Z-INDEX
+// ======================================================
+$z-sidebar: 1001;
+$z-dimer: 1000;
+$z-UpBottomButtons: 100;
+$z-AppHeader: 100;
+
+
