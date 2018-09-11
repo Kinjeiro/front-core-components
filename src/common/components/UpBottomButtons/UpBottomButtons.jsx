@@ -61,6 +61,13 @@ export default class UpBottomButtons extends Component {
   }
 
   // ======================================================
+  // UTILS
+  // ======================================================
+  getScrollDom(event = null) {
+    return this.scrollContainerEl === document ? document.documentElement : this.scrollContainerEl || event.target || event;
+  }
+
+  // ======================================================
   // HANDLERS
   // ======================================================
   @debounce(100)
@@ -75,7 +82,7 @@ export default class UpBottomButtons extends Component {
       scrollTop,
     } = targetFinal;
 
-    const { clientHeight } = this.scrollContainerEl === document ? document.documentElement : this.scrollContainerEl || targetFinal;
+    const { clientHeight } = this.getScrollDom(targetFinal);
 
     const updatedState = {};
     if (scrollTop > scrollHeight / 3) {
@@ -95,13 +102,13 @@ export default class UpBottomButtons extends Component {
     // todo @ANKU @LOW @BUG_OUT @react-scroll - если элемент fixed то он неправильно находит парент скролл
     // Scroll.animateScroll.scrollToTop(this.elementEl);
     Scroll.animateScroll.scrollToTop({
-      container: this.scrollContainerEl,
+      container: this.getScrollDom(),
     });
   }
   @bind()
   handleToBottom() {
     Scroll.animateScroll.scrollToBottom({
-      container: this.scrollContainerEl,
+      container: this.getScrollDom(),
     });
   }
 
