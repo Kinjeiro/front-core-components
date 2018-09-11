@@ -82,6 +82,7 @@ export default class AppLayout extends Component {
     textMenuLogout: PropTypes.string,
 
     headerProps: PropTypes.shape(AppHeader.propTypes),
+    headerFixed: PropTypes.bool,
     sidebarProps: PropTypes.shape(Sidebar.propTypes),
 
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
@@ -105,6 +106,7 @@ export default class AppLayout extends Component {
   static defaultProps = {
     ifMobileMoveUserMenuToSidebar: true,
     headerProps: {},
+    headerFixed: true,
     textMenuLogout: i18n('pages.AppLayout.menu.logout'),
   };
 
@@ -228,7 +230,7 @@ export default class AppLayout extends Component {
                 {
                   (contextProps) => (
                     <AppHeader
-                      className={ `AppLayout__header ${headerProps.className || ''}` }
+                      className={ `AppLayout__header AppLayout__maxWidthItem ${headerProps.className || ''}` }
                       userInfo={ user }
                       userMenu={ this.getUserMenu(isMobile) }
                       onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
@@ -249,7 +251,7 @@ export default class AppLayout extends Component {
   }
   renderContent() {
     return (
-      <div className="AppLayout__content">
+      <div className="AppLayout__content AppLayout__maxWidthItem">
         { this.renderChildren() }
       </div>
     );
@@ -259,7 +261,7 @@ export default class AppLayout extends Component {
       footer,
     } = this.props;
     return footer && (
-      <div className="AppLayout__footer">
+      <div className="AppLayout__footer AppLayout__maxWidthItem">
         { footer }
       </div>
     );
@@ -333,6 +335,7 @@ export default class AppLayout extends Component {
     const {
       className,
       headerProps,
+      headerFixed,
       upBottomButtonsProps,
     } = this.props;
     const {
@@ -349,7 +352,8 @@ export default class AppLayout extends Component {
 
               // todo @ANKU @LOW - можно наверное меню сделать в виде портала чтобы работы с меню вынести в header
               return (
-                <Sidebar.Pushable className={ `AppLayout ${className || ''} ${isMobile ? '' : 'AppLayout__notMobile'}` }>
+                <Sidebar.Pushable className={ `AppLayout ${className || ''} ${isMobile ? '' : 'AppLayout--notMobile'} ${headerFixed ? 'AppLayout--headerFixed' : ''}` }>
+
                   { menu.length > 0 && this.renderMobileSidebarMenu(menu) }
 
                   {
@@ -359,7 +363,7 @@ export default class AppLayout extends Component {
                       />
                     )
                   }
-                  <Sidebar.Pusher className="AppLayout__inner">
+                  <Sidebar.Pusher className="AppLayout__pusher">
                     {
                       /* Semantic ui currently(16.04.16) doesn't have closeDimmerOnClick or smth else
                        So, instead of it, we can use simple <Dimmer> component */
@@ -367,12 +371,25 @@ export default class AppLayout extends Component {
                         <Dimmer
                           active={ true }
                           onClick={ this.handleCloseSidebar }
+                          className="AppLayout__dimmer"
                         />
                       )
                     }
-                    { this.renderHeader() }
-                    { this.renderContent() }
-                    { this.renderFooter() }
+                    <div className="AppLayout__inner">
+                      <div className="AppLayout__headerFixedWrapper">
+                        <div className="AppLayout__headerFixed">
+                          <div className={ 'AppLayout__headerWrapper AppLayout__marginItem' }>
+                            { this.renderHeader() }
+                          </div>
+                        </div>
+                      </div>
+                      <div className={ 'AppLayout__contentWrapper AppLayout__marginItem' }>
+                        { this.renderContent() }
+                      </div>
+                      <div className={ 'AppLayout__footerWrapper AppLayout__marginItem' }>
+                        { this.renderFooter() }
+                      </div>
+                    </div>
                   </Sidebar.Pusher>
                 </Sidebar.Pushable>
               );
