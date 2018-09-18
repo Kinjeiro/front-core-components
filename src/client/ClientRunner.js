@@ -12,9 +12,12 @@ export default class ClientRunner extends ParentClientRunner {
     return initComponents(COMPONENTS_BASE);
   }
 
-  getRoutes(store) {
-    const moduleCreateRoutes = require('../common/create-routes').default;
-    return moduleCreateRoutes(store);
+  getProjectLayoutComponent() {
+    return this.getComponents().TestLayout;
+  }
+
+  getIndexRoute() {
+    return this.getComponents().TestPage;
   }
 
   hotReloadListeners() {
