@@ -6,48 +6,50 @@
 -   [onToggleSidebar][2]
 -   [logo][3]
 -   [userMenu][4]
--   [profileUrl][5]
--   [className][6]
--   [children][7]
--   [accept][8]
--   [dropZoneProps][9]
--   [Attachment][10]
--   [update][11]
+-   [userMenu][5]
+-   [profileUrl][6]
+-   [className][7]
+-   [children][8]
+-   [accept][9]
+-   [dropZoneProps][10]
+-   [Attachment][11]
 -   [update][12]
--   [Loading][13]
+-   [update][13]
 -   [Loading][14]
--   [Modal][15]
--   [UpBottomButtons][16]
--   [ScrollNavigation][17]
--   [TwoColumnMobileRow][18]
+-   [Loading][15]
+-   [Modal][16]
+-   [UpBottomButtons][17]
+-   [ScrollNavigation][18]
 -   [TwoColumnMobileRow][19]
--   [Tabs][20]
--   [Segment][21]
--   [KeyValueList][22]
--   [Select][23]
--   [ToggledAddData][24]
--   [UniTable][25]
+-   [TwoColumnMobileRow][20]
+-   [Tabs][21]
+-   [Segment][22]
+-   [KeyValueList][23]
+-   [Select][24]
+-   [ToggledAddData][25]
 -   [UniTable][26]
--   [Notice][27]
--   [modalProps][28]
--   [scrollingOwn][29]
--   [useUpBottomButtons][30]
--   [content][31]
--   [isShow][32]
--   [indexPath][33]
--   [onSelect][34]
--   [onSelectPage][35]
--   [onSelectAll][36]
--   [menu][37]
--   [decoratorContextHeader][38]
--   [render][39]
--   [linkTo][40]
--   [type][41]
--   [image][42]
--   [content][43]
--   [mobile][44]
--   [onClick][45]
--   [decoratorModal][46]
+-   [UniTable][27]
+-   [Notice][28]
+-   [modalProps][29]
+-   [scrollingOwn][30]
+-   [useUpBottomButtons][31]
+-   [content][32]
+-   [isShow][33]
+-   [indexPath][34]
+-   [onSelect][35]
+-   [onSelectPage][36]
+-   [onSelectAll][37]
+-   [menu][38]
+-   [sidebarMenu][39]
+-   [decoratorContextHeader][40]
+-   [render][41]
+-   [linkTo][42]
+-   [type][43]
+-   [image][44]
+-   [content][45]
+-   [mobile][46]
+-   [onClick][47]
+-   [decoratorModal][48]
 
 ## Navigation
 
@@ -65,11 +67,15 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][47]
+see [https://react.semantic-ui.com/modules/dropdown][49]
+
+## userMenu
+
+если функция (user, moduleToRoutePrefixMap) => \[]
 
 ## profileUrl
 
-(user) => {}
+(user, moduleToRoutePrefixMap) => {}
 
 ## className
 
@@ -84,7 +90,7 @@ see [https://react.semantic-ui.com/modules/dropdown][47]
 
 ## accept
 
-[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][48]
+[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][50]
 accept="image/png" or accept=".png" — Accepts PNG files.
 accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
 accept="image/_" — Accept any file with an image/_ MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
@@ -92,7 +98,7 @@ accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-office
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][49]
+[https://react-dropzone.netlify.com/#proptypes][51]
 maxSize
 
 ## Attachment
@@ -124,14 +130,14 @@ maxSize
 
 **Meta**
 
--   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
 
 ## Loading
 
 **Meta**
 
--   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+-   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
 ## Modal
@@ -338,6 +344,10 @@ string - тогда это будет id элемента, у которого �
 -   **deprecated**: user userMenu instead
 
 
+## sidebarMenu
+
+если функция (user, moduleToRoutePrefixMap) => \[]
+
 ## decoratorContextHeader
 
 Декорирует компонент и добавляет в него значения и методы по изменению header
@@ -408,92 +418,96 @@ undefined \\ null - показывать везде
 
 [4]: #usermenu
 
-[5]: #profileurl
+[5]: #usermenu-1
 
-[6]: #classname
+[6]: #profileurl
 
-[7]: #children
+[7]: #classname
 
-[8]: #accept
+[8]: #children
 
-[9]: #dropzoneprops
+[9]: #accept
 
-[10]: #attachment
+[10]: #dropzoneprops
 
-[11]: #update
+[11]: #attachment
 
-[12]: #update-1
+[12]: #update
 
-[13]: #loading
+[13]: #update-1
 
-[14]: #loading-1
+[14]: #loading
 
-[15]: #modal
+[15]: #loading-1
 
-[16]: #upbottombuttons
+[16]: #modal
 
-[17]: #scrollnavigation
+[17]: #upbottombuttons
 
-[18]: #twocolumnmobilerow
+[18]: #scrollnavigation
 
-[19]: #twocolumnmobilerow-1
+[19]: #twocolumnmobilerow
 
-[20]: #tabs
+[20]: #twocolumnmobilerow-1
 
-[21]: #segment
+[21]: #tabs
 
-[22]: #keyvaluelist
+[22]: #segment
 
-[23]: #select
+[23]: #keyvaluelist
 
-[24]: #toggledadddata
+[24]: #select
 
-[25]: #unitable
+[25]: #toggledadddata
 
-[26]: #unitable-1
+[26]: #unitable
 
-[27]: #notice
+[27]: #unitable-1
 
-[28]: #modalprops
+[28]: #notice
 
-[29]: #scrollingown
+[29]: #modalprops
 
-[30]: #useupbottombuttons
+[30]: #scrollingown
 
-[31]: #content
+[31]: #useupbottombuttons
 
-[32]: #isshow
+[32]: #content
 
-[33]: #indexpath
+[33]: #isshow
 
-[34]: #onselect
+[34]: #indexpath
 
-[35]: #onselectpage
+[35]: #onselect
 
-[36]: #onselectall
+[36]: #onselectpage
 
-[37]: #menu
+[37]: #onselectall
 
-[38]: #decoratorcontextheader
+[38]: #menu
 
-[39]: #render
+[39]: #sidebarmenu
 
-[40]: #linkto
+[40]: #decoratorcontextheader
 
-[41]: #type
+[41]: #render
 
-[42]: #image
+[42]: #linkto
 
-[43]: #content-1
+[43]: #type
 
-[44]: #mobile
+[44]: #image
 
-[45]: #onclick
+[45]: #content-1
 
-[46]: #decoratormodal
+[46]: #mobile
 
-[47]: https://react.semantic-ui.com/modules/dropdown
+[47]: #onclick
 
-[48]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+[48]: #decoratormodal
 
-[49]: https://react-dropzone.netlify.com/#proptypes
+[49]: https://react.semantic-ui.com/modules/dropdown
+
+[50]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+
+[51]: https://react-dropzone.netlify.com/#proptypes
