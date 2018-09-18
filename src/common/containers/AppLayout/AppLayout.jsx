@@ -14,6 +14,7 @@ import titled from '@reagentum/front-core/lib/common/utils/decorators/react-clas
 import {
   getCurrentPath,
   getUser,
+  getModulesRoutePrefixes,
 } from '@reagentum/front-core/lib/common/app-redux/selectors';
 import { actions as actionsUser } from '@reagentum/front-core/lib/common/app-redux/reducers/app/user-info';
 
@@ -44,11 +45,9 @@ import './AppLayout.scss';
 
 const {
   MediaQuery,
-  Container,
   Dimmer,
   Menu,
   Icon,
-  Segment,
   Sidebar,
   UpBottomButtons,
   AppHeader,
@@ -59,6 +58,7 @@ const {
   (globalState) => ({
     currentPath: getCurrentPath(globalState),
     user: getUser(globalState),
+    moduleToRoutePrefixMap: getModulesRoutePrefixes(globalState),
   }),
   {
     goTo: push,
@@ -76,7 +76,13 @@ export default class AppLayout extends Component {
      * @deprecated - user userMenu instead
     */
     menu: MENU_PROP_TYPE,
+    /**
+     * если функция (user, moduleToRoutePrefixMap) => []
+     */
     userMenu: MENU_PROP_TYPE,
+    /**
+     * если функция (user, moduleToRoutePrefixMap) => []
+     */
     sidebarMenu: MENU_PROP_TYPE,
     ifMobileMoveUserMenuToSidebar: PropTypes.bool,
     textMenuLogout: PropTypes.string,
@@ -97,6 +103,7 @@ export default class AppLayout extends Component {
     // CONNECT
     // ======================================================
     currentPath: PropTypes.string,
+    moduleToRoutePrefixMap: PropTypes.object,
     goTo: PropTypes.func,
     actionUserLogout: PropTypes.func,
     // из @titled
@@ -133,13 +140,14 @@ export default class AppLayout extends Component {
       userMenu,
       ifMobileMoveUserMenuToSidebar,
       textMenuLogout,
+      moduleToRoutePrefixMap,
     } = this.props;
 
     if (isMobile && ifMobileMoveUserMenuToSidebar) {
       return [];
     }
 
-    const menuFinal = executeVariable(userMenu || menu, [], user)
+    const menuFinal = executeVariable(userMenu || menu, [], user, moduleToRoutePrefixMap)
       .filter(({ mobile = null }) => mobile === null || mobile === isMobile);
 
     if (user) {
@@ -159,6 +167,7 @@ export default class AppLayout extends Component {
       user,
       sidebarMenu,
       ifMobileMoveUserMenuToSidebar,
+      moduleToRoutePrefixMap,
     } = this.props;
 
     const menu = [];
@@ -169,7 +178,7 @@ export default class AppLayout extends Component {
           className: `MenuItem--userMenu ${menuItem.className || ''}`,
         })));
     }
-    menu.push(...executeVariable(sidebarMenu, [], user)
+    menu.push(...executeVariable(sidebarMenu, [], user, moduleToRoutePrefixMap)
       .filter(({ mobile = null }) => mobile === null || mobile === isMobile));
 
     return menu;
@@ -216,6 +225,7 @@ export default class AppLayout extends Component {
       user,
       goTo,
       headerProps,
+      moduleToRoutePrefixMap,
     } = this.props;
 
     return (
@@ -236,6 +246,7 @@ export default class AppLayout extends Component {
                       onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
                       onGoTo={ goTo }
                       onLogin={ () => goTo(PATH_LOGIN_PAGE) }
+                      moduleToRoutePrefixMap={ moduleToRoutePrefixMap }
 
                       { ...headerProps }
                       { ...contextProps }

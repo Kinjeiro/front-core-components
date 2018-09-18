@@ -64,7 +64,7 @@ export default class AppHeader extends PureComponent {
 
     textMenuLogin: PropTypes.node,
     /**
-     * (user) => {}
+     * (user, moduleToRoutePrefixMap) => {}
      */
     profileUrl: PropTypes.oneOfType([
       PropTypes.string,
@@ -72,6 +72,7 @@ export default class AppHeader extends PureComponent {
     ]),
     profileTempImage: PropTypes.string,
     useModalLogin: PropTypes.bool,
+    moduleToRoutePrefixMap: PropTypes.object,
 
     onGoTo: PropTypes.func,
     onLogin: PropTypes.func,
@@ -226,6 +227,7 @@ export default class AppHeader extends PureComponent {
       profileUrl,
       useModalLogin,
       profileTempImage,
+      moduleToRoutePrefixMap,
     } = this.props;
 
     let userCmp;
@@ -264,7 +266,7 @@ export default class AppHeader extends PureComponent {
       );
       if (profileUrl) {
         userCmp = (
-          <Link to={ executeVariable(profileUrl, null, userInfo) }>
+          <Link to={ executeVariable(profileUrl, null, userInfo, moduleToRoutePrefixMap) }>
             { userCmp }
           </Link>
         );
