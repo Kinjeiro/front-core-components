@@ -6,13 +6,18 @@ import {
 
 import semanticFieldWrapper from './semantic-field-wrapper';
 
-import Select from './SelectFix/SelectFix';
 import InputWithState from './InputWithState/InputWithState';
 import TextAreaWithState from './TextAreaWithState/TextAreaWithState';
-import DatePicker from './DatePicker/DatePicker';
-import Attachment from './Attachment/Attachment';
 
-import './fields.scss';
+import getComponents from '../../get-components';
+
+const {
+  Select,
+  DatePicker,
+  Attachment,
+} = getComponents();
+
+require('./fields.scss');
 
 export const SelectField = semanticFieldWrapper(Select, {
   supportOutLabel: true,

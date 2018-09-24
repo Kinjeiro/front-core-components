@@ -10,8 +10,11 @@ import { isEmpty } from '@reagentum/front-core/lib/common/utils/common';
 
 import i18n from '../../utils/i18n';
 
-import { Attachment } from '../Form';
-import './ToggledAddData.scss';
+import getComponents from '../../get-components';
+
+const { Attachment } = getComponents();
+
+require('./ToggledAddData.scss');
 
 export default class ToggledAddData extends React.Component {
   static propTypes = {

@@ -17,10 +17,13 @@ import SelectFix from '../SelectFix/SelectFix';
 import Labeled from '../Labeled/Labeled';
 import DatePicker from '../DatePicker/DatePicker';
 
-// import './Form.scss';
-import Attachment from '../Attachment/Attachment';
-
 import reduxFormSemanticWrapper from '../semantic-field-wrapper';
+
+import getComponents from '../../../get-components';
+
+const {
+  Attachment,
+} = getComponents();
 
 // export Input from './input';
 // export Select from './select';

@@ -15,7 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Features:
 
 ### Dependencies:
-    - front-core@1.4.х
+    + front-core@1.4.х
+    + react-image-gallery@0.8.11
+    + rc-tree-select@2.2.5
 
 ### Commits:
     - chore(*) patch version: 1.5.9

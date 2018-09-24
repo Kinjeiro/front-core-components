@@ -12,11 +12,15 @@ import {
 } from '@reagentum/front-core/lib/common/utils/common';
 import CONSTRAINTS_PROP_TYPE from '@reagentum/front-core/lib/common/models/model-constraints';
 
-import i18n from '../../../utils/i18n';
 import {
   normalizeAttachment,
   ATTACHMENT_PROP_TYPE,
-} from '../../../models/model-attachment';
+} from '../../../../../../common/models/model-attachment';
+
+// ======================================================
+// MODULE
+// ======================================================
+import i18n from '../../../i18n';
 
 import getComponents from '../../../get-components';
 

@@ -1,0 +1,83 @@
+@import "~react-image-gallery/styles/scss/image-gallery";
+
+@import "../../app-styles/vars";
+
+.Carousel {
+  width: 100%;
+  height: 400px;
+
+  &__item {
+    text-align: center;
+  }
+
+  .image-gallery,
+  .image-gallery-content,
+  //.image-gallery-slide-wrapper,
+  .image-gallery-swipe,
+  .image-gallery-slides,
+  .image-gallery-slide,
+  .image-gallery-image,
+  .image-gallery-image IMG,
+  //image-gallery-thumbnails-wrapper
+  .image-gallery-thumbnails,
+  .image-gallery-thumbnails-container,
+  .image-gallery-thumbnail,
+  .image-gallery-thumbnail-inner,
+  .image-gallery-thumbnail IMG {
+    height: 100%;
+  }
+
+  .image-gallery-slide-wrapper {
+    height: 80%;
+  }
+  .image-gallery-thumbnails-wrapper {
+    height: 20%;
+  }
+  .fullscreen {
+    .image-gallery-slide-wrapper {
+      height: 90%;
+    }
+    .image-gallery-thumbnails-wrapper {
+      height: 10%;
+    }
+  }
+
+  .image-gallery-image {
+    text-align: center;
+    IMG {
+      width: auto;
+    }
+  }
+  .image-gallery-thumbnail {
+    width: auto;
+    &.active {
+      border-color: $color-default-text;
+    }
+    IMG {
+      width: auto;
+    }
+  }
+
+  &--oneImage {
+    .image-gallery-slide-wrapper {
+      height: 100%;
+    }
+    .image-gallery-thumbnails-wrapper {
+      display: none;
+    }
+    .image-gallery-bullets {
+      display: none;
+    }
+    .image-gallery-play-button {
+      display: none;
+    }
+    .fullscreen {
+      .image-gallery-slide-wrapper {
+        height: 100%;
+      }
+      .image-gallery-thumbnails-wrapper {
+        display: none;
+      }
+    }
+  }
+}

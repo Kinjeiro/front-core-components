@@ -23,6 +23,8 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('Search', () => require('semantic-ui-react').Search);
   COMPONENTS_BASE.replace('Card', () => require('semantic-ui-react').Card);
   COMPONENTS_BASE.replace('Pagination', () => require('./components/Pagination/Pagination').default);
+  COMPONENTS_BASE.replace('Carousel', () => require('./components/Carousel/Carousel').default);
+  COMPONENTS_BASE.replace('Breadcrumbs', () => require('./components/Breadcrumbs/Breadcrumbs').default);
 
   // ======================================================
   // FORM
@@ -33,10 +35,13 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('BaseTextArea', () => require('./components/Form/semantic-ui/BaseTextArea/BaseTextArea').default);
   COMPONENTS_BASE.replace('BaseSelect', () => require('./components/Form/semantic-ui/BaseSelect/BaseSelect').default);
   COMPONENTS_BASE.replace('DatePicker', () => require('./components/Form/DatePicker/DatePicker').default);
-  COMPONENTS_BASE.replace('Attachment', () => require('./components/Form/Attachment/Attachment').default);
+  // COMPONENTS_BASE.replace('Attachment', () => require('../modules/feature-attachments/common/components/form/Attachment/Attachment').default);
   COMPONENTS_BASE.replace('Checkbox', () => require('semantic-ui-react').Checkbox);
   COMPONENTS_BASE.replace('Radio', () => require('semantic-ui-react').Radio);
   COMPONENTS_BASE.replace('ErrorLabel', () => require('./components/Form/ErrorLabel/ErrorLabel').default);
+  COMPONENTS_BASE.replace('AmountInput', () => require('./components/Form/AmountInput/AmountInput').default);
+  COMPONENTS_BASE.replace('TreeSelect', () => require('./components/Form/TreeSelect/TreeSelect').default);
+  COMPONENTS_BASE.replace('Select', () => require('./components/Form/SelectFix/SelectFix').default);
 
   // ======================================================
   // CONTAINERS
