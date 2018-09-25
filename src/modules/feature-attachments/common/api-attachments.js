@@ -1,7 +1,6 @@
 import { appUrl } from '@reagentum/front-core/lib/common/helpers/app-urls';
 import apiConfig from '@reagentum/front-core/lib/common/utils/create-api-config';
-
-import { getApiClient } from '../../module-core/utils/send-api';
+import getApiClient from '@reagentum/front-core/lib/common/helpers/get-api-client';
 
 export const API_PREFIX = 'attachments';
 export const API_CONFIGS = {

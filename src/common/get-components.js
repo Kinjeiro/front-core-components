@@ -1,5 +1,7 @@
 let CB = null;
 
+import clientConfig from '@reagentum/front-core/lib/common/client-config';
+
 export function initComponents(COMPONENTS_BASE) {
   require('./app-styles/init.scss');
 
@@ -57,6 +59,11 @@ export function initComponents(COMPONENTS_BASE) {
   //   require('../modules/module-auth/AuthFormLayoutExt.scss');
   //   return 'AuthFormLayoutExt';
   // });
+
+  if (clientConfig.common.app.isCoreComponents) {
+    COMPONENTS_BASE.replace('TestPage', () => require('./containers/TestPage/TestPage').default);
+    COMPONENTS_BASE.replace('TestLayout', () => require('./containers/TestLayout/TestLayout').default);
+  }
 
   CB = COMPONENTS_BASE;
   return COMPONENTS_BASE;

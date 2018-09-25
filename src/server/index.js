@@ -1,5 +1,5 @@
 import '@reagentum/front-core/lib/server/init';
 
-import ServerRunner from './ServerRunner';
+import TestServerRunner from './TestServerRunner';
 
-export default (new ServerRunner()).run();
+export default (new TestServerRunner()).run();
