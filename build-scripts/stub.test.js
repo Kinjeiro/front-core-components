@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+const { expect  } = require('chai');
 
 describe('Stub test', () => {
   it('should be ok', () => {

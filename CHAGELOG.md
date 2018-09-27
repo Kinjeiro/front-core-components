@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     + front-core@1.4.х
     + react-image-gallery@0.8.11
     + rc-tree-select@2.2.5
+    
+### Dev Dependencies:
+    + babel-minify@0.5.0 - минификация build-scrtips
+    + babel-preset-minify@0.5.0 - минификация при компиляции src
+    + cpr@3.0.1 - копирование в npm
 
 ### Commits:
     - chore(*) patch version: 1.5.9

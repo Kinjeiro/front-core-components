@@ -15,6 +15,7 @@ import {
   // objectValues,
   isEmpty,
   executeVariable,
+  ceil,
 } from '@reagentum/front-core/lib/common/utils/common';
 import i18nAbsolute from '@reagentum/front-core/lib/common/utils/i18n-utils';
 import {
@@ -726,11 +727,12 @@ export default class UniTable extends Component {
         total,
       },
     } = this.props;
+
     return (
       <Pagination
         className="UniTable__pagination"
         activePage={ startPage + 1 }
-        totalPages={ Math.ceil(total / itemsPerPage) }
+        totalPages={ ceil(total / itemsPerPage) }
 
         onPageChange={ this.handlePaginationChange }
 
