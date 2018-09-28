@@ -43,7 +43,6 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('ErrorLabel', () => require('./components/Form/ErrorLabel/ErrorLabel').default);
   COMPONENTS_BASE.replace('AmountInput', () => require('./components/Form/AmountInput/AmountInput').default);
   COMPONENTS_BASE.replace('TreeSelect', () => require('./components/Form/TreeSelect/TreeSelect').default);
-  COMPONENTS_BASE.replace('Select', () => require('./components/Form/SelectFix/SelectFix').default);
 
   // ======================================================
   // CONTAINERS

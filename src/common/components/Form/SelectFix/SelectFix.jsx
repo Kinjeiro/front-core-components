@@ -14,7 +14,11 @@ export default function SelectFix(props) {
   return readOnly
   ? (
     <div className="SelectFix">
-      <label>{ label }</label>
+      {
+        label && (
+          <label>{ label }</label>
+        )
+      }
       <input
         { ...omit(props, ['options', 'fluid', 'search', 'error', 'selection']) }
       />

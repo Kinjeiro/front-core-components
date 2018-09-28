@@ -176,7 +176,7 @@ export default class AppHeader extends PureComponent {
     /**
      * @deprecated - name === 'delimiter'
      * */
-    if (name === 'delimiter') {
+    if (name === MENU_ITEM_TYPE.DELIMITER) {
       return (
         <Dropdown.Divider
           key={ `divider_${index}` }

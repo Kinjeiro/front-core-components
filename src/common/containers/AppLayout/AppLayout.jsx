@@ -35,7 +35,10 @@ import './semantic-ui-updates.scss';
 
 import getCb from '../../get-components';
 
-import { MENU_PROP_TYPE } from '../../models/model-menu';
+import {
+  MENU_PROP_TYPE,
+  MENU_ITEM_TYPE,
+} from '../../models/model-menu';
 
 import ContextHeaderProvider from '../../contexts/ContextHeader/ContextHeaderProvider';
 
@@ -207,10 +210,10 @@ export default class AppLayout extends Component {
       actionUserLogout,
     } = this.props;
 
-    actionUserLogout()
-      .then(() => {
-        window.location = appUrl(PATH_INDEX);
-      });
+    return actionUserLogout();
+      // .then(() => {
+      //   window.location = appUrl(PATH_INDEX);
+      // });
   }
 
   // ======================================================
@@ -278,13 +281,16 @@ export default class AppLayout extends Component {
     );
   }
 
-  renderSidebarMenuItem(menuItem) {
+  @bind()
+  renderSidebarMenuItem(menuItem, index) {
     const {
       goTo,
       currentPath,
     } = this.props;
 
     const {
+      key,
+      type,
       name,
       path,
       icon,
@@ -294,7 +300,7 @@ export default class AppLayout extends Component {
 
     return (
       <Menu.Item
-        key={ name }
+        key={ key || (name === MENU_ITEM_TYPE.DELIMITER || type === MENU_ITEM_TYPE.DELIMITER ? `${MENU_ITEM_TYPE.DELIMITER}_${index}` : name) }
         name={ name }
         path={ path }
         onClick={ (event) => {
@@ -333,7 +339,7 @@ export default class AppLayout extends Component {
         { ...sidebarProps }
       >
         {
-          menu.map((menuItem) => this.renderSidebarMenuItem(menuItem))
+          menu.map(this.renderSidebarMenuItem)
         }
       </Sidebar>
     );

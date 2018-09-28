@@ -15,6 +15,16 @@
   //grid-template-rows: [content-start] auto [content-end];
   //-ms-grid-rows: 1fr;
 
+  button,
+  .ui.button,
+  input,
+  optgroup,
+  select,
+  textarea,
+  .ui.input input {
+    line-height: inherit;
+  }
+
   // todo @ANKU @LOW - @BUG_OUT @IE - обязательно нужно указывать расположение
   // https://stackoverflow.com/a/45787093/344172
   &__firstPart {
@@ -106,7 +116,8 @@
 
     .Link {
       display: inline-block;
-      height: 100%;
+      //height: 100%;
+      height: inherit;
       width: 100%;
     }
   }
