@@ -1,25 +1,90 @@
+/* eslint-disable max-len */
 import React, { PureComponent } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import bind from 'lodash-decorators/bind';
 import RcTreeSelect from 'rc-tree-select';
 
+import { objectValues } from '@reagentum/front-core/lib/common/utils/common';
+import { findPath } from '@reagentum/front-core/lib/common/utils/tree-utils';
+
 // import i18n from '../../utils/i18n';
 
-import './TreeSelect.scss';
+import getComponents from '../../../get-components';
+
+const {
+  Button,
+} = getComponents();
+
+require('./TreeSelect.scss');
+
+const TYPES = {
+  PLAIN: 'plain',
+  DIVE: 'dive',
+  EXPAND: 'expand',
+};
 
 export default class TreeSelect extends PureComponent {
+  static TYPES = TYPES;
   static propTypes = {
     /**
-     * array<{value,label,children, [disabled,selectable]}>
+     * тип контрола
+      - PLAIN: 'plain' - обычный древовидный селект
+      - DIVE: 'dive' - выбор с погружением
+      - EXPAND: 'expand' - древовидное раскрытие
      */
-    // treeData: PropTypes.array,
-    // value: PropTypes.any,
-    // onSelect: PropTypes.func,
-    ...RcTreeSelect.propTypes,
+    type: PropTypes.oneOf(objectValues(TYPES)),
+    readOnly: PropTypes.bool,
+    // /**
+    //  * array<{value,label,children, [disabled,selectable]}>
+    //  */
+    treeData: PropTypes.array,
+    value: PropTypes.any,
+    onSelect: PropTypes.func,
+    onClose: PropTypes.func,
+    onBack: PropTypes.func,
   };
 
   static defaultProps = {
+    type: TYPES.PLAIN,
   };
+
+  state = {
+    currentItemPath: this.findCurrentPath(),
+  };
+
+  // ======================================================
+  // UTILS
+  // ======================================================
+  findCurrentPath(valueIn = null) {
+    const {
+      value,
+      treeData,
+    } = this.props;
+    let valueFinal = valueIn || value;
+    if (typeof valueFinal === 'object') {
+      if (valueFinal.isRoot) {
+        return [valueFinal];
+      }
+      valueFinal = valueFinal.value;
+    }
+    return valueFinal
+      ? findPath(valueFinal, treeData)
+      : [];
+  }
+  getCurrentItem() {
+    const {
+      currentItemPath,
+    } = this.state;
+    return currentItemPath[currentItemPath.length - 1];
+  }
+  getParentItem() {
+    const {
+      currentItemPath,
+    } = this.state;
+    return currentItemPath.length > 1
+      ? currentItemPath[currentItemPath.length - 2]
+      : null;
+  }
 
   // ======================================================
   // LIFECYCLE
@@ -40,11 +105,84 @@ export default class TreeSelect extends PureComponent {
   // ======================================================
   // RENDERS
   // ======================================================
+  renderReadOnly() {
+    return this.getCurrentItem().label;
+  }
+  renderDive() {
+    const {
+      onClose,
+      onBack,
+      onSelect,
+    } = this.props;
+    const {
+      currentItemPath,
+    } = this.state;
 
-  // ======================================================
-  // MAIN RENDER
-  // ======================================================
-  render() {
+    const currentItem = this.getCurrentItem();
+    const {
+      label,
+      children,
+    } = currentItem;
+    const parentItem = this.getParentItem();
+
+    return (
+      <div>
+        <div>
+          {
+            parentItem
+              ? (
+                <Button onClick={ () => this.setState({ currentItemPath: currentItemPath.slice(0, currentItemPath.length - 1) }) }>
+                  назад
+                </Button>
+              )
+              : onBack && (
+                <Button onClick={ onBack }>
+                  н закрыть
+                </Button>
+              )
+          }
+
+          {
+            label
+          }
+
+          {
+            onClose && (
+              <Button onClick={ onClose }>
+                закрыть
+              </Button>
+            )
+          }
+        </div>
+        <div>
+          <Button onClick={ () => onSelect(currentItem) }>
+            { `Выбрать ${label}` }
+          </Button>
+          {
+            children.map((subItem) => (
+              <Button
+                key={ subItem.value }
+                disabled={ subItem.disabled }
+                onClick={ () => {
+                  if (subItem.children && subItem.children.length > 0) {
+                    this.setState({ currentItemPath: [...currentItemPath, subItem] });
+                  } else {
+                    onSelect(subItem);
+                  }
+                } }
+              >
+                { subItem.label }
+              </Button>
+            ))
+          }
+        </div>
+      </div>
+    );
+  }
+  renderExpand() {
+    throw new Error('todo implement renderExpand');
+  }
+  renderPlain() {
     const {
       treeData,
       value,
@@ -59,7 +197,7 @@ export default class TreeSelect extends PureComponent {
      onSearch={ (search) => this.setState({ search }) }
      onChange={ this.onChange }
      labelInValue={ true }
-    */
+     */
 
     // todo @ANKU @LOW - кажется есть бага когда allowClear после сброса не открывается попап
     // todo @ANKU @LOW - не рабочий tabindex + keyboard keys - https://github.com/react-component/tree-select/issues/48
@@ -67,7 +205,7 @@ export default class TreeSelect extends PureComponent {
     return (
       <RcTreeSelect
         treeData={ treeData }
-        treeNodeLabelProp="title"
+        treeNodeLabelProp="label"
         value={ value }
         onSelect={ onSelect }
 
@@ -75,15 +213,52 @@ export default class TreeSelect extends PureComponent {
         placeholder="Плейсхолдер"
 
         showSearch={ true }
-        treeNodeFilterProp="title"
+        treeNodeFilterProp="label"
         searchPlaceholder="Поиск"
 
         transitionName="rc-tree-select-dropdown-slide-up"
         choiceTransitionName="rc-tree-select-selection__choice-zoom"
-        dropdownStyle={{ maxHeight: 200, overflow: 'auto' }}
+        dropdownStyle={{
+          maxHeight: 200,
+          overflow: 'auto',
+        }}
 
         { ...otherProps }
       />
+    );
+  }
+
+
+  renderContent() {
+    const {
+      readOnly,
+      type,
+    } = this.props;
+
+    if (readOnly) {
+      return this.renderReadOnly();
+    }
+
+    switch (type) {
+      case TYPES.PLAIN: return this.renderPlain();
+      case TYPES.DIVE: return this.renderDive();
+      case TYPES.EXPAND: return this.renderExpand();
+      default:
+        throw new Error(`Wrong type ${type} for TreeSelect`);
+    }
+  }
+  // ======================================================
+  // MAIN RENDER
+  // ======================================================
+  render() {
+    const {
+      type,
+    } = this.props;
+
+    return (
+      <div className={ `TreeSelect TreeSelect--type_${type}` }>
+        { this.renderContent() }
+      </div>
     );
   }
 }
