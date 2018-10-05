@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import bind from 'lodash-decorators/bind';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import omit from 'lodash/omit';
 
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
-import appUrl from '@reagentum/front-core/lib/common/helpers/app-urls';
 import {
-  PATH_INDEX,
   PATH_LOGIN_PAGE,
 } from '@reagentum/front-core/lib/common/routes.pathes';
 import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
@@ -17,6 +16,11 @@ import {
   getModulesRoutePrefixes,
 } from '@reagentum/front-core/lib/common/app-redux/selectors';
 import { actions as actionsUser } from '@reagentum/front-core/lib/common/app-redux/reducers/app/user-info';
+
+// ======================================================
+// MODULES
+// ======================================================
+import moduleFeatureSidebar from '../../../modules/feature-sidebar/common';
 
 // ======================================================
 // UTILS
@@ -37,7 +41,6 @@ import getCb from '../../get-components';
 
 import {
   MENU_PROP_TYPE,
-  MENU_ITEM_TYPE,
 } from '../../models/model-menu';
 
 import ContextHeaderProvider from '../../contexts/ContextHeader/ContextHeaderProvider';
@@ -49,11 +52,11 @@ import './AppLayout.scss';
 const {
   MediaQuery,
   Dimmer,
-  Menu,
-  Icon,
   Sidebar,
+
   UpBottomButtons,
   AppHeader,
+  AppSidebar,
 } = getCb();
 
 @titled('AppLayout', ({ textTitle }) => textTitle || i18n('pages.AppLayout.title'))
@@ -62,10 +65,12 @@ const {
     currentPath: getCurrentPath(globalState),
     user: getUser(globalState),
     moduleToRoutePrefixMap: getModulesRoutePrefixes(globalState),
+    sidebarOpened: moduleFeatureSidebar.reduxSelectors.isSidebarOpen(globalState),
   }),
   {
     goTo: push,
     actionUserLogout: actionsUser.actionUserLogout,
+    ...moduleFeatureSidebar.reduxActions(),
   },
 )
 export default class AppLayout extends Component {
@@ -92,7 +97,7 @@ export default class AppLayout extends Component {
 
     headerProps: PropTypes.shape(AppHeader.propTypes),
     headerFixed: PropTypes.bool,
-    sidebarProps: PropTypes.shape(Sidebar.propTypes),
+    sidebarProps: PropTypes.object,
 
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
     upBottomButtonsProps: PropTypes.oneOfType([
@@ -111,6 +116,11 @@ export default class AppLayout extends Component {
     actionUserLogout: PropTypes.func,
     // из @titled
     actionCurrentPageChanged: PropTypes.func,
+
+    sidebarOpened: PropTypes.bool,
+    actionOpenSidebar: PropTypes.func,
+    actionCloseSidebar: PropTypes.func,
+    actionClearSidebarContext: PropTypes.func,
   };
 
   static defaultProps = {
@@ -118,10 +128,6 @@ export default class AppLayout extends Component {
     headerProps: {},
     headerFixed: true,
     textMenuLogout: i18n('pages.AppLayout.menu.logout'),
-  };
-
-  state = {
-    sidebarOpened: false,
   };
 
   // ======================================================
@@ -192,21 +198,34 @@ export default class AppLayout extends Component {
   // ======================================================
   @bind()
   handleToggleSidebar() {
-    this.setState({
-      sidebarOpened: !this.state.sidebarOpened,
-    });
+    const {
+      sidebarOpened,
+    } = this.props;
+    if (sidebarOpened) {
+      this.handleCloseSidebar();
+    } else {
+      this.handleOpenSidebar();
+    }
+  }
+  @bind()
+  handleOpenSidebar(sidebarContext = {}) {
+    const {
+      actionOpenSidebar,
+      actionClearSidebarContext,
+    } = this.props;
+
+    actionClearSidebarContext();
+    actionOpenSidebar(sidebarContext);
   }
   @bind()
   handleCloseSidebar() {
-    this.setState({
-      sidebarOpened: false,
-    });
+    this.props.actionCloseSidebar();
   }
 
   @bind()
   handleLogout() {
     const {
-      goTo,
+      // goTo,
       actionUserLogout,
     } = this.props;
 
@@ -281,67 +300,22 @@ export default class AppLayout extends Component {
     );
   }
 
-  @bind()
-  renderSidebarMenuItem(menuItem, index) {
+  renderMobileSidebarMenu(menu) {
     const {
+      sidebarProps,
       goTo,
       currentPath,
     } = this.props;
 
-    const {
-      key,
-      type,
-      name,
-      path,
-      icon,
-      content,
-      onClick,
-    } = menuItem;
-
     return (
-      <Menu.Item
-        key={ key || (name === MENU_ITEM_TYPE.DELIMITER || type === MENU_ITEM_TYPE.DELIMITER ? `${MENU_ITEM_TYPE.DELIMITER}_${index}` : name) }
-        name={ name }
-        path={ path }
-        onClick={ (event) => {
-          this.handleCloseSidebar();
-          return (onClick && onClick(event)) || (path && goTo(path));
-        } }
-        link={ !!path }
-        active={ currentPath.indexOf(path) >= 0 }
-      >
-        { icon && (
-          <Icon name={ icon } />
-        ) }
-        { content || name }
-      </Menu.Item>
-    );
-  }
+      <AppSidebar
+        { ...omit(this.props, 'children') }
+        sidebarProps={ sidebarProps }
+        menu={ menu }
 
-  renderMobileSidebarMenu(menu) {
-    const {
-      sidebarProps,
-    } = this.props;
-    const {
-      sidebarOpened,
-    } = this.state;
-
-    // todo @ANKU @LOW - убрать бинд внутри рендера goTo
-    return (
-      <Sidebar
-        as={ Menu }
-        animation="overlay"
-        width="thin"
-        visible={ sidebarOpened }
-        icon="labeled"
-        vertical={ true }
-        inverted={ true }
-        { ...sidebarProps }
-      >
-        {
-          menu.map(this.renderSidebarMenuItem)
-        }
-      </Sidebar>
+        currentPath={ currentPath }
+        onGoTo={ goTo }
+      />
     );
   }
 
@@ -354,13 +328,13 @@ export default class AppLayout extends Component {
       headerProps,
       headerFixed,
       upBottomButtonsProps,
-    } = this.props;
-    const {
       sidebarOpened,
-    } = this.state;
+    } = this.props;
 
     return (
-      <ContextHeaderProvider headerProps={ headerProps }>
+      <ContextHeaderProvider
+        headerProps={ headerProps }
+      >
         <MediaQuery mobile={ true }>
           {
             (matches) => {
@@ -370,8 +344,10 @@ export default class AppLayout extends Component {
               // todo @ANKU @LOW - можно наверное меню сделать в виде портала чтобы работы с меню вынести в header
               return (
                 <Sidebar.Pushable className={ `AppLayout ${className || ''} ${isMobile ? '' : 'AppLayout--notMobile'} ${headerFixed ? 'AppLayout--headerFixed' : ''}` }>
-
-                  { menu.length > 0 && this.renderMobileSidebarMenu(menu) }
+                  {
+                    sidebarOpened && menu.length > 0
+                      && this.renderMobileSidebarMenu(menu)
+                  }
 
                   {
                     (upBottomButtonsProps !== false && upBottomButtonsProps !== null) && (

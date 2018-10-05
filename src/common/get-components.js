@@ -6,7 +6,6 @@ export function initComponents(COMPONENTS_BASE) {
   require('./app-styles/init.scss');
 
   COMPONENTS_BASE.replace('BaseButton', () => require('./components/Button/Button').default);
-  COMPONENTS_BASE.replace('AppHeader', () => require('./components/AppHeader/AppHeader').default);
   COMPONENTS_BASE.replace('Loading', () => require('./components/Loading/Loading').default);
   // todo @ANKU @LOW - подправить стили модалки, коравская более красивая на flex
   // COMPONENTS_BASE.replace('Modal', () => require('./Modal/Modal').default);
@@ -14,19 +13,22 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('Segment', () => require('./components/Segment/Segment').default);
   COMPONENTS_BASE.replace('Tabs', () => require('./components/Tabs/Tabs').default);
   COMPONENTS_BASE.replace('UniTable', () => require('./components/UniTable/UniTable').default);
-  COMPONENTS_BASE.replace('UpBottomButtons', () => require('./components/UpBottomButtons/UpBottomButtons').default);
   COMPONENTS_BASE.replace('Container', () => require('semantic-ui-react').Container);
   COMPONENTS_BASE.replace('Dimmer', () => require('semantic-ui-react').Dimmer);
   COMPONENTS_BASE.replace('Menu', () => require('semantic-ui-react').Menu);
   COMPONENTS_BASE.replace('Icon', () => require('semantic-ui-react').Icon);
-  COMPONENTS_BASE.replace('Sidebar', () => require('semantic-ui-react').Sidebar);
+  // COMPONENTS_BASE.replace('Sidebar', () => require('semantic-ui-react').Sidebar);
   COMPONENTS_BASE.replace('Label', () => require('semantic-ui-react').Label);
   COMPONENTS_BASE.replace('Image', () => require('semantic-ui-react').Image);
   COMPONENTS_BASE.replace('Search', () => require('semantic-ui-react').Search);
   COMPONENTS_BASE.replace('Card', () => require('semantic-ui-react').Card);
   COMPONENTS_BASE.replace('Pagination', () => require('./components/Pagination/Pagination').default);
   COMPONENTS_BASE.replace('Carousel', () => require('./components/Carousel/Carousel').default);
+
+  COMPONENTS_BASE.replace('UpBottomButtons', () => require('./components/UpBottomButtons/UpBottomButtons').default);
   COMPONENTS_BASE.replace('Breadcrumbs', () => require('./components/Breadcrumbs/Breadcrumbs').default);
+  COMPONENTS_BASE.replace('AppHeader', () => require('./components/AppHeader/AppHeader').default);
+  // COMPONENTS_BASE.replace('AppSidebar', () => require('./components/AppSidebar/AppSidebar').default);
 
   // ======================================================
   // FORM
