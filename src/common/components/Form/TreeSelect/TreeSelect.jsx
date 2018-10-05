@@ -11,20 +11,16 @@ import { findPath } from '@reagentum/front-core/lib/common/utils/tree-utils';
 
 import getComponents from '../../../get-components';
 
+import { TREE_SELECT_TYPES } from './TreeSelect.const';
+
 const {
   Button,
 } = getComponents();
 
 require('./TreeSelect.scss');
 
-const TYPES = {
-  PLAIN: 'plain',
-  DIVE: 'dive',
-  EXPAND: 'expand',
-};
-
 export default class TreeSelect extends PureComponent {
-  static TYPES = TYPES;
+  static TYPES = TREE_SELECT_TYPES;
   static propTypes = {
     /**
      * тип контрола
@@ -32,7 +28,7 @@ export default class TreeSelect extends PureComponent {
       - DIVE: 'dive' - выбор с погружением
       - EXPAND: 'expand' - древовидное раскрытие
      */
-    type: PropTypes.oneOf(objectValues(TYPES)),
+    type: PropTypes.oneOf(objectValues(TREE_SELECT_TYPES)),
     readOnly: PropTypes.bool,
     // /**
     //  * array<{value,label,children, [disabled,selectable]}>
@@ -45,7 +41,7 @@ export default class TreeSelect extends PureComponent {
   };
 
   static defaultProps = {
-    type: TYPES.PLAIN,
+    type: TREE_SELECT_TYPES.PLAIN,
   };
 
   state = {
@@ -240,9 +236,9 @@ export default class TreeSelect extends PureComponent {
     }
 
     switch (type) {
-      case TYPES.PLAIN: return this.renderPlain();
-      case TYPES.DIVE: return this.renderDive();
-      case TYPES.EXPAND: return this.renderExpand();
+      case TREE_SELECT_TYPES.PLAIN: return this.renderPlain();
+      case TREE_SELECT_TYPES.DIVE: return this.renderDive();
+      case TREE_SELECT_TYPES.EXPAND: return this.renderExpand();
       default:
         throw new Error(`Wrong type ${type} for TreeSelect`);
     }

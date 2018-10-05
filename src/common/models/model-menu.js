@@ -48,6 +48,10 @@ export const MENU_ITEM_PROP_TYPE_MAP = {
    * либо path будет использован для перехода
    */
   onClick: PropTypes.func,
+  /**
+   * по умолчанию, если есть path или onClick то считается линкой, но это можно исправить с помощью этого параметра
+   */
+  isLink: PropTypes.bool,
 };
 
 export const MENU_PROP_TYPE = PropTypes.oneOfType([
