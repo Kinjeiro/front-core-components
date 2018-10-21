@@ -1,0 +1,15 @@
+.SimpleButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    border: none;
+    background: none;
+  }
+  &:focus {
+    border: none;
+    background: none;
+    outline-color: transparent;
+  }
+}
