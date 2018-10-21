@@ -13,46 +13,51 @@
 -   [AmountInput][9]
 -   [update][10]
 -   [update][11]
--   [propTypes][12]
--   [Loading][13]
--   [Loading][14]
--   [Modal][15]
--   [UpBottomButtons][16]
--   [ScrollNavigation][17]
--   [TwoColumnMobileRow][18]
--   [TwoColumnMobileRow][19]
--   [Tabs][20]
--   [Segment][21]
--   [KeyValueList][22]
--   [Select][23]
--   [ToggledAddData][24]
--   [UniTable][25]
--   [UniTable][26]
--   [Notice][27]
--   [modalProps][28]
--   [scrollingOwn][29]
--   [useUpBottomButtons][30]
--   [content][31]
--   [isShow][32]
--   [indexPath][33]
--   [onSelect][34]
--   [onSelectPage][35]
--   [onSelectAll][36]
--   [menu][37]
--   [sidebarMenu][38]
--   [decoratorContextHeader][39]
--   [render][40]
--   [linkTo][41]
--   [type][42]
--   [image][43]
--   [content][44]
--   [mobile][45]
--   [onClick][46]
--   [decoratorModal][47]
--   [children][48]
--   [accept][49]
--   [dropZoneProps][50]
--   [updateValues][51]
+-   [type][12]
+-   [renderTitle][13]
+-   [renderSelectAll][14]
+-   [renderItem][15]
+-   [Loading][16]
+-   [Loading][17]
+-   [Modal][18]
+-   [UpBottomButtons][19]
+-   [ScrollNavigation][20]
+-   [TwoColumnMobileRow][21]
+-   [TwoColumnMobileRow][22]
+-   [Tabs][23]
+-   [Segment][24]
+-   [KeyValueList][25]
+-   [Select][26]
+-   [ToggledAddData][27]
+-   [UniTable][28]
+-   [UniTable][29]
+-   [Notice][30]
+-   [modalProps][31]
+-   [scrollingOwn][32]
+-   [useUpBottomButtons][33]
+-   [content][34]
+-   [isShow][35]
+-   [SimpleButton][36]
+-   [indexPath][37]
+-   [onSelect][38]
+-   [onSelectPage][39]
+-   [onSelectAll][40]
+-   [menu][41]
+-   [sidebarMenu][42]
+-   [decoratorContextHeader][43]
+-   [render][44]
+-   [linkTo][45]
+-   [type][46]
+-   [image][47]
+-   [content][48]
+-   [mobile][49]
+-   [onClick][50]
+-   [isLink][51]
+-   [decoratorModal][52]
+-   [children][53]
+-   [accept][54]
+-   [dropZoneProps][55]
+-   [updateValues][56]
 
 ## Navigation
 
@@ -70,7 +75,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][52]
+see [https://react.semantic-ui.com/modules/dropdown][57]
 
 ## userMenu
 
@@ -89,7 +94,7 @@ see [https://react.semantic-ui.com/modules/dropdown][52]
 
 ## items
 
-[https://www.npmjs.com/package/react-image-gallery#props][53]
+[https://www.npmjs.com/package/react-image-gallery#props][58]
 
 ## AmountInput
 
@@ -115,9 +120,25 @@ see [https://react.semantic-ui.com/modules/dropdown][52]
 -   `event`  
 -   `comp`  
 
-## propTypes
+## type
 
-array&lt;{value,label,children, [disabled,selectable]}>
+тип контрола
+
+-   PLAIN: 'plain' - обычный древовидный селект
+-   DIVE: 'dive' - выбор с погружением
+-   EXPAND: 'expand' - древовидное раскрытие (аккордион)
+
+## renderTitle
+
+(currentTreeItem, currentPath, treeSelectProps) => label
+
+## renderSelectAll
+
+(currentTreeItem, treeSelectProps) => label
+
+## renderItem
+
+(treeItem, index, treeSelectProps) => label
 
 ## Loading
 
@@ -314,6 +335,12 @@ string - тогда это будет id элемента, у которого �
 
 можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
 
+## SimpleButton
+
+**Extends PureComponent**
+
+Меня достало semantic .ui.button селекторы
+
 ## indexPath
 
 чтобы индекс без типа считался активной первой табой
@@ -393,6 +420,10 @@ undefined \\ null - показывать везде
 
 либо path будет использован для перехода
 
+## isLink
+
+по умолчанию, если есть path или onClick то считается линкой, но это можно исправить с помощью этого параметра
+
 ## decoratorModal
 
 Более удобный способ хранить состояние модальных окон
@@ -409,7 +440,7 @@ undefined \\ null - показывать везде
 
 ## accept
 
-[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][54]
+[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][59]
 accept="image/png" or accept=".png" — Accepts PNG files.
 accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
 accept="image/_" — Accept any file with an image/_ MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
@@ -417,7 +448,7 @@ accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-office
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][55]
+[https://react-dropzone.netlify.com/#proptypes][60]
 maxSize
 
 ## updateValues
@@ -448,90 +479,100 @@ Returns **any**
 
 [11]: #update-1
 
-[12]: #proptypes
+[12]: #type
 
-[13]: #loading
+[13]: #rendertitle
 
-[14]: #loading-1
+[14]: #renderselectall
 
-[15]: #modal
+[15]: #renderitem
 
-[16]: #upbottombuttons
+[16]: #loading
 
-[17]: #scrollnavigation
+[17]: #loading-1
 
-[18]: #twocolumnmobilerow
+[18]: #modal
 
-[19]: #twocolumnmobilerow-1
+[19]: #upbottombuttons
 
-[20]: #tabs
+[20]: #scrollnavigation
 
-[21]: #segment
+[21]: #twocolumnmobilerow
 
-[22]: #keyvaluelist
+[22]: #twocolumnmobilerow-1
 
-[23]: #select
+[23]: #tabs
 
-[24]: #toggledadddata
+[24]: #segment
 
-[25]: #unitable
+[25]: #keyvaluelist
 
-[26]: #unitable-1
+[26]: #select
 
-[27]: #notice
+[27]: #toggledadddata
 
-[28]: #modalprops
+[28]: #unitable
 
-[29]: #scrollingown
+[29]: #unitable-1
 
-[30]: #useupbottombuttons
+[30]: #notice
 
-[31]: #content
+[31]: #modalprops
 
-[32]: #isshow
+[32]: #scrollingown
 
-[33]: #indexpath
+[33]: #useupbottombuttons
 
-[34]: #onselect
+[34]: #content
 
-[35]: #onselectpage
+[35]: #isshow
 
-[36]: #onselectall
+[36]: #simplebutton
 
-[37]: #menu
+[37]: #indexpath
 
-[38]: #sidebarmenu
+[38]: #onselect
 
-[39]: #decoratorcontextheader
+[39]: #onselectpage
 
-[40]: #render
+[40]: #onselectall
 
-[41]: #linkto
+[41]: #menu
 
-[42]: #type
+[42]: #sidebarmenu
 
-[43]: #image
+[43]: #decoratorcontextheader
 
-[44]: #content-1
+[44]: #render
 
-[45]: #mobile
+[45]: #linkto
 
-[46]: #onclick
+[46]: #type-1
 
-[47]: #decoratormodal
+[47]: #image
 
-[48]: #children
+[48]: #content-1
 
-[49]: #accept
+[49]: #mobile
 
-[50]: #dropzoneprops
+[50]: #onclick
 
-[51]: #updatevalues
+[51]: #islink
 
-[52]: https://react.semantic-ui.com/modules/dropdown
+[52]: #decoratormodal
 
-[53]: https://www.npmjs.com/package/react-image-gallery#props
+[53]: #children
 
-[54]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+[54]: #accept
 
-[55]: https://react-dropzone.netlify.com/#proptypes
+[55]: #dropzoneprops
+
+[56]: #updatevalues
+
+[57]: https://react.semantic-ui.com/modules/dropdown
+
+[58]: https://www.npmjs.com/package/react-image-gallery#props
+
+[59]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+
+[60]: https://react-dropzone.netlify.com/#proptypes
