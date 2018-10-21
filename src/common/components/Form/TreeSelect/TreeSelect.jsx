@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 // import bind from 'lodash-decorators/bind';
 import RcTreeSelect from 'rc-tree-select';
 
-import { objectValues } from '@reagentum/front-core/lib/common/utils/common';
+import {
+  objectValues,
+  executeVariable,
+} from '@reagentum/front-core/lib/common/utils/common';
 import { findPath } from '@reagentum/front-core/lib/common/utils/tree-utils';
 
 // import i18n from '../../utils/i18n';
@@ -15,6 +18,8 @@ import { TREE_SELECT_TYPES } from './TreeSelect.const';
 
 const {
   Button,
+  SimpleButton,
+  Icon,
 } = getComponents();
 
 require('./TreeSelect.scss');
@@ -26,7 +31,7 @@ export default class TreeSelect extends PureComponent {
      * тип контрола
       - PLAIN: 'plain' - обычный древовидный селект
       - DIVE: 'dive' - выбор с погружением
-      - EXPAND: 'expand' - древовидное раскрытие
+      - EXPAND: 'expand' - древовидное раскрытие (аккордион)
      */
     type: PropTypes.oneOf(objectValues(TREE_SELECT_TYPES)),
     readOnly: PropTypes.bool,
@@ -38,10 +43,52 @@ export default class TreeSelect extends PureComponent {
     onSelect: PropTypes.func,
     onClose: PropTypes.func,
     onBack: PropTypes.func,
+
+    textBack: PropTypes.node,
+    textBackParent: PropTypes.node,
+    textClose: PropTypes.node,
+    /**
+     * (currentTreeItem, currentPath, treeSelectProps) => label
+     */
+    renderTitle: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.func,
+    ]),
+    /**
+     * (currentTreeItem, treeSelectProps) => label
+     */
+    renderSelectAll: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.func,
+    ]),
+    /**
+     * (treeItem, index, treeSelectProps) => label
+     */
+    renderItem: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.func,
+    ]),
   };
 
   static defaultProps = {
     type: TREE_SELECT_TYPES.PLAIN,
+
+    textBack: (
+      <Icon name="arrow left" />
+    ),
+    textBackParent: (
+      <Icon name="arrow left" />
+    ),
+    textClose: (
+      <Icon name="close" />
+    ),
+    renderTitle: (currentTreeItem, currentPath, treeSelectProps) =>
+      currentTreeItem.label,
+    renderSelectAll: (currentTreeItem, treeSelectProps) =>
+      // todo @ANKU @LOW - @@ локализация
+      `Выбрать все "${currentTreeItem.label}"`,
+    renderItem: (treeItem, index, treeSelectProps) =>
+      treeItem.label,
   };
 
   state = {
@@ -109,6 +156,13 @@ export default class TreeSelect extends PureComponent {
       onClose,
       onBack,
       onSelect,
+
+      textBack,
+      textBackParent,
+      textClose,
+      renderTitle,
+      renderSelectAll,
+      renderItem,
     } = this.props;
     const {
       currentItemPath,
@@ -116,60 +170,89 @@ export default class TreeSelect extends PureComponent {
 
     const currentItem = this.getCurrentItem();
     const {
-      label,
       children,
     } = currentItem;
     const parentItem = this.getParentItem();
 
     return (
-      <div>
-        <div>
+      <div className="TreeSelectDive">
+        <div className="TreeSelectDive__header">
           {
-            parentItem
+            parentItem && textBackParent
               ? (
-                <Button onClick={ () => this.setState({ currentItemPath: currentItemPath.slice(0, currentItemPath.length - 1) }) }>
-                  назад
+                <Button
+                  className="TreeSelectDive__backParent"
+                  simple={ true }
+                  onClick={ () => this.setState({ currentItemPath: currentItemPath.slice(0, currentItemPath.length - 1) }) }
+                >
+                  { textBackParent }
                 </Button>
               )
-              : onBack && (
-                <Button onClick={ onBack }>
-                  н закрыть
+              : textBack && onBack && (
+                <Button
+                  className="TreeSelectDive__back"
+                  simple={ true }
+                  onClick={ onBack }
+                >
+                  { textBack }
                 </Button>
               )
           }
 
-          {
-            label
-          }
+          <span className="TreeSelectDive__title">
+            {
+              executeVariable(renderTitle, null, currentItem, currentItemPath, this.props)
+            }
+          </span>
+
 
           {
-            onClose && (
-              <Button onClick={ onClose }>
-                закрыть
+            textClose && onClose && (
+              <Button
+                className="TreeSelectDive__close"
+                simple={ true }
+                onClick={ onClose }
+              >
+                { textClose }
               </Button>
             )
           }
         </div>
         <div>
-          <Button onClick={ () => onSelect(currentItem) }>
-            { `Выбрать ${label}` }
-          </Button>
           {
-            children.map((subItem) => (
-              <Button
-                key={ subItem.value }
-                disabled={ subItem.disabled }
-                onClick={ () => {
-                  if (subItem.children && subItem.children.length > 0) {
-                    this.setState({ currentItemPath: [...currentItemPath, subItem] });
-                  } else {
-                    onSelect(subItem);
-                  }
-                } }
+            renderSelectAll && (
+              <SimpleButton
+                className="TreeSelectDive__select TreeSelectDiveSelect TreeSelectDive__selectAll"
+                onClick={ () => onSelect(currentItem) }
               >
-                { subItem.label }
-              </Button>
-            ))
+                {
+                  executeVariable(renderSelectAll, null, currentItem, this.props)
+                }
+              </SimpleButton>
+            )
+          }
+          {
+            children.map((subItem, index) => {
+              const hasChildren = subItem.children && subItem.children.length > 0;
+              return (
+                <SimpleButton
+                  key={ subItem.value }
+                  className={ `TreeSelectDive__select TreeSelectDiveSelect ${hasChildren ? '' : 'TreeSelectDiveSelect--leaf'}` }
+                  disabled={ subItem.disabled }
+                  onClick={ () => {
+                    if (hasChildren) {
+                      this.setState({ currentItemPath: [...currentItemPath, subItem] });
+                    } else {
+                      onSelect(subItem);
+                    }
+                  } }
+                >
+                  {
+                    executeVariable(renderItem, null, subItem, index, this.props)
+                  }
+                </SimpleButton>
+              );
+            })
           }
         </div>
       </div>

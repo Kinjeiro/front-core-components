@@ -91,3 +91,23 @@
   width: calc(100% - 16px); // 16px размер пространства слева
   display: inline-block;
 }
+
+.TreeSelectDive {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__select {
+    display: block;
+  }
+  &__selectAll {
+    font-weight: bold;
+  }
+}
+.TreeSelectDiveSelect {
+  &--leaf {
+    font-weight: bold;
+  }
+}
