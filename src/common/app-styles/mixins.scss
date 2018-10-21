@@ -1,10 +1,28 @@
 // mixin for responsive grid, but I'm sure it's far from the best solution
 
+/*
+Foundation example:
+$small-range: (0em, 40em); / 0, 640px /
+$medium-range: (40.063em, 64em); / 641px, 1024px /
+$large-range: (64.063em, 90em); / 1025px, 1440px /
+$xlarge-range: (90.063em, 120em); / 1441px, 1920px /
+$xxlarge-range: (120.063em); / 1921px
+*/
+/*
+1. Мобилы. На примере Iphone 4 (другие мобилы, кроме лопатофонов имеют схожие размеры). Если держать телефон в руке вертикально, то ширина экрана 320 пикселей, если горизонтально то 480.
+2. Далее планшеты. На примере iPad (другие планшеты соответственно похожи по разрешениям). Если держишь вертикально, то 768, если горизонтально то 1024.
+3. Далее десктоп. Тут самое популярное на сегодня 1200+, рисовать варианты еще шире, обычно не имеет смысла, сайт просто центрируется на более высоких разрешениях. К тому же, большинство пользователей огромных экранов обычно не открывают браузеры на весь экран.
+*/
+
 $xs: 0; // Extra small screen / phone
-$sm: 480px; // Small screen / mobile
+$sm: 320px; // Small screen / mobile iphone (iphone)
+$sm2: 480px; // Small screen / mobile
 $md: 768px; // Medium screen / tablet
 $lg: 1024px; // Large screen / desktop
 $xl: 1200px; // Extra large screen / wide desktop
+$xxl: 1900px; // Super large screen
+$retina: 2304px; // Retina (MacBook)
+$r4k: 4096px; // 4k resolution
 
 @mixin private-respond-to($current-media) {
   @if $current-media == 'xs' {
@@ -18,9 +36,14 @@ $xl: 1200px; // Extra large screen / wide desktop
       @content;
     }
   }
-
   @else if $current-media == 'only-sm' {
     @media only screen and (min-width: $sm + 1) and (max-width: $md)  {
+      @content;
+    }
+  }
+
+  @else if $current-media == 'sm2' {
+    @media only screen and (min-width: $sm2 + 1) {
       @content;
     }
   }
@@ -51,6 +74,18 @@ $xl: 1200px; // Extra large screen / wide desktop
 
   @else if $current-media == 'xl' {
     @media only screen and (min-width: $xl) {
+      @content;
+    }
+  }
+
+  @else if $current-media == 'only-xl' {
+    @media only screen and (min-width: $xl + 1) and (max-width: $xxl - 1) {
+      @content;
+    }
+  }
+
+  @else if $current-media == 'xxl' {
+    @media only screen and (min-width: $xxl) {
       @content;
     }
   }

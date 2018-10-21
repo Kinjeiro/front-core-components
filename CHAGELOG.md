@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
    Первый параметр теперь не массив файлов, а мапа uuid: File 
 3. Attachment - дефолтные значения constraints maxBytes=10mb, multipleMaxSize=10
 4. Почистил AppLayout - убрал эти доисторический fartuna-main. Вывел скроллинг на body (чтобы в мобилах он смог исчезать). Поэтому проверьте еще раз стили
+5. CSS: медия квейри respond-to 'sm' теперь не 480, а 320 (стандартный экран айфона)! поэтому проверьте свою верстку на маленьких экранах. 480 стало 'sm2' и не учитывается в последовательности
 
 ### Features:
 
