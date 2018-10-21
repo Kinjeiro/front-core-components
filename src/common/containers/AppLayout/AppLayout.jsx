@@ -345,8 +345,7 @@ export default class AppLayout extends Component {
               return (
                 <Sidebar.Pushable className={ `AppLayout ${className || ''} ${isMobile ? '' : 'AppLayout--notMobile'} ${headerFixed ? 'AppLayout--headerFixed' : ''}` }>
                   {
-                    sidebarOpened && menu.length > 0
-                      && this.renderMobileSidebarMenu(menu)
+                    sidebarOpened && this.renderMobileSidebarMenu(menu)
                   }
 
                   {
