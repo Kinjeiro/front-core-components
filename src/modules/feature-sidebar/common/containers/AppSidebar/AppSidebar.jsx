@@ -24,7 +24,7 @@ const {
   Sidebar,
 } = getComponents();
 
-// require('./AppSidebar.scss');
+require('./AppSidebar.scss');
 
 @connect(
   (globalState) => ({
@@ -72,11 +72,14 @@ export default class AppSidebar extends PureComponent {
       isLink,
       content,
       onClick,
+      className,
     } = menuItem;
+
+    const isDelimiter = name === MENU_ITEM_TYPE.DELIMITER || type === MENU_ITEM_TYPE.DELIMITER;
 
     const keyFinal = key
       || (
-        name === MENU_ITEM_TYPE.DELIMITER || type === MENU_ITEM_TYPE.DELIMITER
+        isDelimiter
           ? `${MENU_ITEM_TYPE.DELIMITER}_${index}`
           : name
       );
@@ -84,6 +87,7 @@ export default class AppSidebar extends PureComponent {
     return (
       <Menu.Item
         key={ keyFinal }
+        className={ `AppSidebar__menuItem ${isDelimiter ? 'AppSidebar__menuItemDelimiter' : ''} ${className || ''}` }
         name={ name }
         path={ path }
         onClick={ async (event) => {
@@ -103,7 +107,13 @@ export default class AppSidebar extends PureComponent {
           }
           return stopClosing;
         } }
-        link={ typeof isLink !== 'undefined' ? isLink : !!(path || onClick) }
+        link={
+          typeof isLink !== 'undefined'
+            ? isLink
+            : isDelimiter
+              ? false
+              : !!(path || onClick)
+        }
         active={ currentPath && currentPath.indexOf(path) >= 0 }
       >
         {
