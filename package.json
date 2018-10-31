@@ -60,7 +60,6 @@
     "echarts-for-react": "~2.0.0"
   },
   "dependencies": {
-    "@reagentum/front-core": "~1.3.13",
     "config": "github:kinjeiro/node-config",
     "email-validator": "~1.0.7",
     "fast-json-patch": "~2.0.6",
@@ -104,10 +103,14 @@
     "wreck": "~14.0.2"
   },
   "peerDependencies": {
+    "@reagentum/front-core": "1.3.x",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
   "devDependencies": {
+    "@reagentum/front-core": "~1.3.13",
+    "react": "~16.0.0",
+    "react-dom": "~16.0.0",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",
