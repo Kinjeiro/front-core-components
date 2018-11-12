@@ -104,7 +104,8 @@ export default class TreeSelect extends PureComponent {
       treeData,
     } = this.props;
     let valueFinal = valueIn || value;
-    if (typeof valueFinal === 'object') {
+    // null - тоже объект
+    if (valueFinal && typeof valueFinal === 'object') {
       if (valueFinal.isRoot) {
         return [valueFinal];
       }
