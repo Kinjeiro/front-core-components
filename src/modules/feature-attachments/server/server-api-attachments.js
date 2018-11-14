@@ -34,7 +34,7 @@ export default function createApiPlugins() {
       async (requestData, request, reply) => {
         const {
           user: {
-            username,
+            userId,
           },
           services: {
             serviceAttachments,
@@ -78,7 +78,7 @@ export default function createApiPlugins() {
           filename,
           bytes,
           contentType,
-          username,
+          userId,
           getDownloadUrl(id),
           path,
           null,

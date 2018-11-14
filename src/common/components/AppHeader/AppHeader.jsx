@@ -247,14 +247,17 @@ export default class AppHeader extends PureComponent {
     } else {
       const {
         displayName,
+        aliasId,
+        userId,
         username,
+        email,
       } = userInfo;
 
-      const displayNameFinal = displayName || username;
+      const displayNameFinal = displayName || username || aliasId || email || userId;
 
       userCmp = (
         <React.Fragment>
-          <UserAvatar username={ username } />
+          <UserAvatar userId={ userId } />
           {
             displayNameFinal && (
               <span className="UserName__displayName">

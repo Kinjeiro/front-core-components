@@ -4,19 +4,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [last version][1.5.0-1.5.?]
+## [last version][1.6.0-1.5.?]
 ### !!! Breaking changes:
-1. Переход на front-core@1.4.x
-2. Attachment - file больше не кладется в attachment-value, мапа файлов передается в первом параметре onAdd(newFilesMap, newAttachments, resultAttachments) 
-   Первый параметр теперь не массив файлов, а мапа uuid: File 
-3. Attachment - дефолтные значения constraints maxBytes=10mb, multipleMaxSize=10
-4. Почистил AppLayout - убрал эти доисторический fartuna-main. Вывел скроллинг на body (чтобы в мобилах он смог исчезать). Поэтому проверьте еще раз стили
-5. CSS: медия квейри respond-to 'sm' теперь не 480, а 320 (стандартный экран айфона)! поэтому проверьте свою верстку на маленьких экранах. 480 стало 'sm2' и не учитывается в последовательности
+1. Переход на front-core@1.6.x (userId вместо username)
 
 ### Features:
 
 ### Dependencies:
-    + front-core@1.4.х
+    + front-core@1.6.х
+    
+### Dev Dependencies:
+
+### Commits:
+
+## [1.5.0-1.5.24] (2018-07-31)
+### !!! Breaking changes:
+1. Переход на front-core@1.4.x
+2. Переход на front-core@1.5.x
+3. Attachment - file больше не кладется в attachment-value, мапа файлов передается в первом параметре onAdd(newFilesMap, newAttachments, resultAttachments) 
+   Первый параметр теперь не массив файлов, а мапа uuid: File 
+4. Attachment - дефолтные значения constraints maxBytes=10mb, multipleMaxSize=10
+5. Почистил AppLayout - убрал эти доисторический fartuna-main. Вывел скроллинг на body (чтобы в мобилах он смог исчезать). Поэтому проверьте еще раз стили
+6. CSS: медия квейри respond-to 'sm' теперь не 480, а 320 (стандартный экран айфона)! поэтому проверьте свою верстку на маленьких экранах. 480 стало 'sm2' и не учитывается в последовательности
+
+### Features:
+
+### Dependencies:
+    + front-core@1.5.х
     + react-image-gallery@0.8.11
     + rc-tree-select@2.2.5
     
@@ -26,6 +40,64 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     + cpr@3.0.1 - копирование в npm
 
 ### Commits:
+    - chore(*) patch version: 1.5.21
+    - !!! feat(css): Breaking changes: respond-to 'sm' теперь не 480 а 320 (стандартный экран айфона)! поэтому проверьте свою верстку на маленьких экранах 
+        \\  добавил еще xxl: 1900px; retina: 2304px; r4k: 4096px;
+    - feat(CB, TreeSelect): - для dive режима добавил кастомизацию частей textBack, textBackParent, textClose, renderTitle, renderSelectAll, renderItem
+    - bug(AppLayout): теперь сайдбар не скрывается не в мобильном режиме - это нужно для кастомных сайдбаров
+    - bug(sidebar): - бага с неправильным отображением делимитера
+    - feat(CB, SimpleButton): - Button от SemanticUI .ui.button уже достала, поэтому добавил SimpleButton 
+        \\  для SimpleButton есть onClickArgs чтобы лишний раз не биндить
+    - feat(menu): - для меню добавил проперть isLink - чтобы явно указывать отображать как линку или как кнопку
+    - feat(module, sidebar): - вынес в отдельный модуль module-sidebar и добавил редукса - isSidebarOpen, sidebarContext - чтобы иметь возможность передать данные в сайдбар и там не только меню рисовать
+    - feat(CB, TreeSelect): - добавил типов к TreeSelect - DIVE - с погружением внутрь
+    - chore(*) patch version: 1.5.20
+    - bug(css): - фикс багов от сементика 
+        \\  баг с делиметером для меню 
+        \\  убрал компонент Select (уже есть CoreSelect)
+    - chore(*) patch version: 1.5.19
+    - chore(minimized): - добавил компиляцию и минификацию через npm run minimized
+    - chore(*) patch version: 1.5.18
+    - bug(modules): - забыл подключить модули серверные
+    - chore(*) patch version: 1.5.17
+    - chore(depen): - @reagentum/front-core@1.5.4 - подключение модулей
+    - bug(cb, UserAvatar): - необходима начальная ширина для аватарки
+    - feat(cb): - добавил модуль feature-attachments: компонент InstanceAttachment и серверный мок для загрузки файлов 
+        \\  добавил Breadcrumbs 
+        \\  Carousel (react-image-gallery@0.8.11) 
+        \\  AmountInput 
+        \\  TreeSelect (rc-tree-select@2.2.5)
+    - chore(*) patch version: 1.5.15
+    - chore(core): - перевел на кору 1.5
+    - feat(modules): - для менюшек следующим параметром за пользователем идет moduleToRoutePrefixMap чтобы строить навигацию 
+        \\  front-core@1.5.1
+    - bug(UpBottomButtons): - не работали кнопки
+    - feat(AppLayout): - добавил максимальную ширину .AppLayout__maxWidthItem ($max-width) 
+        \\  проперть headerFixed (true) 
+        \\  высота header AppLayout____headerFixedWrapper ($AppHeader-height) 
+        \\  .AppLayout__headerWrapper, .AppLayout__contentWrapper, .AppLayout__footerWrapper - позволяют задавать фон во всю страницу
+    - chore(*) patch version: 1.5.14
+    - !!! feat(AppLayout): - почистил стили, убрал fartuna 
+        \\  добавил footer
+    - chore(*) patch version: 1.5.13
+    - feat(cb, form, Attachment): - value может быть стрингой 
+        \\  добавил propType
+    - chore(*) patch version: 1.5.12
+    - chore(core): - обновил кору и стили
+    - feat(css): - мелкие исправления дизайна
+    - feat(css, mixinx): - добавился disableLink - удобная вещь если нужно отключить линку без js
+    - feat(cb, Pagination): - стилицазия Pagination для маленьких разрещений (только кнопка вперед и назад)
+    - feat(cb, form, Attachment): - добавился проперть children - если это функция, то переменной падается функция открытия диалога выбора (onOpenDialog) => {}
+    - chore(build): - фикс чтобы можно было кору разворачивать не только из node_modules 2
+    - chore(*) patch version: 1.5.11
+    - feat(AppHeader): - вместо profileImageURI теперь нужно использовать компонент UserAvatar 
+        \\  front-core@1.4.28
+    - chore(build): - фикс чтобы можно было кору разворачивать не только из node_modules
+    - chore(build): - можно разместить кору не только в npm но и в отдельной папке, поэтому билд скрипты могут быть запущены не только в node_modules
+    - chore(*) patch version: 1.5.10
+    - feat(BaseButton): - реализовали вместо Button BaseButton 
+        \\  front-core@1.4.24
+    - feat(AppLayout): - поддкоррекитровал паддинги проекта при различных разрешениях
     - chore(*) patch version: 1.5.9
     - !!! feat(Attachment) - file больше не кладется в attachment-value, мапа файлов передается в первом параметре onAdd(newFilesMap, newAttachments, resultAttachments)
         \\ newFilesMap теперь не массив файлов, а мапа uuid: File
@@ -68,7 +140,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - chore(*) minor version: 1.5.0
     - feat(modal) - для модели можно задать modalProps.closeOnEscape(true) \ closeOnDimmerClick(true) \ closeOnDocumentClick(false)
 
-## [1.4.0-1.4.7]
+## [1.4.0-1.4.7] (2018-07-02)
 ### !!! Breaking changes:
 1. изменил верстку header, AppLayout и высоты, проверяйте свой дизайн, особенно с табами и константами ($header-size, $header-size-sm, $height-tabs-menu, $height-tabs-menu-sm)
 2. Обновил front-core@1.3.33 - почищены депенденси, нужно проверить работоспособность сборки
