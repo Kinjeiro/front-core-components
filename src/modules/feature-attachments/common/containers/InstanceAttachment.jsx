@@ -38,6 +38,10 @@ export default class InstanceAttachment extends Component {
      onAdd
      */
     ...Attachment.propTypes,
+    /**
+     * (uuidToFileMap, newAttachments, resultAttachments) => {} - всегда, даже если multiple=false, так как uuid важен для InstanceAttachments
+     */
+    onAdd: PropTypes.func,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
@@ -159,13 +163,21 @@ export default class InstanceAttachment extends Component {
       actionUploadAttach,
     } = this.props;
 
+    let newFileMapFinal = newFilesMap;
+    if (newFileMapFinal instanceof File) {
+      // multiple: false
+      newFileMapFinal = {
+        [newAttachments[0].uuid]: newFileMapFinal,
+      };
+    }
+
     if (onAdd) {
-      onAdd(newFilesMap, newAttachments, resultAttachments);
+      onAdd(newFileMapFinal, newAttachments, resultAttachments);
     }
 
     return Promise.all(
-      Object.keys(newFilesMap).map((uuid) =>
-          actionUploadAttach(uuid, newFilesMap[uuid])));
+      Object.keys(newFileMapFinal).map((uuid) =>
+          actionUploadAttach(uuid, newFileMapFinal[uuid])));
   }
 
   @bind()

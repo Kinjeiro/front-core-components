@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [last version][1.6.0-1.5.?]
+## [last version][1.6.0-1.6.?]
 ### !!! Breaking changes:
 1. Переход на front-core@1.6.x (userId вместо username)
 
