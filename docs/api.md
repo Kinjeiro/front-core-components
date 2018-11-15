@@ -57,7 +57,8 @@
 -   [children][53]
 -   [accept][54]
 -   [dropZoneProps][55]
--   [updateValues][56]
+-   [onAdd][56]
+-   [updateValues][57]
 
 ## Navigation
 
@@ -75,7 +76,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][57]
+see [https://react.semantic-ui.com/modules/dropdown][58]
 
 ## userMenu
 
@@ -94,7 +95,7 @@ see [https://react.semantic-ui.com/modules/dropdown][57]
 
 ## items
 
-[https://www.npmjs.com/package/react-image-gallery#props][58]
+[https://www.npmjs.com/package/react-image-gallery#props][59]
 
 ## AmountInput
 
@@ -440,7 +441,7 @@ undefined \\ null - показывать везде
 
 ## accept
 
-[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][59]
+[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][60]
 accept="image/png" or accept=".png" — Accepts PNG files.
 accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
 accept="image/_" — Accept any file with an image/_ MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
@@ -448,8 +449,12 @@ accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-office
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][60]
+[https://react-dropzone.netlify.com/#proptypes][61]
 maxSize
+
+## onAdd
+
+(uuidToFileMap, newAttachments, resultAttachments) => {} - всегда, даже если multiple=false, так как uuid важен для InstanceAttachments
 
 ## updateValues
 
@@ -567,12 +572,14 @@ Returns **any**
 
 [55]: #dropzoneprops
 
-[56]: #updatevalues
+[56]: #onadd
 
-[57]: https://react.semantic-ui.com/modules/dropdown
+[57]: #updatevalues
 
-[58]: https://www.npmjs.com/package/react-image-gallery#props
+[58]: https://react.semantic-ui.com/modules/dropdown
 
-[59]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+[59]: https://www.npmjs.com/package/react-image-gallery#props
 
-[60]: https://react-dropzone.netlify.com/#proptypes
+[60]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+
+[61]: https://react-dropzone.netlify.com/#proptypes
