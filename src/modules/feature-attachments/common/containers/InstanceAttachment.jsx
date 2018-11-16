@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import bind from 'lodash-decorators/bind';
 
+import { wrapToArray } from '@reagentum/front-core/lib/common/utils/common';
+
 import {
   ATTACHMENT_PROP_TYPE,
   normalizeAttachment,
@@ -110,6 +112,7 @@ export default class InstanceAttachment extends Component {
       actionClearAttachment,
       warnings,
       onWarnings,
+      multiple,
     } = newProps;
 
     Object.keys(attachmentsMap).forEach((key) => {
@@ -117,7 +120,7 @@ export default class InstanceAttachment extends Component {
       const old = this.props.attachmentsMap[key];
       if (attach && attach.isNew === false && (!old || old.isNew)) {
         let valueIndex = null;
-        const newValues = value.map((valueItem, index) => {
+        const newValues = wrapToArray(value).map((valueItem, index) => {
           if (valueItem.uuid === attach.uuid) {
             valueIndex = index;
             return {
@@ -129,7 +132,7 @@ export default class InstanceAttachment extends Component {
           return valueItem;
         });
 
-        onChange(newValues, valueIndex);
+        onChange(multiple ? newValues : newValues[0], valueIndex);
         actionClearAttachment(attach.uuid);
         // если есть варнинги нужно их пробросить, так как старые затруться после onChange
         if (warnings && warnings.length) {
