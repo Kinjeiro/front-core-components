@@ -50,7 +50,10 @@ export default class UpBottomButtons extends Component {
         this.scrollContainerEl = getScrollParent(this.elementEl);
       }
 
-      this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
+      // todo @ANKU @LOW - при глобальном хот релоаде компонентов - теряет контейнер - пока отключили эту функциональность
+      if (this.scrollContainerEl) {
+        this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
+      }
       // нужно подождать пока все стили подцепятся и правильно определить родителя
     }, 1000);
   }
@@ -64,7 +67,9 @@ export default class UpBottomButtons extends Component {
   // UTILS
   // ======================================================
   getScrollDom(event = null) {
-    return this.scrollContainerEl === document ? document.documentElement : this.scrollContainerEl || event.target || event;
+    return this.scrollContainerEl === document
+      ? document.documentElement
+      : this.scrollContainerEl || event.target || event;
   }
 
   // ======================================================
