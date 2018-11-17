@@ -1,8 +1,7 @@
 const {
   extendDeep,
   loadFileConfigs
-} = require('config/lib/util');
-
+} = require('@reagentum/front-core/config/utils/configLib-utils');
 const {
   inNodeModules,
   getI18nModules
