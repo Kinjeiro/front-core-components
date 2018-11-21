@@ -56,6 +56,7 @@ export default class BaseSelect extends PureComponent {
       showSearch,
       allowClear,
       touched,
+      isProcessing,
 
       onSelect,
       onSearch,

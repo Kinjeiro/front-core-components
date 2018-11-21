@@ -34,7 +34,7 @@ export function initComponents(COMPONENTS_BASE) {
   // ======================================================
   // FORM
   // ======================================================
-  // todo @ANKU @LOW - их ний input своим ui.input input все стили для fieldLaout перебивает + error не срабатывает
+  // todo @ANKU @LOW - ихний input своим ui.input input все стили для fieldLaout перебивает + error не срабатывает
   // COMPONENTS_BASE.replace('BaseInput', () => require('semantic-ui-react').Input);
   // COMPONENTS_BASE.replace('BaseNumberInput', () => require('semantic-ui-react').Input);
   COMPONENTS_BASE.replace('BaseTextArea', () => require('./components/Form/semantic-ui/BaseTextArea/BaseTextArea').default);

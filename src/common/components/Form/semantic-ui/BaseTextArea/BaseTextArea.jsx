@@ -10,6 +10,7 @@ export default class BaseTextArea extends PureComponent {
     const {
       className,
       touched,
+      isProcessing,
       ...otherProps
     } = this.props;
 

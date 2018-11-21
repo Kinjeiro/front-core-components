@@ -12,10 +12,10 @@ import {
 import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
 import {
   getCurrentPath,
-  getUser,
   getModulesRoutePrefixes,
 } from '@reagentum/front-core/lib/common/app-redux/selectors';
-import { actions as actionsUser } from '@reagentum/front-core/lib/common/app-redux/reducers/app/user-info';
+import { getUser } from '@reagentum/front-core/lib/modules/module-auth/common/subModule/redux-selectors';
+import { actions as actionsUser } from '@reagentum/front-core/lib/modules/module-auth/common/subModule/redux-user-info';
 
 // ======================================================
 // MODULES
