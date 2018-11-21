@@ -7,7 +7,7 @@ import ParentServerRunner from '@reagentum/front-core/lib/server/CoreServerRunne
 import ClientRunner from '../client/ClientRunner';
 
 export default class ServerRunner extends ParentServerRunner {
-  getClientRunner() {
+  createClientRunner() {
     return new ClientRunner();
   }
 
