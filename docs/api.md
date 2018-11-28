@@ -59,6 +59,12 @@
 -   [dropZoneProps][55]
 -   [onAdd][56]
 -   [updateValues][57]
+-   [uploadFile][58]
+-   [downloadFile][59]
+-   [deleteFile][60]
+-   [uploadFile][61]
+-   [downloadFile][62]
+-   [deleteFile][63]
 
 ## Navigation
 
@@ -76,7 +82,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][58]
+see [https://react.semantic-ui.com/modules/dropdown][64]
 
 ## userMenu
 
@@ -95,7 +101,7 @@ see [https://react.semantic-ui.com/modules/dropdown][58]
 
 ## items
 
-[https://www.npmjs.com/package/react-image-gallery#props][59]
+[https://www.npmjs.com/package/react-image-gallery#props][65]
 
 ## AmountInput
 
@@ -441,7 +447,7 @@ undefined \\ null - показывать везде
 
 ## accept
 
-[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][60]
+[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][66]
 accept="image/png" or accept=".png" — Accepts PNG files.
 accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
 accept="image/_" — Accept any file with an image/_ MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
@@ -449,7 +455,7 @@ accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-office
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][61]
+[https://react-dropzone.netlify.com/#proptypes][67]
 maxSize
 
 ## onAdd
@@ -461,6 +467,58 @@ maxSize
 Наполняем результаты из рудекса (сколько загружено)
 
 Returns **any** 
+
+## uploadFile
+
+**Parameters**
+
+-   `filename`  
+-   `contentType`  
+-   `readStream`  
+
+Returns **[Promise][68]** attachmentContentId
+
+## downloadFile
+
+**Parameters**
+
+-   `id`  
+
+Returns **any** stream
+
+## deleteFile
+
+**Parameters**
+
+-   `id`  
+
+Returns **[Promise][68]** 
+
+## uploadFile
+
+**Parameters**
+
+-   `filename`  
+-   `contentType`  
+-   `readStream`  
+
+Returns **[Promise][68]** attachmentContentId
+
+## downloadFile
+
+**Parameters**
+
+-   `id`  
+
+Returns **any** stream
+
+## deleteFile
+
+**Parameters**
+
+-   `id`  
+
+Returns **[Promise][68]** 
 
 [1]: #navigation
 
@@ -576,10 +634,24 @@ Returns **any**
 
 [57]: #updatevalues
 
-[58]: https://react.semantic-ui.com/modules/dropdown
+[58]: #uploadfile
 
-[59]: https://www.npmjs.com/package/react-image-gallery#props
+[59]: #downloadfile
 
-[60]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+[60]: #deletefile
 
-[61]: https://react-dropzone.netlify.com/#proptypes
+[61]: #uploadfile-1
+
+[62]: #downloadfile-1
+
+[63]: #deletefile-1
+
+[64]: https://react.semantic-ui.com/modules/dropdown
+
+[65]: https://www.npmjs.com/package/react-image-gallery#props
+
+[66]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
+
+[67]: https://react-dropzone.netlify.com/#proptypes
+
+[68]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
