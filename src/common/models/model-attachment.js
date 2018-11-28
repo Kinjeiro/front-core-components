@@ -13,6 +13,7 @@ export const ATTACHMENT_PROP_TYPE_MAP = {
   size: PropTypes.number,
   type: PropTypes.string,
   contextParams: PropTypes.object,
+  // virtual от id
   downloadUrl: PropTypes.string,
 
   // services field
@@ -24,7 +25,7 @@ export const ATTACHMENT_PROP_TYPE_MAP = {
   isLoaded: PropTypes.bool,
 
   // server
-  serverPath: PropTypes.string, // путь к файлу на сервере, если хранится не в базе
+  contentId: PropTypes.string, // id контента, по которому можно получить содержимое файла
 };
 
 export function createAttachment(
@@ -34,7 +35,7 @@ export function createAttachment(
   type,
   uploadedBy,
   downloadUrl,
-  serverPath = null,
+  contentId = null,
   preview = null,
   description = null,
   uploadedOn = new Date(),
@@ -50,7 +51,7 @@ export function createAttachment(
     size,
     type,
     downloadUrl,
-    serverPath,
+    contentId,
     contextParams,
   };
 }
