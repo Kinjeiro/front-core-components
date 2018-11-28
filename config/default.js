@@ -1,3 +1,5 @@
+const path = require('path');
+
 const {
   extendDeep,
   loadFileConfigs
@@ -9,8 +11,10 @@ const {
 
 const {
   useFromFrontCoreComponents,
-  inFrontCoreComponentsSrc,
+  inFrontCoreComponentsSrc
 } = require('../build-scripts/coreComponents-utils');
+
+const coreComponentsPackageJson = require(path.resolve(__dirname, '..', 'package.json'));
 
 const parentConfigFinal = loadFileConfigs(inNodeModules('@reagentum/front-core/config'));
 
@@ -22,6 +26,8 @@ module.exports = extendDeep(
     // ОБЩИЕ КОНФИГИ для КЛИЕНТА И СЕРВЕРА
     // ======================================================
     common: {
+      coreComponentsVersion: coreComponentsPackageJson.version,
+
       app: {
         isCoreComponents: useFromFrontCoreComponents
       },
