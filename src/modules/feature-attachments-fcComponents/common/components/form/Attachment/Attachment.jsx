@@ -11,11 +11,10 @@ import {
   executeVariable,
 } from '@reagentum/front-core/lib/common/utils/common';
 import CONSTRAINTS_PROP_TYPE from '@reagentum/front-core/lib/common/models/model-constraints';
-
 import {
   normalizeAttachment,
   ATTACHMENT_PROP_TYPE,
-} from '../../../../../../common/models/model-attachment';
+} from '@reagentum/front-core/lib/modules/feature-attachments/common/subModule/model-attachment';
 
 // ======================================================
 // MODULE

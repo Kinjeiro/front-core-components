@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import bind from 'lodash-decorators/bind';
 
 import { wrapToArray } from '@reagentum/front-core/lib/common/utils/common';
-
-import {
-  ATTACHMENT_PROP_TYPE,
-  normalizeAttachment,
-} from '../../../../common/models/model-attachment';
-
-import { actions } from '../redux-attachments';
+import { actions } from '@reagentum/front-core/lib/modules/feature-attachments/common/subModule/redux-attachments';
 import {
   generateAttachmentUuid,
   getAttachmentsByFieldId,
-} from '../redux-selectors-attachments';
+} from '@reagentum/front-core/lib/modules/feature-attachments/common/subModule/redux-selectors-attachments';
+import {
+  ATTACHMENT_PROP_TYPE,
+  normalizeAttachment,
+} from '@reagentum/front-core/lib/modules/feature-attachments/common/subModule/models/model-attachment';
+
 
 import getComponents from '../get-components';
 
