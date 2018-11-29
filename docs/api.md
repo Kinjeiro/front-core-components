@@ -45,26 +45,21 @@
 -   [menu][41]
 -   [sidebarMenu][42]
 -   [decoratorContextHeader][43]
--   [render][44]
--   [linkTo][45]
--   [type][46]
--   [image][47]
--   [content][48]
--   [mobile][49]
--   [onClick][50]
--   [isLink][51]
--   [decoratorModal][52]
--   [children][53]
--   [accept][54]
--   [dropZoneProps][55]
--   [onAdd][56]
--   [updateValues][57]
--   [uploadFile][58]
--   [downloadFile][59]
--   [deleteFile][60]
--   [uploadFile][61]
--   [downloadFile][62]
--   [deleteFile][63]
+-   [ATTACHMENT_PROP_TYPE][44]
+-   [render][45]
+-   [linkTo][46]
+-   [type][47]
+-   [image][48]
+-   [content][49]
+-   [mobile][50]
+-   [onClick][51]
+-   [isLink][52]
+-   [decoratorModal][53]
+-   [children][54]
+-   [accept][55]
+-   [dropZoneProps][56]
+-   [onAdd][57]
+-   [updateValues][58]
 
 ## Navigation
 
@@ -82,7 +77,7 @@
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][64]
+see [https://react.semantic-ui.com/modules/dropdown][59]
 
 ## userMenu
 
@@ -101,7 +96,7 @@ see [https://react.semantic-ui.com/modules/dropdown][64]
 
 ## items
 
-[https://www.npmjs.com/package/react-image-gallery#props][65]
+[https://www.npmjs.com/package/react-image-gallery#props][60]
 
 ## AmountInput
 
@@ -391,6 +386,13 @@ string - тогда это будет id элемента, у которого �
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
+## ATTACHMENT_PROP_TYPE
+
+**Meta**
+
+-   **deprecated**: use @reagentum/front-core/lib/modules/feature-attachments/common/subModule/model-attachment
+
+
 ## render
 
 (cellValue, column, record, rowIndex) => {}
@@ -447,7 +449,7 @@ undefined \\ null - показывать везде
 
 ## accept
 
-[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][66]
+[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][61]
 accept="image/png" or accept=".png" — Accepts PNG files.
 accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
 accept="image/_" — Accept any file with an image/_ MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
@@ -455,7 +457,7 @@ accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-office
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][67]
+[https://react-dropzone.netlify.com/#proptypes][62]
 maxSize
 
 ## onAdd
@@ -467,58 +469,6 @@ maxSize
 Наполняем результаты из рудекса (сколько загружено)
 
 Returns **any** 
-
-## uploadFile
-
-**Parameters**
-
--   `filename`  
--   `contentType`  
--   `readStream`  
-
-Returns **[Promise][68]** attachmentContentId
-
-## downloadFile
-
-**Parameters**
-
--   `id`  
-
-Returns **any** stream
-
-## deleteFile
-
-**Parameters**
-
--   `id`  
-
-Returns **[Promise][68]** 
-
-## uploadFile
-
-**Parameters**
-
--   `filename`  
--   `contentType`  
--   `readStream`  
-
-Returns **[Promise][68]** attachmentContentId
-
-## downloadFile
-
-**Parameters**
-
--   `id`  
-
-Returns **any** stream
-
-## deleteFile
-
-**Parameters**
-
--   `id`  
-
-Returns **[Promise][68]** 
 
 [1]: #navigation
 
@@ -606,52 +556,40 @@ Returns **[Promise][68]**
 
 [43]: #decoratorcontextheader
 
-[44]: #render
+[44]: #attachment_prop_type
 
-[45]: #linkto
+[45]: #render
 
-[46]: #type-1
+[46]: #linkto
 
-[47]: #image
+[47]: #type-1
 
-[48]: #content-1
+[48]: #image
 
-[49]: #mobile
+[49]: #content-1
 
-[50]: #onclick
+[50]: #mobile
 
-[51]: #islink
+[51]: #onclick
 
-[52]: #decoratormodal
+[52]: #islink
 
-[53]: #children
+[53]: #decoratormodal
 
-[54]: #accept
+[54]: #children
 
-[55]: #dropzoneprops
+[55]: #accept
 
-[56]: #onadd
+[56]: #dropzoneprops
 
-[57]: #updatevalues
+[57]: #onadd
 
-[58]: #uploadfile
+[58]: #updatevalues
 
-[59]: #downloadfile
+[59]: https://react.semantic-ui.com/modules/dropdown
 
-[60]: #deletefile
+[60]: https://www.npmjs.com/package/react-image-gallery#props
 
-[61]: #uploadfile-1
+[61]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
 
-[62]: #downloadfile-1
-
-[63]: #deletefile-1
-
-[64]: https://react.semantic-ui.com/modules/dropdown
-
-[65]: https://www.npmjs.com/package/react-image-gallery#props
-
-[66]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
-
-[67]: https://react-dropzone.netlify.com/#proptypes
-
-[68]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[62]: https://react-dropzone.netlify.com/#proptypes
