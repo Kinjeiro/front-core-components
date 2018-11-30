@@ -12,7 +12,7 @@ import {
 import {
   ATTACHMENT_PROP_TYPE,
   normalizeAttachment,
-} from '@reagentum/front-core/lib/modules/feature-attachments/common/subModule/models/model-attachment';
+} from '@reagentum/front-core/lib/modules/feature-attachments/common/subModule/model-attachment';
 
 
 import getComponents from '../get-components';
