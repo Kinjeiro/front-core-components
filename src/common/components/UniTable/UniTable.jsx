@@ -15,12 +15,12 @@ import {
   objectValues,
   isEmpty,
   executeVariable,
-} from '@reagentum/front-core/lib/common/utils/common';
-import i18nAbsolute from '@reagentum/front-core/lib/common/utils/i18n-utils';
+} from '@igs/front-core/lib/common/utils/common';
+import i18nAbsolute from '@igs/front-core/lib/common/utils/i18n-utils';
 import {
   formatDate,
   formatDateTime,
-} from '@reagentum/front-core/lib/common/utils/date-utils';
+} from '@igs/front-core/lib/common/utils/date-utils';
 
 import i18n from '../../utils/i18n';
 

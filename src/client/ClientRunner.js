@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import ParentClientRunner from '@reagentum/front-core/lib/client/CoreClientRunner';
+import ParentClientRunner from '@igs/front-core/lib/client/CoreClientRunner';
 
 export default class ClientRunner extends ParentClientRunner {
   getRoutes(store) {

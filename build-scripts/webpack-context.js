@@ -1,6 +1,6 @@
 const path = require('path');
 
-const PARENT_WEBPACK_CONTEXT = require('@reagentum/front-core/build-scripts/webpack-context');
+const PARENT_WEBPACK_CONTEXT = require('@igs/front-core/build-scripts/webpack-context');
 
 const CURRENT_FILE_PATH = __dirname;
 

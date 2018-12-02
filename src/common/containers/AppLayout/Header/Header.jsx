@@ -9,12 +9,12 @@ import {
   Dropdown,
 } from 'semantic-ui-react';
 
-import { PATH_INDEX } from '@reagentum/front-core/lib/common/constants/routes.pathes';
-import { getUserInfo } from '@reagentum/front-core/lib/common/app-redux/selectors';
+import { PATH_INDEX } from '@igs/front-core/lib/common/constants/routes.pathes';
+import { getUserInfo } from '@igs/front-core/lib/common/app-redux/selectors';
 import {
   MediaQuery,
   Link,
-} from '@reagentum/front-core/lib/common/components';
+} from '@igs/front-core/lib/common/components';
 
 // ======================================================
 // UTILS

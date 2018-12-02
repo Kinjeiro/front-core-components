@@ -8,9 +8,9 @@ import {
 } from 'semantic-ui-react';
 import Scroll from 'react-scroll';
 
-import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
-import { MediaQuery } from '@reagentum/front-core/lib/common/components';
-import { getScrollParent } from '@reagentum/front-core/lib/common/utils/dom-utils';
+import { executeVariable } from '@igs/front-core/lib/common/utils/common';
+import { MediaQuery } from '@igs/front-core/lib/common/components';
+import { getScrollParent } from '@igs/front-core/lib/common/utils/dom-utils';
 
 import UpBottomButtons from '../UpBottomButtons/UpBottomButtons';
 

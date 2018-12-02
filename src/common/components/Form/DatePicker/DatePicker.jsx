@@ -8,7 +8,7 @@ import {
   DATE_FORMAT,
   parseDate,
   parseToSystem,
-} from '@reagentum/front-core/lib/common/utils/date-utils';
+} from '@igs/front-core/lib/common/utils/date-utils';
 
 // import i18n from '../../../utils/i18n';
 

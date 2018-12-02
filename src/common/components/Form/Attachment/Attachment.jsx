@@ -9,7 +9,7 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-import { generateId } from '@reagentum/front-core/lib/common/utils/common';
+import { generateId } from '@igs/front-core/lib/common/utils/common';
 
 import i18n from '../../../utils/i18n';
 

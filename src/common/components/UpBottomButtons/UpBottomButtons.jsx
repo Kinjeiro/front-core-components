@@ -11,7 +11,7 @@ import Scroll from 'react-scroll';
 
 import { Icon } from 'semantic-ui-react';
 
-import { getScrollParent } from '@reagentum/front-core/lib/common/utils/dom-utils';
+import { getScrollParent } from '@igs/front-core/lib/common/utils/dom-utils';
 
 import './UpBottomButtons.scss';
 

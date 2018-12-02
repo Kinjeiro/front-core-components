@@ -6,9 +6,9 @@ import {
   Redirect,
 } from 'react-router';
 
-// import permissionWrapper from '@reagentum/front-core/lib/common/containers/permissionWrapper';
-import createParentRoutes from '@reagentum/front-core/lib/common/create-routes';
-import { PATH_LOGIN_PAGE } from '@reagentum/front-core/lib/common/constants/routes.pathes';
+// import permissionWrapper from '@igs/front-core/lib/common/containers/permissionWrapper';
+import createParentRoutes from '@igs/front-core/lib/common/create-routes';
+import { PATH_LOGIN_PAGE } from '@igs/front-core/lib/common/constants/routes.pathes';
 // ======================================================
 // PROJECT
 // ======================================================

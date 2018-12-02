@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import bind from 'lodash-decorators/bind';
 
-import LoginPage from '@reagentum/front-core/lib/common/containers/LoginPage/LoginPage';
+import LoginPage from '@igs/front-core/lib/common/containers/LoginPage/LoginPage';
 
 // import { PATH_POST_AUTH_ROLE } from '../../../routes.pathes';
 

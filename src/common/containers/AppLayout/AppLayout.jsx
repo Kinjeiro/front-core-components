@@ -17,12 +17,12 @@ import 'semantic-ui-css/semantic.css';
 
 import 'react-redux-toastr/src/styles/index.scss';
 
-import { PATH_INDEX } from '@reagentum/front-core/lib/common/constants/routes.pathes';
-import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
-import { getCurrentPath } from '@reagentum/front-core/lib/common/app-redux/selectors';
-import { actions as actionsUser } from '@reagentum/front-core/lib/common/app-redux/reducers/app/user-info';
+import { PATH_INDEX } from '@igs/front-core/lib/common/constants/routes.pathes';
+import titled from '@igs/front-core/lib/common/utils/decorators/react-class/titled';
+import { getCurrentPath } from '@igs/front-core/lib/common/app-redux/selectors';
+import { actions as actionsUser } from '@igs/front-core/lib/common/app-redux/reducers/app/user-info';
 
-import { MediaQuery } from '@reagentum/front-core/lib/common/components';
+import { MediaQuery } from '@igs/front-core/lib/common/components';
 
 // ======================================================
 // UTILS

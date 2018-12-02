@@ -1,4 +1,4 @@
-import initAll from '@reagentum/front-core/lib/client/init';
+import initAll from '@igs/front-core/lib/client/init';
 
 async function start() {
   await initAll();

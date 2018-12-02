@@ -1,4 +1,4 @@
-import '@reagentum/front-core/lib/server/init';
+import '@igs/front-core/lib/server/init';
 
 import ServerRunner from './ServerRunner';
 

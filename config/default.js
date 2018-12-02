@@ -3,11 +3,11 @@ const {
   loadFileConfigs
 } = require('config/lib/util');
 
-const { inNodeModules } = require('@reagentum/front-core/build-scripts/utils/path-utils');
+const { inNodeModules } = require('@igs/front-core/build-scripts/utils/path-utils');
 
 module.exports = extendDeep(
   // parent config
-  loadFileConfigs(inNodeModules('@reagentum/front-core/config')),
+  loadFileConfigs(inNodeModules('@igs/front-core/config')),
   {
     // ======================================================
     // ОБЩИЕ КОНФИГИ для КЛИЕНТА И СЕРВЕРА

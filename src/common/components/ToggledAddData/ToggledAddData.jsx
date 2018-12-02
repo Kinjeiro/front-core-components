@@ -6,7 +6,7 @@ import {
   TextArea,
 } from 'semantic-ui-react';
 
-import { isEmpty } from '@reagentum/front-core/lib/common/utils/common';
+import { isEmpty } from '@igs/front-core/lib/common/utils/common';
 
 import i18n from '../../utils/i18n';
 

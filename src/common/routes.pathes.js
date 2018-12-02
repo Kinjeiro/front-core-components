@@ -1,4 +1,4 @@
-import appUrl from '@reagentum/front-core/lib/common/helpers/app-urls';
+import appUrl from '@igs/front-core/lib/common/helpers/app-urls';
 
 /* eslint-disable import/prefer-default-export */
 export const ROUTES_NAMES = {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 
-import { Link } from '@reagentum/front-core/lib/common/components';
+import { Link } from '@igs/front-core/lib/common/components';
 
 import i18n from '../../utils/i18n';
 

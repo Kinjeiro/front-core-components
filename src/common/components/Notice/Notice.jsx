@@ -6,8 +6,8 @@ import {
   Icon,
 } from 'semantic-ui-react';
 
-import FCNotice from '@reagentum/front-core/lib/common/components/Notifications/Notice';
-import NoticeEmitter from '@reagentum/front-core/lib/common/helpers/notifications';
+import FCNotice from '@igs/front-core/lib/common/components/Notifications/Notice';
+import NoticeEmitter from '@igs/front-core/lib/common/helpers/notifications';
 
 import './Notice.scss';
 

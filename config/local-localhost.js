@@ -1,4 +1,4 @@
-// const { createEndpointServiceConfig } = require('@reagentum/front-core/config/utils/create-config');
+// const { createEndpointServiceConfig } = require('@igs/front-core/config/utils/create-config');
 
 module.exports = {
   // ======================================================
