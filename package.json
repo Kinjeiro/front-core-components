@@ -1,6 +1,6 @@
 {
   "name": "@reagentum/frontCore_Components",
-  "version": "1.6.8",
+  "version": "1.6.9",
   "description": "FrontCore_Components",
   "scripts": {
     "start-build": "node ./.build/server.js",
