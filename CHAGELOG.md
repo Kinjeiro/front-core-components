@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [last version][1.6.0-1.6.?]
 ### !!! Breaking changes:
 1. Переход на front-core@1.6.x (userId вместо username)
+2. ```AppHeader``` теперь вместо ```grid``` работает на ```flex``` и ```__titledPart``` с ```flex-grow: 1``` (то есть он расстягивается).
+Это нужно было чтобы удобнее переопределять и работать. Грид слишком монструозный, требует особой поддержки IE.
+Просьба проверить свои шапки
 
 ### Features:
 
