@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import bind from 'lodash-decorators/bind';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+// import { push } from 'react-router-redux';
 import omit from 'lodash/omit';
 
 import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
-import {
-  PATH_LOGIN_PAGE,
-} from '@reagentum/front-core/lib/common/routes.pathes';
-import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
+import contextModules from '@reagentum/front-core/lib/common/contexts/ContextModules/decorator-context-modules';
+// import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
 import {
   getCurrentPath,
   getModulesRoutePrefixes,
 } from '@reagentum/front-core/lib/common/app-redux/selectors';
+
+import * as moduleAuth from '@reagentum/front-core/lib/modules/module-auth/common/subModule';
 import { getUser } from '@reagentum/front-core/lib/modules/module-auth/common/subModule/redux-selectors';
 import { actions as actionsUser } from '@reagentum/front-core/lib/modules/module-auth/common/subModule/redux-user-info';
 
@@ -59,7 +59,8 @@ const {
   AppSidebar,
 } = getCb();
 
-@titled('AppLayout', ({ textTitle }) => textTitle || i18n('pages.AppLayout.title'))
+// @titled('AppLayout', ({ textTitle }) => textTitle || i18n('pages.AppLayout.title'))
+@contextModules()
 @connect(
   (globalState) => ({
     currentPath: getCurrentPath(globalState),
@@ -68,7 +69,7 @@ const {
     sidebarOpened: moduleFeatureSidebar.reduxSelectors.isSidebarOpen(globalState),
   }),
   {
-    goTo: push,
+    // goTo: push,
     actionUserLogout: actionsUser.actionUserLogout,
     ...moduleFeatureSidebar.reduxActions(),
   },
@@ -121,6 +122,11 @@ export default class AppLayout extends Component {
     actionOpenSidebar: PropTypes.func,
     actionCloseSidebar: PropTypes.func,
     actionClearSidebarContext: PropTypes.func,
+
+    // ======================================================
+    // @contextModules
+    // ======================================================
+    onGoTo: PropTypes.func,
   };
 
   static defaultProps = {
@@ -244,8 +250,8 @@ export default class AppLayout extends Component {
 
   renderHeader() {
     const {
+      onGoTo,
       user,
-      goTo,
       headerProps,
       moduleToRoutePrefixMap,
     } = this.props;
@@ -266,8 +272,8 @@ export default class AppLayout extends Component {
                       userInfo={ user }
                       userMenu={ this.getUserMenu(isMobile) }
                       onToggleSidebar={ showSidebarMenu ? this.handleToggleSidebar : undefined }
-                      onGoTo={ goTo }
-                      onLogin={ () => goTo(PATH_LOGIN_PAGE) }
+                      onGoTo={ onGoTo }
+                      onLogin={ () => onGoTo(moduleAuth.PATH_AUTH_INDEX, moduleAuth.MODULE_NAME) }
                       moduleToRoutePrefixMap={ moduleToRoutePrefixMap }
 
                       { ...headerProps }
