@@ -67,7 +67,7 @@ export default class AmountInput extends PureComponent {
       <div className="AmountInput">
         <Button
           className="AmountInput__minus"
-          disabled={ value - 1 <= min }
+          disabled={ value - 1 < min }
           onClick={ () => this.handleChange(value - 1) }
         >
           { textMinus }
@@ -81,7 +81,7 @@ export default class AmountInput extends PureComponent {
         />
         <Button
           className="AmountInput__plus"
-          disabled={ value + 1 >= max }
+          disabled={ value + 1 > max }
           onClick={ () => this.handleChange(value + 1) }
         >
           { textPlus }
