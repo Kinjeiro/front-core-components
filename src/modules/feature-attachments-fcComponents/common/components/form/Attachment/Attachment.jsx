@@ -460,13 +460,18 @@ export default class Attachment extends React.Component {
 
       id,
       fileName,
+      type
       preview,
       description,
+      downloadUrl,
     } = attach;
 
     const progress = isNew ? valueFromRange(loaded, [0, 25, 50, 75, 100]) : null;
 
-    const finalPreview = tempPreviews[fileName] || propsPreviews[fileName] || preview;
+    let finalPreview = tempPreviews[fileName] || propsPreviews[fileName] || preview;
+    if (!finalPreview && type.indexOf('image') === 0) {
+      finalPreview = downloadUrl;
+    }
 
     // todo @ANKU @LOW - убрать bind с remove через отдельный компонент
     return (
