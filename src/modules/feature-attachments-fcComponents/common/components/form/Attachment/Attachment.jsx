@@ -460,7 +460,7 @@ export default class Attachment extends React.Component {
 
       id,
       fileName,
-      type
+      type,
       preview,
       description,
       downloadUrl,
