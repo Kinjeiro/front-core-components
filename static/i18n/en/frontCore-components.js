@@ -30,9 +30,6 @@ module.exports = {
       dropThere: 'Drop files here or click to upload',
       addButton: 'Add file',
     },
-    Upload: {
-      addFile: 'More...',
-    },
     KeyValueList: {
       drag: 'Drag and drop characteristic from list',
       orCreate: 'or create new',
