@@ -1,0 +1,71 @@
+@import "../../../../../common/app-styles/vars";
+
+.KeyValueList {
+  &__item {
+    display: grid;
+    grid-template-columns: 50% 45% 5%;
+  }
+
+  &__drag {
+    margin-top: 10px;
+    height: 40px;
+    background: rgba($color-hint, 0.3);
+    border: 2px dashed $color-hint;
+    //line-height: 40px;
+    //text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: $color-hint;
+  }
+}
+
+.KeyValueListItem {
+  margin: 1rem 0;
+
+  &__removeIcon {
+    color: $color-red;
+    cursor: pointer;
+  }
+}
+
+.KeyValueListAdd {
+  margin-top: 10px;
+
+  .ui &__actionAdd {
+    margin-left: 1rem;
+  }
+
+  &__createText {
+    color: $color-hint;
+  }
+
+  &__controls {
+    display: flex;
+    margin-bottom: 0.5rem;
+    //display: grid;
+    //grid-template-columns: 50% 50%;
+  }
+
+  &__actions {
+    text-align: right;
+  }
+}
+
+.KeyValueListControls {
+  display: flex;
+  justify-content: space-between;
+
+  .ui.form .field &__input {
+    display: flex;
+    //width: 48%;
+  }
+  .ui.form .field &__input:nth-child(2) {
+    //margin-left: -1rem;
+  }
+  .ui.form .field &__input:first-child {
+    margin-right: 1rem;
+  }
+}

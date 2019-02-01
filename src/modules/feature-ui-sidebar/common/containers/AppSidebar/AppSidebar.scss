@@ -1,0 +1,11 @@
+.ui.menu.AppSidebar {
+  //.ui.link.menu .item:hover,
+  //.ui.menu .dropdown.item:hover,
+  //.ui.menu .link.item:hover,
+  //.ui.menu a.item:hover
+  &__menuItemDelimiter.item {
+    &:hover {
+      cursor: default;
+    }
+  }
+}

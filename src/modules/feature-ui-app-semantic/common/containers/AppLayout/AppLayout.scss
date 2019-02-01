@@ -1,0 +1,157 @@
+@import "../../../../../common/app-styles/mixins";
+@import "../../../../../common/app-styles/vars";
+
+// Application's layout
+
+.AppLayout {
+  display: flex;
+  position: relative;
+
+  width: 100%;
+  // если меньши ширины экрана - чтобы растягивалось и давала возможность указать футер
+  min-height: 100%;
+  height: auto;
+  overflow: visible;
+
+  color: $color-default-text;
+  background-color: $color-default-background;
+
+  &.pushable {
+    transform: none;
+
+    & > .pusher {
+      overflow: visible;
+      flex: auto;
+    }
+
+    //& > .fixed,
+    //& > .pusher:after
+    & > .ui.sidebar {
+      position: fixed;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-items: center;
+    min-height: 100%;
+  }
+
+  &__marginItem {
+    width: 100%;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include respond-to('sm') {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include respond-to('md') {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    @include respond-to('lg') {
+      padding-left: $content-offset;
+      padding-right: $content-offset;
+    }
+  }
+  &__maxWidthItem {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  &__headerFixedWrapper {
+    width: 100%;
+    height: $AppHeader-height;
+  }
+  &__headerFixed {
+    // чтобы взялось $AppHeader-height для fixed
+    height: inherit;
+  }
+  &__headerWrapper {
+    height: 100%;
+    background-color: $color-default-background;
+  }
+  &__header {
+    height: 100%;
+  }
+  &--headerFixed {
+    .AppLayout__headerFixed {
+      position: fixed;
+      width: 100%;
+    }
+  }
+
+
+  &__content {
+    height: 100%;
+
+    //padding-top: #{$header-size-sm + $height-tabs-menu-sm};
+    //@include respond-to('md') {
+    //  padding-top: #{$header-size + $height-tabs-menu};
+    //}
+  }
+
+  &--notMobile {
+    /*
+    https://stackoverflow.com/questions/36855473/position-fixed-not-working-is-working-like-absolute
+      The issue here lies with your .content-container wrapper class, which has a CSS declaration of webkit-transform: translate3d(0,0,0). The transform declaration, as this answer illustrates, changes the positioning context from the viewport to the rotated element, which essentially means that your fixed element behaves as if it were absolutely positioned. Here's an example showing the difference between a fixed element inside a transformed div and a fixed element outside of that div.
+
+      Из-за этого после трансформа не правильно используется наш fixed
+
+      .pushable > .pusher {
+        position: relative;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        overflow: hidden;
+        min-height: 100%;
+        transition: transform 500ms ease;
+        z-index: 2;
+
+
+      .pushable:not(body) {
+        transform: translate3d(0, 0, 0);
+      }
+    */
+
+    &.pushable {
+      //&:not(body) {
+      //  //transform: translate3d(0, 0, 0);
+      //  transform: none;
+      //}
+
+      & > .pusher {
+        //-webkit-backface-visibility: hidden;
+        //backface-visibility: hidden;
+        //transition: transform 500ms ease;
+        -webkit-backface-visibility: visible;
+        backface-visibility: visible;
+        transition: none;
+      }
+    }
+  }
+
+
+  // ======================================================
+  // z-index
+  // ======================================================
+  &.pushable > .pusher {
+    z-index: auto;
+  }
+  .ui.overlay.sidebar {
+    z-index: $z-sidebar;
+  }
+  .ui.dimmer {
+    z-index: $z-dimer;
+  }
+  .UpBottomButtons {
+    z-index: $z-UpBottomButtons;
+  }
+  &--headerFixed {
+    .AppLayout__headerFixed {
+      z-index: $z-AppHeader;
+    }
+  }
+}

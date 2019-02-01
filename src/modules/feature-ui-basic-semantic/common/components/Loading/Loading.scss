@@ -1,0 +1,12 @@
+.Loading {
+  display: inline-block;
+  min-height: 32px;
+  height: 100%;
+  //margin: 10px;
+  position: relative;
+  width: 100%;
+
+  &--withText {
+    min-height: 62px;
+  }
+}

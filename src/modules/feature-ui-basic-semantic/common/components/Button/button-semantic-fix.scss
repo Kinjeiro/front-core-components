@@ -1,0 +1,25 @@
+@import "../../../../../common/app-styles/vars";
+
+.ui.primary.buttons .button,
+.ui.primary.button {
+  background: $color-button-primary;
+  color: $color-button-primary-text;
+
+  &:focus {
+    background: $color-button-primary;
+    color: $color-button-primary-text;
+  }
+  &:hover {
+    background: darken($color-button-primary, 15%);
+    color: $color-button-primary-text;
+  }
+  &:active {
+    background: darken($color-button-primary, 30%);
+    color: $color-button-primary-text;
+  }
+}
+
+.ui.button {
+  background: $color-primary;
+  color: $color-primary-text;
+}

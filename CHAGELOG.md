@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 Просьба проверить свои шапки
 3. Теперь все кнопки по умолчанию, если onClick возвращает promise будет показывать лоадинг (это нужно чтобы не протаскивать redux action status каждый раз)
 Отключить можно с помощью проперти ```asyncIsLoading={false}```
+4. Переместил все сущности по модулям: feature-ui-app-semantic / feature-ui-basic-semantic / feature-ui-form-generator-semantic / feature-ui-form-semantic / feature-ui-sidebar
 
 ### Features:
 

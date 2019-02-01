@@ -1,0 +1,113 @@
+@import "~rc-tree-select/assets/index.css";
+//@import "~rc-dialog/assets/index.css";
+
+@import "../../../../../common/app-styles/vars";
+
+.rc-tree-select {
+  width: 100%;
+  color: $color-default-text;
+
+  input,
+  textarea {
+    border-radius: 3px;
+    border: 1px solid $color-border;
+    box-shadow: 0 0 1px $color-border;
+
+    &:focus {
+      border-color: $color-border-hover;
+      box-shadow: 0 0 1px $color-border-hover;
+    }
+  }
+
+  .CoreField--touched {
+    :invalid {
+      border: 1px solid $color-error-border;
+    }
+    input:focus:invalid,
+    textarea:focus:invalid {
+      border: 1px solid $color-error-border;
+    }
+  }
+}
+.rc-tree-select-selection {
+  border-radius: 3px;
+  border: 1px solid $color-border;
+  box-shadow: 0 0 1px $color-border;
+  padding: 0.5em;
+  // semantic
+  height: auto;
+
+  &--single {
+    .rc-tree-select-selection__rendered {
+      line-height: 1.15;
+      padding: 0;
+    }
+  }
+
+  &:focus {
+    border-color: $color-border-hover;
+    box-shadow: 0 0 1px $color-border-hover;
+  }
+}
+
+.rc-tree-select-enabled.rc-tree-select-focused .rc-tree-select-selection,
+.rc-tree-select-enabled .rc-tree-select-selection:hover {
+  border-color: $color-border-hover;
+  box-shadow: 0 0 1px $color-border-hover;
+}
+.rc-tree-select-arrow {
+  height: 100%;
+}
+.rc-tree-select-selection__placeholder {
+  color: $color-placeholder;
+}
+.rc-tree-select-tree-treenode-switcher-open {
+  cursor: pointer;
+
+  &:hover {
+    background: #eaeaea;
+  }
+}
+.rc-tree-select-tree li ul {
+  background: white;
+}
+
+//.rc-tree-select-tree-node-content-wrapper {
+//  &:hover {
+//
+//  }
+//}
+
+.rc-tree-select-tree-node-selected {
+  //background-color: #ffe6b0;
+  //border: 1px #ffb951 solid;
+  //opacity: 0.8;
+  font-weight: $font-weight-header;
+  background-color: transparent;
+  border: none;
+}
+
+.rc-tree-select-tree-node-content-wrapper {
+  width: calc(100% - 16px); // 16px размер пространства слева
+  display: inline-block;
+}
+
+.TreeSelectDive {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__select {
+    display: block;
+  }
+  &__selectAll {
+    font-weight: bold;
+  }
+}
+.TreeSelectDiveSelect {
+  &--leaf {
+    font-weight: bold;
+  }
+}
