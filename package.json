@@ -75,11 +75,12 @@
   },
   "toCoreDependencies": {},
   "dependencies": {
-    "@reagentum/feature-ui-app-semantic": "file:./lib/modules/feature-ui-app-semantic",
-    "@reagentum/feature-ui-basic-semantic": "file:./lib/modules/feature-ui-basic-semantic",
-    "@reagentum/feature-ui-form-generator-semantic": "file:./lib/modules/feature-ui-form-generator-semantic",
-    "@reagentum/feature-ui-form-semantic": "file:./lib/modules/feature-ui-form-semantic",
-    "@reagentum/feature-ui-sidebar": "file:./lib/modules/feature-ui-sidebar",
+    "react-scroll": "~1.7.8",
+    "redux-form": "~6.8.0",
+    "react-dropzone": "~4.2.0",
+    "rc-tree-select": "~2.2.5",
+    "react-dates": "~16.0.2",
+    "react-image-gallery": "~0.8.11",
     "react-redux-toastr": "~7.0.0",
     "semantic-ui-css": "~2.2.10",
     "semantic-ui-react": "~0.80.2"
@@ -90,12 +91,7 @@
     "react-dom": ">=16.4.0"
   },
   "devDependencies": {
-    "@reagentum/feature-ui-app-semantic": "file:./src/modules/feature-ui-app-semantic",
-    "@reagentum/feature-ui-basic-semantic": "file:./src/modules/feature-ui-basic-semantic",
-    "@reagentum/feature-ui-form-generator-semantic": "file:./src/modules/feature-ui-form-generator-semantic",
-    "@reagentum/feature-ui-form-semantic": "file:./src/modules/feature-ui-form-semantic",
-    "@reagentum/feature-ui-sidebar": "file:./src/modules/feature-ui-sidebar",
-    "@reagentum/front-core": "~1.6.47",
+    "@reagentum/front-core": "~1.6.48",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",
