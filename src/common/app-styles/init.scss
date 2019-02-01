@@ -1,0 +1,22 @@
+@import '~semantic-ui-css/semantic.css';
+
+@import '~react-redux-toastr/src/styles/index.scss';
+
+html {
+  font-family: "Roboto Regular", Roboto, serif;
+}
+// todo @ANKU @LOW - @BUG_OUT @semantic-ui - наплодили стилей
+.ui.cards > .card > .content > .header,
+.ui.card > .content > .header,
+body {
+  font-family: inherit;
+}
+
+body,
+.body {
+  font-size: inherit;
+}
+
+body {
+  overflow: visible;
+}
