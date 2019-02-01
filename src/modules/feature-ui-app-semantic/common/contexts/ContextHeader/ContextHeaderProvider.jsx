@@ -61,16 +61,16 @@ export default class ContextHeaderProvider extends Component {
   };
 
   static defaultProps = {
-    title: i18n('pages.AppLayout.title'),
+    title: i18n('containers.AppLayout.title'),
   };
 
   state = {
     headerTitle: typeof this.props.headerProps.headerTitle !== 'undefined'
       ? this.props.headerProps.headerTitle
-      : i18n('pages.AppLayout.Header.title'),
+      : i18n('containers.AppLayout.Header.title'),
     headerDescription: typeof this.props.headerProps.headerDescription !== 'undefined'
       ? this.props.headerProps.headerDescription
-      : i18n('pages.AppLayout.Header.description'),
+      : i18n('containers.AppLayout.Header.description'),
     leftPart: this.props.headerProps.leftPart,
     rightPart: this.props.headerProps.rightPart,
   };
