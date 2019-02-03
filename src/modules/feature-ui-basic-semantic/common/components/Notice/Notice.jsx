@@ -14,7 +14,6 @@ const {
 require('./Notice.scss');
 
 export default (PrevNotice) => {
-  debugger;
   return class Notice extends Component {
     static propTypes = PrevNotice.propTypes;
     static defaultProps = PrevNotice.defaultProps;

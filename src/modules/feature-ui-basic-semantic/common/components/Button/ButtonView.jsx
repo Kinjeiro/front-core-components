@@ -35,6 +35,7 @@ export default class ButtonView extends PureComponent {
       children,
       className,
       notNaturalButton,
+      asyncIsLoading,
 
       onClick,
     } = this.props;
