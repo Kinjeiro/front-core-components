@@ -1,0 +1,186 @@
+@import "../../../../../common/app-styles/vars";
+
+.AppHeader {
+  // ======================================================
+  // OTHERS
+  // ======================================================
+  button,
+  .ui.button,
+  input,
+  optgroup,
+  select,
+  textarea,
+  .ui.input input {
+    line-height: inherit;
+  }
+
+  // ======================================================
+  // INNER
+  // ======================================================
+  //display: grid;
+  //grid-template-columns:
+  //  [first-part] auto
+  //  [sidebar-icon-part] auto
+  //  [logo-part] auto
+  //  [title-part] 1fr
+  //  [left-part] auto
+  //  [user-part] auto
+  //  [right-part] auto
+  //  [end];
+  //-ms-grid-columns: auto auto auto 1fr auto auto auto;
+  ////grid-template-rows: [content-start] auto [content-end];
+  ////-ms-grid-rows: 1fr;
+  //
+  //// todo @ANKU @LOW - @BUG_OUT @IE - обязательно нужно указывать расположение
+  //// https://stackoverflow.com/a/45787093/344172
+  //&__firstPart {
+  //  -ms-grid-column: 1;
+  //}
+  //&__sidebarIconPart {
+  //  -ms-grid-column: 2;
+  //}
+  //&__logoPart {
+  //  -ms-grid-column: 3;
+  //}
+  //&__titlePart {
+  //  -ms-grid-column: 4;
+  //}
+  //&__leftPart {
+  //  -ms-grid-column: 5;
+  //}
+  //&__userPart {
+  //  -ms-grid-column: 6;
+  //}
+  //&__rightPart {
+  //  -ms-grid-column: 7;
+  //}
+  // для более гибкой и удобной настройки выкинули грид и заменили на flex-grow
+  display: flex;
+
+  &__titlePart {
+    // по умолчанию он будет все расстягивать
+    flex-grow: 1;
+  }
+
+
+
+  align-items: center;
+  // todo @ANKU @LOW @BUG_OUT @IE - не понимает align-items на контейнере
+  & > * {
+    display: flex;
+    align-items: center;
+  }
+
+  // ======================================================
+  // FirstPart
+  // ======================================================
+
+
+  // ======================================================
+  // SidebarIconPart
+  // ======================================================
+  .SidebarIconPart {
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  // ======================================================
+  // LogoPart
+  // ======================================================
+  .LogoPart {
+    &__image {
+
+    }
+    // @deprecated - для поддержания обратной совместимости (вдруг кто-то лого ждал)
+    & > * {
+      max-width: 120px;
+      min-width: 120px;
+    }
+  }
+
+  // ======================================================
+  // TitlePart
+  // ======================================================
+  .TitlePart {
+    &__link {
+      text-decoration: none;
+    }
+    &__title {
+      font-size: 1.25rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.75rem;
+        line-height: 1.5rem;
+      }
+    }
+    //&__description {
+    //}
+  }
+
+  // ======================================================
+  // LeftPart
+  // ======================================================
+
+  // ======================================================
+  // UserInfo
+  // ======================================================
+  &__userPart {
+    .ui.dropdown > .dropdown.icon {
+      margin-left: 5px;
+    }
+
+    .Link {
+      display: inline-block;
+      //height: 100%;
+      height: inherit;
+      width: 100%;
+    }
+  }
+
+  .UserPart {
+    &__menu {
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+
+    &__name {
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      //height: 2em;
+      //width: 2em;
+    }
+
+    // todo @ANKU @LOW - pointing="top right" - при наведении показывается, но при этом из-за расстояния из-за поинтинга вниз ведешь и тут же скрывается, держится только по клику
+    .ui.top.right.pointing.dropdown > .menu {
+      margin-top: 0.1em;
+      //right: -1em;
+      //left: 0;
+      right: -0.5rem;
+      width: calc(100% + 0.5em);
+    }
+    .ui.top.pointing.dropdown > .left.menu:after,
+    .ui.top.right.pointing.dropdown > .menu:after {
+      // todo @ANKU @LOW - @BUG_OUT @semantic - используют important
+      right: 0.5rem !important;
+    }
+    //.ui.top.left.pointing.dropdown > .menu:after {
+    //
+    //}
+
+    .UserAvatar {
+      width: 2em;
+    }
+  }
+
+  .UserName {
+    &__displayName {
+      margin-left: 0.5em;
+    }
+  }
+  // ======================================================
+  // RightPart
+  // ======================================================
+}
+

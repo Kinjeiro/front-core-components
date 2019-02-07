@@ -1,0 +1,7 @@
+{
+  "name": "@reagentum/feature-ui-app-semantic",
+  "version": "1.0.0",
+  "dependencies": {
+    "react-scroll": "~1.7.8"
+  }
+}

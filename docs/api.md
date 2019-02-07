@@ -3,144 +3,61 @@
 ### Table of Contents
 
 -   [Navigation][1]
--   [onToggleSidebar][2]
--   [logo][3]
--   [userMenu][4]
--   [userMenu][5]
--   [profileUrl][6]
--   [className][7]
--   [items][8]
--   [AmountInput][9]
--   [update][10]
--   [update][11]
--   [type][12]
--   [renderTitle][13]
--   [renderSelectAll][14]
--   [renderItem][15]
--   [Loading][16]
--   [Loading][17]
--   [Modal][18]
--   [UpBottomButtons][19]
--   [ScrollNavigation][20]
--   [TwoColumnMobileRow][21]
--   [TwoColumnMobileRow][22]
--   [Tabs][23]
--   [Segment][24]
--   [KeyValueList][25]
--   [Select][26]
--   [ToggledAddData][27]
--   [UniTable][28]
--   [UniTable][29]
--   [Notice][30]
--   [modalProps][31]
--   [scrollingOwn][32]
--   [useUpBottomButtons][33]
--   [content][34]
--   [isShow][35]
--   [SimpleButton][36]
--   [indexPath][37]
--   [onSelect][38]
--   [onSelectPage][39]
--   [onSelectAll][40]
--   [menu][41]
--   [sidebarMenu][42]
--   [decoratorContextHeader][43]
--   [ATTACHMENT_PROP_TYPE][44]
--   [render][45]
--   [linkTo][46]
--   [type][47]
--   [image][48]
--   [content][49]
--   [mobile][50]
--   [onClick][51]
--   [isLink][52]
--   [decoratorModal][53]
--   [children][54]
--   [accept][55]
--   [dropZoneProps][56]
--   [onAdd][57]
--   [updateValues][58]
+-   [Loading][2]
+-   [Loading][3]
+-   [Modal][4]
+-   [UpBottomButtons][5]
+-   [ScrollNavigation][6]
+-   [TwoColumnMobileRow][7]
+-   [TwoColumnMobileRow][8]
+-   [Tabs][9]
+-   [Segment][10]
+-   [KeyValueList][11]
+-   [Select][12]
+-   [ToggledAddData][13]
+-   [UniTable][14]
+-   [UniTable][15]
+-   [Notice][16]
+-   [decorator-context-header][17]
+-   [model-attachment][18]
+-   [model-column][19]
+-   [model-menu][20]
+-   [model-tab][21]
+-   [default][22]
+-   [onToggleSidebar][23]
+-   [logo][24]
+-   [userMenu][25]
+-   [userMenu][26]
+-   [profileUrl][27]
+-   [className][28]
+-   [scrollingOwn][29]
+-   [useUpBottomButtons][30]
+-   [content][31]
+-   [isShow][32]
+-   [menu][33]
+-   [sidebarMenu][34]
+-   [decoratorContextHeader][35]
+-   [items][36]
+-   [modalProps][37]
+-   [SimpleButton][38]
+-   [indexPath][39]
+-   [onSelect][40]
+-   [onSelectPage][41]
+-   [onSelectAll][42]
+-   [decoratorModal][43]
+-   [update][44]
+-   [update][45]
+-   [AmountInput][46]
+-   [dropZoneProps][47]
+-   [type][48]
+-   [renderTitle][49]
+-   [renderSelectAll][50]
+-   [renderItem][51]
 
 ## Navigation
 
 остальное
 
-
-## onToggleSidebar
-
-если есть, то рисутеся sibebarIcon в начале
-
-## logo
-
-если стринг - урл лого
-если нода - контрол
-
-## userMenu
-
-see [https://react.semantic-ui.com/modules/dropdown][59]
-
-## userMenu
-
-если функция (user, moduleToRoutePrefixMap) => \[]
-
-## profileUrl
-
-(user, moduleToRoutePrefixMap) => {}
-
-## className
-
-**Meta**
-
--   **deprecated**: name === 'delimiter'
-
-
-## items
-
-[https://www.npmjs.com/package/react-image-gallery#props][60]
-
-## AmountInput
-
-**Extends PureComponent**
-
-// todo @ANKU @LOW - перенести @toCore
-
-## update
-
-**Parameters**
-
--   `withBlur`  
--   `withChange`  
--   `event`  
--   `comp`  
-
-## update
-
-**Parameters**
-
--   `withBlur`  
--   `withChange`  
--   `event`  
--   `comp`  
-
-## type
-
-тип контрола
-
--   PLAIN: 'plain' - обычный древовидный селект
--   DIVE: 'dive' - выбор с погружением
--   EXPAND: 'expand' - древовидное раскрытие (аккордион)
-
-## renderTitle
-
-(currentTreeItem, currentPath, treeSelectProps) => label
-
-## renderSelectAll
-
-(currentTreeItem, treeSelectProps) => label
-
-## renderItem
-
-(treeItem, index, treeSelectProps) => label
 
 ## Loading
 
@@ -312,11 +229,75 @@ loadPositionsTables: {
 -   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
 
-## modalProps
+## decorator-context-header
 
-closeOnEscape={closeOnEscape}  (default: true)
-closeOnDimmerClick={closeOnDimmerClick} (default: true)
-closeOnDocumentClick={closeOnDimmerClick} (default: false)
+**Meta**
+
+-   **deprecated**: use modules/feature-ui-app-semantic/common/contexts/ContextHeader/decorator-context-header
+
+
+## model-attachment
+
+**Meta**
+
+-   **deprecated**: use @reagentum/front-core/lib/modules/feature-attachments/common/subModule/model-attachment
+
+
+## model-column
+
+**Meta**
+
+-   **deprecated**: use @reagentum/front-core/lib/modules/feature-ui-basic/common/subModule/model-ui-column
+
+
+## model-menu
+
+**Meta**
+
+-   **deprecated**: use @reagentum/front-core/lib/modules/feature-ui-basic/common/subModule/model-ui-menu
+
+
+## model-tab
+
+**Meta**
+
+-   **deprecated**: use @reagentum/front-core/lib/modules/feature-ui-basic/common/subModule/model-ui-tab
+
+
+## default
+
+**Meta**
+
+-   **deprecated**: use modules/feature-ui-basic-semantic/common/decorators/decorator-modal
+
+
+## onToggleSidebar
+
+если есть, то рисутеся sibebarIcon в начале
+
+## logo
+
+если стринг - урл лого
+если нода - контрол
+
+## userMenu
+
+see [https://react.semantic-ui.com/modules/dropdown][52]
+
+## userMenu
+
+если функция (user, moduleToRoutePrefixMap) => \[]
+
+## profileUrl
+
+(user, moduleToRoutePrefixMap) => {}
+
+## className
+
+**Meta**
+
+-   **deprecated**: name === 'delimiter'
+
 
 ## scrollingOwn
 
@@ -336,28 +317,6 @@ string - тогда это будет id элемента, у которого �
 ## isShow
 
 можно подать функцию (id, type) => {}, где type это либо зона 'info', либо зона 'content'
-
-## SimpleButton
-
-**Extends PureComponent**
-
-Меня достало semantic .ui.button селекторы
-
-## indexPath
-
-чтобы индекс без типа считался активной первой табой
-
-## onSelect
-
-(recordId, selected, record) => {}
-
-## onSelectPage
-
-(selectedRecordIds, selected, selectedRecords) => {}
-
-## onSelectAll
-
-(isSelectedAll) => {}
 
 ## menu
 
@@ -386,52 +345,41 @@ string - тогда это будет id элемента, у которого �
 -   setHeaderLeftPart
 -   setHeaderRightPart
 
-## ATTACHMENT_PROP_TYPE
+## items
+
+[https://www.npmjs.com/package/react-image-gallery#props][53]
+
+## modalProps
+
+closeOnEscape={closeOnEscape}  (default: true)
+closeOnDimmerClick={closeOnDimmerClick} (default: true)
+closeOnDocumentClick={closeOnDimmerClick} (default: false)
+
+## SimpleButton
+
+**Extends PureComponent**
 
 **Meta**
 
--   **deprecated**: use @reagentum/front-core/lib/modules/feature-attachments/common/subModule/model-attachment
+-   **deprecated**: использовать Button simple={ true }
+    Меня достало semantic .ui.button селекторы
 
 
-## render
+## indexPath
 
-(cellValue, column, record, rowIndex) => {}
+чтобы индекс без типа считался активной первой табой
 
-## linkTo
+## onSelect
 
-Оборачивает значение колонки в линку
-если функция - (record, column, rowIndex) => {}
+(recordId, selected, record) => {}
 
-## type
+## onSelectPage
 
-MENU_ITEM_TYPE = {
-NORMAL: 'normal',
-DELIMITER: 'delimiter',
-HEADER: 'header',
-}
+(selectedRecordIds, selected, selectedRecords) => {}
 
-## image
+## onSelectAll
 
-url аватарки
-либо будет использована icon
-
-## content
-
-либо name будет рисоваться
-
-## mobile
-
-true - показывать только для мобильных
-false - показывать только для не мобильных
-undefined \\ null - показывать везде
-
-## onClick
-
-либо path будет использован для перехода
-
-## isLink
-
-по умолчанию, если есть path или onClick то считается линкой, но это можно исправить с помощью этого параметра
+(isSelectedAll) => {}
 
 ## decoratorModal
 
@@ -443,153 +391,159 @@ undefined \\ null - показывать везде
 -   `modalPropsFn`  : (modalData) => modalProps
 -   `handlerName`  имя проперти
 
-## children
+## update
 
-Если функция - (onOpenDialog, props, state) => Node
+**Parameters**
 
-## accept
+-   `withBlur`  
+-   `withChange`  
+-   `event`  
+-   `comp`  
 
-[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types][61]
-accept="image/png" or accept=".png" — Accepts PNG files.
-accept="image/png, image/jpeg" or accept=".png, .jpg, .jpeg" — Accept PNG or JPEG files.
-accept="image/_" — Accept any file with an image/_ MIME type. (Many mobile devices also let the user take a picture with the camera when this is used.)
-accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+## update
+
+**Parameters**
+
+-   `withBlur`  
+-   `withChange`  
+-   `event`  
+-   `comp`  
+
+## AmountInput
+
+**Extends PureComponent**
+
+// todo @ANKU @LOW - перенести @toCore
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][62]
+[https://react-dropzone.netlify.com/#proptypes][54]
 maxSize
 
-## onAdd
+## type
 
-(uuidToFileMap, newAttachments, resultAttachments) => {} - всегда, даже если multiple=false, так как uuid важен для InstanceAttachments
+тип контрола
 
-## updateValues
+-   PLAIN: 'plain' - обычный древовидный селект
+-   DIVE: 'dive' - выбор с погружением
+-   EXPAND: 'expand' - древовидное раскрытие (аккордион)
 
-Наполняем результаты из рудекса (сколько загружено)
+## renderTitle
 
-Returns **any** 
+(currentTreeItem, currentPath, treeSelectProps) => label
+
+## renderSelectAll
+
+(currentTreeItem, treeSelectProps) => label
+
+## renderItem
+
+(treeItem, index, treeSelectProps) => label
 
 [1]: #navigation
 
-[2]: #ontogglesidebar
+[2]: #loading
 
-[3]: #logo
+[3]: #loading-1
 
-[4]: #usermenu
+[4]: #modal
 
-[5]: #usermenu-1
+[5]: #upbottombuttons
 
-[6]: #profileurl
+[6]: #scrollnavigation
 
-[7]: #classname
+[7]: #twocolumnmobilerow
 
-[8]: #items
+[8]: #twocolumnmobilerow-1
 
-[9]: #amountinput
+[9]: #tabs
 
-[10]: #update
+[10]: #segment
 
-[11]: #update-1
+[11]: #keyvaluelist
 
-[12]: #type
+[12]: #select
 
-[13]: #rendertitle
+[13]: #toggledadddata
 
-[14]: #renderselectall
+[14]: #unitable
 
-[15]: #renderitem
+[15]: #unitable-1
 
-[16]: #loading
+[16]: #notice
 
-[17]: #loading-1
+[17]: #decorator-context-header
 
-[18]: #modal
+[18]: #model-attachment
 
-[19]: #upbottombuttons
+[19]: #model-column
 
-[20]: #scrollnavigation
+[20]: #model-menu
 
-[21]: #twocolumnmobilerow
+[21]: #model-tab
 
-[22]: #twocolumnmobilerow-1
+[22]: #default
 
-[23]: #tabs
+[23]: #ontogglesidebar
 
-[24]: #segment
+[24]: #logo
 
-[25]: #keyvaluelist
+[25]: #usermenu
 
-[26]: #select
+[26]: #usermenu-1
 
-[27]: #toggledadddata
+[27]: #profileurl
 
-[28]: #unitable
+[28]: #classname
 
-[29]: #unitable-1
+[29]: #scrollingown
 
-[30]: #notice
+[30]: #useupbottombuttons
 
-[31]: #modalprops
+[31]: #content
 
-[32]: #scrollingown
+[32]: #isshow
 
-[33]: #useupbottombuttons
+[33]: #menu
 
-[34]: #content
+[34]: #sidebarmenu
 
-[35]: #isshow
+[35]: #decoratorcontextheader
 
-[36]: #simplebutton
+[36]: #items
 
-[37]: #indexpath
+[37]: #modalprops
 
-[38]: #onselect
+[38]: #simplebutton
 
-[39]: #onselectpage
+[39]: #indexpath
 
-[40]: #onselectall
+[40]: #onselect
 
-[41]: #menu
+[41]: #onselectpage
 
-[42]: #sidebarmenu
+[42]: #onselectall
 
-[43]: #decoratorcontextheader
+[43]: #decoratormodal
 
-[44]: #attachment_prop_type
+[44]: #update
 
-[45]: #render
+[45]: #update-1
 
-[46]: #linkto
+[46]: #amountinput
 
-[47]: #type-1
+[47]: #dropzoneprops
 
-[48]: #image
+[48]: #type
 
-[49]: #content-1
+[49]: #rendertitle
 
-[50]: #mobile
+[50]: #renderselectall
 
-[51]: #onclick
+[51]: #renderitem
 
-[52]: #islink
+[52]: https://react.semantic-ui.com/modules/dropdown
 
-[53]: #decoratormodal
+[53]: https://www.npmjs.com/package/react-image-gallery#props
 
-[54]: #children
-
-[55]: #accept
-
-[56]: #dropzoneprops
-
-[57]: #onadd
-
-[58]: #updatevalues
-
-[59]: https://react.semantic-ui.com/modules/dropdown
-
-[60]: https://www.npmjs.com/package/react-image-gallery#props
-
-[61]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Limiting_accepted_file_types
-
-[62]: https://react-dropzone.netlify.com/#proptypes
+[54]: https://react-dropzone.netlify.com/#proptypes

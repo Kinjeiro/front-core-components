@@ -1,0 +1,10 @@
+{
+  "name": "@reagentum/feature-ui-form-semantic",
+  "version": "1.0.0",
+  "dependencies": {
+    "react-dropzone": "~4.2.0",
+    "rc-tree-select": "~2.2.5",
+    "react-dates": "~16.0.2",
+    "react-image-gallery": "~0.8.11"
+  }
+}

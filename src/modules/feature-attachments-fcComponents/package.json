@@ -1,7 +1,0 @@
-{
-  "name": "@reagentum/feature-attachments",
-  "version": "1.0.0",
-  "dependencies": {
-    "react-dropzone": "~4.2.0"
-  }
-}

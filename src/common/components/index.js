@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /**
  * @deprecated - так как подцепляются лишнее css стили для неиспользуемых компонентов
  */
@@ -9,48 +10,48 @@
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export Loading from './Loading/Loading';
+export Loading from '../../modules/feature-ui-basic-semantic/common/components/Loading/Loading';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export Modal from './Modal/Modal';
+export Modal from '../../modules/feature-ui-basic-semantic/common/components/Modal/Modal';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export UpBottomButtons from './UpBottomButtons/UpBottomButtons';
+export UpBottomButtons from '../../modules/feature-ui-app-semantic/common/components/UpBottomButtons/UpBottomButtons';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export ScrollNavigation from './ScrollNavigation/ScrollNavigation';
+export ScrollNavigation from '../../modules/feature-ui-app-semantic/common/components/ScrollNavigation/ScrollNavigation';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export TwoColumnMobileRow from './TwoColumnMobileRow/TwoColumnMobileRow';
+export TwoColumnMobileRow from '../../modules/feature-ui-app-semantic/common/components/TwoColumnMobileRow/TwoColumnMobileRow';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export Tabs from './Tabs/Tabs';
+export Tabs from '../../modules/feature-ui-basic-semantic/common/components/Tabs/Tabs';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export Segment from './Segment/Segment';
+export Segment from '../../modules/feature-ui-basic-semantic/common/components/Segment/Segment';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export KeyValueList from './KeyValueList/KeyValueList';
+export KeyValueList from '../../modules/feature-ui-basic-semantic/common/components/KeyValueList/KeyValueList';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export Select from './Form/Select/Select';
+export Select from '../../modules/feature-ui-form-generator-semantic/common/components/Select/Select';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export ToggledAddData from './ToggledAddData/ToggledAddData';
+export ToggledAddData from '../../modules/feature-ui-app-semantic/common/components/ToggledAddData/ToggledAddData';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export UniTable from './UniTable/UniTable';
+export UniTable from '../../modules/feature-ui-basic-semantic/common/components/UniTable/UniTable';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
-export Notice from './Notice/Notice';
+export Notice from '../../modules/feature-ui-basic-semantic/common/components/Notice/Notice';

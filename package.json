@@ -1,6 +1,6 @@
 {
   "name": "@reagentum/frontCore_Components",
-  "version": "1.6.14",
+  "version": "1.6.17",
   "description": "FrontCore_Components",
   "scripts": {
     "start-build": "node ./.build/server.js",
@@ -69,19 +69,19 @@
     "echarts": "~3.7.2",
     "echarts-for-react": "~2.0.0",
     "hawk": "~6.0.2",
-    "redux-form-semantic-ui": "~1.0.0"
+    "redux-form-semantic-ui": "~1.0.0",
+    "react-tagcloud": "~1.2.0",
+    "react-truncate": "~2.2.2"
   },
   "toCoreDependencies": {},
   "dependencies": {
+    "react-scroll": "~1.7.8",
+    "redux-form": "~6.8.0",
+    "react-dropzone": "~4.2.0",
     "rc-tree-select": "~2.2.5",
     "react-dates": "~16.0.2",
-    "react-dropzone": "~4.2.0",
     "react-image-gallery": "~0.8.11",
     "react-redux-toastr": "~7.0.0",
-    "react-scroll": "~1.7.8",
-    "react-tagcloud": "~1.2.0",
-    "react-truncate": "~2.2.2",
-    "redux-form": "~6.8.0",
     "semantic-ui-css": "~2.2.10",
     "semantic-ui-react": "~0.80.2"
   },
@@ -91,7 +91,7 @@
     "react-dom": ">=16.4.0"
   },
   "devDependencies": {
-    "@reagentum/front-core": "~1.6.20",
+    "@reagentum/front-core": "~1.6.48",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",

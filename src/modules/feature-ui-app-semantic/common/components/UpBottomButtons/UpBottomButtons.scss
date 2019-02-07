@@ -1,0 +1,14 @@
+@import "../../../../../common/app-styles/vars";
+
+.UpBottomButtons {
+  position: fixed;
+  z-index: $z-UpBottomButtons;
+  bottom: 15px;
+  right: 15px;
+
+  .icon {
+    font-size: 3em;
+    color: $color-primary;
+    cursor: pointer;
+  }
+}

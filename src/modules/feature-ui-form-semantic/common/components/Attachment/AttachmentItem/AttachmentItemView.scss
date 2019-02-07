@@ -1,0 +1,33 @@
+@import "../../../../../../common/app-styles/vars";
+
+.AttachmentItem {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 3%;
+
+  &__fileName {
+    cursor: pointer;
+    color: $color-primary;
+    font-weight: bold;
+    text-align: right;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    min-width: 160px;
+  }
+
+  &__remove {
+    // todo @ANKU @LOW - color
+    color: #bfbfbf;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  &__preview {
+    display: block;
+    width: 150px;
+  }
+}
+

@@ -5,8 +5,6 @@ import bind from 'lodash-decorators/bind';
 
 import simpleForm from '@reagentum/front-core/lib/common/utils/decorators/react-class/redux-simple-form';
 
-import i18n from '../../utils/i18n';
-
 import headerContext from '../../contexts/ContextHeader/decorator-context-header';
 import getComponents from '../../get-components';
 

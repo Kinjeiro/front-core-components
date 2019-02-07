@@ -1,20 +1,6 @@
-import createContextDecorator from '@reagentum/front-core/lib/common/utils/decorators/utils/create-context-decorator';
-
-import { ContextHeaderConsumer } from './ContextHeaderProvider';
+import decoratorContextHeader from '../../../modules/feature-ui-app-semantic/common/contexts/ContextHeader/decorator-context-header';
 
 /**
- * Декорирует компонент и добавляет в него значения и методы по изменению header
- - title,
- - headerTitle,
- - headerDescription,
- - headerLeftPart,
- - headerRightPart,
-
- - setTitle
- - setHeaderTitle
- - setHeaderDescription
- - setHeaderLeftPart
- - setHeaderRightPart
+ * @deprecated - use modules/feature-ui-app-semantic/common/contexts/ContextHeader/decorator-context-header
  */
-export const decoratorContextHeader = createContextDecorator(ContextHeaderConsumer);
 export default decoratorContextHeader;
