@@ -61,6 +61,7 @@ export default class AppSidebar extends PureComponent {
       currentPath,
       onClose,
       actionCloseSidebar,
+      sidebarProps: { alwaysVisible = false } = {},
     } = this.props;
 
     const {
@@ -68,6 +69,7 @@ export default class AppSidebar extends PureComponent {
       type,
       name,
       path,
+      to,
       icon,
       isLink,
       content,
@@ -75,34 +77,31 @@ export default class AppSidebar extends PureComponent {
       className,
     } = menuItem;
 
-    const isDelimiter = name === MENU_ITEM_TYPE.DELIMITER || type === MENU_ITEM_TYPE.DELIMITER;
+    const isDelimiter =
+      name === MENU_ITEM_TYPE.DELIMITER || type === MENU_ITEM_TYPE.DELIMITER;
 
-    const keyFinal = key
-      || (
-        isDelimiter
-          ? `${MENU_ITEM_TYPE.DELIMITER}_${index}`
-          : name
-      );
-
+    const keyFinal =
+      key || (isDelimiter ? `${MENU_ITEM_TYPE.DELIMITER}_${index}` : name);
     return (
       <Menu.Item
         key={ keyFinal }
-        className={ `AppSidebar__menuItem ${isDelimiter ? 'AppSidebar__menuItemDelimiter' : ''} ${className || ''}` }
+        className={ `AppSidebar__menuItem ${
+          isDelimiter ? 'AppSidebar__menuItemDelimiter' : ''
+        } ${className || ''}` }
         name={ name }
         path={ path }
-        onClick={ async (event) => {
+        onClick={ async event => {
           let stopClosing;
-
-          if (onClick) {
+          if (onClick && !alwaysVisible) {
             stopClosing = await onClick(event);
-          } else if (path && onGoTo) {
-            await onGoTo(path);
+          } else if (onGoTo && (path || to)) {
+            await onGoTo(path || to);
           }
 
-          if (stopClosing !== true && onClose) {
+          if (stopClosing !== true && onClose && !alwaysVisible) {
             stopClosing = await onClose();
           }
-          if (stopClosing !== true) {
+          if (stopClosing !== true && !alwaysVisible) {
             stopClosing = await actionCloseSidebar();
           }
           return stopClosing;
@@ -111,17 +110,13 @@ export default class AppSidebar extends PureComponent {
           typeof isLink !== 'undefined'
             ? isLink
             : isDelimiter
-              ? false
-              : !!(path || onClick)
+            ? false
+            : !!(path || onClick)
         }
-        active={ currentPath && currentPath.indexOf(path) >= 0 }
+        active={ currentPath && currentPath.indexOf(path || to) >= 0 }
       >
-        {
-          icon && (
-            <Icon name={ icon } />
-          )
-        }
-        { content || name }
+        {icon && <Icon name={ icon } />}
+        {content || name}
       </Menu.Item>
     );
   }
@@ -130,13 +125,7 @@ export default class AppSidebar extends PureComponent {
   // MAIN RENDER
   // ======================================================
   render() {
-    const {
-      menu,
-      className,
-      sidebarProps,
-      children,
-    } = this.props;
-
+    const { menu, className, sidebarProps, children } = this.props;
     return (
       <Sidebar
         className={ `AppSidebar ${className || ''}` }
@@ -149,12 +138,8 @@ export default class AppSidebar extends PureComponent {
         inverted={ true }
         { ...sidebarProps }
       >
-        {
-          menu && menu.map(this.renderSidebarMenuItem)
-        }
-        {
-          children
-        }
+        {menu && menu.map(this.renderSidebarMenuItem)}
+        {children}
       </Sidebar>
     );
   }
