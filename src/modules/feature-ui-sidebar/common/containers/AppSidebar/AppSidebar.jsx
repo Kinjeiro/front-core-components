@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import bind from 'lodash-decorators/bind';
 
-import
-  MENU_PROP_TYPE,
-  { MENU_ITEM_TYPE }
-  from '@reagentum/front-core/lib/modules/feature-ui-basic/common/subModule/model-ui-menu';
-
 // import i18n from '../../utils/i18n';
+
+import {
+  MENU_PROP_TYPE,
+  MENU_ITEM_TYPE,
+} from '@reagentum/front-core/lib/modules/feature-ui-basic/common/subModule/model-ui-menu';
 
 // ======================================================
 // MODULE
@@ -18,16 +18,12 @@ import { actions } from '../../redux-sidebar';
 
 import getComponents from '../../get-components';
 
-const {
-  Menu,
-  Icon,
-  Sidebar,
-} = getComponents();
+const { Menu, Icon, Sidebar } = getComponents();
 
 require('./AppSidebar.scss');
 
 @connect(
-  (globalState) => ({
+  globalState => ({
     sidebarContext: getSidebarContext(globalState),
   }),
   {
@@ -61,7 +57,7 @@ export default class AppSidebar extends PureComponent {
       currentPath,
       onClose,
       actionCloseSidebar,
-      sidebarProps: { alwaysVisible = false } = {},
+      sidebarProps: { alwaysVisible = false, hideOnMenuClick = true } = {},
     } = this.props;
 
     const {
@@ -97,7 +93,9 @@ export default class AppSidebar extends PureComponent {
           } else if (onGoTo && (path || to)) {
             await onGoTo(path || to);
           }
-
+          if (!hideOnMenuClick) {
+            stopClosing = true;
+          }
           if (stopClosing !== true && onClose && !alwaysVisible) {
             stopClosing = await onClose();
           }
@@ -121,11 +119,23 @@ export default class AppSidebar extends PureComponent {
     );
   }
 
+  sidebarPropsToLowerCase(props) {
+    const keys = Object.keys(props);
+    const result = {};
+    for (let i = 0; i < keys.length; i += 1) {
+      const prop = props[keys[i]];
+      const key = keys[i].toLowerCase();
+      result[key] = prop.toString();
+    }
+    return result;
+  }
+
   // ======================================================
   // MAIN RENDER
   // ======================================================
   render() {
     const { menu, className, sidebarProps, children } = this.props;
+    const lowerCasedSidebarProps = this.sidebarPropsToLowerCase(sidebarProps);
     return (
       <Sidebar
         className={ `AppSidebar ${className || ''}` }
@@ -136,7 +146,7 @@ export default class AppSidebar extends PureComponent {
         icon="labeled"
         vertical={ true }
         inverted={ true }
-        { ...sidebarProps }
+        { ...lowerCasedSidebarProps }
       >
         {menu && menu.map(this.renderSidebarMenuItem)}
         {children}
