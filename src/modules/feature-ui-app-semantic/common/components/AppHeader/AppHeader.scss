@@ -130,10 +130,11 @@
     }
 
     .Link {
-      display: inline-block;
       //height: 100%;
       height: inherit;
       width: 100%;
+      display: flex;
+      align-items: center;
     }
   }
 
