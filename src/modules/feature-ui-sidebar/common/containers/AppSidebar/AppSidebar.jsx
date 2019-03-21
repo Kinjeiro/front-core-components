@@ -119,23 +119,11 @@ export default class AppSidebar extends PureComponent {
     );
   }
 
-  sidebarPropsToLowerCase(props) {
-    const keys = Object.keys(props);
-    const result = {};
-    for (let i = 0; i < keys.length; i += 1) {
-      const prop = props[keys[i]];
-      const key = keys[i].toLowerCase();
-      result[key] = prop.toString();
-    }
-    return result;
-  }
-
   // ======================================================
   // MAIN RENDER
   // ======================================================
   render() {
     const { menu, className, sidebarProps, children } = this.props;
-    const lowerCasedSidebarProps = this.sidebarPropsToLowerCase(sidebarProps);
     return (
       <Sidebar
         className={ `AppSidebar ${className || ''}` }
@@ -146,7 +134,7 @@ export default class AppSidebar extends PureComponent {
         icon="labeled"
         vertical={ true }
         inverted={ true }
-        { ...lowerCasedSidebarProps }
+        { ...sidebarProps }
       >
         {menu && menu.map(this.renderSidebarMenuItem)}
         {children}
