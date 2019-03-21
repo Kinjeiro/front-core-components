@@ -30,12 +30,13 @@ export default class ButtonView extends PureComponent {
   render() {
     const {
       as,
+      simple,
       loading,
       disabled,
       children,
       className,
       notNaturalButton,
-      asyncIsLoading,
+      // asyncIsLoading,
 
       onClick,
     } = this.props;
@@ -45,14 +46,15 @@ export default class ButtonView extends PureComponent {
       : as !== ButtonView.defaultProps.as;
 
     return React.createElement(
-      as,
+      // простая кнопка без кучи ui.button селекторов семантика
+      simple ? 'button' : as,
       {
         ...this.props,
         onClick: notNaturalButtonFinal && disabled ? undefined : onClick,
         className: `${className} ${notNaturalButtonFinal ? 'Button--notNaturalButton' : ''}`,
       },
       // у ButtonSemantic есть свой loading
-      notNaturalButtonFinal && loading ? (<Loading />) : children,
+      ((notNaturalButtonFinal || simple) && loading) ? (<Loading />) : children,
     );
   }
 }
