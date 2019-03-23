@@ -207,7 +207,8 @@ export default class TreeSelect extends PureComponent {
   // RENDERS
   // ======================================================
   renderReadOnly() {
-    return this.getCurrentItem().label;
+    const current = this.getCurrentItem();
+    return current ? current.label : null;
   }
   renderDive() {
     const {
