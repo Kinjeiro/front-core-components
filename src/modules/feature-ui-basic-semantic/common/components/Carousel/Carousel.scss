@@ -50,11 +50,22 @@
   }
   .image-gallery-thumbnail {
     width: auto;
+    overflow: hidden;
+
     &.active {
       border-color: $color-default-text;
     }
     IMG {
       width: auto;
+    }
+  }
+
+  .fullscreen {
+    .image-gallery-thumbnail.active {
+      //border-color: #333;
+      // так как на черном фоне
+      // todo @ANKU @LOW - хорошо бы для кнопок тоже задать цвет
+      border-color: $color_white;
     }
   }
 
@@ -72,12 +83,6 @@
       display: none;
     }
     .fullscreen {
-      .image-gallery-thumbnail.active {
-        //border-color: #333;
-        // так как на черном фоне
-        // todo @ANKU @LOW - хорошо бы для кнопок тоже задать цвет
-        border-color: $color_white;
-      }
       .image-gallery-slide-wrapper {
         height: 100%;
       }
