@@ -39,6 +39,8 @@ export default class ButtonView extends PureComponent {
       asyncIsLoading, // нужно убрать из пропертей
 
       onClick,
+
+      ...other
     } = this.props;
 
     const notNaturalButtonFinal = typeof notNaturalButton !== 'undefined'
@@ -49,12 +51,14 @@ export default class ButtonView extends PureComponent {
       // простая кнопка без кучи ui.button селекторов семантика
       simple ? 'button' : as,
       {
-        ...this.props,
+        ...other,
         onClick: notNaturalButtonFinal && disabled ? undefined : onClick,
         className: `${className} ${notNaturalButtonFinal ? 'Button--notNaturalButton' : ''}`,
       },
       // у ButtonSemantic есть свой loading
-      ((notNaturalButtonFinal || simple) && loading) ? (<Loading />) : children,
+      ((notNaturalButtonFinal || simple) && loading)
+        ? (<Loading />)
+        : children,
     );
   }
 }
