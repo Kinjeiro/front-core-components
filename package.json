@@ -50,7 +50,7 @@
     "clear-cashe-and-install": "rm -rf ./node_modules && rm -f package-lock.json && npm cache clean --force && npm install --production",
     "update-core-patch": "npm update --save @reagentum/front-core@latest",
     "update-core": "npm install --save @reagentum/front-core@latest",
-    "minimized:copy": "cpr . minimizedPackage/frontCore_Components --delete-first --filter \"^(.idea|.build|build-scripts|lib|minimizedPackage|logs|node_modules|old|src).*\"",
+    "minimized:copy": "cpr . minimizedPackage/frontCore_Components --delete-first --filter \"^(.git|.idea|.build|build-scripts|lib|minimizedPackage|logs|node_modules|old|src).*\"",
     "minimized:libs": "cross-env MINIMIZED=true node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && babel src --out-dir minimizedPackage/frontCore_Components/lib --copy-files --include-dotfiles",
     "minimized:scripts": "minify build-scripts --mangle.keepClassName --outDir minimizedPackage/frontCore_Components/build-scripts",
     "minimized": "npm run minimized:copy && npm run minimized:scripts && npm run minimized:libs"
@@ -91,7 +91,7 @@
     "react-dom": ">=16.4.0"
   },
   "devDependencies": {
-    "@reagentum/front-core": "~1.7.3",
+    "@reagentum/front-core": "~1.7.9",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",
