@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import bind from "lodash-decorators/bind";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import bind from 'lodash-decorators/bind';
+import { connect } from 'react-redux';
 // import { push } from 'react-router-redux';
-import omit from "lodash/omit";
+import omit from 'lodash/omit';
 
-import { executeVariable } from "@reagentum/front-core/lib/common/utils/common";
-import contextModules from "@reagentum/front-core/lib/common/contexts/ContextModules/decorator-context-modules";
+import { executeVariable } from '@reagentum/front-core/lib/common/utils/common';
+import contextModules from '@reagentum/front-core/lib/common/contexts/ContextModules/decorator-context-modules';
 // import titled from '@reagentum/front-core/lib/common/utils/decorators/react-class/titled';
 import {
   getCurrentPath,
-  getModulesRoutePrefixes
-} from "@reagentum/front-core/lib/common/app-redux/selectors";
+  getModulesRoutePrefixes,
+} from '@reagentum/front-core/lib/common/app-redux/selectors';
 
 import * as moduleAuth from '@reagentum/front-core/lib/modules/module-auth/common/subModule';
 import { getUser } from '@reagentum/front-core/lib/modules/module-auth/common/subModule/redux-selectors';
@@ -50,14 +50,14 @@ require('./AppLayout.scss');
     user: getUser(globalState),
     moduleToRoutePrefixMap: getModulesRoutePrefixes(globalState),
     sidebarOpened: moduleFeatureSidebar.reduxSelectors.isSidebarOpen(
-      globalState
-    )
+      globalState,
+    ),
   }),
   {
     // goTo: push,
     actionUserLogout: actionsUser.actionUserLogout,
-    ...moduleFeatureSidebar.reduxActions()
-  }
+    ...moduleFeatureSidebar.reduxActions(),
+  },
 )
 export default class AppLayout extends Component {
   static propTypes = {
@@ -88,7 +88,7 @@ export default class AppLayout extends Component {
     // todo @ANKU @LOW - сделать redux чтобы влиять на верхнеуровней лайаут (текст в header тоже) из нижних контейнеров
     upBottomButtonsProps: PropTypes.oneOfType([
       PropTypes.object,
-      PropTypes.bool
+      PropTypes.bool,
     ]),
 
     footer: PropTypes.node,
@@ -111,7 +111,7 @@ export default class AppLayout extends Component {
     // ======================================================
     // @contextModules
     // ======================================================
-    onGoTo: PropTypes.func
+    onGoTo: PropTypes.func,
   };
 
   static defaultProps = {
@@ -140,7 +140,7 @@ export default class AppLayout extends Component {
       userMenu,
       ifMobileMoveUserMenuToSidebar,
       textMenuLogout,
-      moduleToRoutePrefixMap
+      moduleToRoutePrefixMap,
     } = this.props;
 
     if (isMobile && ifMobileMoveUserMenuToSidebar) {
@@ -151,15 +151,15 @@ export default class AppLayout extends Component {
       userMenu || menu,
       [],
       user,
-      moduleToRoutePrefixMap
+      moduleToRoutePrefixMap,
     ).filter(({ mobile = null }) => mobile === null || mobile === isMobile);
 
     if (user) {
       menuFinal.push({
         name: textMenuLogout,
-        className: "MenuItem MenuItem--logout",
-        icon: "sign out",
-        onClick: this.handleLogout
+        className: 'MenuItem MenuItem--logout',
+        icon: 'sign out',
+        onClick: this.handleLogout,
       });
     }
 
@@ -171,7 +171,7 @@ export default class AppLayout extends Component {
       user,
       sidebarMenu,
       ifMobileMoveUserMenuToSidebar,
-      moduleToRoutePrefixMap
+      moduleToRoutePrefixMap,
     } = this.props;
 
     const menu = [];
@@ -179,14 +179,14 @@ export default class AppLayout extends Component {
       menu.push(
         ...this.getUserMenu(false).map(menuItem => ({
           ...menuItem,
-          className: `MenuItem--userMenu ${menuItem.className || ""}`
-        }))
+          className: `MenuItem--userMenu ${menuItem.className || ''}`,
+        })),
       );
     }
     menu.push(
       ...executeVariable(sidebarMenu, [], user, moduleToRoutePrefixMap).filter(
-        ({ mobile = null }) => mobile === null || mobile === isMobile
-      )
+        ({ mobile = null }) => mobile === null || mobile === isMobile,
+      ),
     );
 
     return menu;
@@ -223,7 +223,7 @@ export default class AppLayout extends Component {
   handleLogout() {
     const {
       // goTo,
-      actionUserLogout
+      actionUserLogout,
     } = this.props;
 
     return actionUserLogout();
@@ -243,7 +243,7 @@ export default class AppLayout extends Component {
     const { onGoTo, user, headerProps, moduleToRoutePrefixMap } = this.props;
 
     return (
-      <MediaQuery mobile={true}>
+      <MediaQuery mobile={ true }>
         {matches => {
           const isMobile = matches;
           const showSidebarMenu = this.getSidebarMenu(isMobile).length > 0;
@@ -252,20 +252,19 @@ export default class AppLayout extends Component {
             <ContextHeaderProvider.Consumer>
               {contextProps => (
                 <AppHeader
-                  className={`AppLayout__header AppLayout__maxWidthItem ${headerProps.className ||
-                    ""}`}
-                  userInfo={user}
-                  userMenu={this.getUserMenu(isMobile)}
+                  className={ `AppLayout__header AppLayout__maxWidthItem ${headerProps.className || ''}` }
+                  userInfo={ user }
+                  userMenu={ this.getUserMenu(isMobile) }
                   onToggleSidebar={
                     showSidebarMenu ? this.handleToggleSidebar : undefined
                   }
-                  onGoTo={onGoTo}
-                  onLogin={() =>
+                  onGoTo={ onGoTo }
+                  onLogin={ () =>
                     onGoTo(moduleAuth.PATH_AUTH_INDEX, moduleAuth.MODULE_NAME)
                   }
-                  moduleToRoutePrefixMap={moduleToRoutePrefixMap}
-                  {...headerProps}
-                  {...contextProps}
+                  moduleToRoutePrefixMap={ moduleToRoutePrefixMap }
+                  { ...headerProps }
+                  { ...contextProps }
                 />
               )}
             </ContextHeaderProvider.Consumer>
@@ -297,12 +296,12 @@ export default class AppLayout extends Component {
 
     return (
       <AppSidebar
-        {...omit(this.props, "children")}
-        sidebarProps={sidebarProps}
-        menu={menu}
+        { ...omit(this.props, 'children') }
+        sidebarProps={ sidebarProps }
+        menu={ menu }
         animation="push"
-        currentPath={currentPath}
-        onGoTo={onGoTo}
+        currentPath={ currentPath }
+        onGoTo={ onGoTo }
       />
     );
   }
@@ -317,11 +316,11 @@ export default class AppLayout extends Component {
       headerFixed,
       upBottomButtonsProps,
       sidebarOpened,
-      sidebarProps: { alwaysVisible, animationType, dimmer = true }
+      sidebarProps: { alwaysVisible, animationType, dimmer = true },
     } = this.props;
     return (
-      <ContextHeaderProvider headerProps={headerProps}>
-        <MediaQuery mobile={true}>
+      <ContextHeaderProvider headerProps={ headerProps }>
+        <MediaQuery mobile={ true }>
           {matches => {
             const isMobile = matches;
             const menu = this.getSidebarMenu(isMobile);
@@ -330,24 +329,24 @@ export default class AppLayout extends Component {
             return (
               <Sidebar.Pushable
                 animation="push"
-                className={`AppLayout ${className || ""} ${
-                  isMobile ? "" : "AppLayout--notMobile"
-                } ${headerFixed ? "AppLayout--headerFixed" : ""}`}
+                className={ `AppLayout ${className || ''} ${
+                  isMobile ? '' : 'AppLayout--notMobile'
+                } ${headerFixed ? 'AppLayout--headerFixed' : ''}` }
               >
                 {(sidebarOpened || alwaysVisible) &&
                   this.renderMobileSidebarMenu(menu)}
 
                 {upBottomButtonsProps !== false &&
                   upBottomButtonsProps !== null && (
-                    <UpBottomButtons {...upBottomButtonsProps || {}} />
+                    <UpBottomButtons { ...upBottomButtonsProps || {} } />
                   )}
                 <Sidebar.Pusher className="AppLayout__pusher">
                   {/* Semantic ui currently(16.04.16) doesn't have closeDimmerOnClick or smth else
                        So, instead of it, we can use simple <Dimmer> component */
                   dimmer && sidebarOpened && (
                     <Dimmer
-                      active={true}
-                      onClick={this.handleCloseSidebar}
+                      active={ true }
+                      onClick={ this.handleCloseSidebar }
                       className="AppLayout__dimmer"
                     />
                   )}
@@ -356,7 +355,7 @@ export default class AppLayout extends Component {
                       <div className="AppLayout__headerFixed">
                         <div
                           className={
-                            "AppLayout__headerWrapper AppLayout__marginItem"
+                            'AppLayout__headerWrapper AppLayout__marginItem'
                           }
                         >
                           {this.renderHeader()}
@@ -365,14 +364,14 @@ export default class AppLayout extends Component {
                     </div>
                     <div
                       className={
-                        "AppLayout__contentWrapper AppLayout__marginItem"
+                        'AppLayout__contentWrapper AppLayout__marginItem'
                       }
                     >
                       {this.renderContent()}
                     </div>
                     <div
                       className={
-                        "AppLayout__footerWrapper AppLayout__marginItem"
+                        'AppLayout__footerWrapper AppLayout__marginItem'
                       }
                     >
                       {this.renderFooter()}
