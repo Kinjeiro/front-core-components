@@ -91,7 +91,7 @@
     "react-dom": ">=16.4.0"
   },
   "devDependencies": {
-    "@reagentum/front-core": "~1.7.9",
+    "@reagentum/front-core": "~1.8.3",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",
