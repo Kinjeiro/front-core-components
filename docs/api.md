@@ -31,28 +31,30 @@
 -   [profileUrl][27]
 -   [className][28]
 -   [scrollingOwn][29]
--   [useUpBottomButtons][30]
--   [content][31]
--   [isShow][32]
--   [menu][33]
--   [sidebarMenu][34]
--   [decoratorContextHeader][35]
--   [items][36]
--   [modalProps][37]
--   [SimpleButton][38]
--   [indexPath][39]
--   [onSelect][40]
--   [onSelectPage][41]
--   [onSelectAll][42]
--   [decoratorModal][43]
--   [update][44]
--   [update][45]
--   [AmountInput][46]
--   [dropZoneProps][47]
--   [type][48]
--   [renderTitle][49]
--   [renderSelectAll][50]
--   [renderItem][51]
+-   [scrollContainer][30]
+-   [useUpBottomButtons][31]
+-   [segments][32]
+-   [content][33]
+-   [isShow][34]
+-   [menu][35]
+-   [sidebarMenu][36]
+-   [decoratorContextHeader][37]
+-   [items][38]
+-   [modalProps][39]
+-   [SimpleButton][40]
+-   [indexPath][41]
+-   [onSelect][42]
+-   [onSelectPage][43]
+-   [onSelectAll][44]
+-   [decoratorModal][45]
+-   [update][46]
+-   [update][47]
+-   [AmountInput][48]
+-   [dropZoneProps][49]
+-   [type][50]
+-   [renderTitle][51]
+-   [renderSelectAll][52]
+-   [renderItem][53]
 
 ## Navigation
 
@@ -282,7 +284,7 @@ loadPositionsTables: {
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][52]
+see [https://react.semantic-ui.com/modules/dropdown][54]
 
 ## userMenu
 
@@ -306,9 +308,17 @@ see [https://react.semantic-ui.com/modules/dropdown][52]
 boolean - использовать внутренний скроллинг
 string - тогда это будет id элемента, у которого будет скроллинг
 
+## scrollContainer
+
+можно задать скролл контейнер, если мы не хотим использовать скролл боди, а нужно скроллить только часть
+
 ## useUpBottomButtons
 
 можно сделать кнопки вверх-вниз для этого скроллинга
+
+## segments
+
+Основа - перечисление шагов и контента под них
 
 ## content
 
@@ -347,7 +357,7 @@ string - тогда это будет id элемента, у которого �
 
 ## items
 
-[https://www.npmjs.com/package/react-image-gallery#props][53]
+[https://www.npmjs.com/package/react-image-gallery#props][55]
 
 ## modalProps
 
@@ -417,7 +427,7 @@ closeOnDocumentClick={closeOnDimmerClick} (default: false)
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][54]
+[https://react-dropzone.netlify.com/#proptypes][56]
 maxSize
 
 ## type
@@ -498,52 +508,56 @@ maxSize
 
 [29]: #scrollingown
 
-[30]: #useupbottombuttons
+[30]: #scrollcontainer
 
-[31]: #content
+[31]: #useupbottombuttons
 
-[32]: #isshow
+[32]: #segments
 
-[33]: #menu
+[33]: #content
 
-[34]: #sidebarmenu
+[34]: #isshow
 
-[35]: #decoratorcontextheader
+[35]: #menu
 
-[36]: #items
+[36]: #sidebarmenu
 
-[37]: #modalprops
+[37]: #decoratorcontextheader
 
-[38]: #simplebutton
+[38]: #items
 
-[39]: #indexpath
+[39]: #modalprops
 
-[40]: #onselect
+[40]: #simplebutton
 
-[41]: #onselectpage
+[41]: #indexpath
 
-[42]: #onselectall
+[42]: #onselect
 
-[43]: #decoratormodal
+[43]: #onselectpage
 
-[44]: #update
+[44]: #onselectall
 
-[45]: #update-1
+[45]: #decoratormodal
 
-[46]: #amountinput
+[46]: #update
 
-[47]: #dropzoneprops
+[47]: #update-1
 
-[48]: #type
+[48]: #amountinput
 
-[49]: #rendertitle
+[49]: #dropzoneprops
 
-[50]: #renderselectall
+[50]: #type
 
-[51]: #renderitem
+[51]: #rendertitle
 
-[52]: https://react.semantic-ui.com/modules/dropdown
+[52]: #renderselectall
 
-[53]: https://www.npmjs.com/package/react-image-gallery#props
+[53]: #renderitem
 
-[54]: https://react-dropzone.netlify.com/#proptypes
+[54]: https://react.semantic-ui.com/modules/dropdown
+
+[55]: https://www.npmjs.com/package/react-image-gallery#props
+
+[56]: https://react-dropzone.netlify.com/#proptypes
