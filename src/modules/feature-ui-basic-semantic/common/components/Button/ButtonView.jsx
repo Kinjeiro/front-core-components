@@ -30,18 +30,23 @@ export default class ButtonView extends PureComponent {
   render() {
     const {
       as,
+      // нужно убрать из пропертей
+      notNaturalButton,
+      asyncIsLoading,
+
+      ...other
+    } = this.props;
+
+    const {
       simple,
       loading,
       disabled,
       children,
       className,
-      notNaturalButton,
-      asyncIsLoading, // нужно убрать из пропертей
-
       onClick,
 
-      ...other
-    } = this.props;
+      ...simpleOther
+    } = other;
 
     const notNaturalButtonFinal = typeof notNaturalButton !== 'undefined'
       ? notNaturalButton
@@ -51,7 +56,11 @@ export default class ButtonView extends PureComponent {
       // простая кнопка без кучи ui.button селекторов семантика
       simple ? 'button' : as,
       {
-        ...other,
+        ...(
+          simple
+            ? simpleOther
+            : other
+        ),
         onClick: notNaturalButtonFinal && disabled ? undefined : onClick,
         className: `${className} ${notNaturalButtonFinal ? 'Button--notNaturalButton' : ''}`,
       },
