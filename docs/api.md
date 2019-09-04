@@ -65,14 +65,14 @@
 
 **Meta**
 
--   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
+-   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
 
 
 ## Loading
 
 **Meta**
 
--   **deprecated**: так как подцепляются лишнее css стили для неиспользуемых компонентов
+-   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
 
 ## Modal
