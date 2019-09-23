@@ -5,7 +5,7 @@ import PROP_TYPES from '@reagentum/front-core/lib/modules/feature-ui-form/common
 // ======================================================
 // MODULE
 // ======================================================
-import getComponents from '../../get-components';
+import getComponents from '../../../get-components';
 
 const {
   Button,

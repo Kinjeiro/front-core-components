@@ -12,7 +12,7 @@ import { findPath } from '@reagentum/front-core/lib/common/utils/tree-utils';
 
 // import i18n from '../../utils/i18n';
 
-import getComponents from '../../get-components';
+import getComponents from '../../../get-components';
 
 import { TREE_SELECT_TYPES } from './TreeSelect.const';
 

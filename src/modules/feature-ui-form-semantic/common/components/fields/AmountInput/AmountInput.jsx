@@ -5,7 +5,7 @@ import bind from 'lodash-decorators/bind';
 // import i18n from '../../utils/i18n';
 
 
-import getComponents from '../../get-components';
+import getComponents from '../../../get-components';
 
 const {
   Button,
