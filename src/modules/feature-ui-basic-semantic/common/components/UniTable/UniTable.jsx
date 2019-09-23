@@ -70,14 +70,18 @@ require('./UniTable.scss');
  <UniTable
    key={ valuationsType }
    cacheColumnsKey={ valuationsType }
-   records={ records }
+
    columns={ columns }
-   meta={ meta }
    i18nPrefix={ `${NAMESPACE}:pages.Valuations.table.columns` }
+
+   records={ records }
+   meta={ meta }
+
 
    selectable={ valuationsType === VALUATIONS_TYPES.NOT_SORTED }
    selected={ selected }
    isSelectedAll={ isSelectedAll }
+
    onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
    onSelectPage={ (selectedRecordIds, selected, selectedRecords) => this.props.actionChangeRecordsSelected(tableUuid, selectedRecordIds, selected) }
    onSelectAll={ (isSelectedAll) => this.props.actionChangeRecordsSelectedAll(tableUuid, isSelectedAll) }
@@ -771,6 +775,7 @@ export default class UniTable extends Component {
       tableProps = {},
       loadingData,
       pagination,
+      onPaginationChange,
       scrollable,
     } = this.props;
 
@@ -813,7 +818,7 @@ export default class UniTable extends Component {
           {
             !this.hasData()
               ? this.renderNoData()
-              : hasPagination
+              : hasPagination && onPaginationChange
                 ? this.renderPagination()
                 : null
           }

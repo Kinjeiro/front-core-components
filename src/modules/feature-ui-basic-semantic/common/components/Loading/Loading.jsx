@@ -26,7 +26,7 @@ export default class Loading extends Component {
     } = this.props;
 
     return (
-      <div className={ `Loading ${className || ''} ${withText && 'Loading--withText'}` }>
+      <div className={ `Loading ${className || ''} ${withText ? 'Loading--withText' : ''}` }>
         <Loader active={ true }>
           {
             withText === true

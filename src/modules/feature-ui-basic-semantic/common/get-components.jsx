@@ -26,6 +26,7 @@ export function initComponents(COMPONENTS_BASE) {
   // COMPONENTS_BASE.replace('UnescapedHtml', () => require('./components/UnescapedHtml/UnescapedHtml').default);
   // COMPONENTS_BASE.replace('ErrorLabel', () => require('./components/ErrorLabel/ErrorLabel').default);
   COMPONENTS_BASE.replace('Segment', () => require('./components/Segment/Segment').default);
+  COMPONENTS_BASE.replace('Hint', () => require('./components/Hint/Hint').default);
 
   // ======================================================
   // NEW
@@ -40,6 +41,7 @@ export function initComponents(COMPONENTS_BASE) {
   // COMPONENTS_BASE.replace('Sidebar', () => require('semantic-ui-react').Sidebar);
   COMPONENTS_BASE.replace('Search', () => require('semantic-ui-react').Search);
   COMPONENTS_BASE.replace('Card', () => require('semantic-ui-react').Card);
+  COMPONENTS_BASE.replace('Popup', () => require('semantic-ui-react').Popup);
   COMPONENTS_BASE.replace('Carousel', () => require('./components/Carousel/Carousel').default);
 
   COMPONENTS_BASE.replace('UniTable', () => require('./components/UniTable/UniTable').default);

@@ -1,6 +1,15 @@
 @import "../../../../../common/app-styles/vars";
 
 .UniTable {
+  height: 100%;
+
+  &__tableWrapper {
+    height: 100%;
+  }
+  &__table {
+    height: 100%;
+  }
+
   &--definition {
     > * > tr > td:first-child:not(.ignored),
     > * > tr > tr td.definition {
@@ -10,7 +19,7 @@
       //color: #000000f2;
       color: rgba($color-black, .95);
       text-transform: none;
-      box-shadow: 0;
+      box-shadow: none;
       font-size: 1em;
       padding-left: 0;
       padding-right: 0;
