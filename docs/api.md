@@ -13,48 +13,45 @@
 -   [Tabs][9]
 -   [Segment][10]
 -   [KeyValueList][11]
--   [Select][12]
--   [ToggledAddData][13]
+-   [ToggledAddData][12]
+-   [UniTable][13]
 -   [UniTable][14]
--   [UniTable][15]
--   [Notice][16]
--   [decorator-context-header][17]
--   [model-attachment][18]
--   [model-column][19]
--   [model-menu][20]
--   [model-tab][21]
--   [default][22]
--   [onToggleSidebar][23]
--   [logo][24]
+-   [Notice][15]
+-   [decorator-context-header][16]
+-   [model-attachment][17]
+-   [model-column][18]
+-   [model-menu][19]
+-   [model-tab][20]
+-   [default][21]
+-   [onToggleSidebar][22]
+-   [logo][23]
+-   [userMenu][24]
 -   [userMenu][25]
--   [userMenu][26]
--   [profileUrl][27]
--   [className][28]
--   [scrollingOwn][29]
--   [scrollContainer][30]
--   [useUpBottomButtons][31]
--   [segments][32]
--   [content][33]
--   [isShow][34]
--   [menu][35]
--   [sidebarMenu][36]
--   [decoratorContextHeader][37]
--   [items][38]
--   [modalProps][39]
--   [SimpleButton][40]
--   [indexPath][41]
--   [onSelect][42]
--   [onSelectPage][43]
--   [onSelectAll][44]
--   [decoratorModal][45]
--   [update][46]
--   [update][47]
--   [AmountInput][48]
--   [dropZoneProps][49]
--   [type][50]
--   [renderTitle][51]
--   [renderSelectAll][52]
--   [renderItem][53]
+-   [profileUrl][26]
+-   [className][27]
+-   [scrollingOwn][28]
+-   [scrollContainer][29]
+-   [useUpBottomButtons][30]
+-   [segments][31]
+-   [content][32]
+-   [isShow][33]
+-   [menu][34]
+-   [sidebarMenu][35]
+-   [decoratorContextHeader][36]
+-   [items][37]
+-   [modalProps][38]
+-   [SimpleButton][39]
+-   [indexPath][40]
+-   [onSelect][41]
+-   [onSelectPage][42]
+-   [onSelectAll][43]
+-   [decoratorModal][44]
+-   [AmountInput][45]
+-   [dropZoneProps][46]
+-   [type][47]
+-   [renderTitle][48]
+-   [renderSelectAll][49]
+-   [renderItem][50]
 
 ## Navigation
 
@@ -130,13 +127,6 @@
 -   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
 
 
-## Select
-
-**Meta**
-
--   **deprecated**: use direct path or frontCore/src/components/ComponentsBase
-
-
 ## ToggledAddData
 
 **Meta**
@@ -182,14 +172,17 @@ actionEditRecordStatusMap: {}
 &lt;UniTable
 key={ valuationsType }
 cacheColumnsKey={ valuationsType }
-records={ records }
+
 columns={ columns }
-meta={ meta }
 i18nPrefix={ `${NAMESPACE}:pages.Valuations.table.columns` }
+
+records={ records }
+meta={ meta }
 
 selectable={ valuationsType === VALUATIONS_TYPES.NOT_SORTED }
 selected={ selected }
 isSelectedAll={ isSelectedAll }
+
 onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
 onSelectPage={ (selectedRecordIds, selected, selectedRecords) => this.props.actionChangeRecordsSelected(tableUuid, selectedRecordIds, selected) }
 onSelectAll={ (isSelectedAll) => this.props.actionChangeRecordsSelectedAll(tableUuid, isSelectedAll) }
@@ -284,7 +277,7 @@ loadPositionsTables: {
 
 ## userMenu
 
-see [https://react.semantic-ui.com/modules/dropdown][54]
+see [https://react.semantic-ui.com/modules/dropdown][51]
 
 ## userMenu
 
@@ -357,7 +350,7 @@ string - тогда это будет id элемента, у которого �
 
 ## items
 
-[https://www.npmjs.com/package/react-image-gallery#props][55]
+[https://www.npmjs.com/package/react-image-gallery#props][52]
 
 ## modalProps
 
@@ -401,24 +394,6 @@ closeOnDocumentClick={closeOnDimmerClick} (default: false)
 -   `modalPropsFn`  : (modalData) => modalProps
 -   `handlerName`  имя проперти
 
-## update
-
-**Parameters**
-
--   `withBlur`  
--   `withChange`  
--   `event`  
--   `comp`  
-
-## update
-
-**Parameters**
-
--   `withBlur`  
--   `withChange`  
--   `event`  
--   `comp`  
-
 ## AmountInput
 
 **Extends PureComponent**
@@ -427,7 +402,7 @@ closeOnDocumentClick={closeOnDimmerClick} (default: false)
 
 ## dropZoneProps
 
-[https://react-dropzone.netlify.com/#proptypes][56]
+[https://react-dropzone.netlify.com/#proptypes][53]
 maxSize
 
 ## type
@@ -472,92 +447,86 @@ maxSize
 
 [11]: #keyvaluelist
 
-[12]: #select
+[12]: #toggledadddata
 
-[13]: #toggledadddata
+[13]: #unitable
 
-[14]: #unitable
+[14]: #unitable-1
 
-[15]: #unitable-1
+[15]: #notice
 
-[16]: #notice
+[16]: #decorator-context-header
 
-[17]: #decorator-context-header
+[17]: #model-attachment
 
-[18]: #model-attachment
+[18]: #model-column
 
-[19]: #model-column
+[19]: #model-menu
 
-[20]: #model-menu
+[20]: #model-tab
 
-[21]: #model-tab
+[21]: #default
 
-[22]: #default
+[22]: #ontogglesidebar
 
-[23]: #ontogglesidebar
+[23]: #logo
 
-[24]: #logo
+[24]: #usermenu
 
-[25]: #usermenu
+[25]: #usermenu-1
 
-[26]: #usermenu-1
+[26]: #profileurl
 
-[27]: #profileurl
+[27]: #classname
 
-[28]: #classname
+[28]: #scrollingown
 
-[29]: #scrollingown
+[29]: #scrollcontainer
 
-[30]: #scrollcontainer
+[30]: #useupbottombuttons
 
-[31]: #useupbottombuttons
+[31]: #segments
 
-[32]: #segments
+[32]: #content
 
-[33]: #content
+[33]: #isshow
 
-[34]: #isshow
+[34]: #menu
 
-[35]: #menu
+[35]: #sidebarmenu
 
-[36]: #sidebarmenu
+[36]: #decoratorcontextheader
 
-[37]: #decoratorcontextheader
+[37]: #items
 
-[38]: #items
+[38]: #modalprops
 
-[39]: #modalprops
+[39]: #simplebutton
 
-[40]: #simplebutton
+[40]: #indexpath
 
-[41]: #indexpath
+[41]: #onselect
 
-[42]: #onselect
+[42]: #onselectpage
 
-[43]: #onselectpage
+[43]: #onselectall
 
-[44]: #onselectall
+[44]: #decoratormodal
 
-[45]: #decoratormodal
+[45]: #amountinput
 
-[46]: #update
+[46]: #dropzoneprops
 
-[47]: #update-1
+[47]: #type
 
-[48]: #amountinput
+[48]: #rendertitle
 
-[49]: #dropzoneprops
+[49]: #renderselectall
 
-[50]: #type
+[50]: #renderitem
 
-[51]: #rendertitle
+[51]: https://react.semantic-ui.com/modules/dropdown
 
-[52]: #renderselectall
+[52]: https://www.npmjs.com/package/react-image-gallery#props
 
-[53]: #renderitem
-
-[54]: https://react.semantic-ui.com/modules/dropdown
-
-[55]: https://www.npmjs.com/package/react-image-gallery#props
-
-[56]: https://react-dropzone.netlify.com/#proptypes
+[53]: https://react-dropzone.netlify.com/#proptypes

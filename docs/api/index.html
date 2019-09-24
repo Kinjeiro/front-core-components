@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>@reagentum/frontCore_Components 1.8.1 | Documentation</title>
+  <title>@reagentum/frontCore_Components 1.8.3 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>@reagentum/frontCore_Components</h3>
-          <div class='mb1'><code>1.8.1</code></div>
+          <div class='mb1'><code>1.8.3</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -128,16 +128,6 @@
                   href='#keyvaluelist'
                   class="">
                   KeyValueList
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#select'
-                  class="">
-                  Select
                   
                 </a>
                 
@@ -475,26 +465,6 @@
               
                 
                 <li><a
-                  href='#update'
-                  class="">
-                  update
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#update'
-                  class="">
-                  update
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
                   href='#amountinput'
                   class="">
                   AmountInput
@@ -597,7 +567,7 @@
   
   
 
-  <div>Deprecated: use direct path or frontCore/src/components/ComponentsBase
+  <div>Deprecated: так как подцепляются лишнее css стили для неиспользуемых компонентов
 </div>
   
   
@@ -644,7 +614,7 @@
   
   
 
-  <div>Deprecated: так как подцепляются лишнее css стили для неиспользуемых компонентов
+  <div>Deprecated: use direct path or frontCore/src/components/ComponentsBase
 </div>
   
   
@@ -1060,53 +1030,6 @@
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='select'>
-      Select
-    </h3>
-    
-    
-  </div>
-  
-
-  
-
-  <div class='pre p1 fill-light mt0'>Select</div>
-  
-  
-
-  <div>Deprecated: use direct path or frontCore/src/components/ComponentsBase
-</div>
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='fl m0' id='toggledadddata'>
       ToggledAddData
     </h3>
@@ -1232,15 +1155,15 @@ actionEditRecordStatusMap: {}
 }</p>
 <p>&#x3C;UniTable
 key={ valuationsType }
-cacheColumnsKey={ valuationsType }
-records={ records }
-columns={ columns }
-meta={ meta }
+cacheColumnsKey={ valuationsType }</p>
+<p>columns={ columns }
 i18nPrefix={ <code>${NAMESPACE}:pages.Valuations.table.columns</code> }</p>
+<p>records={ records }
+meta={ meta }</p>
 <p>selectable={ valuationsType === VALUATIONS_TYPES.NOT_SORTED }
 selected={ selected }
-isSelectedAll={ isSelectedAll }
-onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
+isSelectedAll={ isSelectedAll }</p>
+<p>onSelect={ (recordId, selected, record) => this.props.actionChangeRecordsSelected(tableUuid, recordId, selected) }
 onSelectPage={ (selectedRecordIds, selected, selectedRecords) => this.props.actionChangeRecordsSelected(tableUuid, selectedRecordIds, selected) }
 onSelectAll={ (isSelectedAll) => this.props.actionChangeRecordsSelectedAll(tableUuid, isSelectedAll) }</p>
 <p>onPaginationChange={ (startPage, itemsPerPage) =>
@@ -2770,172 +2693,6 @@ closeOnDocumentClick={closeOnDimmerClick} (default: false)</p>
             <span class='code bold'>handlerName</span> <code class='quiet'>(any)</code>
 	    имя проперти
 
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='update'>
-      update
-    </h3>
-    
-    
-  </div>
-  
-
-  
-
-  <div class='pre p1 fill-light mt0'>update(withBlur: any, withChange: any, event: any, comp: any)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>withBlur</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>withChange</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>event</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>comp</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='update'>
-      update
-    </h3>
-    
-    
-  </div>
-  
-
-  
-
-  <div class='pre p1 fill-light mt0'>update(withBlur: any, withChange: any, event: any, comp: any)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>withBlur</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>withChange</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>event</span> <code class='quiet'>(any)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>comp</span> <code class='quiet'>(any)</code>
-	    
           </div>
           
         </div>
