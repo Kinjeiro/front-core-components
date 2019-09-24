@@ -39,10 +39,10 @@ export Segment from '../../modules/feature-ui-basic-semantic/common/components/S
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
 export KeyValueList from '../../modules/feature-ui-basic-semantic/common/components/KeyValueList/KeyValueList';
-/**
- * @deprecated - use direct path or frontCore/src/components/ComponentsBase
- */
-export Select from '../../modules/feature-ui-form-generator-semantic/common/components/Select/Select';
+// /**
+//  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
+//  */
+// export Select from '../../modules/feature-ui-form-generator-semantic/common/components/Select/Select';
 /**
  * @deprecated - use direct path or frontCore/src/components/ComponentsBase
  */
