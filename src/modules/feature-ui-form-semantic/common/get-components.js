@@ -6,6 +6,8 @@ export function initComponents(COMPONENTS_BASE) {
   // ======================================================
   // FORM replace
   // ======================================================
+  COMPONENTS_BASE.replace('FormView', () => require('semantic-ui-react').Form);
+
   // todo @ANKU @LOW - ихний input своим ui.input input все стили для fieldLaout перебивает + error не срабатывает
   // COMPONENTS_BASE.replace('BaseInput', () => require('semantic-ui-react').Input);
   // COMPONENTS_BASE.replace('BaseNumberInput', () => require('semantic-ui-react').Input);
