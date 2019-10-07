@@ -83,7 +83,8 @@
     "react-image-gallery": "~0.8.11",
     "react-redux-toastr": "~7.0.0",
     "semantic-ui-css": "~2.2.10",
-    "semantic-ui-react": "~0.80.2"
+    "semantic-ui-react": "~0.80.2",
+    "config": "github:kinjeiro/node-config"
   },
   "peerDependencies": {
     "@reagentum/front-core": ">=1.6.0",
@@ -91,7 +92,7 @@
     "react-dom": ">=16.4.0"
   },
   "devDependencies": {
-    "@reagentum/front-core": "~1.8.16",
+    "@reagentum/front-core": "~1.9.1",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",

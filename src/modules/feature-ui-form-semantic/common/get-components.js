@@ -12,7 +12,9 @@ export function initComponents(COMPONENTS_BASE) {
   // COMPONENTS_BASE.replace('BaseInput', () => require('semantic-ui-react').Input);
   // COMPONENTS_BASE.replace('BaseNumberInput', () => require('semantic-ui-react').Input);
   COMPONENTS_BASE.replace('BaseTextArea', () => require('./components/fields/TextArea/BaseTextArea').default);
-  COMPONENTS_BASE.replace('BaseSelect', () => require('./components/fields/Select/BaseSelect').default);
+
+  COMPONENTS_BASE.replace('SelectView', () => require('./components/fields/Select/SelectView').default);
+
   COMPONENTS_BASE.replace('DatePicker', () => require('./components/fields/DatePicker/DatePicker').default);
 
   // COMPONENTS_BASE.replace('Attachment', () => require('../modules/feature-attachments/common/subModule/components/form/Attachment/Attachment').default);
