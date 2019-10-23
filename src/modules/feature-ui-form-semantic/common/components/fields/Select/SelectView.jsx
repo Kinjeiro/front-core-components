@@ -5,6 +5,7 @@ import bind from 'lodash-decorators/bind';
 import pick from 'lodash/pick';
 import omit from 'lodash/omit';
 import uniqBy from 'lodash/uniqBy';
+import difference from 'lodash/difference';
 
 import { Select } from 'semantic-ui-react';
 
@@ -60,7 +61,7 @@ export default class SelectView extends PureComponent {
       const newValuesFinal = newValues || [];
 
       return oldValues.length > newValuesFinal.length
-        ? onRemoveSelected(oldValues[oldValues.length - 1])
+        ? onRemoveSelected(difference(oldValues, newValues))
         : onSelect(newValuesFinal[newValuesFinal.length - 1]);
     }
 
