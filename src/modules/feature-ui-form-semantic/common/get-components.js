@@ -14,6 +14,7 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.replace('BaseTextArea', () => require('./components/fields/TextArea/BaseTextArea').default);
 
   COMPONENTS_BASE.replace('SelectView', () => require('./components/fields/Select/SelectView').default);
+  COMPONENTS_BASE.replace('CheckboxView', () => require('./components/fields/Checkbox/CheckboxView').default);
 
   COMPONENTS_BASE.replace('DatePicker', () => require('./components/fields/DatePicker/DatePicker').default);
 
@@ -22,7 +23,6 @@ export function initComponents(COMPONENTS_BASE) {
   COMPONENTS_BASE.wrap('AttachmentUploadControl', () => require('./components/fields/Attachment/AttachmentUploadControl').default);
   COMPONENTS_BASE.addInitCallback('AttachmentItemView', () => require('./components/fields/Attachment/AttachmentItem/AttachmentItemView.scss'));
 
-  COMPONENTS_BASE.replace('Checkbox', () => require('./components/fields/Checkbox/Checkbox').default);
 
   // ======================================================
   // NEW

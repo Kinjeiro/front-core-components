@@ -10,7 +10,7 @@ import difference from 'lodash/difference';
 import { Select } from 'semantic-ui-react';
 
 import { wrapToArray } from '@reagentum/front-core/lib/common/utils/common';
-import SELECT_VIEW_PROP_TYPES_MAP from '@reagentum/front-core/lib/modules/feature-ui-form/common/subModule/components/fields/Select/SelectView.propTypes';
+import CHECKBOX_VIEW_PROP_TYPES_MAP from '@reagentum/front-core/lib/modules/feature-ui-form/common/subModule/components/fields/Select/Select.propTypes';
 
 // import i18n from '../../utils/i18n';
 
@@ -19,7 +19,7 @@ import SELECT_VIEW_PROP_TYPES_MAP from '@reagentum/front-core/lib/modules/featur
 export default class SelectView extends PureComponent {
   static propTypes = {
     ...Select.propTypes,
-    ...SELECT_VIEW_PROP_TYPES_MAP,
+    ...CHECKBOX_VIEW_PROP_TYPES_MAP,
     // mode: PropTypes.string,
     // className,
     // options,
@@ -35,8 +35,8 @@ export default class SelectView extends PureComponent {
     // onLoadMore: PropTypes.func,
   };
 
-  static defaultProps = {
-  };
+  // static defaultProps = {
+  // };
 
   // ======================================================
   // HANDLERS
@@ -89,7 +89,7 @@ export default class SelectView extends PureComponent {
   getControlProps() {
     return omit(
       this.props,
-      ...Object.keys(SELECT_VIEW_PROP_TYPES_MAP),
+      ...Object.keys(CHECKBOX_VIEW_PROP_TYPES_MAP),
     );
     // return this.props;
   }
@@ -114,7 +114,7 @@ export default class SelectView extends PureComponent {
       multiple,
       useSearch,
       optionMetas,
-      text,
+      inputText,
       placeholder,
       loading,
       value,
@@ -161,7 +161,7 @@ export default class SelectView extends PureComponent {
         value={ value }
         options={ optionMetasFinal.map(this.parseMetaToOption) }
 
-        text={ text }
+        text={ inputText }
 
         onChange={ this.handleChange }
         onSearchChange={ this.handleSearch }
