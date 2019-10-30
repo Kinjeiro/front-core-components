@@ -118,7 +118,7 @@ export default class SelectView extends PureComponent {
       placeholder,
       loading,
       value,
-      valueOptionMeta,
+      valueOptionMetas,
       searchTerm,
       useUnique,
 
@@ -131,7 +131,7 @@ export default class SelectView extends PureComponent {
       ? uniqBy(
         [
           ...optionMetas,
-          ...wrapToArray(valueOptionMeta),
+          ...valueOptionMetas,
         ],
         (optionMeta) => optionMeta.recordId,
       )

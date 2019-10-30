@@ -44,6 +44,7 @@ export default class ButtonView extends PureComponent {
       children,
       className,
       onClick,
+      onClickArgs,
 
       ...simpleOther
     } = other;
