@@ -87,7 +87,7 @@ export default class SelectView extends PureComponent {
   // RENDERS
   // ======================================================
   getControlProps() {
-    return omit(
+    return pick(
       this.props,
       ...Object.keys(CHECKBOX_VIEW_PROP_TYPES_MAP),
     );
