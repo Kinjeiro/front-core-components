@@ -163,6 +163,7 @@ export default class SelectView extends PureComponent {
 
         text={ inputText }
 
+        onSelect={ undefined }
         onChange={ this.handleChange }
         onSearchChange={ this.handleSearch }
         onBlur={ onBlur }
