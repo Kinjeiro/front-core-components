@@ -9,6 +9,7 @@ import Scroll from 'react-scroll';
 // import { getScrollParent } from 'react-scroll/modules/mixins/utils';
 
 import { getScrollParent } from '@reagentum/front-core/lib/common/utils/dom-utils';
+import clientLogger from '@reagentum/front-core/lib/common/helpers/client-logger';
 
 import getComponents from '../../get-components';
 
@@ -32,33 +33,59 @@ export default class UpBottomButtons extends Component {
     showBottom: false,
   };
 
+  elementRef = null;
   scrollContainerEl = null;
-  elementEl = null;
 
   // ======================================================
   // LIFECYCLE
   // ======================================================
+  constructor(...args) {
+    super(...args);
+    this.elementRef = React.createRef();
+  }
   componentDidMount() {
+    const {
+      elementRef,
+    } = this;
     const {
       scrollContainerId,
       scrollContainer,
     } = this.props;
 
-    setTimeout(() => {
-      if (scrollContainer) {
-        this.scrollContainerEl = scrollContainer;
-      } else if (scrollContainerId) {
-        this.scrollContainerEl = document.getElementById(scrollContainerId);
-      } else if (this.elementEl) {
-        this.scrollContainerEl = getScrollParent(this.elementEl);
-      }
+    // setTimeout(() => {
+    //   if (scrollContainer) {
+    //     this.scrollContainerEl = scrollContainer;
+    //   } else if (scrollContainerId) {
+    //     this.scrollContainerEl = document.getElementById(scrollContainerId);
+    //   } else if (elementRef.current) {
+    //     this.scrollContainerEl = getScrollParent(elementRef.current);
+    //   }
+    //
+    //   // todo @ANKU @LOW - при глобальном хот релоаде компонентов - теряет контейнер - пока отключили эту функциональность
+    //   if (this.scrollContainerEl) {
+    //     this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
+    //   }
+    //   // нужно подождать пока все стили подцепятся и правильно определить родителя
+    // }, 1000);
 
-      // todo @ANKU @LOW - при глобальном хот релоаде компонентов - теряет контейнер - пока отключили эту функциональность
-      if (this.scrollContainerEl) {
-        this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
+    if (scrollContainer) {
+      this.scrollContainerEl = scrollContainer;
+    } else if (scrollContainerId) {
+      this.scrollContainerEl = document.getElementById(scrollContainerId);
+    } else if (elementRef.current) {
+      this.scrollContainerEl = getScrollParent(elementRef.current);
+    }
+
+    // todo @ANKU @LOW - при глобальном хот релоаде компонентов - теряет контейнер - пока отключили эту функциональность
+    if (this.scrollContainerEl) {
+      this.scrollContainerEl.addEventListener('scroll', this.handleScroll);
+      if (typeof document !== 'undefined') {
+        // set init values
+        setTimeout(this.handleScroll.bind(this, { target: document }), 1000);
       }
-      // нужно подождать пока все стили подцепятся и правильно определить родителя
-    }, 1000);
+    } else {
+      clientLogger.warn('UpBottomButtons: doesn\'t find scrollContainer parent for element,', elementRef.current);
+    }
   }
   componentWillUnmount() {
     if (this.scrollContainerEl) {
@@ -138,7 +165,7 @@ export default class UpBottomButtons extends Component {
     return (
       <div
         className="UpBottomButtons"
-        ref={ (elementNode) => this.elementEl = elementNode }
+        ref={ this.elementRef }
       >
         { showUp && (
           <div className="UpBottomButtons__up">
