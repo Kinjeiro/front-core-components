@@ -88,11 +88,11 @@
   },
   "peerDependencies": {
     "@reagentum/front-core": ">=1.9.0",
-    "react": ">=16.4.0",
-    "react-dom": ">=16.4.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@reagentum/front-core": "~1.9.10",
+    "@reagentum/front-core": "~1.9.30",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",
@@ -144,8 +144,8 @@
     "karma-webpack": "~2.0.3",
     "live-server": "~1.2.0",
     "mocha": "~2.4.5",
-    "react": "~16.4.0",
-    "react-dom": "~16.4.0",
+    "react": "~16.12.0",
+    "react-dom": "~16.12.0",
     "respawn": "~2.3.0",
     "sinon": "~4.1.2",
     "sinon-chai": "~2.11.0",
