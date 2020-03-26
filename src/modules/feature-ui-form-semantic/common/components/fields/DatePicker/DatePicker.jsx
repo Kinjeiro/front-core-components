@@ -150,6 +150,7 @@ export default class DatePicker extends Component {
           numberOfMonths={ 1 }
           isOutsideRange={ () => false }
           displayFormat={ DATE_FORMAT }
+          hideKeyboardShortcutsPanel={ true }
           readOnly={ readOnly }
           disabled={ readOnly }
           {
