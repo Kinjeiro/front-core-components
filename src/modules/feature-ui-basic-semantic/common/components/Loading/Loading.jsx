@@ -29,11 +29,15 @@ export default class Loading extends Component {
       <div className={ `Loading ${className || ''} ${withText ? 'Loading--withText' : ''}` }>
         <Loader active={ true }>
           {
-            withText === true
-              ? i18n('components.Loading.loadingText')
-              : withText === false
-                ? undefined
-                : withText
+            typeof withText !== 'undefined' && withText !== false && (
+              <span className="Loading__text">
+                {
+                  withText === true
+                    ? i18n('components.Loading.loadingText')
+                    : withText
+                }
+              </span>
+            )
           }
         </Loader>
       </div>

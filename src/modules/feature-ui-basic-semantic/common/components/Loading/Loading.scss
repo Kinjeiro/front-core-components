@@ -6,7 +6,30 @@
   position: relative;
   width: 100%;
 
+  font-size: 1em;
+
   &--withText {
     min-height: 62px;
   }
+}
+
+.ui.loader .Loading__text {
+  font-size: 0.4374999em; // = 1 / 2.28571429
+}
+
+//.ui.loader {
+//  font-size: 2.28571429em;
+//}
+.ui.inverted.dimmer .ui.loader,
+.ui.loader {
+  width: 1em;
+  height: 1em;
+  font-size: 2.28571429em;
+}
+.ui.loader:before,
+.ui.loader:after {
+  width: 1em;
+  height: 1em;
+  margin: 0em 0em 0em -0.5em;
+  border-width: 0.1em;
 }
