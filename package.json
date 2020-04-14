@@ -2,6 +2,19 @@
   "name": "@reagentum/frontCore_Components",
   "version": "1.9.7",
   "description": "FrontCore_Components",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Andrey \"Kinjeiro\" Kuzmin",
+    "email": "kinjeiro@gmail.com"
+  },
+  "contributors": [
+    "kinjeiro@gmail.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kinjeiro/frontCore_components.git"
+  },
+  "homepage": "https://github.com/kinjeiro/frontCore_components",
   "scripts": {
     "start-build": "node ./.build/server.js",
     "start-static-build": "cd ./.build && live-server --entry-file=./index.html",
@@ -29,8 +42,8 @@
     "build-docs-md": "documentation build src/** --config docs/api-documentation.yml --format md --output docs/api.md",
     "build-docs-html": "documentation build src/** --config docs/api-documentation.yml --format html --output docs/api",
     "compile": "node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && rimraf lib/* -f && babel src --out-dir lib --copy-files",
-    "publish-patch": "npm run release-patch && npm publish",
-    "publish-patch-r": "git push --follow-tags && npm publish",
+    "publish-patch": "npm run release-patch && npm publish --access public",
+    "publish-patch-r": "git push --follow-tags && npm publish --access public",
     "release-patch": "npm version patch -m \"chore(*) patch version: %s\"",
     "release-minor": "npm version minor -m \"chore(*) minor version: %s\"",
     "release-major": "npm version major -m \"chore(*) major version: %s\"",
@@ -92,7 +105,7 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@reagentum/front-core": "~1.9.30",
+    "@reagentum/front-core": "~1.9.42",
     "autoprefixer": "~6.3.1",
     "awesome-typescript-loader": "~1.0.0",
     "babel-cli": "~6.24.1",
@@ -155,12 +168,5 @@
     "uglify-es": "github:mishoo/UglifyJS2#harmony",
     "webpack-dev-server": "~2.7.1",
     "yargs": "~9.0.1"
-  },
-  "author": {
-    "name": "Andrey \"Kinjeiro\" Kuzmin",
-    "email": "kinjeiro@gmail.com"
-  },
-  "contributors": [
-    "kinjeiro@gmail.com"
-  ]
+  }
 }
