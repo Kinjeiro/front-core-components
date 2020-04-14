@@ -11,8 +11,7 @@ const {
   Loading,
 } = getComponents();
 
-// require('./ButtonView.scss');
-require('./button-semantic-fix.scss');
+require('./ButtonView.scss');
 
 export default class ButtonView extends PureComponent {
   static propTypes = {
