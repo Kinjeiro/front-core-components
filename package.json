@@ -1,7 +1,7 @@
 {
-  "name": "@reagentum/frontCore_Components",
+  "name": "@reagentum/front-core-components",
   "version": "1.9.8",
-  "description": "FrontCore_Components",
+  "description": "Front Core Components (based on Semantic)",
   "license": "Apache-2.0",
   "author": {
     "name": "Andrey \"Kinjeiro\" Kuzmin",
@@ -12,9 +12,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kinjeiro/frontCore_components.git"
+    "url": "https://github.com/kinjeiro/front-core-components.git"
   },
-  "homepage": "https://github.com/kinjeiro/frontCore_components",
+  "homepage": "https://github.com/kinjeiro/front-core-components",
   "scripts": {
     "start-build": "node ./.build/server.js",
     "start-static-build": "cd ./.build && live-server --entry-file=./index.html",
@@ -63,9 +63,9 @@
     "clear-cashe-and-install": "rm -rf ./node_modules && rm -f package-lock.json && npm cache clean --force && npm install --production",
     "update-core-patch": "npm update --save @reagentum/front-core@latest",
     "update-core": "npm install --save @reagentum/front-core@latest",
-    "minimized:copy": "cpr . minimizedPackage/frontCore_Components --delete-first --filter \"^(.git|.idea|.build|build-scripts|lib|minimizedPackage|logs|node_modules|old|src).*\"",
-    "minimized:libs": "cross-env MINIMIZED=true node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && babel src --out-dir minimizedPackage/frontCore_Components/lib --copy-files --include-dotfiles",
-    "minimized:scripts": "minify build-scripts --mangle.keepClassName --outDir minimizedPackage/frontCore_Components/build-scripts",
+    "minimized:copy": "cpr . minimizedPackage/front-core-components --delete-first --filter \"^(.git|.idea|.build|build-scripts|lib|minimizedPackage|logs|node_modules|old|src).*\"",
+    "minimized:libs": "cross-env MINIMIZED=true node ./node_modules/@reagentum/front-core/build-scripts/update-babelrc.js && babel src --out-dir minimizedPackage/front-core-components/lib --copy-files --include-dotfiles",
+    "minimized:scripts": "minify build-scripts --mangle.keepClassName --outDir minimizedPackage/front-core-components/build-scripts",
     "minimized": "npm run minimized:copy && npm run minimized:scripts && npm run minimized:libs"
   },
   "deletedDependencies": {
